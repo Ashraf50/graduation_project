@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "مرحبا بكم في اراوند يو نحن ملتزمون بجعل بحثكم عن العقارات للإيجار والخدمات الأساسية سهلًا وخاليًا من المتاعب. يوفر تطبيقنا دليلًا شاملاً للشقق المتاحة للإيجار، ويقدم معلومات عن أقرب المطاعم والبنوك والمستشفيات والصيدليات لتعزيز تجربة السكن الخاصة بكم. ما يميزنا هو خدمة الدردشة المدمجة، التي تتيح التواصل السهل والمباشر بين المستخدمين. مهمتنا هي إنشاء بيئة سهلة الاستخدام تبسط عملية الإيجار وتربطكم بالخدمات الأساسية في منطقتكماختبروا الراحة والشفافية والدعم في مكان واحد مع اراوند يو."),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+        "any_question": MessageLookupByLibrary.simpleMessage(
+            "إذا كان لديك أي أسئلة أو استفسارات أو ملاحظات بخصوص سياسة الخصوصية هذه أو أي جانب من تجربتك مع اراوند يو فلا تتردد في التواصل معنا:"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "category": MessageLookupByLibrary.simpleMessage("الفئة"),
         "confirm_pass":
@@ -57,12 +59,61 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "or": MessageLookupByLibrary.simpleMessage("     أو     "),
+        "our_team": MessageLookupByLibrary.simpleMessage(
+            "فريقنا متاح لمساعدتك في أي استفسارات أو مشكلات قد تواجهك. نهدف إلى الرد على جميع الاتصالات بسرعة وكفاءة."),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "policy1": MessageLookupByLibrary.simpleMessage("1. جمع البيانات"),
+        "policy1_desc": MessageLookupByLibrary.simpleMessage(
+            "نجمع بعض المعلومات الشخصية وغير الشخصية مثل:\nمعلومات الحساب: الاسم، البريد الإلكتروني، ورقم الهاتف عند التسجيل.\nالموقع الجغرافي: لتقديم خدمات متعلقة بالأماكن القريبة (المطاعم، البنوك، المستشفيات، الصيدليات).\nتفضيلات المستخدم: الميزات المفضلة للشقق وأنماط البحث.\nبيانات التواصل: عند استخدام خدمة الدردشة للتفاعل مع المالكين أو المستخدمين الآخرين."),
+        "policy2": MessageLookupByLibrary.simpleMessage("2. استخدام البيانات"),
+        "policy2_desc": MessageLookupByLibrary.simpleMessage(
+            "نستخدم المعلومات التي نجمعها من أجل:\nتحسين تجربة المستخدم وتقديم توصيات شقق مخصصة.\nتمكين الخدمات للعثور على المرافق القريبة (المطاعم، البنوك، المستشفيات، الصيدليات).\nتسهيل التواصل بين المستخدمين."),
+        "policy3": MessageLookupByLibrary.simpleMessage("3. حماية البيانات"),
+        "policy3_desc": MessageLookupByLibrary.simpleMessage(
+            "نقوم بتنفيذ تدابير تقنية وتنظيمية لحماية بياناتك الشخصية من الوصول أو التلاعب غير المصرح به."),
+        "policy4": MessageLookupByLibrary.simpleMessage("4. مشاركة البيانات"),
+        "policy4_desc": MessageLookupByLibrary.simpleMessage(
+            "نحن لا نبيع أو نؤجر بياناتك الشخصية لأطراف ثالثة. قد نشارك البيانات في الحالات التالية:\nمقدمو الخدمات: الشركات التي تقدم لنا خدمات (مثل الخرائط أو معالجة الدفع).\nالامتثال للقوانين: إذا تطلب الكشف عن البيانات بموجب الالتزامات أو الإجراءات القانونية."),
+        "policy5": MessageLookupByLibrary.simpleMessage("5. حقوق المستخدم"),
+        "policy5_desc": MessageLookupByLibrary.simpleMessage(
+            "لديك الحق في تعديل أو حذف معلوماتك الشخصية من خلال إعدادات الحساب أو عن طريق التواصل معنا مباشرة."),
+        "policy6": MessageLookupByLibrary.simpleMessage("6. تحديثات السياسة"),
+        "policy6_desc": MessageLookupByLibrary.simpleMessage(
+            "قد نقوم بتحديث هذه السياسة من وقت لآخر. سيتم إعلامك بأي تغييرات عبر التطبيق أو البريد الإلكتروني."),
+        "policy_thanks": MessageLookupByLibrary.simpleMessage(
+            "شكرًا لاستخدامك اراوند يو. نحن ملتزمون بحماية خصوصيتك وضمان أمان بياناتك الشخصية. توضح هذه السياسة كيفية جمع معلوماتك واستخدامها وحمايتها ومشاركتها."),
         "privacy": MessageLookupByLibrary.simpleMessage("الخصوصية والسياسة"),
         "rate": MessageLookupByLibrary.simpleMessage("قيمنا"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "terms1": MessageLookupByLibrary.simpleMessage("1. قبول الشروط"),
+        "terms1_desc": MessageLookupByLibrary.simpleMessage(
+            "من خلال الوصول إلى اراوند يو أو استخدامه، توافق على هذه الشروط والأحكام. إذا كنت لا توافق، يرجى عدم استخدام التطبيق."),
+        "terms2": MessageLookupByLibrary.simpleMessage("2. مسؤوليات المستخدم"),
+        "terms2_desc": MessageLookupByLibrary.simpleMessage(
+            "أمان الحساب: أنت مسؤول عن الحفاظ على سرية بيانات تسجيل الدخول الخاصة بك.\nمعلومات دقيقة: يجب عليك تقديم معلومات دقيقة ومحدثة وكاملة عند التسجيل واستخدام التطبيق.\nالاستخدام القانوني: توافق على استخدام التطبيق فقط لأغراض قانونية وبطريقة لا تنتهك حقوق الآخرين أو تقيد أو تمنع استخدامهم للتطبيق."),
+        "terms3": MessageLookupByLibrary.simpleMessage("3. الخدمات المقدمة"),
+        "terms3_desc": MessageLookupByLibrary.simpleMessage(
+            "تتيح اراوند يو للمستخدمين:\nالبحث عن الشقق المتاحة للإيجار وعرضها.\nالبحث عن الخدمات القريبة مثل المطاعم والبنوك والمستشفيات والصيدليات.\nالتواصل مع مالكي العقارات ومستخدمين آخرين من خلال ميزة الدردشة."),
+        "terms4": MessageLookupByLibrary.simpleMessage("4. تحديد المسؤولية"),
+        "terms4_desc": MessageLookupByLibrary.simpleMessage(
+            "لا تتحمل اراوند يو أي مسؤولية عن أي اتفاقيات أو نزاعات تنشأ بين المستخدمين ومالكي العقارات. يتفاعل المستخدمون ويقومون بإجراء الترتيبات حسب تقديرهم الخاص."),
+        "terms5": MessageLookupByLibrary.simpleMessage("5. الخصوصية"),
+        "terms5_desc": MessageLookupByLibrary.simpleMessage(
+            "يخضع استخدامك لـ اراوند يو أيضًا لسياسة الخصوصية الخاصة بنا، والتي تشرح كيفية جمع بياناتك واستخدامها ومشاركتها."),
+        "terms6": MessageLookupByLibrary.simpleMessage("6. الملكية الفكرية"),
+        "terms6_desc": MessageLookupByLibrary.simpleMessage(
+            "جميع المحتويات الموجودة على اراوند يو بما في ذلك على سبيل المثال لا الحصر النصوص والرسوم البيانية والشعارات والبرامج، مملوكة لـ اراوند يو أو مرخصة لها ومحمية بموجب قوانين الملكية الفكرية. الاستخدام غير المصرح به محظور."),
+        "terms7": MessageLookupByLibrary.simpleMessage("7. الإنهاء"),
+        "terms7_desc": MessageLookupByLibrary.simpleMessage(
+            "نحتفظ بالحق في تعليق أو إنهاء وصولك إلى اراوند يو وفقًا لتقديرنا، دون إشعار مسبق، بسبب انتهاكات هذه الشروط أو أي سلوك غير مناسب."),
+        "terms8":
+            MessageLookupByLibrary.simpleMessage("8. التعديلات على الشروط"),
+        "terms8_desc": MessageLookupByLibrary.simpleMessage(
+            "قد تقوم اراوند يو بمراجعة هذه الشروط من وقت لآخر. سيتم الإبلاغ عن أي تغييرات من خلال التطبيق، واستمرارك في استخدام التطبيق يعني قبولك للشروط المعدلة."),
+        "terms_welcome": MessageLookupByLibrary.simpleMessage(
+            "مرحبًا بك في اراوند يو. من خلال استخدام تطبيقنا، توافق على الالتزام بالشروط والأحكام التالية. يرجى قراءتها بعناية."),
         "text_splash1": MessageLookupByLibrary.simpleMessage(
             "!الحل الأمثل لاحتياجات الطلاب"),
         "text_splash2": MessageLookupByLibrary.simpleMessage(

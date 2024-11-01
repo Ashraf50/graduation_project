@@ -36,4 +36,8 @@ class AppStyles {
     fontSize: 24,
     fontWeight: FontWeight.w500,
   );
+  static const TextStyle textStyle24blackBold = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
 }
