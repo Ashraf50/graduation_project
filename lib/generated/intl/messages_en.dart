@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Account": MessageLookupByLibrary.simpleMessage("Account"),
         "Easily_explore":
             MessageLookupByLibrary.simpleMessage("Easily explore"),
         "Ready": MessageLookupByLibrary.simpleMessage("Ready to get started?"),
@@ -29,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Welcome": MessageLookupByLibrary.simpleMessage("Welcome to AroundU"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "don_have_account":
@@ -38,8 +40,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_name": MessageLookupByLibrary.simpleMessage("Enter your name"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forget_pass": MessageLookupByLibrary.simpleMessage("Forget password?"),
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
