@@ -510,10 +510,10 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics_compiler
-      sha256: "12faff3f73b1741a36ca7e31b292ddeb629af819ca9efe9953b70bd63fc8cd81"
+      sha256: f3b9b6e4591c11394d4be4806c63e72d3a41778547b2c1e2a8a04fadcfd7d173
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.11+1"
+    version: "1.1.12"
   vector_math:
     dependency: transitive
     description:
