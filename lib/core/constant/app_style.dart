@@ -15,9 +15,17 @@ class AppStyles {
     decorationColor: AppColors.primaryColor,
     color: AppColors.primaryColor,
   );
+  static const TextStyle textStyle18gray = TextStyle(
+    fontSize: 18,
+    color: AppColors.grey,
+  );
   static const TextStyle textStyle20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
+  );
+  static const TextStyle textStyle20notBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
   );
   static const TextStyle textStyle24 = TextStyle(
     fontSize: 24,

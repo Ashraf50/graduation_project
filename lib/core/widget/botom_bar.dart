@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
 import 'package:graduation_project/feature/category/presentation/view/category_view.dart';
 import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
+import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import '../../feature/home/presentation/view/home_view.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -16,57 +18,84 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int currentIndex = 0;
-  changeItem(int value) {
-    setState(() {
-      currentIndex = value;
-    });
-  }
+  int _currentIndex = 0;
 
-  List pages = [
+  final List<Widget> _pages = [
     const HomeView(),
     const CategoryView(),
     const FavoriteView(),
     const AccountView(),
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final bool isDarkTheme = themeProvider.isDarkTheme;
+
     return Scaffold(
-      body: pages.elementAt(currentIndex),
+      body: _pages[_currentIndex],
       bottomNavigationBar: SalomonBottomBar(
-        currentIndex: currentIndex,
-        onTap: changeItem,
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
         items: [
-          SalomonBottomBarItem(
-            icon: SvgPicture.asset("assets/img/home.svg", height: 25),
-            activeIcon:
-                SvgPicture.asset("assets/img/active_home.svg", height: 25),
-            title: Text(S.of(context).home),
-            selectedColor: AppColors.primaryColor,
+          _buildBottomBarItem(
+            iconPath: "assets/img/home.svg",
+            activeIconPath: "assets/img/active_home.svg",
+            title: S.of(context).home,
+            isDarkTheme: isDarkTheme,
           ),
-          SalomonBottomBarItem(
-            icon: SvgPicture.asset("assets/img/category.svg", height: 25),
-            activeIcon:
-                SvgPicture.asset("assets/img/active_category.svg", height: 25),
-            title: Text(S.of(context).category),
-            selectedColor: AppColors.primaryColor,
+          _buildBottomBarItem(
+            iconPath: "assets/img/category.svg",
+            activeIconPath: "assets/img/active_category.svg",
+            title: S.of(context).category,
+            isDarkTheme: isDarkTheme,
           ),
-          SalomonBottomBarItem(
-            icon: SvgPicture.asset("assets/img/favorite.svg", height: 25),
-            activeIcon:
-                SvgPicture.asset("assets/img/active_favorite.svg", height: 25),
-            title: Text(S.of(context).favorite),
-            selectedColor: AppColors.primaryColor,
+          _buildBottomBarItem(
+            iconPath: "assets/img/favorite.svg",
+            activeIconPath: "assets/img/active_favorite.svg",
+            title: S.of(context).favorite,
+            isDarkTheme: isDarkTheme,
           ),
-          SalomonBottomBarItem(
-            icon: SvgPicture.asset("assets/img/profile.svg", height: 25),
-            activeIcon:
-                SvgPicture.asset("assets/img/active_profile.svg", height: 25),
-            title: Text(S.of(context).Account),
-            selectedColor: AppColors.primaryColor,
+          _buildBottomBarItem(
+            iconPath: "assets/img/profile.svg",
+            activeIconPath: "assets/img/active_profile.svg",
+            title: S.of(context).Account,
+            isDarkTheme: isDarkTheme,
           ),
         ],
       ),
+    );
+  }
+
+  SalomonBottomBarItem _buildBottomBarItem({
+    required String iconPath,
+    required String activeIconPath,
+    required String title,
+    required bool isDarkTheme,
+  }) {
+    final Color iconColor = isDarkTheme ? AppColors.white : AppColors.black;
+    final Color selectedColor =
+        isDarkTheme ? AppColors.white : AppColors.primaryColor;
+
+    return SalomonBottomBarItem(
+      icon: SvgPicture.asset(
+        iconPath,
+        height: 25,
+        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+      ),
+      activeIcon: SvgPicture.asset(
+        activeIconPath,
+        height: 25,
+        colorFilter: ColorFilter.mode(selectedColor, BlendMode.srcIn),
+      ),
+      title: Text(title),
+      selectedColor: selectedColor,
     );
   }
 }

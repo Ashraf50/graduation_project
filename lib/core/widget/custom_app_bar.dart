@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -9,9 +12,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return AppBar(
       centerTitle: true,
-      backgroundColor: Colors.white,
+      backgroundColor: themeProvider.isDarkTheme
+          ? AppColors.scaffoldColorDark
+          : Colors.white,
       title: Text(
         title,
         style: const TextStyle(
