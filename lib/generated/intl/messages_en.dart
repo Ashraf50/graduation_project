@@ -28,13 +28,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ready": MessageLookupByLibrary.simpleMessage("Ready to get started?"),
         "Register": MessageLookupByLibrary.simpleMessage("Register"),
         "Welcome": MessageLookupByLibrary.simpleMessage("Welcome to AroundU"),
+        "about": MessageLookupByLibrary.simpleMessage("About US"),
+        "about_us": MessageLookupByLibrary.simpleMessage(
+            "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enter_email": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "enter_name": MessageLookupByLibrary.simpleMessage("Enter your name"),
@@ -44,13 +51,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "forget_pass": MessageLookupByLibrary.simpleMessage("Forget password?"),
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "or": MessageLookupByLibrary.simpleMessage("     OR     "),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
+        "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "text_splash1": MessageLookupByLibrary.simpleMessage(
             "your ultimate solution for student needs!"),
         "text_splash2": MessageLookupByLibrary.simpleMessage(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class DarkModeButton extends StatefulWidget {
@@ -45,7 +46,10 @@ class _DarkModeButtonState extends State<DarkModeButton> {
                 SizedBox(
                   width: 18,
                 ),
-                Text("Dark Mode", style: AppStyles.textStyle18black),
+                Text(
+                  S.of(context).dark_mode,
+                  style: AppStyles.textStyle18black,
+                ),
               ],
             ),
             Switch(

@@ -25,5 +25,15 @@
     "home": "Home",
     "category":"Category",
     "favorite": "Favorite",
-    "Account": "Account"
+    "Account": "Account",
+    "edit": "Edit Profile",
+    "dark_mode": "Dark Mode",
+    "language": "Language",
+    "rate":"Rate Us",
+    "contact": "Contact Us",
+    "terms": "Terms & Conditions",
+    "privacy":"Privacy & Policy",
+    "about":"About US",
+    "arabic":"Arabic",
+    "about_us": "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."
 }

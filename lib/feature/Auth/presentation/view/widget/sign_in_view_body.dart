@@ -13,6 +13,9 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
 import 'package:graduation_project/generated/l10n.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../../core/constant/app_theme.dart';
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -26,6 +29,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).login),
       body: Padding(
@@ -97,9 +102,13 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               textColor: AppColors.white,
             ),
             CustomButton(
-              buttonColor: AppColors.white,
+              buttonColor: themeProvider.isDarkTheme
+                  ? AppColors.scaffoldColorDark
+                  : AppColors.white,
               title: S.of(context).guest,
-              textColor: AppColors.primaryColor,
+              textColor: themeProvider.isDarkTheme
+                  ? AppColors.white
+                  : AppColors.primaryColor,
               onTap: () {},
             ),
             const SizedBox(

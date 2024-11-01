@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constant/app_colors.dart';
 import '../../../../../core/constant/app_style.dart';
@@ -48,7 +49,7 @@ class AccountHeaderContent extends StatelessWidget {
                         style: AppStyles.textStyle20notBold,
                       ),
                       Text(
-                        "Edit profile",
+                        S.of(context).edit,
                         style: AppStyles.textStyle18gray,
                       ),
                     ],
