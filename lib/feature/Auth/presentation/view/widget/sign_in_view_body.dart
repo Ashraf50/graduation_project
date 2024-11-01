@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/widget/botom_bar.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
@@ -11,7 +12,6 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/check_a
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
-import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
 
 class SignInViewBody extends StatefulWidget {
@@ -92,7 +92,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               buttonColor: AppColors.primaryColor,
               title: S.of(context).login,
               onTap: () {
-                Get.to(() => const HomeView());
+                Get.to(() => const BottomBar());
               },
               textColor: AppColors.white,
             ),

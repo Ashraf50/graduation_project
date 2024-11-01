@@ -22,12 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Account": MessageLookupByLibrary.simpleMessage("الحساب"),
         "Easily_explore": MessageLookupByLibrary.simpleMessage("استكشف بسهولة"),
         "Ready": MessageLookupByLibrary.simpleMessage("هل أنت مستعد للبدء؟"),
         "Register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "Welcome": MessageLookupByLibrary.simpleMessage("AroundUمرحبًا بك في"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+        "category": MessageLookupByLibrary.simpleMessage("الفئة"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "don_have_account":
@@ -38,9 +40,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_name": MessageLookupByLibrary.simpleMessage("أدخل اسمك"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forget_pass":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
