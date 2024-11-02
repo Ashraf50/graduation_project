@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/forget_password/presentaion/views/widgets/forget_password_view_body.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_view_body.dart';
 
 import '../../../../core/widget/custom_scaffold.dart';
 
@@ -9,7 +9,10 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomScaffold(
-      body: ForgetPasswordViewBody(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: ForgetPasswordViewBody(),
+      ),
     );
   }
 }
