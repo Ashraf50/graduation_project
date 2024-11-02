@@ -21,9 +21,9 @@
     "forget_pass": "نسيت كلمة المرور؟",
     "don_have_account": "ليس لديك حساب؟",
     "or": "     أو     ",
-    "already_have_account": "هل لديك حساب بالفعل؟"
-    "email_or_phone" : "ادخل الايميل او رقم الموبايل"
-    "please_enter_your_email_or_phone": "من فضلك ادخل الايميل او رقم الموبايل"
+    "already_have_account": "هل لديك حساب بالفعل؟",
+    "email_or_phone" : "ادخل الايميل او رقم الموبايل",
+    "please_enter_your_email_or_phone": "من فضلك ادخل الايميل او رقم الموبايل",
 
-    "Set_Password":"تغير كلمةالسر"
+    "Set_Password":"تغير كلمةالسر",
 }
