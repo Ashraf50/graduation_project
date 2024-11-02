@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/forget_password/presentaion/views/widgets/forget_password_view_body.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_view_body.dart';
 
 import '../../../../core/widget/custom_scaffold.dart';
 
