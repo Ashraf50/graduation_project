@@ -18,43 +18,54 @@ class _ForgetPasswordCustomTextFeildState
   @override
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintStyle: AppStyles.textStyle16Regular.copyWith(
-          color: const Color(0xffB6B5B5),
-        ),
-        hintText: "Email or Phone",
-        border: createBorder(),
-        disabledBorder: createBorder(),
-        enabledBorder: createBorder(),
-        focusedBorder: createBorder(),
-        suffixIcon: isTrue == null
-            ? null
-            : (isTrue == true
-                ? const Icon(
-                    Icons.check,
-                    color: AppColors.primaryColor,
-                  )
-                : const Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  )),
-      ),
-      cursorColor: const Color(0xffB6B5B5),
-      onChanged: (value) {
-        final gmailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextField(
+          decoration: InputDecoration(
+            hintStyle: AppStyles.textStyle16Regular.copyWith(
+              color: const Color(0xffB6B5B5),
+            ),
+            hintText: "Email or Phone",
+            border: createBorder(),
+            disabledBorder: createBorder(),
+            enabledBorder: createBorder(),
+            focusedBorder: createBorder(),
+            suffixIcon: isTrue == null
+                ? null
+                : (isTrue == true
+                    ? const Icon(
+                        Icons.check,
+                        color: AppColors.primaryColor,
+                      )
+                    : const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      )),
+          ),
+          cursorColor: const Color(0xffB6B5B5),
+          onChanged: (value) {
+            final gmailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');
 
-        // Check if the value matches the email format
-        if (gmailRegex.hasMatch(value)) {
-          setState(() {
-            isTrue = true;
-          });
-        } else {
-          setState(() {
-            isTrue = false;
-          });
-        }
-      },
+            // Check if the value matches the email format
+            if (gmailRegex.hasMatch(value)) {
+              setState(() {
+                isTrue = true;
+              });
+            } else {
+              setState(() {
+                isTrue = false;
+              });
+            }
+          },
+        ),
+        isTrue == false
+            ? Text(
+                "Not a volid email address, Should be your@email.com",
+                style: AppStyles.textStyle10Regular.copyWith(color: Colors.red),
+              )
+            : const SizedBox(),
+      ],
     );
   }
 

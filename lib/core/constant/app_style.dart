@@ -31,7 +31,14 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     fontFamily: 'Montserrat',
 
-    // decorationColor: AppColors.primaryColor,
-    // color: AppColors.primaryColor,
+    
+  );
+
+    static const TextStyle textStyle10Regular = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Montserrat',
+
+    
   );
 }
