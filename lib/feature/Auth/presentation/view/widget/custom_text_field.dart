@@ -44,8 +44,8 @@ class CustomTextfield extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
                 color: themeProvider.isDarkTheme
-                    ? Color(0xffBCB8B1)
-                    : AppColors.widgetColorDark),
+                    ? AppColors.primaryColor
+                    : AppColors.primaryColor),
           ),
           suffixIcon: suffixIcon,
         ),
