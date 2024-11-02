@@ -27,18 +27,14 @@ class AppStyles {
   );
 
   static const TextStyle textStyle16Regular = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Montserrat',
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Montserrat',
+      color: Color(0xff80807F));
 
-    
-  );
-
-    static const TextStyle textStyle10Regular = TextStyle(
+  static const TextStyle textStyle10Regular = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     fontFamily: 'Montserrat',
-
-    
   );
 }

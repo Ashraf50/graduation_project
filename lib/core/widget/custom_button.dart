@@ -4,14 +4,14 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final void Function()? onTap;
-  final Color buttonColor;
-  final Color textColor;
+  final Color? buttonColor;
+  final Color? textColor;
   const CustomButton({
     super.key,
     required this.title,
     required this.onTap,
-    required this.buttonColor,
-    required this.textColor,
+    this.buttonColor = AppColors.primaryColor,
+    this.textColor = Colors.white,
   });
 
   @override
@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
           child: Center(
               child: Text(
             title,
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 20,
               color: textColor,
             ),

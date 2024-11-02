@@ -5,8 +5,9 @@ import 'package:graduation_project/core/constant/app_style.dart';
 class ForgetPasswordCustomTextFeild extends StatefulWidget {
   const ForgetPasswordCustomTextFeild({
     super.key,
+    this.obscureText = false,
   });
-
+  final bool obscureText;
   @override
   State<ForgetPasswordCustomTextFeild> createState() =>
       _ForgetPasswordCustomTextFeildState();
@@ -22,27 +23,32 @@ class _ForgetPasswordCustomTextFeildState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          obscureText: true,
           decoration: InputDecoration(
-            hintStyle: AppStyles.textStyle16Regular.copyWith(
-              color: const Color(0xffB6B5B5),
-            ),
-            hintText: "Email or Phone",
-            border: createBorder(),
-            disabledBorder: createBorder(),
-            enabledBorder: createBorder(),
-            focusedBorder: createBorder(),
-            suffixIcon: isTrue == null
-                ? null
-                : (isTrue == true
-                    ? const Icon(
-                        Icons.check,
-                        color: AppColors.primaryColor,
-                      )
-                    : const Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      )),
-          ),
+              hintStyle: AppStyles.textStyle16Regular.copyWith(
+                color: const Color(0xffB6B5B5),
+              ),
+              hintText: "Email or Phone",
+              border: createBorder(),
+              disabledBorder: createBorder(),
+              enabledBorder: createBorder(),
+              focusedBorder: createBorder(),
+              suffixIcon: widget.obscureText
+                  ? const Icon(
+                      Icons.remove_red_eye_outlined,
+                      color: Color(0xffB6B5B5),
+                    )
+                  : isTrue == null
+                      ? null
+                      : (isTrue == true
+                          ? const Icon(
+                              Icons.check,
+                              color: AppColors.primaryColor,
+                            )
+                          : const Icon(
+                              Icons.close,
+                              color: Colors.red,
+                            ))),
           cursorColor: const Color(0xffB6B5B5),
           onChanged: (value) {
             final gmailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');

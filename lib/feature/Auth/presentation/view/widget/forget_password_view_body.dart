@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/new_password_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_custom_text_feild.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_state_image.dart';
 
@@ -15,7 +17,6 @@ class ForgetPasswordViewBody extends StatefulWidget {
 }
 
 class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
-  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -43,7 +44,9 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
           const SizedBox(height: 40),
           CustomButton(
             title: 'Send',
-            onTap: () {},
+            onTap: () {
+              Get.to(() => const NewPasswordView());
+            },
             buttonColor: AppColors.primaryColor,
             textColor: AppColors.white,
           ),
