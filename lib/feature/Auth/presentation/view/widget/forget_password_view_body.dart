@@ -5,6 +5,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_
 import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_state_image.dart';
 
 import '../../../../../core/widget/custom_button.dart';
+import '../../../../../generated/l10n.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
   const ForgetPasswordViewBody({super.key});
@@ -21,13 +22,14 @@ class ForgetPasswordViewBody extends StatelessWidget {
           const ForgetPasswordStateImage(
             image: 'assets/img/undraw_forgot_password_re_hxwm 1.svg',
           ),
-          const Text(
-            'forget password',
+          const SizedBox(height: 64),
+          Text(
+            S.of(context).forget_pass,
             style: AppStyles.textStyle24,
           ),
           const SizedBox(height: 16),
           const Text(
-            'Please enter your email or phone',
+            "Please Enter your email or phone ",
             style: AppStyles.textStyle16Regular,
           ),
           const SizedBox(height: 16 * 2),
