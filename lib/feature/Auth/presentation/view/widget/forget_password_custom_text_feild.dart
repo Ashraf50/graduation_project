@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 
-import '../../../../../generated/l10n.dart';
+class ForgetPasswordCustomTextFeild extends StatefulWidget {
+  const ForgetPasswordCustomTextFeild({
+    super.key,
+  });
 
-class ForgetPasswordCustomTextFeild extends StatelessWidget {
-  const ForgetPasswordCustomTextFeild({super.key, this.isTrue});
-  final bool? isTrue;
+  @override
+  State<ForgetPasswordCustomTextFeild> createState() =>
+      _ForgetPasswordCustomTextFeildState();
+}
+
+class _ForgetPasswordCustomTextFeildState
+    extends State<ForgetPasswordCustomTextFeild> {
+  bool? isTrue;
+  @override
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -32,6 +41,20 @@ class ForgetPasswordCustomTextFeild extends StatelessWidget {
                   )),
       ),
       cursorColor: const Color(0xffB6B5B5),
+      onChanged: (value) {
+        final gmailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');
+
+        // Check if the value matches the email format
+        if (gmailRegex.hasMatch(value)) {
+          setState(() {
+            isTrue = true;
+          });
+        } else {
+          setState(() {
+            isTrue = false;
+          });
+        }
+      },
     );
   }
 

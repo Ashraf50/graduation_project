@@ -7,9 +7,15 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_
 import '../../../../../core/widget/custom_button.dart';
 import '../../../../../generated/l10n.dart';
 
-class ForgetPasswordViewBody extends StatelessWidget {
+class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
 
+  @override
+  State<ForgetPasswordViewBody> createState() => _ForgetPasswordViewBodyState();
+}
+
+class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
