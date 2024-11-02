@@ -22,16 +22,15 @@ class AppStyles {
   static const TextStyle textStyle24 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
-    
-    // the main color is black when you use this color anywhere use copyWith() method to change the color 
+    // the main color is black when you use this color anywhere use copyWith() method to change the color
     // color: Color(0xff00594E),
   );
 
-
-
-    static const TextStyle textStyle16Regular = TextStyle(
+  static const TextStyle textStyle16Regular = TextStyle(
     fontSize: 16,
-  fontWeight:  FontWeight.w400,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Montserrat',
+
     // decorationColor: AppColors.primaryColor,
     // color: AppColors.primaryColor,
   );
