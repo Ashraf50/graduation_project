@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/widget/custom_button.dart';
-import 'package:graduation_project/core/widget/custom_scaffold.dart';
+import 'package:get/get.dart';
+ import 'package:graduation_project/core/widget/custom_button.dart';
+ import 'package:graduation_project/feature/Auth/password_confirm_view.dart';
 
 import '../../../../../core/constant/app_style.dart';
 import '../../../../../generated/l10n.dart';
@@ -40,7 +41,9 @@ class NewPasswordViewBody extends StatelessWidget {
           ),
           CustomButton(
             title: 'Set Password',
-            onTap: () {},
+            onTap: () {
+              Get.to(() => const PasswordConfirmView());
+            },
           )
         ],
       ),
