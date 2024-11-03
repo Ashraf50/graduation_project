@@ -77,7 +77,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   focusColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  onTap: () {},
+                  onTap: () {
+                    context.push('/forget_pass');
+                  },
                   child: Text(
                     S.of(context).forget_pass,
                     style: themeProvider.isDarkTheme

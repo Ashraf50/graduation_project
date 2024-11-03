@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/widget/botom_bar.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/forget_password_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/sign_in_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/sign_up_view.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
@@ -48,6 +50,14 @@ class AppRouter {
       GoRoute(
         path: '/about_us',
         builder: (context, state) => AboutUSView(),
+      ),
+      GoRoute(
+        path: '/forget_pass',
+        builder: (context, state) => ForgetPasswordView(),
+      ),
+      GoRoute(
+        path: '/reset_pass',
+        builder: (context, state) => ResetPasswordView(),
       ),
     ],
   );

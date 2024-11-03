@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forget_pass":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "forget_password":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
@@ -63,6 +65,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_team": MessageLookupByLibrary.simpleMessage(
             "فريقنا متاح لمساعدتك في أي استفسارات أو مشكلات قد تواجهك. نهدف إلى الرد على جميع الاتصالات بسرعة وكفاءة."),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "please_enter_your_email": MessageLookupByLibrary.simpleMessage(
+            "من فضلك ادخل بريدك الالكتروني"),
+        "please_enter_your_pass":
+            MessageLookupByLibrary.simpleMessage("من فضلك ادخل كلمة المرور"),
         "policy1": MessageLookupByLibrary.simpleMessage("1. جمع البيانات"),
         "policy1_desc": MessageLookupByLibrary.simpleMessage(
             "نجمع بعض المعلومات الشخصية وغير الشخصية مثل:\nمعلومات الحساب: الاسم، البريد الإلكتروني، ورقم الهاتف عند التسجيل.\nالموقع الجغرافي: لتقديم خدمات متعلقة بالأماكن القريبة (المطاعم، البنوك، المستشفيات، الصيدليات).\nتفضيلات المستخدم: الميزات المفضلة للشقق وأنماط البحث.\nبيانات التواصل: عند استخدام خدمة الدردشة للتفاعل مع المالكين أو المستخدمين الآخرين."),
@@ -85,6 +91,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "شكرًا لاستخدامك اراوند يو. نحن ملتزمون بحماية خصوصيتك وضمان أمان بياناتك الشخصية. توضح هذه السياسة كيفية جمع معلوماتك واستخدامها وحمايتها ومشاركتها."),
         "privacy": MessageLookupByLibrary.simpleMessage("الخصوصية والسياسة"),
         "rate": MessageLookupByLibrary.simpleMessage("قيمنا"),
+        "reset_pass":
+            MessageLookupByLibrary.simpleMessage("اعاده تعيين كلمة المرور"),
+        "send": MessageLookupByLibrary.simpleMessage("ارسل"),
+        "set_pass": MessageLookupByLibrary.simpleMessage("تعيين كلمه المرور"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),

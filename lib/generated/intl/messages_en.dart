@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forget_pass": MessageLookupByLibrary.simpleMessage("Forget password?"),
+        "forget_password":
+            MessageLookupByLibrary.simpleMessage("Forget Password"),
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
@@ -62,6 +64,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_team": MessageLookupByLibrary.simpleMessage(
             "Our team is available to assist you with any inquiries or issues you may have. We aim to respond to all communications promptly and efficiently."),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "please_enter_your_email":
+            MessageLookupByLibrary.simpleMessage("Please enter your email"),
+        "please_enter_your_pass":
+            MessageLookupByLibrary.simpleMessage("Please enter your Password"),
         "policy1": MessageLookupByLibrary.simpleMessage("1. Data Collection"),
         "policy1_desc": MessageLookupByLibrary.simpleMessage(
             "We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeolocation: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users."),
@@ -84,6 +90,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Thank you for using AroundU. We are committed to protecting your privacy and ensuring the security of your personal data. This policy outlines how we collect, use, protect, and share your information."),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
+        "reset_pass": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
+        "set_pass": MessageLookupByLibrary.simpleMessage("Set Password"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
