@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/otp_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/forget_password_state_image.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/title_and_sub_widget.dart';
 
@@ -33,7 +34,7 @@ class PasswordConfirmView extends StatelessWidget {
             CustomButton(
               title: 'Set Password',
               onTap: () {
-                Get.to(() => const PasswordConfirmView());
+                Get.to(() => const OtpView());
               },
             ),
             const Spacer(),
