@@ -9,9 +9,8 @@ class OtpView extends StatelessWidget {
   const OtpView({super.key});
   @override
   Widget build(BuildContext context) {
-
-    return CustomScaffold(
-      body: OtpViewBody()
+    return const CustomScaffold(
+      body: OtpViewBody(),
     );
   }
 }

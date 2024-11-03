@@ -5,9 +5,10 @@ import 'package:graduation_project/core/constant/app_style.dart';
 class ForgetPasswordCustomTextFeild extends StatefulWidget {
   const ForgetPasswordCustomTextFeild({
     super.key,
-    this.obscureText = false,
+    this.obscureText = false, this.hintText,
   });
   final bool obscureText;
+  final String? hintText;
   @override
   State<ForgetPasswordCustomTextFeild> createState() =>
       _ForgetPasswordCustomTextFeildState();
@@ -28,7 +29,7 @@ class _ForgetPasswordCustomTextFeildState
               hintStyle: AppStyles.textStyle16Regular.copyWith(
                 color: const Color(0xffB6B5B5),
               ),
-              hintText: "Email or Phone",
+              hintText: widget.hintText ??  "Email or Phone",
               border: createBorder(),
               disabledBorder: createBorder(),
               enabledBorder: createBorder(),

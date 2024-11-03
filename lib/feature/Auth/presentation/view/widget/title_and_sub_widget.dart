@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constant/app_style.dart';
 import '../../../../../generated/l10n.dart';
- 
+
 class TitleAndSubWidget extends StatelessWidget {
   const TitleAndSubWidget(
       {super.key, required this.title, required this.subTitle});
@@ -14,13 +13,14 @@ class TitleAndSubWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-         title,
+          title,
+           
           style: AppStyles.textStyle24,
         ),
         const SizedBox(
           height: 16,
         ),
-          Text(
+        Text(
           subTitle,
           textAlign: TextAlign.center,
           style: AppStyles.textStyle16Regular,

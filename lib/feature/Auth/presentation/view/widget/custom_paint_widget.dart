@@ -1,6 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constant/app_colors.dart';
+
+class CustomPaintWidget extends StatelessWidget {
+  const CustomPaintWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
+    return Transform.rotate(
+      angle: pi,
+      child: CustomPaint(
+        size: Size(screenSize.width, screenSize.height * .4),
+        foregroundPainter: CurvePainter(),
+      ),
+    );
+  }
+}
 
 class CurvePainter extends CustomPainter {
   @override
@@ -12,7 +31,7 @@ class CurvePainter extends CustomPainter {
 
     var path = Path();
 
-    path.moveTo(0, size.height * .5);
+    path.moveTo(0, size.height * .52);
 
     path.quadraticBezierTo(
       size.width * 0.001,
@@ -38,5 +57,3 @@ class CurvePainter extends CustomPainter {
     return true;
   }
 }
-
- 
