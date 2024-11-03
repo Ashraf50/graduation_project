@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/constant/shared_pref.dart';
-import 'package:graduation_project/feature/home/presentation/view_model/bloc/language_bloc.dart';
-import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
+import 'package:graduation_project/feature/account/presentation/view_model/bloc/language_bloc.dart';
+import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
@@ -15,16 +14,21 @@ void main() async {
   sharedPreferences = await SharedPreferences.getInstance();
   SharedPreferences pref = await SharedPreferences.getInstance();
   bool storedValue = pref.getBool('boolValue') ?? false;
+  final appRouter = AppRouter();
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(isDarkTheme: storedValue),
-      child: const MyApp(),
+      child: MyApp(
+        appRouter: appRouter,
+      ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +36,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LanguageBloc()..add(InitialLanguageEvent()),
+          create: (context) => LanguageBloc(),
         ),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
-          return GetMaterialApp(
+          return MaterialApp.router(
+            routerConfig: appRouter.router,
             debugShowCheckedModeBanner: false,
             theme: themeProvider.getThemeData,
             locale: state is AppChangeLanguage ? Locale(state.langCode) : null,
@@ -61,7 +66,6 @@ class MyApp extends StatelessWidget {
               }
               return supportedLocales.first;
             },
-            home: const OnboardScreen(),
           );
         },
       ),

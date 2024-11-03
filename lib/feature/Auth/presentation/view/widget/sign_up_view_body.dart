@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/sign_in_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
@@ -120,7 +119,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               title: S.of(context).already_have_account,
               buttonTitle: S.of(context).login,
               buttonOnTap: () {
-                Get.to(() => const SignInView());
+                context.push('/sign_in');
               },
             ),
             const SizedBox(

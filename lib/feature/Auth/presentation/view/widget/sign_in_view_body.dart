@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
-import 'package:graduation_project/core/widget/botom_bar.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/sign_up_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../core/constant/app_theme.dart';
 
 class SignInViewBody extends StatefulWidget {
@@ -30,7 +26,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).login),
       body: Padding(
@@ -85,7 +80,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   onTap: () {},
                   child: Text(
                     S.of(context).forget_pass,
-                    style: AppStyles.textStyle18,
+                    style: themeProvider.isDarkTheme
+                        ? AppStyles.textStyle18blue
+                        : AppStyles.textStyle18green,
                   ),
                 ),
               ],
@@ -97,7 +94,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               buttonColor: AppColors.primaryColor,
               title: S.of(context).login,
               onTap: () {
-                Get.to(() => const BottomBar());
+                context.push('/bottomBar');
               },
               textColor: AppColors.white,
             ),
@@ -118,7 +115,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               title: S.of(context).don_have_account,
               buttonTitle: S.of(context).sign_up,
               buttonOnTap: () {
-                Get.to(() => const SignUpView());
+                context.push('/sign_up');
               },
             ),
             const SizedBox(

@@ -9,12 +9,19 @@ class AppStyles {
     fontSize: 18,
     color: Colors.white,
   );
-  static const TextStyle textStyle18 = TextStyle(
+  static const TextStyle textStyle18green = TextStyle(
     fontSize: 18,
     decoration: TextDecoration.underline,
     decorationColor: AppColors.primaryColor,
     color: AppColors.primaryColor,
   );
+  static const TextStyle textStyle18blue = TextStyle(
+    fontSize: 18,
+    color: Colors.blue,
+    decoration: TextDecoration.underline,
+    decorationColor: Colors.blue,
+  );
+
   static const TextStyle textStyle18gray = TextStyle(
     fontSize: 18,
     color: AppColors.grey,

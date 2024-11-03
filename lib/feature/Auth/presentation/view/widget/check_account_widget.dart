@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:provider/provider.dart';
+import '../../../../../core/constant/app_theme.dart';
 
 class CheckedAccount extends StatelessWidget {
   final String title;
@@ -14,6 +16,8 @@ class CheckedAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
         title,
@@ -27,7 +31,9 @@ class CheckedAccount extends StatelessWidget {
         onTap: buttonOnTap,
         child: Text(
           buttonTitle,
-          style: AppStyles.textStyle18,
+          style: themeProvider.isDarkTheme
+              ? AppStyles.textStyle18blue
+              : AppStyles.textStyle18green,
         ),
       )
     ]);

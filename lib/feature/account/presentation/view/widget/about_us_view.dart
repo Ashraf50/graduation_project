@@ -17,7 +17,7 @@ class AboutUSView extends StatelessWidget {
           children: [
             Text(
               S.of(context).about_us,
-              style: AppStyles.textStyle24black,
+              style: AppStyles.textStyle20notBold,
             )
           ],
         ),

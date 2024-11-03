@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/account_header_content.dart';
-import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/custom_list_tile.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/dark_mode_button.dart';
-import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
-import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
-import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
@@ -52,7 +46,7 @@ class AccountViewBody extends StatelessWidget {
               title: S.of(context).language,
               image: "assets/img/language.svg",
               onTap: () {
-                Get.to(() => LanguageView());
+                context.push('/language');
               },
             ),
             CustomListTile(
@@ -64,28 +58,28 @@ class AccountViewBody extends StatelessWidget {
               title: S.of(context).contact,
               image: "assets/img/contact.svg",
               onTap: () {
-                Get.to(() => ContactUs());
+                context.push('/contact_us');
               },
             ),
             CustomListTile(
               title: S.of(context).terms,
               image: "assets/img/terms.svg",
               onTap: () {
-                Get.to(() => TermsAndCondition());
+                context.push('/terms');
               },
             ),
             CustomListTile(
               title: S.of(context).privacy,
               image: "assets/img/policy.svg",
               onTap: () {
-                Get.to(() => PrivacyAndPolicy());
+                context.push('/privacy');
               },
             ),
             CustomListTile(
               title: S.of(context).about,
               image: "assets/img/about.svg",
               onTap: () {
-                Get.to(() => AboutUSView());
+                context.push('/about_us');
               },
             ),
           ],
