@@ -9,6 +9,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomScaffold(
+      backgroundColor:  Color(0xfffcfcfc),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: ForgetPasswordViewBody(),

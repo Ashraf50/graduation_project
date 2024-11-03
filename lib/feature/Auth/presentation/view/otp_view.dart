@@ -10,6 +10,7 @@ class OtpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomScaffold(
+      backgroundColor: Color(0xfffcfcfc),
       body: OtpViewBody(),
     );
   }

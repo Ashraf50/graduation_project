@@ -20,7 +20,7 @@ class PasswordConfirmView extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 88),
-            const ForgetPasswordStateImage(
+            const CustomImageWidget(
               image: 'assets/img/passwordConfirm.svg',
             ),
             const Padding(

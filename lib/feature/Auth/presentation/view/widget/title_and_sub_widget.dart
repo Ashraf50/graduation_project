@@ -5,16 +5,18 @@ import '../../../../../generated/l10n.dart';
 
 class TitleAndSubWidget extends StatelessWidget {
   const TitleAndSubWidget(
-      {super.key, required this.title, required this.subTitle});
+      {super.key, required this.title, required this.subTitle, this.inCenter});
   final String title, subTitle;
+  final bool? inCenter;
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: inCenter == true
+          ? CrossAxisAlignment.center
+          : CrossAxisAlignment.start,
       children: [
         Text(
           title,
-           
           style: AppStyles.textStyle24,
         ),
         const SizedBox(

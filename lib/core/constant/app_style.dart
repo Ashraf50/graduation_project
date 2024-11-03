@@ -34,7 +34,7 @@ class AppStyles {
 
   static const TextStyle textStyle10Regular = TextStyle(
     fontSize: 10,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Montserrat',
   );
 }

@@ -26,7 +26,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
           const SizedBox(
             height: 108,
           ),
-          const ForgetPasswordStateImage(
+          const CustomImageWidget(
             image: 'assets/img/undraw_forgot_password_re_hxwm 1.svg',
           ),
           const SizedBox(height: 64),
