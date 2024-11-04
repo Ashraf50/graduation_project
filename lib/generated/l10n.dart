@@ -480,6 +480,96 @@ class S {
     );
   }
 
+  /// `My Profile`
+  String get my_profile {
+    return Intl.message(
+      'My Profile',
+      name: 'my_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Photo`
+  String get choose_photo {
+    return Intl.message(
+      'Choose Photo',
+      name: 'choose_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take Photo`
+  String get take_photo {
+    return Intl.message(
+      'Take Photo',
+      name: 'take_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Username`
+  String get update_username {
+    return Intl.message(
+      'Update Username',
+      name: 'update_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Email`
+  String get Update_email {
+    return Intl.message(
+      'Update Email',
+      name: 'Update_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Phone Number`
+  String get add_phone {
+    return Intl.message(
+      'Add Phone Number',
+      name: 'add_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get delete_acc {
+    return Intl.message(
+      'Delete Account',
+      name: 'delete_acc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU.`
   String get about_us {
     return Intl.message(

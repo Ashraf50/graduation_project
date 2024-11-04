@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -6,18 +7,16 @@ import '../../../../../core/constant/app_colors.dart';
 import '../../../../../core/constant/app_style.dart';
 
 class AccountHeaderContent extends StatelessWidget {
-  final void Function() onTap;
-  const AccountHeaderContent({
-    super.key,
-    required this.onTap,
-  });
+  const AccountHeaderContent({super.key});
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: onTap,
+      onTap: () {
+        context.push('/edit_profile');
+      },
       child: Material(
         elevation: 4,
         borderRadius: BorderRadius.circular(12),

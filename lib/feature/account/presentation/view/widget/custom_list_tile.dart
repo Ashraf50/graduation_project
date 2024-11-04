@@ -19,7 +19,6 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Material(

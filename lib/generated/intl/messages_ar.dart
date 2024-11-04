@@ -26,20 +26,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "Easily_explore": MessageLookupByLibrary.simpleMessage("استكشف بسهولة"),
         "Ready": MessageLookupByLibrary.simpleMessage("هل أنت مستعد للبدء؟"),
         "Register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "Update_email":
+            MessageLookupByLibrary.simpleMessage("تحديث البريد الإلكتروني"),
         "Welcome": MessageLookupByLibrary.simpleMessage("AroundUمرحبًا بك في"),
         "about": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "مرحبا بكم في اراوند يو نحن ملتزمون بجعل بحثكم عن العقارات للإيجار والخدمات الأساسية سهلًا وخاليًا من المتاعب. يوفر تطبيقنا دليلًا شاملاً للشقق المتاحة للإيجار، ويقدم معلومات عن أقرب المطاعم والبنوك والمستشفيات والصيدليات لتعزيز تجربة السكن الخاصة بكم. ما يميزنا هو خدمة الدردشة المدمجة، التي تتيح التواصل السهل والمباشر بين المستخدمين. مهمتنا هي إنشاء بيئة سهلة الاستخدام تبسط عملية الإيجار وتربطكم بالخدمات الأساسية في منطقتكم اختبروا الراحة والشفافية والدعم في مكان واحد مع اراوند يو."),
+        "add_phone": MessageLookupByLibrary.simpleMessage("إضافة رقم الهاتف"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "any_question": MessageLookupByLibrary.simpleMessage(
             "إذا كان لديك أي أسئلة أو استفسارات أو ملاحظات بخصوص سياسة الخصوصية هذه أو أي جانب من تجربتك مع اراوند يو فلا تتردد في التواصل معنا:"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "category": MessageLookupByLibrary.simpleMessage("الفئة"),
+        "choose_photo": MessageLookupByLibrary.simpleMessage("اختر صوره"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
+        "delete_acc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
@@ -59,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "my_profile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "or": MessageLookupByLibrary.simpleMessage("     أو     "),
@@ -97,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_pass": MessageLookupByLibrary.simpleMessage("تعيين كلمه المرور"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("التقط صوره"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "terms1": MessageLookupByLibrary.simpleMessage("1. قبول الشروط"),
         "terms1_desc": MessageLookupByLibrary.simpleMessage(
@@ -130,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_splash2": MessageLookupByLibrary.simpleMessage(
             ".استكشف الشقق المتاحة بسهولة بالقرب منك، واعثر على أقرب المطاعم والبنوك والمستشفيات"),
         "text_splash3": MessageLookupByLibrary.simpleMessage(
-            ".استمتع بتجربة سلسة للعثور على كل ما تحتاجه")
+            ".استمتع بتجربة سلسة للعثور على كل ما تحتاجه"),
+        "update_username":
+            MessageLookupByLibrary.simpleMessage("تحديث اسم المستخدم")
       };
 }

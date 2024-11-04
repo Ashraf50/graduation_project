@@ -27,20 +27,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Easily explore"),
         "Ready": MessageLookupByLibrary.simpleMessage("Ready to get started?"),
         "Register": MessageLookupByLibrary.simpleMessage("Register"),
+        "Update_email": MessageLookupByLibrary.simpleMessage("Update Email"),
         "Welcome": MessageLookupByLibrary.simpleMessage("Welcome to AroundU"),
         "about": MessageLookupByLibrary.simpleMessage("About US"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
+        "add_phone": MessageLookupByLibrary.simpleMessage("Add Phone Number"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "any_question": MessageLookupByLibrary.simpleMessage(
             "If you have any questions, concerns, or feedback regarding this Privacy Policy or any aspect of your experience with AroundU, please feel free to reach out to us:"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "choose_photo": MessageLookupByLibrary.simpleMessage("Choose Photo"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "delete_acc": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit Profile"),
@@ -58,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "my_profile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "or": MessageLookupByLibrary.simpleMessage("     OR     "),
@@ -95,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_pass": MessageLookupByLibrary.simpleMessage("Set Password"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "terms1":
             MessageLookupByLibrary.simpleMessage("1. Acceptance of Terms"),
@@ -132,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_splash2": MessageLookupByLibrary.simpleMessage(
             "Easily explore available apartments nearby, and find the closest restaurants, banks, and hospitals."),
         "text_splash3": MessageLookupByLibrary.simpleMessage(
-            "Enjoy a seamless experience finding everything you need.")
+            "Enjoy a seamless experience finding everything you need."),
+        "update_username":
+            MessageLookupByLibrary.simpleMessage("Update Username")
       };
 }

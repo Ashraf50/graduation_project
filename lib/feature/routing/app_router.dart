@@ -6,6 +6,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/sign_up_view.d
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
@@ -58,6 +59,10 @@ class AppRouter {
       GoRoute(
         path: '/reset_pass',
         builder: (context, state) => ResetPasswordView(),
+      ),
+      GoRoute(
+        path: '/edit_profile',
+        builder: (context, state) => EditProfileView(),
       ),
     ],
   );

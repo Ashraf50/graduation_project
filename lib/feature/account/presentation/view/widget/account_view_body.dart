@@ -25,7 +25,7 @@ class AccountViewBody extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            AccountHeaderContent(onTap: () {}),
+            AccountHeaderContent(),
             SizedBox(
               height: 24,
             ),
