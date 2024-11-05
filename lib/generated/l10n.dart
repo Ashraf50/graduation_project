@@ -570,6 +570,26 @@ class S {
     );
   }
 
+  /// `New password has been set`
+  String get new_pass_message1 {
+    return Intl.message(
+      'New password has been set',
+      name: 'new_pass_message1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password has been updated Successfully`
+  String get new_pass_message2 {
+    return Intl.message(
+      'Your password has been updated Successfully',
+      name: 'new_pass_message2',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU.`
   String get about_us {
     return Intl.message(

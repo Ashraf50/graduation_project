@@ -66,6 +66,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "my_profile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "new_pass_message1":
+            MessageLookupByLibrary.simpleMessage("New password has been set"),
+        "new_pass_message2": MessageLookupByLibrary.simpleMessage(
+            "Your password has been updated Successfully"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "or": MessageLookupByLibrary.simpleMessage("     OR     "),
         "our_team": MessageLookupByLibrary.simpleMessage(

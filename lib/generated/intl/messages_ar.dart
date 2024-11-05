@@ -68,6 +68,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "my_profile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "new_pass_message1":
+            MessageLookupByLibrary.simpleMessage("تم تعيين كلمة مرور جديدة"),
+        "new_pass_message2":
+            MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "or": MessageLookupByLibrary.simpleMessage("     أو     "),
         "our_team": MessageLookupByLibrary.simpleMessage(

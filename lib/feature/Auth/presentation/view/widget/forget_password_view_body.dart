@@ -43,7 +43,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
               controller: TextEditingController(),
             ),
             CustomButton(
-              title: S.of(context).send,
+              title: S.of(context).next,
               onTap: () {
                 context.push("/reset_pass");
               },
