@@ -31,17 +31,19 @@ class ChangePhotoButton extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 180,
+                height: 155,
                 child: Column(
                   children: [
                     TextButton(
                       title: S.of(context).choose_photo,
                       onTap: choosePhoto,
                     ),
+                    CustomDivider(),
                     TextButton(
                       title: S.of(context).take_photo,
                       onTap: takePhoto,
                     ),
+                    CustomDivider(),
                     TextButton(
                       title: S.of(context).cancel,
                       onTap: () {
@@ -66,6 +68,23 @@ class ChangePhotoButton extends StatelessWidget {
   }
 }
 
+class CustomDivider extends StatelessWidget {
+  const CustomDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Divider(
+        color: themeProvider.isDarkTheme
+            ? AppColors.grey
+            : AppColors.widgetColorDark,
+      ),
+    );
+  }
+}
+
 class TextButton extends StatelessWidget {
   final void Function()? onTap;
   final String title;
@@ -77,32 +96,21 @@ class TextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          focusColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onTap: onTap,
-          child: Container(
-            width: double.infinity,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Center(
-              child: Text(
-                title,
-                style: AppStyles.textStyle18black,
-              ),
-            ),
+    return InkWell(
+      focusColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      onTap: onTap,
+      child: SizedBox(
+        width: double.infinity,
+        height: 40,
+        child: Center(
+          child: Text(
+            title,
+            style: AppStyles.textStyle18black,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Divider(),
-        )
-      ],
+      ),
     );
   }
 }
