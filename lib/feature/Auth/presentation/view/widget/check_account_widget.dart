@@ -32,7 +32,7 @@ class CheckedAccount extends StatelessWidget {
         child: Text(
           buttonTitle,
           style: themeProvider.isDarkTheme
-              ? AppStyles.textStyle18blue
+              ? AppStyles.textStyle18
               : AppStyles.textStyle18green,
         ),
       )

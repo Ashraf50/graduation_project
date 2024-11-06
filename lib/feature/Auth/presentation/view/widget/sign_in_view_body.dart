@@ -83,7 +83,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   child: Text(
                     S.of(context).forget_pass,
                     style: themeProvider.isDarkTheme
-                        ? AppStyles.textStyle18blue
+                        ? AppStyles.textStyle18
                         : AppStyles.textStyle18green,
                   ),
                 ),

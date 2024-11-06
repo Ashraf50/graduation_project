@@ -15,18 +15,18 @@ class AppStyles {
     decorationColor: AppColors.primaryColor,
     color: AppColors.primaryColor,
   );
-  static const TextStyle textStyle18blue = TextStyle(
+  static const TextStyle textStyle18 = TextStyle(
     fontSize: 18,
-    color: Colors.blue,
+    color: Color(0xffA8D5BA),
     decoration: TextDecoration.underline,
-    decorationColor: Colors.blue,
+    decorationColor: Color(0xffA8D5BA),
   );
 
   static const TextStyle textStyle18gray = TextStyle(
     fontSize: 18,
     color: AppColors.grey,
   );
-    static const TextStyle textStyle16gray = TextStyle(
+  static const TextStyle textStyle16gray = TextStyle(
     fontSize: 16,
     color: AppColors.grey,
   );
@@ -38,10 +38,15 @@ class AppStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
-  static const TextStyle textStyle24 = TextStyle(
+  static const TextStyle textStyle24greenDark = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
-    color: Color(0xff00594E),
+    color: Color(0xffA8D5BA),
+  );
+  static const TextStyle textStyle24greenLight = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primaryColor,
   );
   static const TextStyle textStyle24black = TextStyle(
     fontSize: 24,

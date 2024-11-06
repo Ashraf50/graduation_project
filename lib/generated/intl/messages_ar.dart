@@ -28,7 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "Update_email":
             MessageLookupByLibrary.simpleMessage("تحديث البريد الإلكتروني"),
-        "Welcome": MessageLookupByLibrary.simpleMessage("AroundUمرحبًا بك في"),
+        "Welcome":
+            MessageLookupByLibrary.simpleMessage("مرحبًا بك في اراوند يو"),
         "about": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "مرحبا بكم في اراوند يو نحن ملتزمون بجعل بحثكم عن العقارات للإيجار والخدمات الأساسية سهلًا وخاليًا من المتاعب. يوفر تطبيقنا دليلًا شاملاً للشقق المتاحة للإيجار، ويقدم معلومات عن أقرب المطاعم والبنوك والمستشفيات والصيدليات لتعزيز تجربة السكن الخاصة بكم. ما يميزنا هو خدمة الدردشة المدمجة، التي تتيح التواصل السهل والمباشر بين المستخدمين. مهمتنا هي إنشاء بيئة سهلة الاستخدام تبسط عملية الإيجار وتربطكم بالخدمات الأساسية في منطقتكم اختبروا الراحة والشفافية والدعم في مكان واحد مع اراوند يو."),
@@ -141,9 +142,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_splash1": MessageLookupByLibrary.simpleMessage(
             "!الحل الأمثل لاحتياجات الطلاب"),
         "text_splash2": MessageLookupByLibrary.simpleMessage(
-            ".استكشف الشقق المتاحة بسهولة بالقرب منك، واعثر على أقرب المطاعم والبنوك والمستشفيات"),
+            "استكشف الشقق المتاحة بسهولة بالقرب منك، واعثر على أقرب المطاعم والبنوك والمستشفيات"),
         "text_splash3": MessageLookupByLibrary.simpleMessage(
-            ".استمتع بتجربة سلسة للعثور على كل ما تحتاجه"),
+            "استمتع بتجربة سلسة للعثور على كل ما تحتاجه"),
         "update_username":
             MessageLookupByLibrary.simpleMessage("تحديث اسم المستخدم")
       };

@@ -81,10 +81,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     }
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(25),
                     ),
                     child: Text(
                       index == 2 ? S.of(context).login : S.of(context).next,
