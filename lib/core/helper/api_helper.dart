@@ -6,11 +6,13 @@ class ApiHelper {
   // POST method
   Future<Response> post(String url, Map<String, dynamic> data) async {
     try {
-      return await _dio.post(url, data: data);
+      var response = await _dio.post(url, data: data);
+      return response;
     } catch (e) {
       rethrow;
     }
   }
+
   // GET method
   Future<Response> get(String url, {Map<String, dynamic>? params}) async {
     try {

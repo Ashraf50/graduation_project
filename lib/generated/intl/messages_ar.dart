@@ -41,12 +41,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "category": MessageLookupByLibrary.simpleMessage("الفئة"),
+        "check_email_or_pass": MessageLookupByLibrary.simpleMessage(
+            "تحقق من البريد الإلكتروني أو كلمة المرور"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("اختر صوره"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
@@ -78,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_team": MessageLookupByLibrary.simpleMessage(
             "فريقنا متاح لمساعدتك في أي استفسارات أو مشكلات قد تواجهك. نهدف إلى الرد على جميع الاتصالات بسرعة وكفاءة."),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "password_not_match":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
         "please_enter_your_email": MessageLookupByLibrary.simpleMessage(
             "من فضلك ادخل بريدك الالكتروني"),
         "please_enter_your_pass":
@@ -146,6 +151,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_splash3": MessageLookupByLibrary.simpleMessage(
             "استمتع بتجربة سلسة للعثور على كل ما تحتاجه"),
         "update_username":
-            MessageLookupByLibrary.simpleMessage("تحديث اسم المستخدم")
+            MessageLookupByLibrary.simpleMessage("تحديث اسم المستخدم"),
+        "valid_email": MessageLookupByLibrary.simpleMessage(
+            "أدخل بريدًا إلكترونيًا صالحًا"),
+        "valid_pass": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور الخاصة بك قصيرة جدًا"),
+        "value_empty": MessageLookupByLibrary.simpleMessage(
+            "لا تستطيع ترك قيمه الحقل خاليه")
       };
 }

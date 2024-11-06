@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/shared_pref.dart';
 part 'language_event.dart';
 part 'language_state.dart';
+
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
   LanguageBloc() : super(LanguageInitial()) {
     String? savedLang = sharedPreferences!.getString("lang");

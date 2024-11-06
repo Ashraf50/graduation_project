@@ -85,6 +85,11 @@
     "terms7": "7. Termination",
     "terms7_desc": "We reserve the right to suspend or terminate your access to AroundU at our discretion, without prior notice, for violations of these terms or other inappropriate behavior.",
     "terms8":  "8. Modifications to Terms",
-    "terms8_desc":"AroundU may revise these terms from time to time. Any changes will be communicated through the app, and your continued use of the app signifies your acceptance of the modified terms."
-    
+    "terms8_desc":"AroundU may revise these terms from time to time. Any changes will be communicated through the app, and your continued use of the app signifies your acceptance of the modified terms.",
+    "valid_email":"Enter a valid email",
+    "valid_pass":"your password is too short",
+    "check_email_or_pass": "Check the email or password",
+    "dismiss": "Dismiss",
+    "password_not_match":"The password does not match",
+    "value_empty": "You cannot leave the field value empty"
 }

@@ -8,12 +8,16 @@ class CustomTextfield extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
   final TextEditingController? controller;
+  final AutovalidateMode? autovalidateMode;
+  final String? Function(String?)? validator;
   const CustomTextfield({
     super.key,
     required this.hintText,
     this.suffixIcon,
     this.obscureText,
     required this.controller,
+    this.autovalidateMode,
+    this.validator,
   });
 
   @override
@@ -21,7 +25,9 @@ class CustomTextfield extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        autovalidateMode: autovalidateMode,
         controller: controller,
         obscureText: obscureText ?? false,
         cursorColor:
@@ -43,9 +49,22 @@ class CustomTextfield extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-                color: themeProvider.isDarkTheme
-                    ? AppColors.primaryColor
-                    : AppColors.primaryColor),
+              color: themeProvider.isDarkTheme
+                  ? AppColors.primaryColor
+                  : AppColors.primaryColor,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
           ),
           suffixIcon: suffixIcon,
         ),

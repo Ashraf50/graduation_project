@@ -40,12 +40,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "check_email_or_pass":
+            MessageLookupByLibrary.simpleMessage("Check the email or password"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("Choose Photo"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit Profile"),
@@ -75,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_team": MessageLookupByLibrary.simpleMessage(
             "Our team is available to assist you with any inquiries or issues you may have. We aim to respond to all communications promptly and efficiently."),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "password_not_match":
+            MessageLookupByLibrary.simpleMessage("The password does not match"),
         "please_enter_your_email":
             MessageLookupByLibrary.simpleMessage("Please enter your email"),
         "please_enter_your_pass":
@@ -146,6 +151,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_splash3": MessageLookupByLibrary.simpleMessage(
             "Enjoy a seamless experience finding everything you need."),
         "update_username":
-            MessageLookupByLibrary.simpleMessage("Update Username")
+            MessageLookupByLibrary.simpleMessage("Update Username"),
+        "valid_email":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email"),
+        "valid_pass":
+            MessageLookupByLibrary.simpleMessage("your password is too short"),
+        "value_empty": MessageLookupByLibrary.simpleMessage(
+            "You cannot leave the field value empty")
       };
 }

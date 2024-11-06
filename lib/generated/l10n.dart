@@ -919,6 +919,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter a valid email`
+  String get valid_email {
+    return Intl.message(
+      'Enter a valid email',
+      name: 'valid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your password is too short`
+  String get valid_pass {
+    return Intl.message(
+      'your password is too short',
+      name: 'valid_pass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check the email or password`
+  String get check_email_or_pass {
+    return Intl.message(
+      'Check the email or password',
+      name: 'check_email_or_pass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss`
+  String get dismiss {
+    return Intl.message(
+      'Dismiss',
+      name: 'dismiss',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password does not match`
+  String get password_not_match {
+    return Intl.message(
+      'The password does not match',
+      name: 'password_not_match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot leave the field value empty`
+  String get value_empty {
+    return Intl.message(
+      'You cannot leave the field value empty',
+      name: 'value_empty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
