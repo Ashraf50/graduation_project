@@ -7,7 +7,7 @@ class CustomScaffold extends StatelessWidget {
   final bool? resizeToAvoidBottomInset;
   final bool extendBody;
   final bool extendBodyBehindAppBar;
-  final BottomNavigationBar? bottomNavigationBar;
+  final Widget? bottomNavigationBar;
 
   const CustomScaffold({
     super.key,

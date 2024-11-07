@@ -33,13 +33,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_us": MessageLookupByLibrary.simpleMessage(
             "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
         "add_phone": MessageLookupByLibrary.simpleMessage("Add Phone Number"),
+        "all_chats": MessageLookupByLibrary.simpleMessage("All Chats"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "any_question": MessageLookupByLibrary.simpleMessage(
             "If you have any questions, concerns, or feedback regarding this Privacy Policy or any aspect of your experience with AroundU, please feel free to reach out to us:"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "chat": MessageLookupByLibrary.simpleMessage("chat"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chats"),
         "check_email_or_pass":
             MessageLookupByLibrary.simpleMessage("Check the email or password"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("Choose Photo"),
@@ -107,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
         "reset_pass": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "search_here": MessageLookupByLibrary.simpleMessage("search here..."),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "set_pass": MessageLookupByLibrary.simpleMessage("Set Password"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),

@@ -23,7 +23,8 @@
     "or": "     OR     ",
     "already_have_account":"Already have an account?",
     "home": "Home",
-    "chat":"chat",
+    "chat":"Chats",
+    "all_chats": "All Chats",
     "favorite": "Favorite",
     "Account": "Account",
     "edit": "Edit Profile",
@@ -91,5 +92,6 @@
     "check_email_or_pass": "Check the email or password",
     "dismiss": "Dismiss",
     "password_not_match":"The password does not match",
-    "value_empty": "You cannot leave the field value empty"
+    "value_empty": "You cannot leave the field value empty",
+    "search_here":"search here..."
 }

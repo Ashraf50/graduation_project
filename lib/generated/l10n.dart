@@ -290,11 +290,21 @@ class S {
     );
   }
 
-  /// `chat`
+  /// `Chats`
   String get chat {
     return Intl.message(
-      'chat',
+      'Chats',
       name: 'chat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Chats`
+  String get all_chats {
+    return Intl.message(
+      'All Chats',
+      name: 'all_chats',
       desc: '',
       args: [],
     );
@@ -975,6 +985,16 @@ class S {
     return Intl.message(
       'You cannot leave the field value empty',
       name: 'value_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `search here...`
+  String get search_here {
+    return Intl.message(
+      'search here...',
+      name: 'search_here',
       desc: '',
       args: [],
     );

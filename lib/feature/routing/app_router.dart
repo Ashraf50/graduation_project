@@ -11,6 +11,7 @@ import 'package:graduation_project/feature/account/presentation/view/widget/edit
 import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
+import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 
 class AppRouter {
@@ -71,6 +72,10 @@ class AppRouter {
       GoRoute(
         path: '/finish_pass_view',
         builder: (context, state) => FinishResetPassView(),
+      ),
+       GoRoute(
+        path: '/conversation_view',
+        builder: (context, state) => ConversationView(),
       ),
     ],
   );
