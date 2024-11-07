@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/sign_in_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'first_screen_view.dart';
 import 'second_screen_view.dart';
@@ -69,11 +68,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   onTap: () {
                     if (index == 2) {
                       context.push('/sign_in');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignInView(),
-                          ));
                     } else {
                       _controller.animateToPage(index + 1,
                           duration: const Duration(milliseconds: 250),

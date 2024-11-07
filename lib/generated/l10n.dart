@@ -290,11 +290,11 @@ class S {
     );
   }
 
-  /// `Category`
-  String get category {
+  /// `chat`
+  String get chat {
     return Intl.message(
-      'Category',
-      name: 'category',
+      'chat',
+      name: 'chat',
       desc: '',
       args: [],
     );

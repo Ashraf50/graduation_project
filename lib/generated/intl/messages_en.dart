@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you have any questions, concerns, or feedback regarding this Privacy Policy or any aspect of your experience with AroundU, please feel free to reach out to us:"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "chat": MessageLookupByLibrary.simpleMessage("chat"),
         "check_email_or_pass":
             MessageLookupByLibrary.simpleMessage("Check the email or password"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("Choose Photo"),

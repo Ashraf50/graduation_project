@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
-import 'package:graduation_project/feature/category/presentation/view/category_view.dart';
+import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
 import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -22,8 +22,8 @@ class _BottomBarState extends State<BottomBar> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    const CategoryView(),
     const FavoriteView(),
+    const ChatView(),
     const AccountView(),
   ];
 
@@ -51,15 +51,15 @@ class _BottomBarState extends State<BottomBar> {
             isDarkTheme: isDarkTheme,
           ),
           _buildBottomBarItem(
-            iconPath: "assets/img/category.svg",
-            activeIconPath: "assets/img/active_category.svg",
-            title: S.of(context).category,
-            isDarkTheme: isDarkTheme,
-          ),
-          _buildBottomBarItem(
             iconPath: "assets/img/favorite.svg",
             activeIconPath: "assets/img/active_favorite.svg",
             title: S.of(context).favorite,
+            isDarkTheme: isDarkTheme,
+          ),
+          _buildBottomBarItem(
+            iconPath: "assets/img/chat.svg",
+            activeIconPath: "assets/img/active_chat.svg",
+            title: S.of(context).chat,
             isDarkTheme: isDarkTheme,
           ),
           _buildBottomBarItem(

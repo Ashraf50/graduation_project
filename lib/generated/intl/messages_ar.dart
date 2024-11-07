@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "إذا كان لديك أي أسئلة أو استفسارات أو ملاحظات بخصوص سياسة الخصوصية هذه أو أي جانب من تجربتك مع اراوند يو فلا تتردد في التواصل معنا:"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
-        "category": MessageLookupByLibrary.simpleMessage("الفئة"),
+        "chat": MessageLookupByLibrary.simpleMessage("المحادثه"),
         "check_email_or_pass": MessageLookupByLibrary.simpleMessage(
             "تحقق من البريد الإلكتروني أو كلمة المرور"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("اختر صوره"),
