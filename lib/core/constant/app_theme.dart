@@ -26,7 +26,7 @@ final darkTheme = ThemeData(
   primaryColor: const Color(0xff240F4F),
   brightness: Brightness.dark,
   hintColor: Colors.white,
-  scaffoldBackgroundColor: const Color(0xff1C1C1C),
+  scaffoldBackgroundColor: const Color(0xff1e1e1e),
   dividerColor: const Color(0xff240F4F),
   colorScheme: const ColorScheme.dark(
     surface: Color(0xff240F4F),

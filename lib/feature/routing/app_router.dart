@@ -14,8 +14,11 @@ import 'package:graduation_project/feature/account/presentation/view/widget/term
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 
 class AppRouter {
-  final GoRouter router = GoRouter(
-    initialLocation: '/onboard',
+  final bool isLoggedIn;
+
+  AppRouter({required this.isLoggedIn});
+  late final GoRouter router = GoRouter(
+    initialLocation: isLoggedIn ? "/bottomBar" : '/onboard',
     routes: [
       GoRoute(
         path: "/onboard",

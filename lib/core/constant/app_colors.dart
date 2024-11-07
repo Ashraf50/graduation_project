@@ -6,6 +6,6 @@ class AppColors {
   static const black = Colors.black;
   static const grey = Colors.grey;
   static const whiteGrey = Color(0xffF2F2F2);
-  static const widgetColorDark = Color(0xff333333);
-  static const scaffoldColorDark = Color(0xff1C1C1C);
+  static const widgetColorDark = Color(0xff303030);//0xff212425  0xff303030
+  static const scaffoldColorDark = Color(0xff1e1e1e);
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/helper/api_helper.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
+import 'package:graduation_project/feature/Auth/data/repo/auth_repo.dart';
+import 'package:graduation_project/feature/Auth/data/repo/auth_repo_impl.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/custom_update_button.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/profile_photo.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -52,7 +56,11 @@ class EditProfileView extends StatelessWidget {
             CustomLogoutDeleteButton(
               title: S.of(context).logout,
               image: "assets/img/log_out.svg",
-              onTap: () {},
+              onTap: () {
+                context.go("/sign_in");
+                AuthRepo authRepo = AuthRepoImpl(ApiHelper());
+                authRepo.logout();
+              },
             )
           ],
         ),
