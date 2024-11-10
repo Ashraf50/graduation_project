@@ -37,6 +37,7 @@ class FinishResetPassView extends StatelessWidget {
               height: 60,
             ),
             CustomButton(
+              width: double.infinity,
               title: S.of(context).login,
               onTap: () {
                 context.go('/sign_in');

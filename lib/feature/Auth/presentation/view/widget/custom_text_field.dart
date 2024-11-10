@@ -42,9 +42,10 @@ class CustomTextfield extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-                color: themeProvider.isDarkTheme
-                    ? AppColors.widgetColorDark
-                    : Color(0xffBCB8B1)),
+              color: themeProvider.isDarkTheme
+                  ? AppColors.widgetColorDark
+                  : Color(0xffBCB8B1),
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

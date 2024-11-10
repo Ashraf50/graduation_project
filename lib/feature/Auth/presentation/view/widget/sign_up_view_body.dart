@@ -164,6 +164,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                     CustomButton(
                       buttonColor: AppColors.primaryColor,
+                      width: double.infinity,
                       title: S.of(context).sign_up,
                       onTap: () {
                         if (passwordController.text ==

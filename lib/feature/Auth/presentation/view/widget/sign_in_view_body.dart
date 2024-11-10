@@ -153,12 +153,14 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         }
                       },
                       textColor: AppColors.white,
+                      width: double.infinity,
                     ),
                     CustomButton(
                       buttonColor: themeProvider.isDarkTheme
                           ? AppColors.scaffoldColorDark
                           : AppColors.white,
                       title: S.of(context).guest,
+                      width: double.infinity,
                       textColor: themeProvider.isDarkTheme
                           ? AppColors.white
                           : AppColors.primaryColor,
@@ -166,6 +168,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         context.push('/bottomBar');
                       },
                     ),
+
                     const SizedBox(
                       height: 30,
                     ),

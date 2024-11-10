@@ -49,6 +49,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
               },
               buttonColor: AppColors.primaryColor,
               textColor: AppColors.white,
+              width: double.infinity,
             )
           ],
         ),

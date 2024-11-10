@@ -49,6 +49,7 @@ class ResetPasswordView extends StatelessWidget {
               },
               buttonColor: AppColors.primaryColor,
               textColor: AppColors.white,
+              width: double.infinity,
             )
           ],
         ),

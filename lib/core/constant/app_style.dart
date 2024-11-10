@@ -30,9 +30,18 @@ class AppStyles {
     fontSize: 16,
     color: AppColors.grey,
   );
+  static const TextStyle textStyle16 = TextStyle(
+    fontSize: 16,
+  );
+
   static const TextStyle textStyle20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
+  );
+  static const TextStyle textStyle20whiteBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
   );
   static const TextStyle textStyle20notBold = TextStyle(
     fontSize: 20,

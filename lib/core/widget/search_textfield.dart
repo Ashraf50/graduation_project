@@ -6,12 +6,20 @@ import 'package:provider/provider.dart';
 class SearchTextField extends StatelessWidget {
   final String hintText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final double radius;
   final TextEditingController? controller;
+  final bool? filled;
+  final Color? fillColor;
   const SearchTextField({
     super.key,
     this.suffixIcon,
     this.controller,
     required this.hintText,
+    this.filled,
+    this.fillColor,
+    this.prefixIcon,
+    required this.radius,
   });
 
   @override
@@ -29,11 +37,13 @@ class SearchTextField extends StatelessWidget {
           fontSize: 18,
         ),
         decoration: InputDecoration(
+          filled: filled,
+          fillColor: fillColor,
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               color: themeProvider.isDarkTheme
                   ? AppColors.widgetColorDark
@@ -41,7 +51,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               color: themeProvider.isDarkTheme
                   ? AppColors.primaryColor
@@ -49,6 +59,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
           suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
         ),
       ),
     );

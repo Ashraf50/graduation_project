@@ -25,6 +25,7 @@ class ChatViewBody extends StatelessWidget {
                 size: 30,
                 color: Color(0xff55A99D),
               ),
+              radius: 30,
             ),
             SizedBox(
               height: 10,
