@@ -22,7 +22,6 @@
     "don_have_account": "Don't have an account?",
     "or": "     OR     ",
     "already_have_account":"Already have an account?",
-<<<<<<< HEAD
     "home": "Home",
     "chat":"Chats",
     "all_chats": "All Chats",
@@ -96,7 +95,3 @@
     "value_empty": "You cannot leave the field value empty",
     "search_here":"search here..."
 }
-=======
-     
-}
->>>>>>> ibrahim
