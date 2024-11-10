@@ -33,11 +33,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_us": MessageLookupByLibrary.simpleMessage(
             "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
         "add_phone": MessageLookupByLibrary.simpleMessage("Add Phone Number"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_chats": MessageLookupByLibrary.simpleMessage("All Chats"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "any_question": MessageLookupByLibrary.simpleMessage(
             "If you have any questions, concerns, or feedback regarding this Privacy Policy or any aspect of your experience with AroundU, please feel free to reach out to us:"),
+        "apartment": MessageLookupByLibrary.simpleMessage("Apartments"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chat": MessageLookupByLibrary.simpleMessage("Chats"),
@@ -49,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "discover":
+            MessageLookupByLibrary.simpleMessage("Discover\nyour new house!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
@@ -108,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
         "reset_pass": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "room": MessageLookupByLibrary.simpleMessage("Rooms"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search_here": MessageLookupByLibrary.simpleMessage("search here..."),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "set_pass": MessageLookupByLibrary.simpleMessage("Set Password"),
@@ -159,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "valid_pass":
             MessageLookupByLibrary.simpleMessage("your password is too short"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
-            "You cannot leave the field value empty")
+            "You cannot leave the field value empty"),
+        "view": MessageLookupByLibrary.simpleMessage("View")
       };
 }

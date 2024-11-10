@@ -93,5 +93,11 @@
     "dismiss": "إغلاق",
     "password_not_match":"كلمة المرور غير متطابقة",
     "value_empty": "لا تستطيع ترك قيمه الحقل خاليه",
-    "search_here":"ابحث هنا..."
+    "search_here":"ابحث هنا...",
+    "all": "الكل",
+    "apartment": "شقق",
+    "room": "غرف",
+    "save": "حفظ",
+    "view": "عرض",
+    "discover": "اكتشف\nمنزلك الجديد!"
 }

@@ -6,7 +6,6 @@ import 'package:graduation_project/generated/l10n.dart';
 
 class SearchLayer extends StatelessWidget {
   const SearchLayer({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,18 +31,22 @@ class SearchLayer extends StatelessWidget {
         SizedBox(
           width: 5,
         ),
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: AppColors.secondColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              "assets/img/sort.svg",
-              height: 25,
-              // fit: BoxFit.cover,
+        InkWell(
+          borderRadius: BorderRadius.circular(15),
+          onTap: () {},
+          child: Container(
+            width: 47,
+            height: 47,
+            decoration: BoxDecoration(
+              color: AppColors.secondColor,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                "assets/img/sort.svg",
+                height: 22,
+                // fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

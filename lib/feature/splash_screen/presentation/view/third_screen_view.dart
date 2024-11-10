@@ -18,7 +18,7 @@ class ThirdScreen extends StatelessWidget {
           child: ClipPath(
             clipper: BottomCircularClipper(),
             child: Image.asset(
-              "assets/img/splash3.jpg",
+              "assets/img/splash3.png",
               fit: BoxFit.cover,
             ),
           ),

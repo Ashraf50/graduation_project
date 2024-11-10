@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
+import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class PostItem extends StatelessWidget {
@@ -116,11 +118,13 @@ class PostItem extends StatelessWidget {
                           ],
                         ),
                         CustomButton(
-                          title: "View",
+                          title: S.of(context).view,
                           buttonColor: AppColors.primaryColor,
                           textColor: AppColors.white,
                           width: 110,
-                          onTap: () {},
+                          onTap: () {
+                            context.push("/details");
+                          },
                         ),
                       ],
                     ),
@@ -177,25 +181,35 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: PopupMenuButton<String>(
-        onSelected: (value) {
-          if (value == 'save') {
-            print('Saved');
-          }
-        },
-        itemBuilder: (BuildContext context) {
-          return [
-            PopupMenuItem<String>(
-              value: 'save',
-              height: 25,
-              textStyle: AppStyles.textStyle18black,
-              child: Text('Save'),
-            ),
-          ];
-        },
-        child: Icon(Icons.more_horiz),
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          popupMenuTheme: PopupMenuThemeData(
+            color: themeProvider.isDarkTheme
+                ? AppColors.widgetColorDark
+                : AppColors.whiteGrey,
+          ),
+        ),
+        child: PopupMenuButton<String>(
+          onSelected: (value) {
+            if (value == 'save') {
+              print('Saved');
+            }
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              PopupMenuItem<String>(
+                value: S.of(context).save,
+                height: 25,
+                textStyle: AppStyles.textStyle18black,
+                child: Text(S.of(context).save),
+              ),
+            ];
+          },
+          child: Icon(Icons.more_horiz),
+        ),
       ),
     );
   }

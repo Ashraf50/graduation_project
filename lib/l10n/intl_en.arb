@@ -93,5 +93,11 @@
     "dismiss": "Dismiss",
     "password_not_match":"The password does not match",
     "value_empty": "You cannot leave the field value empty",
-    "search_here":"search here..."
+    "search_here":"search here...",
+    "all": "All",
+    "apartment":"Apartments",
+    "room":"Rooms",
+    "save":"Save",
+    "view":"View",
+    "discover": "Discover\nyour new house!"
 }

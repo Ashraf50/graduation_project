@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/feature/home/data/model/category_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/category_item.dart';
+import 'package:graduation_project/generated/l10n.dart';
 
 class CategoriesListView extends StatefulWidget {
   const CategoriesListView({super.key});
@@ -14,6 +15,17 @@ class _CategoriesListViewState extends State<CategoriesListView> {
 
   @override
   Widget build(BuildContext context) {
+    List<CategoryModel> allCategories = [
+      CategoryModel(
+        categoryName: S.of(context).all,
+      ),
+      CategoryModel(
+        categoryName: S.of(context).apartment,
+      ),
+      CategoryModel(
+        categoryName: S.of(context).room,
+      ),
+    ];
     return SizedBox(
       height: 50,
       child: ListView.builder(

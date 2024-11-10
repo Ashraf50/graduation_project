@@ -999,6 +999,66 @@ class S {
       args: [],
     );
   }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apartments`
+  String get apartment {
+    return Intl.message(
+      'Apartments',
+      name: 'apartment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rooms`
+  String get room {
+    return Intl.message(
+      'Rooms',
+      name: 'room',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View`
+  String get view {
+    return Intl.message(
+      'View',
+      name: 'view',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover\nyour new house!`
+  String get discover {
+    return Intl.message(
+      'Discover\nyour new house!',
+      name: 'discover',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

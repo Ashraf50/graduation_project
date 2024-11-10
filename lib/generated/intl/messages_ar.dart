@@ -34,11 +34,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_us": MessageLookupByLibrary.simpleMessage(
             "مرحبا بكم في اراوند يو نحن ملتزمون بجعل بحثكم عن العقارات للإيجار والخدمات الأساسية سهلًا وخاليًا من المتاعب. يوفر تطبيقنا دليلًا شاملاً للشقق المتاحة للإيجار، ويقدم معلومات عن أقرب المطاعم والبنوك والمستشفيات والصيدليات لتعزيز تجربة السكن الخاصة بكم. ما يميزنا هو خدمة الدردشة المدمجة، التي تتيح التواصل السهل والمباشر بين المستخدمين. مهمتنا هي إنشاء بيئة سهلة الاستخدام تبسط عملية الإيجار وتربطكم بالخدمات الأساسية في منطقتكم اختبروا الراحة والشفافية والدعم في مكان واحد مع اراوند يو."),
         "add_phone": MessageLookupByLibrary.simpleMessage("إضافة رقم الهاتف"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "all_chats": MessageLookupByLibrary.simpleMessage("كل المحادثات"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "any_question": MessageLookupByLibrary.simpleMessage(
             "إذا كان لديك أي أسئلة أو استفسارات أو ملاحظات بخصوص سياسة الخصوصية هذه أو أي جانب من تجربتك مع اراوند يو فلا تتردد في التواصل معنا:"),
+        "apartment": MessageLookupByLibrary.simpleMessage("شقق"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "chat": MessageLookupByLibrary.simpleMessage("المحادثات"),
@@ -50,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
+        "discover":
+            MessageLookupByLibrary.simpleMessage("اكتشف\nمنزلك الجديد!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
@@ -112,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rate": MessageLookupByLibrary.simpleMessage("قيمنا"),
         "reset_pass":
             MessageLookupByLibrary.simpleMessage("اعاده تعيين كلمة المرور"),
+        "room": MessageLookupByLibrary.simpleMessage("غرف"),
+        "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search_here": MessageLookupByLibrary.simpleMessage("ابحث هنا..."),
         "send": MessageLookupByLibrary.simpleMessage("ارسل"),
         "set_pass": MessageLookupByLibrary.simpleMessage("تعيين كلمه المرور"),
@@ -159,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "valid_pass": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور الخاصة بك قصيرة جدًا"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
-            "لا تستطيع ترك قيمه الحقل خاليه")
+            "لا تستطيع ترك قيمه الحقل خاليه"),
+        "view": MessageLookupByLibrary.simpleMessage("عرض")
       };
 }
