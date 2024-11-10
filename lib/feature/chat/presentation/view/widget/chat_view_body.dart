@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chats_list_view.dart';
+import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 
 class ChatViewBody extends StatelessWidget {
@@ -11,6 +14,7 @@ class ChatViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).chat),
       body: Padding(
@@ -20,6 +24,9 @@ class ChatViewBody extends StatelessWidget {
             SearchTextField(
               hintText: S.of(context).search_here,
               controller: TextEditingController(),
+              cursorColor: themeProvider.isDarkTheme
+                  ? AppColors.white
+                  : AppColors.primaryColor,
               suffixIcon: Icon(
                 Icons.person_search,
                 size: 30,

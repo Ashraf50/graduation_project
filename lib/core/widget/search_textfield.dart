@@ -11,6 +11,8 @@ class SearchTextField extends StatelessWidget {
   final TextEditingController? controller;
   final bool? filled;
   final Color? fillColor;
+  final TextStyle? style;
+  final Color cursorColor;
   const SearchTextField({
     super.key,
     this.suffixIcon,
@@ -19,7 +21,7 @@ class SearchTextField extends StatelessWidget {
     this.filled,
     this.fillColor,
     this.prefixIcon,
-    required this.radius,
+    required this.radius, this.style, required this.cursorColor,
   });
 
   @override
@@ -29,13 +31,8 @@ class SearchTextField extends StatelessWidget {
       height: 50,
       child: TextField(
         controller: controller,
-        cursorColor: themeProvider.isDarkTheme
-            ? AppColors.white
-            : AppColors.primaryColor,
-        style: TextStyle(
-          color: themeProvider.isDarkTheme ? AppColors.white : AppColors.black,
-          fontSize: 18,
-        ),
+        cursorColor: cursorColor,
+        style:style,
         decoration: InputDecoration(
           filled: filled,
           fillColor: fillColor,

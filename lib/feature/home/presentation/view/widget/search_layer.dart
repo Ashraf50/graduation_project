@@ -19,9 +19,13 @@ class SearchLayer extends StatelessWidget {
               size: 30,
               color: AppColors.primaryColor,
             ),
+            cursorColor: Colors.black,
             filled: true,
             fillColor: AppColors.white,
             radius: 12,
+            style: TextStyle(
+              color: AppColors.black,
+            ),
             controller: TextEditingController(),
           ),
         ),
