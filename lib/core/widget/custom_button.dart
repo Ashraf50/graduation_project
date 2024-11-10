@@ -4,26 +4,17 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final void Function()? onTap;
-<<<<<<< HEAD
   final Color buttonColor;
   final Color textColor;
   final double width;
-=======
-  final Color? buttonColor;
-  final Color? textColor;
->>>>>>> 229e9cff15ba66d70ddeedf8b933c9496eee95a4
+
   const CustomButton({
     super.key,
     required this.title,
     required this.onTap,
-<<<<<<< HEAD
-    required this.buttonColor,
-    required this.textColor,
-    required this.width,
-=======
     this.buttonColor = AppColors.primaryColor,
     this.textColor = Colors.white,
->>>>>>> 229e9cff15ba66d70ddeedf8b933c9496eee95a4
+    required this.width,
   });
 
   @override

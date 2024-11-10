@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/generated/l10n.dart';
-
 import '../../../../../core/constant/app_style.dart';
 
 class OrDivide extends StatelessWidget {
