@@ -43,6 +43,12 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     color: Color(0xffA8D5BA),
   );
+
+  static const TextStyle textStyle24 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
+
   static const TextStyle textStyle24greenLight = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
@@ -55,5 +61,20 @@ class AppStyles {
   static const TextStyle textStyle24blackBold = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
+
+    // the main color is black when you use this color anywhere use copyWith() method to change the color
+    // color: Color(0xff00594E),
+  );
+
+  static const TextStyle textStyle16Regular = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Montserrat',
+      color: Color(0xff80807F));
+
+  static const TextStyle textStyle10Regular = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Montserrat',
   );
 }
