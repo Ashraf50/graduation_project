@@ -8,6 +8,7 @@ class CustomScaffold extends StatelessWidget {
   final bool extendBody;
   final bool extendBodyBehindAppBar;
   final Widget? bottomNavigationBar;
+  final Widget? floatingActionButton;
 
   const CustomScaffold({
     super.key,
@@ -18,6 +19,7 @@ class CustomScaffold extends StatelessWidget {
     this.extendBody = false,
     this.extendBodyBehindAppBar = false,
     this.bottomNavigationBar,
+    this.floatingActionButton,
   });
 
   @override
@@ -31,6 +33,7 @@ class CustomScaffold extends StatelessWidget {
         extendBody: extendBody,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
       ),
     );
   }

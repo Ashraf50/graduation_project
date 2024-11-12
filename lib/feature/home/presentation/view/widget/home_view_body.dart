@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/home/presentation/view/categories_list_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/posts_list_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/home_app_bar.dart';
@@ -9,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomScaffold(
       backgroundColor: AppColors.primaryColor,
       body: ListView(
         children: [
@@ -31,6 +34,19 @@ class HomeViewBody extends StatelessWidget {
           ),
           PostsListView(),
         ],
+      ),
+      floatingActionButton: InkWell(
+        onTap: () {
+          context.push("/map");
+        },
+        child: CircleAvatar(
+          backgroundColor: const Color.fromARGB(175, 0, 89, 79),
+          radius: 30,
+          child: SvgPicture.asset(
+            "assets/img/location.svg",
+            height: 30,
+          ),
+        ),
       ),
     );
   }

@@ -13,6 +13,7 @@ import 'package:graduation_project/feature/account/presentation/view/widget/priv
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
+import 'package:graduation_project/feature/map/presentaion/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 
 class AppRouter {
@@ -81,6 +82,10 @@ class AppRouter {
       GoRoute(
         path: '/details',
         builder: (context, state) => DetailsView(),
+      ),
+      GoRoute(
+        path: '/map',
+        builder: (context, state) => MapViewPage(),
       ),
     ],
   );
