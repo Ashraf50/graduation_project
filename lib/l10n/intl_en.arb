@@ -99,5 +99,11 @@
     "room":"Rooms",
     "save":"Save",
     "view":"View",
-    "discover": "Discover\nyour new house!"
+    "discover": "Discover\nyour new house!",
+    "enable_location":"Location service is not enabled, please enable it.",
+    "location_access":"Location access permission has not been granted.",
+    "error_location":"An error occurred while updating the location.",
+    "retry": "Retry",
+    "error": "Error",
+    "map":"Map"
 }

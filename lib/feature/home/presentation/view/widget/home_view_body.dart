@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
-import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/home/presentation/view/categories_list_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/posts_list_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/home_app_bar.dart';
@@ -12,7 +11,7 @@ class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
+    return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: ListView(
         children: [

@@ -59,12 +59,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "enable_location": MessageLookupByLibrary.simpleMessage(
+            "خدمة الموقع غير مفعلة، يرجى تفعيلها."),
         "english": MessageLookupByLibrary.simpleMessage("الانجليزيه"),
         "enter_email":
             MessageLookupByLibrary.simpleMessage("أدخل بريدك الإلكتروني"),
         "enter_name": MessageLookupByLibrary.simpleMessage("أدخل اسمك"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "error": MessageLookupByLibrary.simpleMessage("خطأ"),
+        "error_location":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء تحديث الموقع."),
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forget_pass":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
@@ -73,8 +78,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "location_access": MessageLookupByLibrary.simpleMessage(
+            "لم يتم منح إذن الوصول إلى الموقع."),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "map": MessageLookupByLibrary.simpleMessage("الخريطه"),
         "my_profile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "new_pass_message1":
@@ -116,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rate": MessageLookupByLibrary.simpleMessage("قيمنا"),
         "reset_pass":
             MessageLookupByLibrary.simpleMessage("اعاده تعيين كلمة المرور"),
+        "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
         "room": MessageLookupByLibrary.simpleMessage("غرف"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search_here": MessageLookupByLibrary.simpleMessage("ابحث هنا..."),

@@ -1059,6 +1059,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Location service is not enabled, please enable it.`
+  String get enable_location {
+    return Intl.message(
+      'Location service is not enabled, please enable it.',
+      name: 'enable_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location access permission has not been granted.`
+  String get location_access {
+    return Intl.message(
+      'Location access permission has not been granted.',
+      name: 'location_access',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while updating the location.`
+  String get error_location {
+    return Intl.message(
+      'An error occurred while updating the location.',
+      name: 'error_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Map`
+  String get map {
+    return Intl.message(
+      'Map',
+      name: 'map',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

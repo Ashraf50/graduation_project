@@ -58,11 +58,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enable_location": MessageLookupByLibrary.simpleMessage(
+            "Location service is not enabled, please enable it."),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enter_email": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "enter_name": MessageLookupByLibrary.simpleMessage("Enter your name"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "error_location": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while updating the location."),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forget_pass": MessageLookupByLibrary.simpleMessage("Forget password?"),
         "forget_password":
@@ -70,8 +75,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "location_access": MessageLookupByLibrary.simpleMessage(
+            "Location access permission has not been granted."),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "map": MessageLookupByLibrary.simpleMessage("Map"),
         "my_profile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "new_pass_message1":
@@ -112,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
         "reset_pass": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "room": MessageLookupByLibrary.simpleMessage("Rooms"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search_here": MessageLookupByLibrary.simpleMessage("search here..."),
