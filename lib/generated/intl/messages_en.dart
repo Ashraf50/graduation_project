@@ -32,7 +32,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("About US"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
-        "add_phone": MessageLookupByLibrary.simpleMessage("Add Phone Number"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_chats": MessageLookupByLibrary.simpleMessage("All Chats"),
         "already_have_account":
@@ -167,6 +166,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Easily explore available apartments nearby, and find the closest restaurants, banks, and hospitals."),
         "text_splash3": MessageLookupByLibrary.simpleMessage(
             "Enjoy a seamless experience finding everything you need."),
+        "update_phone":
+            MessageLookupByLibrary.simpleMessage("Update Phone Number"),
         "update_username":
             MessageLookupByLibrary.simpleMessage("Update Username"),
         "valid_email":

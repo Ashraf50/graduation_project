@@ -49,7 +49,7 @@
     "cancel": "الغاء",
     "update_username": "تحديث اسم المستخدم",
     "Update_email": "تحديث البريد الإلكتروني",
-    "add_phone": "إضافة رقم الهاتف",
+    "update_phone": "تحديث رقم الهاتف",
     "delete_acc": "حذف الحساب",
     "logout": "تسجيل الخروج",
     "new_pass_message1": "تم تعيين كلمة مرور جديدة",

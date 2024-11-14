@@ -5,6 +5,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/sign_in_view.d
 import 'package:graduation_project/feature/Auth/presentation/view/sign_up_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/finish_reset_pass_view.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_view.dart';
+import 'package:graduation_project/feature/account/data/model/user_model.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
@@ -69,7 +70,12 @@ class AppRouter {
       ),
       GoRoute(
         path: '/edit_profile',
-        builder: (context, state) => EditProfileView(),
+        builder: (context, state) {
+          final userData = state.extra as UserModel;
+          return EditProfileView(
+            userData: userData,
+          );
+        },
       ),
       GoRoute(
         path: '/finish_pass_view',

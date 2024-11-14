@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/change_photo_button.dart';
 
 class ProfilePhoto extends StatelessWidget {
-  const ProfilePhoto({super.key});
+  final String image;
+  const ProfilePhoto({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class ProfilePhoto extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 80,
-            backgroundImage: AssetImage("assets/img/test.jpg"),
+            backgroundImage: CachedNetworkImageProvider(image),
           ),
           Positioned(
             bottom: -3,

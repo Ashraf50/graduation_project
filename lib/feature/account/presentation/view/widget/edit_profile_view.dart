@@ -8,9 +8,14 @@ import 'package:graduation_project/feature/Auth/data/repo/auth_repo_impl.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/custom_update_button.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/profile_photo.dart';
 import 'package:graduation_project/generated/l10n.dart';
+import '../../../data/model/user_model.dart';
 
 class EditProfileView extends StatelessWidget {
-  const EditProfileView({super.key});
+  final UserModel userData;
+  const EditProfileView({
+    super.key,
+    required this.userData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +28,29 @@ class EditProfileView extends StatelessWidget {
             SizedBox(
               height: 24,
             ),
-            ProfilePhoto(),
+            ProfilePhoto(image: userData.image),
             SizedBox(
               height: 30,
             ),
             CustomUpdateButton(
               title: S.of(context).update_username,
-              subTitle: "Ashraf Essam",
+              subTitle: userData.name,
               imageIcon: "assets/img/id_card.svg",
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomUpdateButton(
               title: S.of(context).Update_email,
-              subTitle: "ashrafesam@gmail.com",
+              subTitle: userData.email,
               imageIcon: "assets/img/Email.svg",
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomUpdateButton(
-              title: S.of(context).add_phone,
-              subTitle: "+201*********",
+              title: S.of(context).update_phone,
+              subTitle: userData.phone,
               imageIcon: "assets/img/phone.svg",
-              icon: Icon(Icons.add),
+              icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomLogoutDeleteButton(

@@ -168,7 +168,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         context.push('/bottomBar');
                       },
                     ),
-
                     const SizedBox(
                       height: 30,
                     ),

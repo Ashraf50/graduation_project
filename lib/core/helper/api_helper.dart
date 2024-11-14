@@ -14,9 +14,12 @@ class ApiHelper {
   }
 
   // GET method
-  Future<Response> get(String url, {Map<String, dynamic>? params}) async {
+  Future<Response> get(String url, {Map<String, String>? headers}) async {
     try {
-      return await _dio.get(url, queryParameters: params);
+      return await _dio.get(
+        url,
+        options: Options(headers: headers),
+      );
     } catch (e) {
       rethrow;
     }

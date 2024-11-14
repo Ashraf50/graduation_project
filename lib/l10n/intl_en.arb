@@ -49,7 +49,7 @@
     "cancel":"Cancel",
     "update_username": "Update Username",
     "Update_email": "Update Email",
-    "add_phone":"Add Phone Number",
+    "update_phone":"Update Phone Number",
     "delete_acc":"Delete Account",
     "logout":"Logout",
     "new_pass_message1":"New password has been set",

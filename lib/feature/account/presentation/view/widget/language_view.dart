@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/account/presentation/view_model/bloc/language_bloc.dart';
+import 'package:graduation_project/feature/account/presentation/view_model/language_bloc/language_bloc.dart';
 import 'package:graduation_project/generated/l10n.dart';
 
 class LanguageView extends StatefulWidget {

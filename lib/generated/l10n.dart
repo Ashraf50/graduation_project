@@ -550,11 +550,11 @@ class S {
     );
   }
 
-  /// `Add Phone Number`
-  String get add_phone {
+  /// `Update Phone Number`
+  String get update_phone {
     return Intl.message(
-      'Add Phone Number',
-      name: 'add_phone',
+      'Update Phone Number',
+      name: 'update_phone',
       desc: '',
       args: [],
     );
