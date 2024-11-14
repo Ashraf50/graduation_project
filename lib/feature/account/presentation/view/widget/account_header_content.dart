@@ -9,7 +9,7 @@ import 'package:graduation_project/core/widget/show_snackbar.dart';
 import 'package:graduation_project/feature/account/data/repos/user_repo_impl.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../core/constant/function/get_token.dart';
 import 'account_header_widget.dart';
 
 class AccountHeaderContent extends StatelessWidget {
@@ -69,9 +69,4 @@ class AccountHeaderContent extends StatelessWidget {
       },
     );
   }
-}
-
-Future<String?> getToken() async {
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  return pref.getString("auth_token");
 }
