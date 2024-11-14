@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/feature/map/presentation/view_model/bloc/map_bloc.dart';
-import 'package:graduation_project/feature/map/presentation/view_model/bloc/map_event.dart';
 import 'package:graduation_project/generated/l10n.dart';
 
 void showLocationErrorDialog(BuildContext context, String errorMessage,
-    MapBloc mapBloc, ThemeProvider theme) {
+    ThemeProvider theme, void Function() onPressed) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -22,14 +20,12 @@ void showLocationErrorDialog(BuildContext context, String errorMessage,
         ),
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                mapBloc.add(LoadMap());
-              },
-              child: Text(
-                S.of(context).retry,
-                style: TextStyle(fontSize: 20),
-              )),
+            onPressed: onPressed,
+            child: Text(
+              S.of(context).retry,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
         ],
       );
     },

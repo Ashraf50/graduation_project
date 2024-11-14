@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
@@ -52,9 +54,16 @@ class CustomGoogleMap extends StatelessWidget {
               default:
                 errorMessage = S.of(context).error_location;
             }
-            final mapBloc = context.read<MapBloc>();
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              showLocationErrorDialog(context, errorMessage, mapBloc, theme);
+              showLocationErrorDialog(
+                context,
+                errorMessage,
+                theme,
+                () {
+                  context.pop();
+                  context.read<MapBloc>().add(LoadMap());
+                },
+              );
             });
           }
           return const SizedBox();
@@ -74,5 +83,13 @@ class CustomGoogleMap extends StatelessWidget {
     } else {
       controller.setMapStyle(lightMapStyle);
     }
+  }
+
+  void startLocationServiceListener(MapBloc mapBloc) {
+    Geolocator.getServiceStatusStream().listen((serviceStatus) {
+      if (serviceStatus == ServiceStatus.enabled) {
+        mapBloc.add(LoadMap());
+      }
+    });
   }
 }

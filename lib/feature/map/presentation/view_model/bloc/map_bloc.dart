@@ -14,67 +14,41 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         ),
         super(MapInitial()) {
     on<LoadMap>((event, emit) async {
-      try {
-        emit(MapLoading());
-        final currentPosition = await locationService.getLocation();
-        final currentLocationTarget = LatLng(
-          currentPosition.latitude!,
-          currentPosition.longitude!,
-        );
-        final cameraPosition = CameraPosition(
-          target: currentLocationTarget,
-          zoom: 16,
-        );
-        final markers = {
-          Marker(
-            markerId: MarkerId("1"),
-            position: currentLocationTarget,
-          ),
-        };
-        emit(
-          MapLoadingSuccess(
-            cameraPosition: cameraPosition,
-            markers: markers,
-          ),
-        );
-      } on LocationServiceException {
-        emit(MapError(errMessage: "enable_location"));
-      } on LocationPermissionException {
-        emit(MapError(errMessage: "location_access"));
-      } catch (e) {
-        emit(MapError(errMessage: "error_location"));
-      }
+      await _loadMap(emit);
     });
     on<UpdateCurrentLocation>((event, emit) async {
-      try {
-        final currentPosition = await locationService.getLocation();
-        final currentLocationTarget = LatLng(
-          currentPosition.latitude!,
-          currentPosition.longitude!,
-        );
-        final cameraPosition = CameraPosition(
-          target: currentLocationTarget,
-          zoom: 16,
-        );
-        final markers = {
-          Marker(
-            markerId: MarkerId("1"),
-            position: currentLocationTarget,
-          ),
-        };
-        emit(
-          MapLoadingSuccess(
-            cameraPosition: cameraPosition,
-            markers: markers,
-          ),
-        );
-      } on LocationServiceException {
-        emit(MapError(errMessage: "enable_location"));
-      } on LocationPermissionException {
-        emit(MapError(errMessage: "location_access"));
-      } catch (e) {
-        emit(MapError(errMessage: "error_location"));
-      }
+      await _loadMap(emit);
     });
+  }
+
+  Future<void> _loadMap(Emitter<MapState> emit) async {
+    emit(MapLoading());
+    try {
+      final currentPosition = await locationService.getLocation();
+      final currentLocationTarget = LatLng(
+        currentPosition.latitude,
+        currentPosition.longitude,
+      );
+      final cameraPosition = CameraPosition(
+        target: currentLocationTarget,
+        zoom: 16,
+      );
+      final markers = {
+        Marker(
+          markerId: MarkerId("1"),
+          position: currentLocationTarget,
+        ),
+      };
+      emit(MapLoadingSuccess(
+        cameraPosition: cameraPosition,
+        markers: markers,
+      ));
+    } on LocationServiceException {
+      emit(MapError(errMessage: "enable_location"));
+    } on LocationPermissionException {
+      emit(MapError(errMessage: "location_access"));
+    } catch (e) {
+      emit(MapError(errMessage: "error_location"));
+    }
   }
 }
