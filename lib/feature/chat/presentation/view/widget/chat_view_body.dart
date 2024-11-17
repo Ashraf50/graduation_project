@@ -27,6 +27,10 @@ class ChatViewBody extends StatelessWidget {
               cursorColor: themeProvider.isDarkTheme
                   ? AppColors.white
                   : AppColors.primaryColor,
+              focusedColor: AppColors.primaryColor,
+              enabledColor: themeProvider.isDarkTheme
+                  ? AppColors.widgetColorDark
+                  : Color(0xffBCB8B1),
               suffixIcon: Icon(
                 Icons.person_search,
                 size: 30,

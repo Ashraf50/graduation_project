@@ -10,6 +10,10 @@ import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
+import 'feature/map/data/utils/location_service.dart';
+import 'feature/map/presentation/view_model/bloc/map_bloc.dart';
+import 'feature/map/presentation/view_model/bloc/map_event.dart';
+
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
   const MyApp({super.key, required this.appRouter});
@@ -24,6 +28,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LanguageBloc(),
+        ),
+        BlocProvider(
+        create: (context) => MapBloc(LocationService())..add(LoadMap()),
         ),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(

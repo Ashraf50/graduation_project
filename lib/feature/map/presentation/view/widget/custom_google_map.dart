@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/feature/map/presentation/view/widget/error_dialog.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -14,8 +14,17 @@ import '../../view_model/bloc/map_bloc.dart';
 import '../../view_model/bloc/map_event.dart';
 import '../../view_model/bloc/map_state.dart';
 
-class CustomGoogleMap extends StatelessWidget {
+class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({super.key});
+
+  @override
+  _CustomGoogleMapState createState() => _CustomGoogleMapState();
+}
+
+class _CustomGoogleMapState extends State<CustomGoogleMap> {
+  final TextEditingController searchController = TextEditingController();
+
+  late GoogleMapController? mapController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +41,46 @@ class CustomGoogleMap extends StatelessWidget {
               ),
             );
           } else if (state is MapLoadingSuccess) {
-            return GoogleMap(
-              initialCameraPosition: state.cameraPosition,
-              markers: state.markers,
-              onMapCreated: (controller) {
-                theme.isDarkTheme
-                    ? initMapStyle(controller, true, context)
-                    : initMapStyle(controller, false, context);
-              },
+            return Stack(
+              children: [
+                GoogleMap(
+                  initialCameraPosition: state.cameraPosition,
+                  markers: state.markers,
+                  circles: state.circle,
+                  onMapCreated: (controller) {
+                    mapController = controller;
+                    theme.isDarkTheme
+                        ? initMapStyle(controller, true, context)
+                        : initMapStyle(controller, false, context);
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SearchTextField(
+                    hintText: "search here...",
+                    radius: 20,
+                    cursorColor:
+                        theme.isDarkTheme ? Colors.white : Colors.black,
+                    focusedColor:
+                        theme.isDarkTheme ? Color(0xff242F3E) : Colors.white,
+                    enabledColor:
+                        theme.isDarkTheme ? Color(0xff242F3E) : Colors.white,
+                    filled: true,
+                    fillColor:
+                        theme.isDarkTheme ? Color(0xff242F3E) : Colors.white,
+                    suffixIcon: Icon(Icons.search),
+                    controller: searchController,
+                    onSubmitted: (p0) {
+                      String query = searchController.text.trim();
+                      if (query.isNotEmpty) {
+                        context
+                            .read<MapBloc>()
+                            .add(SearchLocation(query: query));
+                      }
+                    },
+                  ),
+                ),
+              ],
             );
           } else if (state is MapError) {
             String errorMessage = '';
@@ -50,7 +91,9 @@ class CustomGoogleMap extends StatelessWidget {
               case "location_access":
                 errorMessage = S.of(context).location_access;
                 break;
-              case "error_location":
+              case "search_error":
+                errorMessage = 'Error searching location';
+                break;
               default:
                 errorMessage = S.of(context).error_location;
             }
@@ -83,13 +126,5 @@ class CustomGoogleMap extends StatelessWidget {
     } else {
       controller.setMapStyle(lightMapStyle);
     }
-  }
-
-  void startLocationServiceListener(MapBloc mapBloc) {
-    Geolocator.getServiceStatusStream().listen((serviceStatus) {
-      if (serviceStatus == ServiceStatus.enabled) {
-        mapBloc.add(LoadMap());
-      }
-    });
   }
 }

@@ -9,9 +9,11 @@ class MapLoading extends MapState {}
 class MapLoadingSuccess extends MapState {
   final CameraPosition cameraPosition;
   final Set<Marker> markers;
+  final Set<Circle> circle;
   MapLoadingSuccess({
     required this.cameraPosition,
     required this.markers,
+    required this.circle,
   });
 
   @override

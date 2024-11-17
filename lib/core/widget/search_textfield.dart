@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/constant/app_colors.dart';
-import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
   final String hintText;
@@ -13,6 +10,10 @@ class SearchTextField extends StatelessWidget {
   final Color? fillColor;
   final TextStyle? style;
   final Color cursorColor;
+  final Color focusedColor;
+  final Color enabledColor;
+
+  final void Function(String)? onSubmitted;
   const SearchTextField({
     super.key,
     this.suffixIcon,
@@ -24,16 +25,19 @@ class SearchTextField extends StatelessWidget {
     required this.radius,
     this.style,
     required this.cursorColor,
+    this.onSubmitted,
+    required this.focusedColor,
+    required this.enabledColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     return SizedBox(
       height: 50,
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
+        onSubmitted: onSubmitted,
         style: style,
         decoration: InputDecoration(
           filled: filled,
@@ -44,17 +48,13 @@ class SearchTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
-              color: themeProvider.isDarkTheme
-                  ? AppColors.widgetColorDark
-                  : Color(0xffBCB8B1),
+              color: enabledColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
-              color: themeProvider.isDarkTheme
-                  ? AppColors.primaryColor
-                  : AppColors.primaryColor,
+              color: focusedColor,
             ),
           ),
           suffixIcon: suffixIcon,
