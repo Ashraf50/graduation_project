@@ -24,6 +24,9 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<SearchLocation>((event, emit) async {
       await _searchLocation(event.query, emit);
     });
+    on<FetchSuggestions>((event, emit) async {
+      await _fetchSuggestions(event.query, emit);
+    });
   }
 
   Future<void> _loadMap(Emitter<MapState> emit) async {
@@ -47,8 +50,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       final circles = {
         Circle(
           circleId: CircleId('searchedArea'),
-          center:currentLocationTarget,
-          radius: 200, 
+          center: currentLocationTarget,
+          radius: 200,
           strokeWidth: 2,
           strokeColor: Colors.blue,
           fillColor: Colors.blue.withOpacity(0.2),
@@ -115,6 +118,40 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       }
     } catch (e) {
       emit(MapError(errMessage: "search_error"));
+    }
+  }
+
+  Future<void> _fetchSuggestions(String query, Emitter<MapState> emit) async {
+    if (query.isEmpty) {
+      emit(SuggestionsSuccess(suggestions: []));
+      return;
+    }
+    emit(SuggestionsLoading());
+    try {
+      final dio = Dio();
+      final response = await dio.get(
+        'https://autosuggest.search.hereapi.com/v1/autosuggest',
+        queryParameters: {
+          'limit': 5, 
+          'q': query, 
+          'apiKey': 'uUWF7IG2I4MBkruijI6cLgcAT1g-gxJ5kkIk6d8Fby4',
+        },
+      );
+      final suggestionsData = response.data['items'];
+      if (suggestionsData != null && suggestionsData.isNotEmpty) {
+        final suggestions = suggestionsData.map<String>((item) {
+          final title = item['title'] as String;
+          final address =
+              item['address'] != null ? item['address']['label'] : '';
+          return '$title ${address.isNotEmpty ? '- $address' : ''}';
+        }).toList();
+
+        emit(SuggestionsSuccess(suggestions: suggestions));
+      } else {
+        emit(SuggestionsSuccess(suggestions: []));
+      }
+    } catch (e) {
+      emit(SuggestionsError(errMessage: "Error fetching suggestions: $e"));
     }
   }
 }

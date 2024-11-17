@@ -15,29 +15,21 @@ class MapLoadingSuccess extends MapState {
     required this.markers,
     required this.circle,
   });
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MapLoadingSuccess &&
-          runtimeType == other.runtimeType &&
-          cameraPosition == other.cameraPosition &&
-          markers == other.markers;
-
-  @override
-  int get hashCode => cameraPosition.hashCode ^ markers.hashCode;
 }
 
 class MapError extends MapState {
   final String errMessage;
   MapError({required this.errMessage});
+}
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MapError &&
-          runtimeType == other.runtimeType &&
-          errMessage == other.errMessage;
-  @override
-  int get hashCode => errMessage.hashCode;
+class SuggestionsLoading extends MapState {}
+
+class SuggestionsSuccess extends MapState {
+  final List<String> suggestions;
+  SuggestionsSuccess({required this.suggestions});
+}
+
+class SuggestionsError extends MapState {
+  final String errMessage;
+  SuggestionsError({required this.errMessage});
 }

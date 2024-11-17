@@ -12,8 +12,8 @@ class SearchTextField extends StatelessWidget {
   final Color cursorColor;
   final Color focusedColor;
   final Color enabledColor;
-
   final void Function(String)? onSubmitted;
+  final void Function(String)? onChange;
   const SearchTextField({
     super.key,
     this.suffixIcon,
@@ -28,6 +28,7 @@ class SearchTextField extends StatelessWidget {
     this.onSubmitted,
     required this.focusedColor,
     required this.enabledColor,
+    this.onChange,
   });
 
   @override
@@ -38,6 +39,7 @@ class SearchTextField extends StatelessWidget {
         controller: controller,
         cursorColor: cursorColor,
         onSubmitted: onSubmitted,
+        onChanged: onChange,
         style: style,
         decoration: InputDecoration(
           filled: filled,

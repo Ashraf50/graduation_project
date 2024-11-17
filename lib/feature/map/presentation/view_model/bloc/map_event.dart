@@ -8,3 +8,7 @@ class SearchLocation extends MapEvent {
   final String query;
   SearchLocation({required this.query});
 }
+class FetchSuggestions extends MapEvent {
+  final String query;
+  FetchSuggestions({required this.query});
+}
