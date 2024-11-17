@@ -21,15 +21,3 @@ class MapError extends MapState {
   final String errMessage;
   MapError({required this.errMessage});
 }
-
-class SuggestionsLoading extends MapState {}
-
-class SuggestionsSuccess extends MapState {
-  final List<String> suggestions;
-  SuggestionsSuccess({required this.suggestions});
-}
-
-class SuggestionsError extends MapState {
-  final String errMessage;
-  SuggestionsError({required this.errMessage});
-}
