@@ -19,7 +19,8 @@ class SnackbarHelper {
         contentType: contentType,
       ),
     );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }

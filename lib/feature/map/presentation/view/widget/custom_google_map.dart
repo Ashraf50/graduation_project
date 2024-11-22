@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/core/widget/custom_snack_bar.dart';
+import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/feature/map/presentation/view/widget/error_dialog.dart';
 import 'package:graduation_project/feature/map/presentation/view_model/cubit/suggestion_places_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -94,58 +94,76 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                         color: theme.isDarkTheme
                             ? Color(0xff242F3E)
                             : AppColors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                        ),
+                        // borderRadius: BorderRadius.only(
+                        //   topLeft: Radius.circular(100),
+                        //   topRight: Radius.circular(15),
+                        // ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: ListView(
-                          controller: scrollController,
-                          children: [
-                            Divider(
-                              thickness: 7,
-                              color: AppColors.grey,
-                              indent: 160,
-                              endIndent: 160,
+                      child: CustomScrollView(
+                        controller: scrollController,
+                        slivers: [
+                          SliverAppBar(
+                            backgroundColor: theme.isDarkTheme
+                                ? Color(0xff242F3E)
+                                : AppColors.white,
+                            pinned: true,
+                            elevation: 0,
+                            expandedHeight: 70,
+                            automaticallyImplyLeading: false,
+                            scrolledUnderElevation: 0,
+                            flexibleSpace: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.grey,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  SearchTextField(
+                                    hintText: S.of(context).search_here,
+                                    radius: 20,
+                                    cursorColor: theme.isDarkTheme
+                                        ? Colors.white
+                                        : Colors.black,
+                                    focusedColor: Colors.grey,
+                                    enabledColor: Colors.grey,
+                                    suffixIcon: const Icon(Icons.search),
+                                    controller: searchController,
+                                    onChange: (query) {
+                                      if (query.isNotEmpty) {
+                                        context
+                                            .read<SuggestionPlacesCubit>()
+                                            .fetchSuggestions(
+                                              query,
+                                            );
+                                      }
+                                    },
+                                    onSubmitted: (query) {
+                                      if (query.isNotEmpty) {
+                                        context
+                                            .read<MapBloc>()
+                                            .add(SearchLocation(query: query));
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
-                            SizedBox(height: 10),
-                            SearchTextField(
-                              hintText: S.of(context).search_here,
-                              radius: 20,
-                              cursorColor: theme.isDarkTheme
-                                  ? Colors.white
-                                  : Colors.black,
-                              focusedColor: Colors.grey,
-                              enabledColor: Colors.grey,
-                              suffixIcon: const Icon(Icons.search),
-                              controller: searchController,
-                              onChange: (query) {
-                                if (query.isNotEmpty) {
-                                  context
-                                      .read<SuggestionPlacesCubit>()
-                                      .fetchSuggestions(
-                                        query,
-                                      );
-                                }
-                              },
-                              onSubmitted: (query) {
-                                if (query.isNotEmpty) {
-                                  context
-                                      .read<MapBloc>()
-                                      .add(SearchLocation(query: query));
-                                }
-                              },
-                            ),
-                            BlocBuilder<SuggestionPlacesCubit,
+                          ),
+                          SliverFillRemaining(
+                            child: BlocBuilder<SuggestionPlacesCubit,
                                 SuggestionPlacesState>(
                               builder: (context, state) {
                                 if (state is SuggestionPlacesSuccess) {
                                   return ListView.builder(
                                     shrinkWrap: true,
                                     itemCount: state.suggestions.length,
-                                    physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       final suggestion =
                                           state.suggestions[index];
@@ -153,32 +171,32 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                         title: Text(suggestion['title']),
                                         subtitle: Text(suggestion["address"]),
                                         onTap: () {
-                                          goToLocation(suggestion["latitude"],
-                                              suggestion["longitude"]);
+                                          goToLocation(
+                                            suggestion["latitude"],
+                                            suggestion["longitude"],
+                                          );
                                         },
                                       );
                                     },
                                   );
                                 } else if (state is SuggestionPlacesFailure) {
                                   SnackbarHelper.showCustomSnackbar(
-                                    context: context,
-                                    title: S.of(context).error,
-                                    message: state.errMessage,
-                                    contentType: ContentType.failure,
-                                  );
+                                      context: context,
+                                      title: S.of(context).error,
+                                      message: state.errMessage,
+                                      contentType: ContentType.failure);
                                 } else if (state is SuggestionPlacesLoading) {
                                   return Padding(
-                                    padding: const EdgeInsets.only(top: 30),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
+                                        child: CircularProgressIndicator()),
                                   );
                                 }
                                 return Text("");
                               },
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     );
                   },
