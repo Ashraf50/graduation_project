@@ -26,6 +26,19 @@ class CustomGoogleMap extends StatefulWidget {
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
+  void goToLocation(double latitude, double longitude) {
+    if (mapController != null) {
+      mapController?.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(latitude, longitude),
+            zoom: 15.0,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
@@ -133,8 +146,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                     itemCount: state.suggestions.length,
                                     physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
+                                      final suggestion =
+                                          state.suggestions[index];
                                       return ListTile(
-                                        title: Text(state.suggestions[index]),
+                                        title: Text(suggestion['title']),
+                                        subtitle: Text(suggestion["address"]),
+                                        onTap: () {
+                                          goToLocation(suggestion["latitude"],
+                                              suggestion["longitude"]);
+                                        },
                                       );
                                     },
                                   );
@@ -144,8 +164,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                     showSnackbar(context, state.errMessage);
                                   });
                                 } else if (state is SuggestionPlacesLoading) {
-                                  return Center(
-                                    child: CircularProgressIndicator(),
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
                                   );
                                 }
                                 return Text("");
