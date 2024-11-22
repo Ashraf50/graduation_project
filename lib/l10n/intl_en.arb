@@ -105,5 +105,7 @@
     "error_location":"An error occurred while updating the location.",
     "retry": "Retry",
     "error": "Error",
-    "map":"Map"
+    "map":"Map",
+    "success": "success",
+    "warning": "warning"
 }

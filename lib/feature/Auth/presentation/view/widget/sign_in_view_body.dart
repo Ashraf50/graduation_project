@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +8,7 @@ import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/core/widget/show_snackbar.dart';
+import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
@@ -42,11 +43,21 @@ class _SignInViewBodyState extends State<SignInViewBody> {
           isLoading = true;
         } else if (state is LoginSuccess) {
           context.go("/bottomBar");
-          showSnackbar(context, state.successMessage);
+          SnackbarHelper.showCustomSnackbar(
+            context: context,
+            title: S.of(context).success,
+            message: state.successMessage,
+            contentType: ContentType.success,
+          );
           isLoading = false;
         } else if (state is LoginFailure) {
           isLoading = false;
-          showSnackbar(context, state.errMessage);
+          SnackbarHelper.showCustomSnackbar(
+            context: context,
+            title: S.of(context).error,
+            message: state.errMessage,
+            contentType: ContentType.failure,
+          );
         }
       },
       builder: (context, state) {
@@ -148,8 +159,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                             password: passwordController.text,
                           ));
                         } else {
-                          showSnackbar(
-                              context, S.of(context).check_email_or_pass);
+                          SnackbarHelper.showCustomSnackbar(
+                            context: context,
+                            title: S.of(context).warning,
+                            message: S.of(context).check_email_or_pass,
+                            contentType: ContentType.help,
+                          );
                         }
                       },
                       textColor: AppColors.white,

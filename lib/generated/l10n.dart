@@ -1119,6 +1119,26 @@ class S {
       args: [],
     );
   }
+
+  /// `success`
+  String get success {
+    return Intl.message(
+      'success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `warning`
+  String get warning {
+    return Intl.message(
+      'warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

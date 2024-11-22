@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import '../../../data/utils/location_service.dart';
 part 'suggestion_places_state.dart';
+
 class SuggestionPlacesCubit extends Cubit<SuggestionPlacesState> {
   final Dio _dio = Dio();
   final LocationService locationService = LocationService();

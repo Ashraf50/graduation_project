@@ -1,11 +1,13 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/function/get_token.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
-import 'package:graduation_project/core/widget/show_snackbar.dart';
+import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../generated/l10n.dart';
 import '../constant/app_colors.dart';
 import '../../feature/account/data/repos/user_repo_impl.dart';
 
@@ -31,7 +33,12 @@ class AccountPhoto extends StatelessWidget {
                         CachedNetworkImageProvider(state.userData.image),
                   );
                 } else if (state is UserDataFailure) {
-                  showSnackbar(context, state.errMessage);
+                  SnackbarHelper.showCustomSnackbar(
+                    context: context,
+                    title: S.of(context).error,
+                    message: state.errMessage,
+                    contentType: ContentType.failure,
+                  );
                 } else {
                   return Shimmer.fromColors(
                     baseColor: AppColors.grey,

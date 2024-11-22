@@ -131,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_pass": MessageLookupByLibrary.simpleMessage("تعيين كلمه المرور"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+        "success": MessageLookupByLibrary.simpleMessage("نجاح"),
         "take_photo": MessageLookupByLibrary.simpleMessage("التقط صوره"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "terms1": MessageLookupByLibrary.simpleMessage("1. قبول الشروط"),
@@ -176,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "كلمة المرور الخاصة بك قصيرة جدًا"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "لا تستطيع ترك قيمه الحقل خاليه"),
-        "view": MessageLookupByLibrary.simpleMessage("عرض")
+        "view": MessageLookupByLibrary.simpleMessage("عرض"),
+        "warning": MessageLookupByLibrary.simpleMessage("تحذير")
       };
 }

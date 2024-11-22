@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -5,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
-import 'package:graduation_project/core/widget/show_snackbar.dart';
+import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/feature/map/presentation/view/widget/error_dialog.dart';
 import 'package:graduation_project/feature/map/presentation/view_model/cubit/suggestion_places_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -159,10 +160,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                     },
                                   );
                                 } else if (state is SuggestionPlacesFailure) {
-                                  WidgetsBinding.instance
-                                      .addPostFrameCallback((_) {
-                                    showSnackbar(context, state.errMessage);
-                                  });
+                                  SnackbarHelper.showCustomSnackbar(
+                                    context: context,
+                                    title: S.of(context).error,
+                                    message: state.errMessage,
+                                    contentType: ContentType.failure,
+                                  );
                                 } else if (state is SuggestionPlacesLoading) {
                                   return Padding(
                                     padding: const EdgeInsets.only(top: 30),

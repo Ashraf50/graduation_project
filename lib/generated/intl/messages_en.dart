@@ -127,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_pass": MessageLookupByLibrary.simpleMessage("Set Password"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "success": MessageLookupByLibrary.simpleMessage("success"),
         "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "terms1":
@@ -176,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("your password is too short"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "You cannot leave the field value empty"),
-        "view": MessageLookupByLibrary.simpleMessage("View")
+        "view": MessageLookupByLibrary.simpleMessage("View"),
+        "warning": MessageLookupByLibrary.simpleMessage("warning")
       };
 }
