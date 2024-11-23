@@ -7,8 +7,8 @@ final class SuggestionPlacesInitial extends SuggestionPlacesState {}
 final class SuggestionPlacesLoading extends SuggestionPlacesState {}
 
 final class SuggestionPlacesSuccess extends SuggestionPlacesState {
-  final List<Map> suggestions;
-  SuggestionPlacesSuccess({required this.suggestions});
+  final List<PlacesModel> suggestionPlaces;
+  SuggestionPlacesSuccess({required this.suggestionPlaces});
 }
 
 final class SuggestionPlacesFailure extends SuggestionPlacesState {

@@ -7,6 +7,7 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
+import 'package:graduation_project/feature/map/data/repo/map_repo_impl.dart';
 import 'package:graduation_project/feature/map/presentation/view/widget/error_dialog.dart';
 import 'package:graduation_project/feature/map/presentation/view_model/cubit/suggestion_places_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -27,6 +28,7 @@ class CustomGoogleMap extends StatefulWidget {
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
+
   void goToLocation(double latitude, double longitude) {
     if (mapController != null) {
       mapController?.animateCamera(
@@ -44,7 +46,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
     return BlocProvider(
-      create: (context) => SuggestionPlacesCubit(),
+      create: (context) => SuggestionPlacesCubit(MapRepoImpl())
+        ..fetchAllSuggestionPlaces(query: searchController.text),
       child: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           if (state is MapLoading) {
@@ -94,10 +97,6 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                         color: theme.isDarkTheme
                             ? Color(0xff242F3E)
                             : AppColors.white,
-                        // borderRadius: BorderRadius.only(
-                        //   topLeft: Radius.circular(100),
-                        //   topRight: Radius.circular(15),
-                        // ),
                       ),
                       child: CustomScrollView(
                         controller: scrollController,
@@ -139,9 +138,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                       if (query.isNotEmpty) {
                                         context
                                             .read<SuggestionPlacesCubit>()
-                                            .fetchSuggestions(
-                                              query,
-                                            );
+                                            .fetchAllSuggestionPlaces(
+                                                query: query);
                                       }
                                     },
                                     onSubmitted: (query) {
@@ -157,27 +155,37 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                             ),
                           ),
                           SliverFillRemaining(
+                            // hasScrollBody: false,
                             child: BlocBuilder<SuggestionPlacesCubit,
                                 SuggestionPlacesState>(
                               builder: (context, state) {
                                 if (state is SuggestionPlacesSuccess) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: state.suggestions.length,
-                                    itemBuilder: (context, index) {
-                                      final suggestion =
-                                          state.suggestions[index];
-                                      return ListTile(
-                                        title: Text(suggestion['title']),
-                                        subtitle: Text(suggestion["address"]),
-                                        onTap: () {
-                                          goToLocation(
-                                            suggestion["latitude"],
-                                            suggestion["longitude"],
-                                          );
-                                        },
-                                      );
-                                    },
+                                  return Scrollbar(
+                                    controller: scrollController,
+                                    child: ListView.builder(
+                                      itemCount: state.suggestionPlaces.length,
+                                      itemBuilder: (context, index) {
+                                        final suggestion =
+                                            state.suggestionPlaces[index];
+                                        return ListTile(
+                                          title: Text(suggestion.title!),
+                                          subtitle:
+                                              Text(suggestion.address!.label!),
+                                          leading: Icon(
+                                            Icons.location_on,
+                                            color: theme.isDarkTheme
+                                                ? AppColors.white
+                                                : AppColors.black,
+                                          ),
+                                          onTap: () {
+                                            goToLocation(
+                                              suggestion.position!.lat!,
+                                              suggestion.position!.lng!,
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
                                   );
                                 } else if (state is SuggestionPlacesFailure) {
                                   SnackbarHelper.showCustomSnackbar(
@@ -185,12 +193,10 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                       title: S.of(context).error,
                                       message: state.errMessage,
                                       contentType: ContentType.failure);
+                                  print(state.errMessage);
                                 } else if (state is SuggestionPlacesLoading) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Center(
-                                        child: CircularProgressIndicator()),
-                                  );
+                                  return Center(
+                                      child: CircularProgressIndicator());
                                 }
                                 return Text("");
                               },

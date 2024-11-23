@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           create: (context) => LanguageBloc(),
         ),
         BlocProvider(
-        create: (context) => MapBloc(LocationService())..add(LoadMap()),
+          create: (context) => MapBloc(LocationService())..add(LoadMap()),
         ),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
