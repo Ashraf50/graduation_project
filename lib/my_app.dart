@@ -10,7 +10,7 @@ import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-import 'feature/map/data/utils/location_service.dart';
+import 'core/helper/location_service.dart';
 import 'feature/map/presentation/view_model/bloc/map_bloc.dart';
 import 'feature/map/presentation/view_model/bloc/map_event.dart';
 

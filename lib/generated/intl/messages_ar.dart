@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "مرحبا بكم في اراوند يو نحن ملتزمون بجعل بحثكم عن العقارات للإيجار والخدمات الأساسية سهلًا وخاليًا من المتاعب. يوفر تطبيقنا دليلًا شاملاً للشقق المتاحة للإيجار، ويقدم معلومات عن أقرب المطاعم والبنوك والمستشفيات والصيدليات لتعزيز تجربة السكن الخاصة بكم. ما يميزنا هو خدمة الدردشة المدمجة، التي تتيح التواصل السهل والمباشر بين المستخدمين. مهمتنا هي إنشاء بيئة سهلة الاستخدام تبسط عملية الإيجار وتربطكم بالخدمات الأساسية في منطقتكم اختبروا الراحة والشفافية والدعم في مكان واحد مع اراوند يو."),
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "all_chats": MessageLookupByLibrary.simpleMessage("كل المحادثات"),
         "already_have_account":
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "apartment": MessageLookupByLibrary.simpleMessage("شقق"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "category": MessageLookupByLibrary.simpleMessage("الفئة"),
         "chat": MessageLookupByLibrary.simpleMessage("المحادثات"),
         "check_email_or_pass": MessageLookupByLibrary.simpleMessage(
             "تحقق من البريد الإلكتروني أو كلمة المرور"),
@@ -49,11 +51,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "contacts": MessageLookupByLibrary.simpleMessage("جهات الاتصال"),
+        "country": MessageLookupByLibrary.simpleMessage("البلد"),
+        "country_code": MessageLookupByLibrary.simpleMessage("رمز البلد"),
+        "country_name": MessageLookupByLibrary.simpleMessage("اسم البلد"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "discover":
             MessageLookupByLibrary.simpleMessage("اكتشف\nمنزلك الجديد!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("إغلاق"),
+        "distance": MessageLookupByLibrary.simpleMessage("المسافة"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
@@ -76,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "is_opened": MessageLookupByLibrary.simpleMessage("مفتوح أم لا"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "location_access": MessageLookupByLibrary.simpleMessage(
             "لم يتم منح إذن الوصول إلى الموقع."),
@@ -89,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_pass_message2":
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "opening_h": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
         "or": MessageLookupByLibrary.simpleMessage("     أو     "),
         "our_team": MessageLookupByLibrary.simpleMessage(
             "فريقنا متاح لمساعدتك في أي استفسارات أو مشكلات قد تواجهك. نهدف إلى الرد على جميع الاتصالات بسرعة وكفاءة."),
@@ -178,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "لا تستطيع ترك قيمه الحقل خاليه"),
         "view": MessageLookupByLibrary.simpleMessage("عرض"),
-        "warning": MessageLookupByLibrary.simpleMessage("تحذير")
+        "warning": MessageLookupByLibrary.simpleMessage("تحذير"),
+        "www": MessageLookupByLibrary.simpleMessage("الموقع الإلكتروني")
       };
 }

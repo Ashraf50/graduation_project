@@ -13,27 +13,24 @@ class SearchLayer extends StatelessWidget {
     var theme = Provider.of<ThemeProvider>(context);
     return Row(
       children: [
-        Expanded(
-          child: SearchTextField(
-            hintText: S.of(context).search_here,
-            prefixIcon: Icon(
-              Icons.search,
-              size: 30,
-              color: AppColors.primaryColor,
-            ),
-            focusedColor: AppColors.primaryColor,
-            enabledColor: theme.isDarkTheme
-                ? AppColors.widgetColorDark
-                : Color(0xffBCB8B1),
-            cursorColor: Colors.black,
-            filled: true,
-            fillColor: AppColors.white,
-            radius: 12,
-            style: TextStyle(
-              color: AppColors.black,
-            ),
-            controller: TextEditingController(),
+        SearchTextField(
+          hintText: S.of(context).search_here,
+          prefixIcon: Icon(
+            Icons.search,
+            size: 30,
+            color: AppColors.primaryColor,
           ),
+          focusedColor: AppColors.primaryColor,
+          enabledColor:
+              theme.isDarkTheme ? AppColors.widgetColorDark : Color(0xffBCB8B1),
+          cursorColor: Colors.black,
+          filled: true,
+          fillColor: AppColors.white,
+          radius: 12,
+          style: TextStyle(
+            color: AppColors.black,
+          ),
+          controller: TextEditingController(),
         ),
         SizedBox(
           width: 5,

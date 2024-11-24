@@ -1139,6 +1139,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Country`
+  String get country {
+    return Intl.message(
+      'Country',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country name`
+  String get country_name {
+    return Intl.message(
+      'Country name',
+      name: 'country_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country code`
+  String get country_code {
+    return Intl.message(
+      'Country code',
+      name: 'country_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get distance {
+    return Intl.message(
+      'Distance',
+      name: 'distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacts`
+  String get contacts {
+    return Intl.message(
+      'Contacts',
+      name: 'contacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WWW`
+  String get www {
+    return Intl.message(
+      'WWW',
+      name: 'www',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opening hour`
+  String get opening_h {
+    return Intl.message(
+      'Opening hour',
+      name: 'opening_h',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is opened`
+  String get is_opened {
+    return Intl.message(
+      'Is opened',
+      name: 'is_opened',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

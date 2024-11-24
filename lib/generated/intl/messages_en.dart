@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("About US"),
         "about_us": MessageLookupByLibrary.simpleMessage(
             "Welcome to AroundU! We are dedicated to making your search for rental properties and essential services as seamless and stress-free as possible. Our platform offers a comprehensive directory of available rental apartments and provides information about nearby restaurants, banks, hospitals, and pharmacies to enhance your living experience. What sets us apart is our integrated chat service, enabling easy and direct communication between users. Our mission is to create a user-friendly environment that simplifies the rental process and connects you to essential services in your area.Experience convenience, transparency, and support all in one place with AroundU."),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_chats": MessageLookupByLibrary.simpleMessage("All Chats"),
         "already_have_account":
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "apartment": MessageLookupByLibrary.simpleMessage("Apartments"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "chat": MessageLookupByLibrary.simpleMessage("Chats"),
         "check_email_or_pass":
             MessageLookupByLibrary.simpleMessage("Check the email or password"),
@@ -48,11 +50,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "contacts": MessageLookupByLibrary.simpleMessage("Contacts"),
+        "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "country_code": MessageLookupByLibrary.simpleMessage("Country code"),
+        "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "discover":
             MessageLookupByLibrary.simpleMessage("Discover\nyour new house!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
+        "distance": MessageLookupByLibrary.simpleMessage("Distance"),
         "don_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit Profile"),
@@ -73,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forget Password"),
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "is_opened": MessageLookupByLibrary.simpleMessage("Is opened"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "location_access": MessageLookupByLibrary.simpleMessage(
             "Location access permission has not been granted."),
@@ -86,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_pass_message2": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated Successfully"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "opening_h": MessageLookupByLibrary.simpleMessage("Opening hour"),
         "or": MessageLookupByLibrary.simpleMessage("     OR     "),
         "our_team": MessageLookupByLibrary.simpleMessage(
             "Our team is available to assist you with any inquiries or issues you may have. We aim to respond to all communications promptly and efficiently."),
@@ -178,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "You cannot leave the field value empty"),
         "view": MessageLookupByLibrary.simpleMessage("View"),
-        "warning": MessageLookupByLibrary.simpleMessage("warning")
+        "warning": MessageLookupByLibrary.simpleMessage("warning"),
+        "www": MessageLookupByLibrary.simpleMessage("WWW")
       };
 }

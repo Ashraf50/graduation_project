@@ -107,5 +107,15 @@
     "error": "Error",
     "map":"Map",
     "success": "success",
-    "warning": "warning"
+    "warning": "warning",
+    "country": "Country",
+    "country_name":"Country name",
+    "address":"Address",
+    "country_code": "Country code",
+    "distance": "Distance",
+    "contacts": "Contacts",
+    "www": "WWW",
+    "opening_h": "Opening hour",
+    "is_opened": "Is opened",
+    "category":"Category"
 }

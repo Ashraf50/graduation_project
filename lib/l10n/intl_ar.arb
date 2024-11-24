@@ -107,5 +107,15 @@
     "error": "خطأ",
     "map":"الخريطه",
     "success": "نجاح",
-    "warning": "تحذير"
+    "warning": "تحذير",
+    "country": "البلد",
+    "country_name": "اسم البلد",
+    "address": "العنوان",
+    "country_code": "رمز البلد",
+    "distance": "المسافة",
+    "contacts": "جهات الاتصال",
+    "www": "الموقع الإلكتروني",
+    "opening_h": "ساعات العمل",
+    "is_opened": "مفتوح أم لا",
+    "category": "الفئة"
 }

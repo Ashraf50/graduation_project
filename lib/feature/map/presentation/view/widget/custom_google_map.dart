@@ -7,8 +7,10 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
+import 'package:graduation_project/feature/map/data/model/places_model/places_model.dart';
 import 'package:graduation_project/feature/map/data/repo/map_repo_impl.dart';
 import 'package:graduation_project/feature/map/presentation/view/widget/error_dialog.dart';
+import 'package:graduation_project/feature/map/presentation/view/widget/place_details.dart';
 import 'package:graduation_project/feature/map/presentation/view_model/cubit/suggestion_places_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -28,26 +30,13 @@ class CustomGoogleMap extends StatefulWidget {
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
-
-  void goToLocation(double latitude, double longitude) {
-    if (mapController != null) {
-      mapController?.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(latitude, longitude),
-            zoom: 15.0,
-          ),
-        ),
-      );
-    }
-  }
-
+  bool isSelected = false;
+  late PlacesModel selectedPlace;
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
     return BlocProvider(
-      create: (context) => SuggestionPlacesCubit(MapRepoImpl())
-        ..fetchAllSuggestionPlaces(query: searchController.text),
+      create: (context) => SuggestionPlacesCubit(MapRepoImpl()),
       child: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           if (state is MapLoading) {
@@ -66,6 +55,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                   zoomControlsEnabled: false,
                   markers: state.markers,
                   circles: state.circle,
+                  polylines: state.polyLines,
                   onMapCreated: (controller) {
                     mapController = controller;
                     theme.isDarkTheme
@@ -140,6 +130,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                             .read<SuggestionPlacesCubit>()
                                             .fetchAllSuggestionPlaces(
                                                 query: query);
+                                        isSelected = false;
+                                        setState(() {});
+                                      } else {
+                                        context
+                                            .read<SuggestionPlacesCubit>()
+                                            .clearSuggestionPlaces();
                                       }
                                     },
                                     onSubmitted: (query) {
@@ -155,45 +151,58 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                             ),
                           ),
                           SliverFillRemaining(
-                            // hasScrollBody: false,
                             child: BlocBuilder<SuggestionPlacesCubit,
                                 SuggestionPlacesState>(
                               builder: (context, state) {
                                 if (state is SuggestionPlacesSuccess) {
                                   return Scrollbar(
                                     controller: scrollController,
-                                    child: ListView.builder(
-                                      itemCount: state.suggestionPlaces.length,
-                                      itemBuilder: (context, index) {
-                                        final suggestion =
-                                            state.suggestionPlaces[index];
-                                        return ListTile(
-                                          title: Text(suggestion.title!),
-                                          subtitle:
-                                              Text(suggestion.address!.label!),
-                                          leading: Icon(
-                                            Icons.location_on,
-                                            color: theme.isDarkTheme
-                                                ? AppColors.white
-                                                : AppColors.black,
+                                    child: isSelected
+                                        ? PlaceDetails(
+                                            place: selectedPlace,
+                                          )
+                                        : ListView.builder(
+                                            itemCount:
+                                                state.suggestionPlaces.length,
+                                            itemBuilder: (context, index) {
+                                              final suggestion =
+                                                  state.suggestionPlaces[index];
+                                              return ListTile(
+                                                title: Text(suggestion.title!),
+                                                subtitle: Text(
+                                                    suggestion.address!.label!),
+                                                leading: Icon(
+                                                  Icons.location_on,
+                                                  color: theme.isDarkTheme
+                                                      ? AppColors.white
+                                                      : AppColors.black,
+                                                ),
+                                                onTap: () {
+                                                  context.read<MapBloc>().add(
+                                                        CreateRoute(
+                                                          endLat: suggestion
+                                                              .position!.lat!,
+                                                          endLon: suggestion
+                                                              .position!.lng!,
+                                                          means: "driving",
+                                                        ),
+                                                      );
+                                                  setState(() {
+                                                    isSelected = true;
+                                                    selectedPlace = suggestion;
+                                                  });
+                                                },
+                                              );
+                                            },
                                           ),
-                                          onTap: () {
-                                            goToLocation(
-                                              suggestion.position!.lat!,
-                                              suggestion.position!.lng!,
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
                                   );
                                 } else if (state is SuggestionPlacesFailure) {
                                   SnackbarHelper.showCustomSnackbar(
-                                      context: context,
-                                      title: S.of(context).error,
-                                      message: state.errMessage,
-                                      contentType: ContentType.failure);
-                                  print(state.errMessage);
+                                    context: context,
+                                    title: S.of(context).error,
+                                    message: state.errMessage,
+                                    contentType: ContentType.failure,
+                                  );
                                 } else if (state is SuggestionPlacesLoading) {
                                   return Center(
                                       child: CircularProgressIndicator());

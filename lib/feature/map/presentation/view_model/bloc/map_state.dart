@@ -10,10 +10,12 @@ class MapLoadingSuccess extends MapState {
   final CameraPosition cameraPosition;
   final Set<Marker> markers;
   final Set<Circle> circle;
+  final Set<Polyline> polyLines;
   MapLoadingSuccess({
     required this.cameraPosition,
     required this.markers,
     required this.circle,
+    required this.polyLines,
   });
 }
 

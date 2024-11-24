@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/error/failure.dart';
 import 'package:graduation_project/feature/map/data/model/places_model/places_model.dart';
 import 'package:graduation_project/feature/map/data/repo/map_repo.dart';
-import 'package:graduation_project/feature/map/data/utils/location_service.dart';
+import 'package:graduation_project/core/helper/location_service.dart';
 
 class MapRepoImpl implements MapRepo {
   final Dio _dio = Dio();
@@ -71,6 +72,53 @@ class MapRepoImpl implements MapRepo {
       return Left(
         ServerFailure("An unexpected error occurred"),
       );
+    }
+  }
+
+  @override
+  Future<List<List<double>>> getRoute({
+    required String profile,
+    required List<Map<String, double>> waypoints,
+  }) async {
+    try {
+      final coordinates =
+          waypoints.map((point) => "${point['lng']},${point['lat']}").join(';');
+      final url =
+          "https://router.project-osrm.org/route/v1/$profile/$coordinates";
+      final queryParams = {
+        "overview": "full",
+        "steps": "true",
+      };
+      final response = await _dio.get(url, queryParameters: queryParams);
+      if (response.statusCode == 200) {
+        final data = response.data;
+        PolylinePoints polylinePoints = PolylinePoints();
+        final encodedPolyline = data['routes'][0]['geometry'];
+        List<PointLatLng> result =
+            polylinePoints.decodePolyline(encodedPolyline);
+        List<List<double>> decodedPolylinePoints = result
+            .map(
+              (e) => [e.latitude, e.longitude],
+            )
+            .toList();
+        return decodedPolylinePoints;
+      } else {
+        throw Exception("Failed to fetch route: ${response.statusCode}");
+      }
+    } on DioException catch (e) {
+      if (e.response != null) {
+        return Future.error('Server error: ${e.response?.data}');
+      } else if (e.type == DioExceptionType.connectionTimeout) {
+        return Future.error('Connection timeout. Please try again later.');
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        return Future.error('The server took too long to respond.');
+      } else if (e.type == DioExceptionType.unknown) {
+        return Future.error('An unexpected error occurred: ${e.message}');
+      } else {
+        return Future.error('Unknown error occurred: ${e.message}');
+      }
+    } catch (e) {
+      return Future.error('Failed to load route: ${e.toString()}');
     }
   }
 }

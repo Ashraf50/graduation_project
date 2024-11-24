@@ -33,8 +33,7 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
+    return Flexible(
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
