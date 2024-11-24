@@ -1,11 +1,12 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/feature/map/data/model/places_model/places_model.dart';
 import 'package:graduation_project/feature/map/data/repo/map_repo_impl.dart';
@@ -30,6 +31,7 @@ class CustomGoogleMap extends StatefulWidget {
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
+  Timer? debounce;
   bool isSelected = false;
   late PlacesModel selectedPlace;
   @override
@@ -197,11 +199,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                           ),
                                   );
                                 } else if (state is SuggestionPlacesFailure) {
-                                  SnackbarHelper.showCustomSnackbar(
-                                    context: context,
-                                    title: S.of(context).error,
-                                    message: state.errMessage,
-                                    contentType: ContentType.failure,
+                                  Center(
+                                    child: Text(
+                                      "No suggestion",
+                                      style: AppStyles.textStyle18black,
+                                    ),
                                   );
                                 } else if (state is SuggestionPlacesLoading) {
                                   return Center(

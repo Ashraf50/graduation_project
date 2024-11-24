@@ -12,6 +12,7 @@ class MapViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
     return CustomScaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: theme.isDarkTheme ? Color(0xff242F3E) : Colors.white,

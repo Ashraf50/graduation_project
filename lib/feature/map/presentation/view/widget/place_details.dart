@@ -16,6 +16,7 @@ class PlaceDetails extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 13),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             SizedBox(
               height: 10,
@@ -28,7 +29,7 @@ class PlaceDetails extends StatelessWidget {
             CustomWidget(
               icon: Icons.location_city,
               title: "${S.of(context).country}: ",
-              subTitle: place.address!.county!,
+              subTitle: place.address?.county! ?? "",
             ),
             CustomWidget(
               icon: Icons.language,
@@ -38,7 +39,7 @@ class PlaceDetails extends StatelessWidget {
             CustomWidget(
               icon: Icons.location_on_outlined,
               title: "${S.of(context).address}: ",
-              subTitle: place.address!.label!,
+              subTitle: place.address?.label ?? "",
             ),
             CustomWidget(
               icon: Icons.code_sharp,
