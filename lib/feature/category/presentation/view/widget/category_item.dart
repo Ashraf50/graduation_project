@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/category/presentation/view/widget/categories_list_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryModel category;
@@ -13,14 +15,16 @@ class CategoryItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    var theme = Provider.of<ThemeProvider>(context);
     return Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(10),
+          color:
+              theme.isDarkTheme ? AppColors.widgetColorDark : AppColors.white,
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

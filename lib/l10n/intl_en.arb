@@ -117,5 +117,8 @@
     "www": "WWW",
     "opening_h": "Opening hour",
     "is_opened": "Is opened",
-    "category":"Category"
+    "category":"Category",
+    "details": "Details",
+    "facility": "Facilities",
+    "description": "Description"
 }

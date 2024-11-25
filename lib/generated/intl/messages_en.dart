@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "details": MessageLookupByLibrary.simpleMessage("Details"),
         "discover":
             MessageLookupByLibrary.simpleMessage("Discover\nyour new house!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
@@ -74,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "error_location": MessageLookupByLibrary.simpleMessage(
             "An error occurred while updating the location."),
+        "facility": MessageLookupByLibrary.simpleMessage("Facilities"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forget_pass": MessageLookupByLibrary.simpleMessage("Forget password?"),
         "forget_password":

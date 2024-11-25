@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "country_name": MessageLookupByLibrary.simpleMessage("اسم البلد"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
         "delete_acc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
+        "description": MessageLookupByLibrary.simpleMessage("الوصف"),
+        "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
         "discover":
             MessageLookupByLibrary.simpleMessage("اكتشف\nمنزلك الجديد!"),
         "dismiss": MessageLookupByLibrary.simpleMessage("إغلاق"),
@@ -76,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "error_location":
             MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء تحديث الموقع."),
+        "facility": MessageLookupByLibrary.simpleMessage("المرافق"),
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forget_pass":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),

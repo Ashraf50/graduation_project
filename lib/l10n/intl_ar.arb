@@ -117,5 +117,8 @@
     "www": "الموقع الإلكتروني",
     "opening_h": "ساعات العمل",
     "is_opened": "مفتوح أم لا",
-    "category": "الفئة"
+    "category": "الفئة",
+    "details": "التفاصيل",
+    "facility": "المرافق",
+    "description": "الوصف"
 }
