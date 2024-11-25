@@ -7,6 +7,7 @@ import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/my_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'core/constant/function/get_token.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +17,14 @@ void main() async {
   final authRepo = AuthRepoImpl(ApiHelper());
   bool isLoggedIn = await authRepo.isLoggedIn(); //save login state
   final appRouter = AppRouter(isLoggedIn: isLoggedIn);
+  final token = await getToken();
 
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(isDarkTheme: storedValue),
       child: MyApp(
         appRouter: appRouter,
+        token: token?? "",
       ),
     ),
   );

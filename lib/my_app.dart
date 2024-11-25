@@ -9,14 +9,20 @@ import 'package:graduation_project/feature/account/presentation/view_model/langu
 import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
-
 import 'core/helper/location_service.dart';
+import 'feature/account/data/repos/user_repo_impl.dart';
+import 'feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'feature/map/presentation/view_model/bloc/map_bloc.dart';
 import 'feature/map/presentation/view_model/bloc/map_event.dart';
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
-  const MyApp({super.key, required this.appRouter});
+  final String token;
+  const MyApp({
+    super.key,
+    required this.appRouter,
+    required this.token,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LanguageBloc(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UserDataCubit(UserRepoImpl(ApiHelper()))..fetchUserData(token),
         ),
         BlocProvider(
           create: (context) => MapBloc(LocationService())..add(LoadMap()),
