@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
+import 'package:graduation_project/feature/category/presentation/view/widget/categories_list_view.dart';
+import 'package:graduation_project/generated/l10n.dart';
 
 class CategoryViewBody extends StatelessWidget {
   const CategoryViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold();
+    return CustomScaffold(
+      appBar: CustomAppBar(title: S.of(context).category),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            CategoriesListView(),
+          ],
+        ),
+      ),
+    );
   }
 }
