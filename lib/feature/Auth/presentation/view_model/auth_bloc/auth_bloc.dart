@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graduation_project/feature/Auth/data/repo/auth_repo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -30,8 +30,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(LoginFailure(errMessage: result["message"]));
         } else if (result["status"] == true) {
           emit(LoginSuccess(successMessage: result["message"]));
-          SharedPreferences storeToken = await SharedPreferences.getInstance();
-          await storeToken.setString('auth_token', result["data"]["token"]);
+          final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+          await secureStorage.write(
+              key: 'auth_token', value: result["data"]["token"]);
         }
       } else if (event is ResetPasswordEvent) {
         emit(ResetPasswordLoading());

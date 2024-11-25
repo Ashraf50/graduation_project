@@ -1,10 +1,11 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
 import 'package:graduation_project/feature/Auth/data/repo/auth_repo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiHelper apiHelper;
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
   AuthRepoImpl(this.apiHelper);
 
@@ -36,13 +37,11 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<bool> isLoggedIn() async {
-    SharedPreferences storeToken = await SharedPreferences.getInstance();
-    return storeToken.containsKey('auth_token');
+    return await secureStorage.containsKey(key: 'auth_token');
   }
 
   @override
   Future<void> logout() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    await pref.remove('auth_token');
+    return await secureStorage.delete(key: 'auth_token');
   }
 }

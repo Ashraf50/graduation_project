@@ -1,6 +1,6 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 Future<String?> getToken() async {
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  return pref.getString("auth_token");
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  return await secureStorage.read(key: 'auth_token');
 }
