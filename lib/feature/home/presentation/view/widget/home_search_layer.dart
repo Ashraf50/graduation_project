@@ -6,8 +6,8 @@ import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-class SearchLayer extends StatelessWidget {
-  const SearchLayer({super.key});
+class HomeSearchLayer extends StatelessWidget {
+  const HomeSearchLayer({super.key});
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);

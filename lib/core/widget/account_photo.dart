@@ -28,7 +28,7 @@ class AccountPhoto extends StatelessWidget {
               builder: (context, state) {
                 if (state is UserDataSuccess) {
                   return CircleAvatar(
-                    radius: 30,
+                    radius: 25,
                     backgroundImage:
                         CachedNetworkImageProvider(state.userData.image),
                   );
@@ -44,7 +44,7 @@ class AccountPhoto extends StatelessWidget {
                     baseColor: AppColors.grey,
                     highlightColor: AppColors.whiteGrey,
                     child: CircleAvatar(
-                      radius: 30,
+                      radius: 25,
                     ),
                   );
                 }

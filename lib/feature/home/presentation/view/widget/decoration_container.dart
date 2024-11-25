@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
-import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/feature/home/presentation/view/widget/post_item.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/constant/app_theme.dart';
 
-class PostsListView extends StatelessWidget {
-  const PostsListView({super.key});
+class DecorationContainer extends StatelessWidget {
+  final Widget widget;
+  const DecorationContainer({super.key, required this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,8 @@ class PostsListView extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
-          itemBuilder: (context, index) {
-            return const PostItem();
-          },
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: widget,
       ),
     );
   }
