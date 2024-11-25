@@ -14,6 +14,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
+import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -42,6 +43,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
+          context.read<UserDataCubit>().fetchUserData(state.token);
           context.go("/bottomBar");
           SnackbarHelper.showCustomSnackbar(
             context: context,

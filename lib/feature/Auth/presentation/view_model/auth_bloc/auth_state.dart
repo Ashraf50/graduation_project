@@ -20,7 +20,11 @@ final class LoginLoading extends AuthState {}
 
 final class LoginSuccess extends AuthState {
   final String successMessage;
-  LoginSuccess({required this.successMessage});
+  final String token;
+  LoginSuccess({
+    required this.successMessage,
+    required this.token,
+  });
 }
 
 final class LoginFailure extends AuthState {

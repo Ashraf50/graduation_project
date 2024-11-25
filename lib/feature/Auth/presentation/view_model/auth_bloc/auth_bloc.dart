@@ -29,10 +29,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (result["status"] == false) {
           emit(LoginFailure(errMessage: result["message"]));
         } else if (result["status"] == true) {
-          emit(LoginSuccess(successMessage: result["message"]));
+          final token = result["data"]["token"];
+          emit(LoginSuccess(successMessage: result["message"], token: token));
           final FlutterSecureStorage secureStorage = FlutterSecureStorage();
           await secureStorage.write(
-              key: 'auth_token', value: result["data"]["token"]);
+            key: 'auth_token',
+            value: token,
+          );
         }
       } else if (event is ResetPasswordEvent) {
         emit(ResetPasswordLoading());
