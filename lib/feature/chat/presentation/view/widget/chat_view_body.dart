@@ -19,7 +19,8 @@ class ChatViewBody extends StatelessWidget {
       appBar: CustomAppBar(title: S.of(context).chat),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SearchTextField(
               hintText: S.of(context).search_here,
