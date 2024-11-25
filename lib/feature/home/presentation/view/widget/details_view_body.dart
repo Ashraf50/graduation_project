@@ -3,7 +3,6 @@ import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/facility_item.dart';
-
 import '../../../../../generated/l10n.dart';
 
 class DetailsViewBody extends StatelessWidget {
