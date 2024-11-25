@@ -32,6 +32,10 @@ class HomeSearchLayer extends StatelessWidget {
                   SvgPicture.asset(
                     "assets/img/search.svg",
                     height: 30,
+                    colorFilter: ColorFilter.mode(
+                      AppColors.primaryColor,
+                      BlendMode.srcIn,
+                    ),
                   ),
                   SizedBox(width: 15),
                   Expanded(
@@ -39,7 +43,7 @@ class HomeSearchLayer extends StatelessWidget {
                       S.of(context).search_here,
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.black,
+                        color: Colors.grey,
                       ),
                     ),
                   ),

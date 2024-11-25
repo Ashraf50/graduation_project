@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/sliver_app_bar.dart';
+import '../../../../../core/constant/function/get_responsive.dart';
 import '../../../../../generated/l10n.dart';
 import 'all_posts_list_view.dart';
 import 'apartment_list_view.dart';
@@ -68,21 +69,5 @@ class HomeViewBody extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  double getResponsiveHeight(double screenHeight) {
-    if (screenHeight >= 900) {
-      return screenHeight * 0.23;
-    } else if (screenHeight >= 800) {
-      return screenHeight * 0.24;
-    } else if (screenHeight >= 700) {
-      return screenHeight * 0.28;
-    } else if (screenHeight >= 600) {
-      return screenHeight * 0.3;
-    } else if (screenHeight >= 500) {
-      return screenHeight * 0.34;
-    } else {
-      return screenHeight * 0.4;
-    }
   }
 }
