@@ -1,10 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/widget/botom_bar.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/forget_pass_view.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/sign_in_view.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/sign_up_view.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/widget/finish_reset_pass_view.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_view.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/responsive_finish_reset_pass.dart';
 import 'package:graduation_project/feature/account/data/model/user_model.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
@@ -16,57 +15,61 @@ import 'package:graduation_project/feature/chat/presentation/view/widget/convers
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
+import '../Auth/presentation/view/responsive_sign_in.dart';
 
 class AppRouter {
   final bool isLoggedIn;
-
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
     initialLocation: isLoggedIn ? "/bottomBar" : '/onboard',
     routes: [
       GoRoute(
         path: "/onboard",
-        builder: (context, state) => OnboardScreen(),
-      ),
-      GoRoute(
-        path: '/sign_in',
-        builder: (context, state) => SignInView(),
-      ),
-      GoRoute(
-        path: '/sign_up',
-        builder: (context, state) => SignUpView(),
+        builder: (context, state) => const OnboardScreen(),
       ),
       GoRoute(
         path: '/bottomBar',
-        builder: (context, state) => BottomBar(),
+        builder: (context, state) => const BottomBar(),
       ),
       GoRoute(
-        path: '/language',
-        builder: (context, state) => LanguageView(),
+        path: '/sign_in',
+        builder: (context, state) => const ResponsiveSignIn(),
       ),
       GoRoute(
-        path: '/contact_us',
-        builder: (context, state) => ContactUs(),
-      ),
-      GoRoute(
-        path: '/terms',
-        builder: (context, state) => TermsAndCondition(),
-      ),
-      GoRoute(
-        path: '/privacy',
-        builder: (context, state) => PrivacyAndPolicy(),
-      ),
-      GoRoute(
-        path: '/about_us',
-        builder: (context, state) => AboutUSView(),
+        path: '/sign_up',
+        builder: (context, state) => const ResponsiveSignUp(),
       ),
       GoRoute(
         path: '/forget_pass',
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) => const ResponsiveForgetPassword(),
       ),
       GoRoute(
         path: '/reset_pass',
-        builder: (context, state) => ResetPasswordView(),
+        builder: (context, state) => const ResponsiveResetPasswordView(),
+      ),
+      GoRoute(
+        path: '/finish_pass_view',
+        builder: (context, state) => const ResponsiveFinishResetPassword(),
+      ),
+      GoRoute(
+        path: '/language',
+        builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: '/contact_us',
+        builder: (context, state) => const ContactUs(),
+      ),
+      GoRoute(
+        path: '/terms',
+        builder: (context, state) => const TermsAndCondition(),
+      ),
+      GoRoute(
+        path: '/privacy',
+        builder: (context, state) => const PrivacyAndPolicy(),
+      ),
+      GoRoute(
+        path: '/about_us',
+        builder: (context, state) => const AboutUSView(),
       ),
       GoRoute(
         path: '/edit_profile',
@@ -78,20 +81,16 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/finish_pass_view',
-        builder: (context, state) => FinishResetPassView(),
-      ),
-      GoRoute(
         path: '/conversation_view',
-        builder: (context, state) => ConversationView(),
+        builder: (context, state) => const ConversationView(),
       ),
       GoRoute(
         path: '/details',
-        builder: (context, state) => DetailsView(),
+        builder: (context, state) => const DetailsView(),
       ),
       GoRoute(
         path: '/map',
-        builder: (context, state) => MapViewPage(),
+        builder: (context, state) => const MapViewPage(),
       ),
     ],
   );

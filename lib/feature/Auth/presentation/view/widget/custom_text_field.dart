@@ -10,6 +10,7 @@ class CustomTextfield extends StatelessWidget {
   final TextEditingController? controller;
   final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
+  final Color enableColor;
   const CustomTextfield({
     super.key,
     required this.hintText,
@@ -18,6 +19,7 @@ class CustomTextfield extends StatelessWidget {
     required this.controller,
     this.autovalidateMode,
     this.validator,
+    required this.enableColor,
   });
 
   @override
@@ -42,9 +44,7 @@ class CustomTextfield extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: themeProvider.isDarkTheme
-                  ? AppColors.widgetColorDark
-                  : Color(0xffBCB8B1),
+              color: enableColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(

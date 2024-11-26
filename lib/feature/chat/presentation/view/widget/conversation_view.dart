@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chat_bubble.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_appbar.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../../core/constant/app_theme.dart';
 
 class ConversationView extends StatefulWidget {
   const ConversationView({super.key});
@@ -16,6 +20,7 @@ class _ConversationViewState extends State<ConversationView> {
   final _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return CustomScaffold(
       appBar: const ConversationAppBar(),
       body: ListView(
@@ -40,6 +45,9 @@ class _ConversationViewState extends State<ConversationView> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: CustomTextfield(
+          enableColor: themeProvider.isDarkTheme
+              ? AppColors.widgetColorDark
+              : Color(0xffBCB8B1),
           hintText: "Send Message",
           controller: TextEditingController(),
           suffixIcon: IconButton(

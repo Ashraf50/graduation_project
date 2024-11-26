@@ -19,16 +19,16 @@ import 'package:graduation_project/generated/l10n.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-import '../../../../../core/constant/app_theme.dart';
+import '../../../../../../core/constant/app_theme.dart';
 
-class SignInViewBody extends StatefulWidget {
-  const SignInViewBody({super.key});
+class MobileSignInViewBody extends StatefulWidget {
+  const MobileSignInViewBody({super.key});
 
   @override
-  State<SignInViewBody> createState() => _SignInViewBodyState();
+  State<MobileSignInViewBody> createState() => _MobileSignInViewBodyState();
 }
 
-class _SignInViewBodyState extends State<SignInViewBody> {
+class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -83,6 +83,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       style: AppStyles.textStyle18black,
                     ),
                     CustomTextfield(
+                      enableColor: themeProvider.isDarkTheme
+                          ? AppColors.widgetColorDark
+                          : Color(0xffBCB8B1),
                       hintText: S.of(context).enter_email,
                       obscureText: false,
                       controller: emailController,
@@ -101,6 +104,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       style: AppStyles.textStyle18black,
                     ),
                     CustomTextfield(
+                      enableColor: themeProvider.isDarkTheme
+                          ? AppColors.widgetColorDark
+                          : Color(0xffBCB8B1),
                       hintText: S.of(context).enter_password,
                       obscureText: visibility,
                       suffixIcon: IconButton(
