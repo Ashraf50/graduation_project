@@ -14,8 +14,10 @@ class PostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth > 600;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 28),
+      padding: EdgeInsets.symmetric(vertical: 15),
       child: Material(
         borderRadius: BorderRadius.circular(20),
         elevation: 5,
@@ -30,16 +32,14 @@ class PostItem extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Row(
                     children: [
                       CircleAvatar(
-                        radius: 22,
+                        radius: isLargeScreen ? 30 : 25,
                         backgroundImage: AssetImage('assets/img/test.jpg'),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: isLargeScreen ? 15 : 10),
                       Text(
                         'Ashraf Essam',
                         style: AppStyles.textStyle20notBold,
@@ -50,8 +50,10 @@ class PostItem extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
                 child: SelectableText(
                   'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
                   style: AppStyles.textStyle18black,
@@ -64,7 +66,7 @@ class PostItem extends StatelessWidget {
               ),
               SizedBox(height: 15),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -95,7 +97,7 @@ class PostItem extends StatelessWidget {
                       style: AppStyles.textStyle20,
                     ),
                     Text(
-                      'New Cairo city, Cairo ',
+                      'New Cairo city, Cairo',
                       style: AppStyles.textStyle16gray,
                     ),
                     Row(
@@ -152,20 +154,18 @@ class ApartmentProperties extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
     return Padding(
-      padding: const EdgeInsets.only(right: 10),
+      padding: EdgeInsets.only(right: 10),
       child: Row(
         children: [
           SvgPicture.asset(
             image,
-            height: 18,
+            height: 20,
             colorFilter: ColorFilter.mode(
               themeProvide.isDarkTheme ? AppColors.white : AppColors.black,
               BlendMode.srcIn,
             ),
           ),
-          SizedBox(
-            width: 4,
-          ),
+          SizedBox(width: 4),
           Text(
             title,
             style: AppStyles.textStyle18black,
@@ -183,7 +183,7 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Theme(
         data: Theme.of(context).copyWith(
           popupMenuTheme: PopupMenuThemeData(

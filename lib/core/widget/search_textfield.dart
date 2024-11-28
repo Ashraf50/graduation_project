@@ -33,34 +33,32 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: TextField(
-        controller: controller,
-        cursorColor: cursorColor,
-        onSubmitted: onSubmitted,
-        onChanged: onChange,
-        style: style,
-        decoration: InputDecoration(
-          filled: filled,
-          fillColor: fillColor,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(radius),
-            borderSide: BorderSide(
-              color: enabledColor,
-            ),
+    return TextField(
+      controller: controller,
+      cursorColor: cursorColor,
+      onSubmitted: onSubmitted,
+      onChanged: onChange,
+      style: style,
+      decoration: InputDecoration(
+        filled: filled,
+        fillColor: fillColor,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20),
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.grey),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: BorderSide(
+            color: enabledColor,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(radius),
-            borderSide: BorderSide(
-              color: focusedColor,
-            ),
-          ),
-          suffixIcon: suffixIcon,
-          prefixIcon: prefixIcon,
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: BorderSide(
+            color: focusedColor,
+          ),
+        ),
+        suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/helper/responsive_manager.dart';
 import 'package:graduation_project/core/widget/bottom_bar.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
@@ -16,6 +17,7 @@ import 'package:graduation_project/feature/home/presentation/view/details_view.d
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 import '../Auth/presentation/view/responsive_sign_in.dart';
+import '../desktop/desktop_view.dart';
 
 class AppRouter {
   final bool isLoggedIn;
@@ -29,7 +31,11 @@ class AppRouter {
       ),
       GoRoute(
         path: '/bottomBar',
-        builder: (context, state) => const BottomBar(),
+        builder: (context, state) => const ResponsiveManager(
+          mobileView: BottomBar(),
+          tabletView: BottomBar(),
+          desktopView: DesktopView(),
+        ),
       ),
       GoRoute(
         path: '/sign_in',

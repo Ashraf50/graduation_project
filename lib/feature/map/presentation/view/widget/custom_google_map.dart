@@ -116,37 +116,39 @@ class CustomGoogleMapState extends State<CustomGoogleMap> {
                                     ),
                                   ),
                                   SizedBox(height: 10),
-                                  SearchTextField(
-                                    hintText: S.of(context).search_here,
-                                    radius: 20,
-                                    cursorColor: theme.isDarkTheme
-                                        ? Colors.white
-                                        : Colors.black,
-                                    focusedColor: Colors.grey,
-                                    enabledColor: Colors.grey,
-                                    suffixIcon: const Icon(Icons.search),
-                                    controller: searchController,
-                                    onChange: (query) {
-                                      if (query.isNotEmpty) {
-                                        context
-                                            .read<SuggestionPlacesCubit>()
-                                            .fetchAllSuggestionPlaces(
-                                                query: query);
-                                        isSelected = false;
-                                        setState(() {});
-                                      } else {
-                                        context
-                                            .read<SuggestionPlacesCubit>()
-                                            .clearSuggestionPlaces();
-                                      }
-                                    },
-                                    onSubmitted: (query) {
-                                      if (query.isNotEmpty) {
-                                        context
-                                            .read<MapBloc>()
-                                            .add(SearchLocation(query: query));
-                                      }
-                                    },
+                                  Flexible(
+                                    child: SearchTextField(
+                                      hintText: S.of(context).search_here,
+                                      radius: 20,
+                                      cursorColor: theme.isDarkTheme
+                                          ? Colors.white
+                                          : Colors.black,
+                                      focusedColor: Colors.grey,
+                                      enabledColor: Colors.grey,
+                                      suffixIcon: const Icon(Icons.search),
+                                      controller: searchController,
+                                      onChange: (query) {
+                                        if (query.isNotEmpty) {
+                                          context
+                                              .read<SuggestionPlacesCubit>()
+                                              .fetchAllSuggestionPlaces(
+                                                  query: query);
+                                          isSelected = false;
+                                          setState(() {});
+                                        } else {
+                                          context
+                                              .read<SuggestionPlacesCubit>()
+                                              .clearSuggestionPlaces();
+                                        }
+                                      },
+                                      onSubmitted: (query) {
+                                        if (query.isNotEmpty) {
+                                          context
+                                              .read<MapBloc>()
+                                              .add(SearchLocation(query: query));
+                                        }
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),

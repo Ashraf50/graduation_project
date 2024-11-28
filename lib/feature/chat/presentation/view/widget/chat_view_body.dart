@@ -39,6 +39,7 @@ class ChatViewBody extends StatelessWidget {
               ),
               radius: 30,
             ),
+          
             SizedBox(
               height: 10,
             ),
@@ -49,7 +50,7 @@ class ChatViewBody extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const ChatsListView(),
+            Expanded(child: const ChatsListView()),
           ],
         ),
       ),
