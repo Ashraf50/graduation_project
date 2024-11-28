@@ -25,10 +25,10 @@ class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({super.key});
 
   @override
-  _CustomGoogleMapState createState() => _CustomGoogleMapState();
+  CustomGoogleMapState createState() => CustomGoogleMapState();
 }
 
-class _CustomGoogleMapState extends State<CustomGoogleMap> {
+class CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
   Timer? debounce;
@@ -186,7 +186,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                                               .position!.lat!,
                                                           endLon: suggestion
                                                               .position!.lng!,
-                                                          means: "driving",
+                                                          means: 'driving',
                                                         ),
                                                       );
                                                   setState(() {
@@ -201,7 +201,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                 } else if (state is SuggestionPlacesFailure) {
                                   Center(
                                     child: Text(
-                                      "No suggestion",
+                                      'No suggestion',
                                       style: AppStyles.textStyle18black,
                                     ),
                                   );
@@ -209,7 +209,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                                   return Center(
                                       child: CircularProgressIndicator());
                                 }
-                                return Text("");
+                                return Text('');
                               },
                             ),
                           ),
@@ -223,13 +223,13 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
           } else if (state is MapError) {
             String errorMessage = '';
             switch (state.errMessage) {
-              case "enable_location":
+              case 'enable_location':
                 errorMessage = S.of(context).enable_location;
                 break;
-              case "location_access":
+              case 'location_access':
                 errorMessage = S.of(context).location_access;
                 break;
-              case "search_error":
+              case 'search_error':
                 errorMessage = 'Error searching location';
                 break;
               default:
@@ -257,9 +257,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 void initMapStyle(GoogleMapController controller, bool isDarkTheme,
     BuildContext context) async {
   var nightMapStyle = await DefaultAssetBundle.of(context)
-      .loadString("assets/map_style/night_map_style.json");
+      .loadString('assets/map_style/night_map_style.json');
   var lightMapStyle = await DefaultAssetBundle.of(context)
-      .loadString("assets/map_style/light_map_style.json");
+      .loadString('assets/map_style/light_map_style.json');
   if (isDarkTheme) {
     controller.setMapStyle(nightMapStyle);
   } else {

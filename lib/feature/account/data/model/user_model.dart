@@ -22,7 +22,7 @@ class UserModel {
     required this.token,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    var data = json["data"];
+    var data = json['data'];
     return UserModel(
       status: json['status'] as bool?,
       message: json['message'],

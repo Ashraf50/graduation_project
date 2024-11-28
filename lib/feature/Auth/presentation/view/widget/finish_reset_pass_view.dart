@@ -17,14 +17,15 @@ class MobileFinishResetPassViewBody extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return CustomScaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
         child: ListView(
           children: [
             SizedBox(
               width: screenWidth * 0.6,
               height: screenHeight * 0.4,
               child: Lottie.asset(
-                "assets/img/check.json",
+                'assets/img/check.json',
                 fit: BoxFit.contain,
               ),
             ),
@@ -77,7 +78,7 @@ class DesktopFinishPasswordViewBody extends StatelessWidget {
               width: screenWidth * 0.6,
               height: screenHeight * 0.4,
               child: Lottie.asset(
-                "assets/img/check.json",
+                'assets/img/check.json',
                 fit: BoxFit.contain,
               ),
             ),

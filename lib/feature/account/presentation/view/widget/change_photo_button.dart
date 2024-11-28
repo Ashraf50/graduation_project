@@ -60,7 +60,7 @@ class ChangePhotoButton extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: AppColors.primaryColor,
         child: SvgPicture.asset(
-          "assets/img/Camera.svg",
+          'assets/img/Camera.svg',
           height: 18,
         ),
       ),

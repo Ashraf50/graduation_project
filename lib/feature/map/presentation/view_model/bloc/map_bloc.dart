@@ -47,7 +47,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       );
       final markers = {
         Marker(
-          markerId: const MarkerId("1"),
+          markerId: const MarkerId('1'),
           position: currentLocationTarget,
         ),
       };
@@ -67,11 +67,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           circle: circles,
           polyLines: {}));
     } on LocationServiceException {
-      emit(MapError(errMessage: "enable_location"));
+      emit(MapError(errMessage: 'enable_location'));
     } on LocationPermissionException {
-      emit(MapError(errMessage: "location_access"));
+      emit(MapError(errMessage: 'location_access'));
     } catch (e) {
-      emit(MapError(errMessage: "error_location"));
+      emit(MapError(errMessage: 'error_location'));
     }
   }
 
@@ -100,7 +100,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
             markerId: const MarkerId('currentLocation'),
             position:
                 LatLng(currentPosition.latitude, currentPosition.longitude),
-            infoWindow: InfoWindow(title: "current"),
+            infoWindow: InfoWindow(title: 'current'),
           ),
           Marker(
             markerId: const MarkerId('searchedLocation'),
@@ -125,7 +125,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           startLon: currentPosition.longitude,
           endLat: lat,
           endLon: lng,
-          profile: "driving",
+          profile: 'driving',
         );
         emit(MapLoadingSuccess(
           cameraPosition: cameraPosition,
@@ -134,10 +134,10 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           polyLines: polyline,
         ));
       } else {
-        emit(MapError(errMessage: "No results found"));
+        emit(MapError(errMessage: 'No results found'));
       }
     } catch (e) {
-      emit(MapError(errMessage: "search_error"));
+      emit(MapError(errMessage: 'search_error'));
     }
   }
 
@@ -157,14 +157,14 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         Marker(
           markerId: const MarkerId('currentLocation'),
           position: LatLng(currentPosition.latitude, currentPosition.longitude),
-          infoWindow: InfoWindow(title: "current"),
+          infoWindow: InfoWindow(title: 'current'),
         ),
         Marker(
           markerId: const MarkerId('searchedLocation'),
           position: LatLng(endLat, endLon),
           icon:
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-          infoWindow: InfoWindow(title: "Goal"),
+          infoWindow: InfoWindow(title: 'Goal'),
         ),
       };
       final destination = LatLng(endLat, endLon);
@@ -179,7 +179,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         polyLines: polyline,
       ));
     } catch (e) {
-      emit(MapError(errMessage: "route_error"));
+      emit(MapError(errMessage: 'route_error'));
     }
   }
 
@@ -193,8 +193,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     final routePoints = await mapRepo.getRoute(
       profile: profile,
       waypoints: [
-        {"lat": startLat, "lng": startLon},
-        {"lat": endLat, "lng": endLon},
+        {'lat': startLat, 'lng': startLon},
+        {'lat': endLat, 'lng': endLon},
       ],
     );
     List<LatLng> polylineCoordinates =

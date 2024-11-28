@@ -34,7 +34,7 @@ class _DarkModeButtonState extends State<DarkModeButton> {
             Row(
               children: [
                 SvgPicture.asset(
-                  "assets/img/dark_mode.svg",
+                  'assets/img/dark_mode.svg',
                   height: 25,
                   colorFilter: ColorFilter.mode(
                     themeProvider.isDarkTheme
@@ -58,7 +58,7 @@ class _DarkModeButtonState extends State<DarkModeButton> {
                 themeProvider.setThemeData = val;
               },
               activeColor: AppColors.primaryColor,
-              trackOutlineColor: MaterialStateProperty.all(
+              trackOutlineColor: WidgetStateProperty.all(
                 themeProvider.isDarkTheme
                     ? AppColors.widgetColorDark
                     : AppColors.whiteGrey,

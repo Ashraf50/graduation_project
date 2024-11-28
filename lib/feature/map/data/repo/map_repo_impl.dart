@@ -27,7 +27,7 @@ class MapRepoImpl implements MapRepo {
       );
       final data = response.data;
       List<PlacesModel> placesList = [];
-      for (var place in data["items"]) {
+      for (var place in data['items']) {
         placesList.add(PlacesModel.fromJson(place));
       }
       return Right(placesList);
@@ -36,41 +36,41 @@ class MapRepoImpl implements MapRepo {
         switch (e.response?.statusCode) {
           case 400:
             return Left(
-              ServerFailure("Bad request: Invalid parameters."),
+              ServerFailure('Bad request: Invalid parameters.'),
             );
           case 404:
             return Left(
               ServerFailure(
-                  "Not found: The requested resource could not be found."),
+                  'Not found: The requested resource could not be found.'),
             );
           case 500:
             return Left(
-              ServerFailure("Server error: Please try again later."),
+              ServerFailure('Server error: Please try again later.'),
             );
           default:
             return Left(
               ServerFailure(
-                  "Unexpected server error: ${e.response?.statusCode}"),
+                  'Unexpected server error: ${e.response?.statusCode}'),
             );
         }
       } else if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
         return Left(
           ServerFailure(
-              "Connection timeout. Please check your network connection."),
+              'Connection timeout. Please check your network connection.'),
         );
       } else if (e.type == DioExceptionType.unknown) {
         return Left(
           ServerFailure(
-              "Network error: Please check your internet connection."),
+              'Network error: Please check your internet connection.'),
         );
       }
       return Left(
-        ServerFailure("An unknown error occurred."),
+        ServerFailure('An unknown error occurred.'),
       );
     } catch (e) {
       return Left(
-        ServerFailure("An unexpected error occurred"),
+        ServerFailure('An unexpected error occurred'),
       );
     }
   }
@@ -84,10 +84,10 @@ class MapRepoImpl implements MapRepo {
       final coordinates =
           waypoints.map((point) => "${point['lng']},${point['lat']}").join(';');
       final url =
-          "https://router.project-osrm.org/route/v1/$profile/$coordinates";
+          'https://router.project-osrm.org/route/v1/$profile/$coordinates';
       final queryParams = {
-        "overview": "full",
-        "steps": "true",
+        'overview': 'full',
+        'steps': 'true',
       };
       final response = await _dio.get(url, queryParameters: queryParams);
       if (response.statusCode == 200) {
@@ -103,7 +103,7 @@ class MapRepoImpl implements MapRepo {
             .toList();
         return decodedPolylinePoints;
       } else {
-        throw Exception("Failed to fetch route: ${response.statusCode}");
+        throw Exception('Failed to fetch route: ${response.statusCode}');
       }
     } on DioException catch (e) {
       if (e.response != null) {

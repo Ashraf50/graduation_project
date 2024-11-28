@@ -19,22 +19,22 @@ class DetailsViewBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 14),
               child: Image.asset(
-                "assets/img/apart_test.png",
+                'assets/img/apart_test.png',
                 fit: BoxFit.cover,
               ),
             ),
             Text(
-              "Apartment",
+              'Apartment',
               style: AppStyles.textStyle18black,
             ),
             SizedBox(height: 8),
             Text(
-              "400,000 EGP",
+              '400,000 EGP',
               style: AppStyles.textStyle20,
             ),
             SizedBox(height: 8),
             Text(
-              "New Cairo city, Cairo ",
+              'New Cairo city, Cairo ',
               style: AppStyles.textStyle16gray,
             ),
             SizedBox(height: 30),
@@ -46,18 +46,18 @@ class DetailsViewBody extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
               child: Row(
-                children: [
+                children: const [
                   FacilityItem(
-                    image: "assets/img/num_bed.svg",
-                    title: "2 bedrooms",
+                    image: 'assets/img/num_bed.svg',
+                    title: '2 bedrooms',
                   ),
                   FacilityItem(
-                    image: "assets/img/num_bathroom.svg",
-                    title: "2 bathroom",
+                    image: 'assets/img/num_bathroom.svg',
+                    title: '2 bathroom',
                   ),
                   FacilityItem(
-                    image: "assets/img/area.svg",
-                    title: "130 M",
+                    image: 'assets/img/area.svg',
+                    title: '130 M',
                   ),
                 ],
               ),
@@ -68,7 +68,7 @@ class DetailsViewBody extends StatelessWidget {
               style: AppStyles.textStyle24,
             ),
             Text(
-              "Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water,",
+              'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water,',
               style: AppStyles.textStyle18black,
             ),
           ],

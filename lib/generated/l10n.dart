@@ -650,10 +650,10 @@ class S {
     );
   }
 
-  /// `We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeolocation: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.`
+  /// `We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeo location: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.`
   String get policy1_desc {
     return Intl.message(
-      'We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeolocation: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.',
+      'We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeo location: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.',
       name: 'policy1_desc',
       desc: '',
       args: [],
@@ -1265,6 +1265,26 @@ class S {
     return Intl.message(
       'Description',
       name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phone {
+    return Intl.message(
+      'Phone Number',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid phone number`
+  String get valid_phone {
+    return Intl.message(
+      'Enter a valid phone number',
+      name: 'valid_phone',
       desc: '',
       args: [],
     );

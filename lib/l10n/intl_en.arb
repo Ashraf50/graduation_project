@@ -59,7 +59,7 @@
     "our_team":"Our team is available to assist you with any inquiries or issues you may have. We aim to respond to all communications promptly and efficiently.",
     "policy_thanks":"Thank you for using AroundU. We are committed to protecting your privacy and ensuring the security of your personal data. This policy outlines how we collect, use, protect, and share your information.",
     "policy1":"1. Data Collection",
-    "policy1_desc":"We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeolocation: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.",
+    "policy1_desc":"We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeo location: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users.",
     "policy2": "2. Data Usage",
     "policy2_desc": "We use the information we collect to:\nEnhance user experience and provide personalized apartment recommendations.\nEnable services for finding nearby facilities (restaurants, banks, hospitals, pharmacies).\nFacilitate communication between users.",
     "policy3":"3. Data Protection",
@@ -120,5 +120,7 @@
     "category":"Category",
     "details": "Details",
     "facility": "Facilities",
-    "description": "Description"
+    "description": "Description",
+    "phone": "Phone Number",
+    "valid_phone": "Enter a valid phone number"
 }

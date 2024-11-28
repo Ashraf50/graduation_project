@@ -42,7 +42,7 @@ class _DesktopSignInViewBodyState extends State<DesktopSignInViewBody> {
           isLoading = true;
         } else if (state is LoginSuccess) {
           context.read<UserDataCubit>().fetchUserData(state.token);
-          context.go("/bottomBar");
+          context.go('/bottomBar');
           SnackbarHelper.showCustomSnackbar(
             context: context,
             title: S.of(context).success,
@@ -171,11 +171,11 @@ class _DesktopSignInViewBodyState extends State<DesktopSignInViewBody> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GoogleButton(
-                          image: "assets/img/google.svg",
+                          image: 'assets/img/google.svg',
                           onTap: () {},
                         ),
                         GoogleButton(
-                          image: "assets/img/facebook.svg",
+                          image: 'assets/img/facebook.svg',
                           onTap: () {},
                         ),
                       ],

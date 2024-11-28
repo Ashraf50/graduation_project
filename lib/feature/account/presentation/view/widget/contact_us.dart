@@ -20,7 +20,7 @@ class ContactUs extends StatelessWidget {
               style: AppStyles.textStyle20notBold,
             ),
             SelectableText(
-              "Email: [arounUteam@gmail.com]",
+              'Email: [arounUteam@gmail.com]',
               style: TextStyle(
                 fontSize: 23,
                 color: Colors.blue,

@@ -23,13 +23,18 @@ class MobileResetPasswordViewBody extends StatelessWidget {
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).reset_pass),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
         child: ListView(
           children: [
             SizedBox(
-                width: screenWidth * 0.6,
-                height: screenHeight * 0.4,
-                child: Lottie.asset("assets/img/forget_pass.json")),
+              width: screenWidth * 0.6,
+              height: screenHeight * 0.4,
+              child: Lottie.asset(
+                'assets/img/forget_pass.json',
+                fit: BoxFit.contain,
+              ),
+            ),
             SizedBox(
               height: 30,
             ),
@@ -57,7 +62,7 @@ class MobileResetPasswordViewBody extends StatelessWidget {
             CustomButton(
               title: S.of(context).set_pass,
               onTap: () {
-                context.go("/finish_pass_view");
+                context.go('/finish_pass_view');
               },
               buttonColor: AppColors.primaryColor,
               textColor: AppColors.white,
@@ -86,7 +91,7 @@ class DesktopResetPassViewBody extends StatelessWidget {
               SizedBox(
                   width: screenWidth * 0.6,
                   height: screenHeight * 0.4,
-                  child: Lottie.asset("assets/img/forget_pass.json")),
+                  child: Lottie.asset('assets/img/forget_pass.json')),
               SizedBox(
                 height: 30,
               ),
@@ -112,7 +117,7 @@ class DesktopResetPassViewBody extends StatelessWidget {
               CustomButton(
                 title: S.of(context).set_pass,
                 onTap: () {
-                  context.go("/finish_pass_view");
+                  context.go('/finish_pass_view');
                 },
                 buttonColor: AppColors.primaryColor,
                 textColor: AppColors.white,

@@ -35,34 +35,34 @@ class EditProfileView extends StatelessWidget {
             CustomUpdateButton(
               title: S.of(context).update_username,
               subTitle: userData.name,
-              imageIcon: "assets/img/id_card.svg",
+              imageIcon: 'assets/img/id_card.svg',
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomUpdateButton(
               title: S.of(context).Update_email,
               subTitle: userData.email,
-              imageIcon: "assets/img/Email.svg",
+              imageIcon: 'assets/img/Email.svg',
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomUpdateButton(
               title: S.of(context).update_phone,
               subTitle: userData.phone,
-              imageIcon: "assets/img/phone.svg",
+              imageIcon: 'assets/img/phone.svg',
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),
             CustomLogoutDeleteButton(
               title: S.of(context).delete_acc,
-              image: "assets/img/delete.svg",
+              image: 'assets/img/delete.svg',
               onTap: () {},
             ),
             CustomLogoutDeleteButton(
               title: S.of(context).logout,
-              image: "assets/img/log_out.svg",
+              image: 'assets/img/log_out.svg',
               onTap: () {
-                context.go("/sign_in");
+                context.go('/sign_in');
                 AuthRepo authRepo = AuthRepoImpl(ApiHelper());
                 authRepo.logout();
               },

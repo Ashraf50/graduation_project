@@ -14,7 +14,7 @@ class CategoryViewBody extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: ListView(
-          children: [
+          children: const [
             SizedBox(
               height: 10,
             ),

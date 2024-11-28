@@ -7,6 +7,7 @@ import 'package:graduation_project/feature/account/presentation/view_model/user_
 import 'package:shimmer/shimmer.dart';
 import '../../generated/l10n.dart';
 import '../constant/app_colors.dart';
+
 class AccountPhoto extends StatelessWidget {
   const AccountPhoto({super.key});
 
@@ -37,7 +38,7 @@ class AccountPhoto extends StatelessWidget {
         }
         return CircleAvatar(
           radius: 25,
-          backgroundImage: AssetImage("assets/img/profile.png"),
+          backgroundImage: const AssetImage('assets/img/profile.png'),
         );
       },
     );

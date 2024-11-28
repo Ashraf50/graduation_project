@@ -26,6 +26,7 @@ class DesktopSignUpViewBody extends StatefulWidget {
 class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -40,7 +41,7 @@ class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
-          context.go("/sign_in");
+          context.go('/sign_in');
           isLoading = false;
           SnackbarHelper.showCustomSnackbar(
             context: context,
@@ -90,7 +91,7 @@ class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
                       controller: usernameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == "") {
+                        if (value == '') {
                           return S.of(context).value_empty;
                         } else {
                           return null;
@@ -111,6 +112,24 @@ class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
                         return value != null && !EmailValidator.validate(value)
                             ? S.of(context).valid_email
                             : null;
+                      },
+                    ),
+                    Text(
+                      S.of(context).phone,
+                      style: AppStyles.textStyle18black,
+                    ),
+                    CustomTextfield(
+                      enableColor: Color(0xffBCB8B1),
+                      hintText: S.of(context).phone,
+                      obscureText: false,
+                      controller: phoneController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.length != 11) {
+                          return S.of(context).valid_phone;
+                        } else {
+                          return null;
+                        }
                       },
                     ),
                     Text(

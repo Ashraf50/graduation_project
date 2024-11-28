@@ -17,8 +17,8 @@ class DesktopForgetPassView extends StatelessWidget {
           Expanded(
             flex: 1,
             child: theme.isDarkTheme
-                ? Image.asset("assets/img/logo.png")
-                : Image.asset("assets/img/logo_black.png"),
+                ? Image.asset('assets/img/logo.png')
+                : Image.asset('assets/img/logo_black.png'),
           ),
           Expanded(
             flex: 2,

@@ -56,13 +56,13 @@ class HomeViewBody extends StatelessWidget {
         ),
         floatingActionButton: InkWell(
           onTap: () {
-            context.push("/map");
+            context.push('/map');
           },
           child: CircleAvatar(
             backgroundColor: const Color.fromARGB(175, 0, 89, 79),
             radius: 30,
             child: SvgPicture.asset(
-              "assets/img/location.svg",
+              'assets/img/location.svg',
               height: 30,
             ),
           ),

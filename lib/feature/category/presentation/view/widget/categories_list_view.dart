@@ -10,12 +10,12 @@ class CategoriesListView extends StatelessWidget {
     List<CategoryModel> allCategories = [
       CategoryModel(
         title: S.of(context).apartment,
-        image: "assets/img/apartment.png",
+        image: 'assets/img/apartment.png',
         onTap: () {},
       ),
       CategoryModel(
         title: S.of(context).room,
-        image: "assets/img/room.png",
+        image: 'assets/img/room.png',
         onTap: () {},
       ),
     ];

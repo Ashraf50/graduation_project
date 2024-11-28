@@ -3,7 +3,7 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chat_bubble.dart';
-import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_appbar.dart';
+import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_app_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/constant/app_theme.dart';
@@ -26,20 +26,20 @@ class _ConversationViewState extends State<ConversationView> {
       body: ListView(
         controller: _controller,
         // reverse: true,
-        children: [
-          ChatBubble(massage: "Hello"),
-          ChatBubbleFriend(massage: "How are you"),
-          ChatBubble(massage: "Hello"),
-          ChatBubbleFriend(massage: "How are you"),
-          ChatBubble(massage: "Hello"),
-          ChatBubbleFriend(massage: "How are you"),
-          ChatBubble(massage: "Hello"),
-          ChatBubbleFriend(massage: "How are you"),
-          ChatBubble(massage: "Hello"),
-          ChatBubbleFriend(massage: "How are you"),
-          ChatBubble(massage: "Hello"),
+        children: const [
+          ChatBubble(massage: 'Hello'),
+          ChatBubbleFriend(massage: 'How are you'),
+          ChatBubble(massage: 'Hello'),
+          ChatBubbleFriend(massage: 'How are you'),
+          ChatBubble(massage: 'Hello'),
+          ChatBubbleFriend(massage: 'How are you'),
+          ChatBubble(massage: 'Hello'),
+          ChatBubbleFriend(massage: 'How are you'),
+          ChatBubble(massage: 'Hello'),
+          ChatBubbleFriend(massage: 'How are you'),
+          ChatBubble(massage: 'Hello'),
           ChatBubbleFriend(
-              massage: "How are you How are you How are you How are"),
+              massage: 'How are you How are you How are you How are'),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -48,7 +48,7 @@ class _ConversationViewState extends State<ConversationView> {
           enableColor: themeProvider.isDarkTheme
               ? AppColors.widgetColorDark
               : Color(0xffBCB8B1),
-          hintText: "Send Message",
+          hintText: 'Send Message',
           controller: TextEditingController(),
           suffixIcon: IconButton(
             onPressed: () {

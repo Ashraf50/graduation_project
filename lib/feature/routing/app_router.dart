@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/core/widget/botom_bar.dart';
+import 'package:graduation_project/core/widget/bottom_bar.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
@@ -21,10 +21,10 @@ class AppRouter {
   final bool isLoggedIn;
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
-    initialLocation: isLoggedIn ? "/bottomBar" : '/onboard',
+    initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
     routes: [
       GoRoute(
-        path: "/onboard",
+        path: '/onboard',
         builder: (context, state) => const OnboardScreen(),
       ),
       GoRoute(

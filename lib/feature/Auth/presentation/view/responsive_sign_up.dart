@@ -30,11 +30,7 @@ class TabletSignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(context).width * .15),
-      child: MobileSignUpViewBody(),
-    );
+    return const MobileSignUpViewBody();
   }
 }
 

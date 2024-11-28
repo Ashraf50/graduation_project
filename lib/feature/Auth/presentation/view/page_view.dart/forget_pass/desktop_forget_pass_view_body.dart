@@ -16,6 +16,8 @@ class DesktopForgetPasswordViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return CustomScaffold(
       backgroundColor: themeProvider.isDarkTheme
           ? AppColors.widgetColorDark
@@ -24,7 +26,14 @@ class DesktopForgetPasswordViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
           children: [
-            Lottie.asset("assets/img/forget_pass.json"),
+            SizedBox(
+              width: screenWidth * 0.6,
+              height: screenHeight * 0.4,
+              child: Lottie.asset(
+                'assets/img/forget_pass.json',
+                fit: BoxFit.contain,
+              ),
+            ),
             SizedBox(
               height: 15,
             ),
@@ -43,7 +52,7 @@ class DesktopForgetPasswordViewBody extends StatelessWidget {
             CustomButton(
               title: S.of(context).next,
               onTap: () {
-                context.push("/reset_pass");
+                context.push('/reset_pass');
               },
               buttonColor: AppColors.primaryColor,
               textColor: AppColors.white,

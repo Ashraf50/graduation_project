@@ -17,13 +17,23 @@ class MobileForgetPasswordViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final screenHeight = MediaQuery.sizeOf(context).height;
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).forget_password),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
         child: ListView(
           children: [
-            Lottie.asset("assets/img/forget_pass.json"),
+            SizedBox(
+              width: screenWidth * 0.6,
+              height: screenHeight * 0.4,
+              child: Lottie.asset(
+                'assets/img/forget_pass.json',
+                fit: BoxFit.contain,
+              ),
+            ),
             SizedBox(
               height: 30,
             ),
@@ -51,7 +61,7 @@ class MobileForgetPasswordViewBody extends StatelessWidget {
             CustomButton(
               title: S.of(context).next,
               onTap: () {
-                context.push("/reset_pass");
+                context.push('/reset_pass');
               },
               buttonColor: AppColors.primaryColor,
               textColor: AppColors.white,

@@ -120,5 +120,7 @@
     "category": "الفئة",
     "details": "التفاصيل",
     "facility": "المرافق",
-    "description": "الوصف"
+    "description": "الوصف",
+    "phone": "رقم الهاتف",
+    "valid_phone": "ادخل رقم هاتف صالحًا"
 }

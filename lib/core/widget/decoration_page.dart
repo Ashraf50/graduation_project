@@ -14,7 +14,7 @@ class DesktopDecorationPage extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20),
         width: MediaQuery.sizeOf(context).width * 0.6,
-        height: MediaQuery.sizeOf(context).height * 0.7,
+        height: MediaQuery.sizeOf(context).height * 0.8,
         decoration: BoxDecoration(
           color:
               theme.isDarkTheme ? AppColors.widgetColorDark : AppColors.white,

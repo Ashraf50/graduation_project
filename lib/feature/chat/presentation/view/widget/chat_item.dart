@@ -11,13 +11,13 @@ class ChatItem extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          context.push("/conversation_view");
+          context.push('/conversation_view');
         },
         child: const Row(
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage("assets/img/test.jpg"),
+              backgroundImage: AssetImage('assets/img/test.jpg'),
             ),
             SizedBox(
               width: 20,
@@ -26,10 +26,10 @@ class ChatItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ashraf Essam",
+                  'Ashraf Essam',
                   style: AppStyles.textStyle18black,
                 ),
-                Text("hello")
+                Text('hello')
               ],
             ),
           ],

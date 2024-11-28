@@ -24,7 +24,7 @@ void main() async {
       create: (context) => ThemeProvider(isDarkTheme: storedValue),
       child: MyApp(
         appRouter: appRouter,
-        token: token?? "",
+        token: token ?? '',
       ),
     ),
   );

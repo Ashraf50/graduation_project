@@ -30,7 +30,7 @@ class HomeSearchLayer extends StatelessWidget {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    "assets/img/search.svg",
+                    'assets/img/search.svg',
                     height: 30,
                     colorFilter: ColorFilter.mode(
                       AppColors.primaryColor,
@@ -66,7 +66,7 @@ class HomeSearchLayer extends StatelessWidget {
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  "assets/img/sort.svg",
+                  'assets/img/sort.svg',
                   height: 30,
                 ),
               ),
@@ -85,7 +85,7 @@ class CustomSearchDelegate extends SearchDelegate {
     return [
       IconButton(
         onPressed: () {
-          query = "";
+          query = '';
         },
         icon: Icon(Icons.clear),
       )

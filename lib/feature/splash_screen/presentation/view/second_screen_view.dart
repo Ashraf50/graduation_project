@@ -18,7 +18,7 @@ class SecondScreen extends StatelessWidget {
           child: ClipPath(
             clipper: BottomCircularClipper(),
             child: Image.asset(
-              "assets/img/splash2.jpg",
+              'assets/img/splash2.jpg',
               fit: BoxFit.cover,
             ),
           ),

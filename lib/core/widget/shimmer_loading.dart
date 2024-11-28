@@ -15,10 +15,10 @@ class ShimmerLoading extends StatefulWidget {
   });
 
   @override
-  _ShimmerLoadingState createState() => _ShimmerLoadingState();
+  ShimmerLoadingState createState() => ShimmerLoadingState();
 }
 
-class _ShimmerLoadingState extends State<ShimmerLoading>
+class ShimmerLoadingState extends State<ShimmerLoading>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;

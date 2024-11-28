@@ -104,13 +104,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "password_not_match":
             MessageLookupByLibrary.simpleMessage("The password does not match"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "please_enter_your_email":
             MessageLookupByLibrary.simpleMessage("Please enter your email"),
         "please_enter_your_pass":
             MessageLookupByLibrary.simpleMessage("Please enter your Password"),
         "policy1": MessageLookupByLibrary.simpleMessage("1. Data Collection"),
         "policy1_desc": MessageLookupByLibrary.simpleMessage(
-            "We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeolocation: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users."),
+            "We collect certain personal and non-personal information such as:\nAccount Information: Name, email address, and phone number when registering.\nGeo location: To provide services related to nearby places (restaurants, banks, hospitals, pharmacies).\nUser Preferences: Preferred apartment features and search patterns.\nCommunication Data: When using the chat service to interact with owners or other users."),
         "policy2": MessageLookupByLibrary.simpleMessage("2. Data Usage"),
         "policy2_desc": MessageLookupByLibrary.simpleMessage(
             "We use the information we collect to:\nEnhance user experience and provide personalized apartment recommendations.\nEnable services for finding nearby facilities (restaurants, banks, hospitals, pharmacies).\nFacilitate communication between users."),
@@ -187,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter a valid email"),
         "valid_pass":
             MessageLookupByLibrary.simpleMessage("your password is too short"),
+        "valid_phone":
+            MessageLookupByLibrary.simpleMessage("Enter a valid phone number"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "You cannot leave the field value empty"),
         "view": MessageLookupByLibrary.simpleMessage("View"),

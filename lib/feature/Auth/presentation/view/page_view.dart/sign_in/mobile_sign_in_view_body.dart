@@ -38,13 +38,14 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
           context.read<UserDataCubit>().fetchUserData(state.token);
-          context.go("/bottomBar");
+          context.go('/bottomBar');
           SnackbarHelper.showCustomSnackbar(
             context: context,
             title: S.of(context).success,
@@ -72,7 +73,8 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
           child: CustomScaffold(
             appBar: CustomAppBar(title: S.of(context).login),
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
               child: Form(
                 key: formKey,
                 child: ListView(
@@ -95,9 +97,6 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                             ? S.of(context).valid_email
                             : null;
                       },
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                     Text(
                       S.of(context).password,
@@ -155,7 +154,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                       ],
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     CustomButton(
                       buttonColor: AppColors.primaryColor,
@@ -212,11 +211,11 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GoogleButton(
-                          image: "assets/img/google.svg",
+                          image: 'assets/img/google.svg',
                           onTap: () {},
                         ),
                         GoogleButton(
-                          image: "assets/img/facebook.svg",
+                          image: 'assets/img/facebook.svg',
                           onTap: () {},
                         ),
                       ],

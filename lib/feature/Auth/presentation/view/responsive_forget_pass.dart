@@ -30,11 +30,7 @@ class TabletForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(context).width * .15),
-      child: MobileForgetPasswordViewBody(),
-    );
+    return const MobileForgetPasswordViewBody();
   }
 }
 

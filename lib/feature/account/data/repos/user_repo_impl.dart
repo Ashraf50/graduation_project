@@ -25,7 +25,7 @@ class UserRepoImpl implements UserRepo {
         final userData = UserModel.fromJson(data);
         return Right(userData);
       } else {
-        return Left(ServerFailure("failed to get data"));
+        return Left(ServerFailure('failed to get data'));
       }
     } catch (e) {
       return Left(ServerFailure(e.toString()));

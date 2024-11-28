@@ -85,7 +85,7 @@ class LocationService {
     while (!isServiceEnabled) {
       isServiceEnabled = await Geolocator.openLocationSettings();
       if (!isServiceEnabled) {
-        throw LocationServiceException("Location service is disabled.");
+        throw LocationServiceException('Location service is disabled.');
       }
     }
   }
@@ -95,13 +95,13 @@ class LocationService {
     LocationPermission permissionStatus = await Geolocator.checkPermission();
     if (permissionStatus == LocationPermission.deniedForever) {
       throw LocationPermissionException(
-          "Location permission is permanently denied.");
+          'Location permission is permanently denied.');
     }
     if (permissionStatus == LocationPermission.denied) {
       permissionStatus = await Geolocator.requestPermission();
       if (permissionStatus != LocationPermission.whileInUse &&
           permissionStatus != LocationPermission.always) {
-        throw LocationPermissionException("Location permission is denied.");
+        throw LocationPermissionException('Location permission is denied.');
       }
     }
   }
@@ -113,7 +113,7 @@ class LocationServiceException implements Exception {
   LocationServiceException(this.message);
 
   @override
-  String toString() => "LocationServiceException: $message";
+  String toString() => 'LocationServiceException: $message';
 }
 
 class LocationPermissionException implements Exception {
@@ -121,5 +121,5 @@ class LocationPermissionException implements Exception {
   LocationPermissionException(this.message);
 
   @override
-  String toString() => "LocationPermissionException: $message";
+  String toString() => 'LocationPermissionException: $message';
 }

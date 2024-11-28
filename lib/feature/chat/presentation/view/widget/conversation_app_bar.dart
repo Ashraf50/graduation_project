@@ -23,13 +23,13 @@ class ConversationAppBar extends StatelessWidget
           ),
           CircleAvatar(
             radius: 22,
-            backgroundImage: AssetImage("assets/img/test.jpg"),
+            backgroundImage: AssetImage('assets/img/test.jpg'),
           ),
           SizedBox(
             width: 10,
           ),
           Text(
-            "Ashraf",
+            'Ashraf',
             style: AppStyles.textStyle20notBold,
           )
         ],

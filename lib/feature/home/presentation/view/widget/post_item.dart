@@ -30,18 +30,18 @@ class PostItem extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Row(
                     children: [
                       CircleAvatar(
                         radius: 22,
-                        backgroundImage: AssetImage("assets/img/test.jpg"),
+                        backgroundImage: AssetImage('assets/img/test.jpg'),
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
-                        "Ashraf Essam",
+                        'Ashraf Essam',
                         style: AppStyles.textStyle20notBold,
                       ),
                     ],
@@ -53,12 +53,12 @@ class PostItem extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 child: SelectableText(
-                  "Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water",
+                  'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
                   style: AppStyles.textStyle18black,
                 ),
               ),
               Image.asset(
-                "assets/img/apartment.png",
+                'assets/img/apartment.png',
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -70,9 +70,9 @@ class PostItem extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         Text(
-                          "Apartment",
+                          'Apartment',
                           style: AppStyles.textStyle16gray,
                         ),
                         Row(
@@ -83,7 +83,7 @@ class PostItem extends StatelessWidget {
                             ),
                             SizedBox(width: 4),
                             Text(
-                              "4.2",
+                              '4.2',
                               style: AppStyles.textStyle16,
                             ),
                           ],
@@ -91,29 +91,29 @@ class PostItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "400,000 EGP",
+                      '400,000 EGP',
                       style: AppStyles.textStyle20,
                     ),
                     Text(
-                      "New Cairo city, Cairo ",
+                      'New Cairo city, Cairo ',
                       style: AppStyles.textStyle16gray,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: [
+                          children: const [
                             ApartmentProperties(
-                              image: "assets/img/num_bed.svg",
-                              title: "2",
+                              image: 'assets/img/num_bed.svg',
+                              title: '2',
                             ),
                             ApartmentProperties(
-                              image: "assets/img/num_bathroom.svg",
-                              title: "2",
+                              image: 'assets/img/num_bathroom.svg',
+                              title: '2',
                             ),
                             ApartmentProperties(
-                              image: "assets/img/area.svg",
-                              title: "130 m",
+                              image: 'assets/img/area.svg',
+                              title: '130 m',
                             ),
                           ],
                         ),
@@ -123,7 +123,7 @@ class PostItem extends StatelessWidget {
                           textColor: AppColors.white,
                           width: 110,
                           onTap: () {
-                            context.push("/details");
+                            context.push('/details');
                           },
                         ),
                       ],

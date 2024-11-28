@@ -44,40 +44,40 @@ class AccountViewBody extends StatelessWidget {
             ),
             CustomListTile(
               title: S.of(context).language,
-              image: "assets/img/language.svg",
+              image: 'assets/img/language.svg',
               onTap: () {
                 context.push('/language');
               },
             ),
             CustomListTile(
               title: S.of(context).rate,
-              image: "assets/img/rate.svg",
+              image: 'assets/img/rate.svg',
               onTap: () {},
             ),
             CustomListTile(
               title: S.of(context).contact,
-              image: "assets/img/contact.svg",
+              image: 'assets/img/contact.svg',
               onTap: () {
                 context.push('/contact_us');
               },
             ),
             CustomListTile(
               title: S.of(context).terms,
-              image: "assets/img/terms.svg",
+              image: 'assets/img/terms.svg',
               onTap: () {
                 context.push('/terms');
               },
             ),
             CustomListTile(
               title: S.of(context).privacy,
-              image: "assets/img/policy.svg",
+              image: 'assets/img/policy.svg',
               onTap: () {
                 context.push('/privacy');
               },
             ),
             CustomListTile(
               title: S.of(context).about,
-              image: "assets/img/about.svg",
+              image: 'assets/img/about.svg',
               onTap: () {
                 context.push('/about_us');
               },

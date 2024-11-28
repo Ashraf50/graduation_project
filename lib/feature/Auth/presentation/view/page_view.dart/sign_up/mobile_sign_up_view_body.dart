@@ -30,6 +30,7 @@ class MobileSignUpViewBody extends StatefulWidget {
 class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -39,12 +40,13 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
-          context.go("/sign_in");
+          context.go('/sign_in');
           isLoading = false;
           SnackbarHelper.showCustomSnackbar(
             context: context,
@@ -72,7 +74,8 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
           child: CustomScaffold(
             appBar: CustomAppBar(title: S.of(context).sign_up),
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
               child: Form(
                 key: formKey,
                 child: ListView(
@@ -93,7 +96,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                       controller: usernameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == "") {
+                        if (value == '') {
                           return S.of(context).value_empty;
                         } else {
                           return null;
@@ -118,8 +121,25 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                             : null;
                       },
                     ),
-                    const SizedBox(
-                      height: 10,
+                    Text(
+                      S.of(context).phone,
+                      style: AppStyles.textStyle18black,
+                    ),
+                    CustomTextfield(
+                      enableColor: themeProvider.isDarkTheme
+                          ? AppColors.widgetColorDark
+                          : Color(0xffBCB8B1),
+                      hintText: S.of(context).phone,
+                      obscureText: false,
+                      controller: phoneController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.length != 11) {
+                          return S.of(context).valid_phone;
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                     Text(
                       S.of(context).password,
@@ -243,11 +263,11 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GoogleButton(
-                          image: "assets/img/google.svg",
+                          image: 'assets/img/google.svg',
                           onTap: () {},
                         ),
                         GoogleButton(
-                          image: "assets/img/facebook.svg",
+                          image: 'assets/img/facebook.svg',
                           onTap: () {},
                         ),
                       ],

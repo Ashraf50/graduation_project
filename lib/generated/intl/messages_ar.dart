@@ -107,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_not_match":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
+        "phone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "please_enter_your_email": MessageLookupByLibrary.simpleMessage(
             "من فضلك ادخل بريدك الالكتروني"),
         "please_enter_your_pass":
@@ -187,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل بريدًا إلكترونيًا صالحًا"),
         "valid_pass": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور الخاصة بك قصيرة جدًا"),
+        "valid_phone":
+            MessageLookupByLibrary.simpleMessage("ادخل رقم هاتف صالحًا"),
         "value_empty": MessageLookupByLibrary.simpleMessage(
             "لا تستطيع ترك قيمه الحقل خاليه"),
         "view": MessageLookupByLibrary.simpleMessage("عرض"),
