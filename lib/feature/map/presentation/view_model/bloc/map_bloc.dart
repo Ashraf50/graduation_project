@@ -14,7 +14,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   final CameraPosition initialCameraPosition;
   final _dio = Dio();
   final MapRepo mapRepo;
-
   MapBloc(this.locationService)
       : initialCameraPosition = const CameraPosition(
           target: LatLng(30.666814283311574, 30.069335102342595),
@@ -61,11 +60,14 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           fillColor: Colors.blue.withOpacity(0.2),
         ),
       };
-      emit(MapLoadingSuccess(
+      emit(
+        MapLoadingSuccess(
           cameraPosition: cameraPosition,
           markers: markers,
           circle: circles,
-          polyLines: {}));
+          polyLines: {},
+        ),
+      );
     } on LocationServiceException {
       emit(MapError(errMessage: 'enable_location'));
     } on LocationPermissionException {
@@ -82,7 +84,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         'https://geocode.search.hereapi.com/v1/geocode',
         queryParameters: {
           'q': query,
-          'apiKey': AppStrings.apiKey,
+          'apiKey': AppStrings.hereApiKey,
         },
       );
       final currentPosition = await locationService.getLocation();
