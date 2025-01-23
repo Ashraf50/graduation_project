@@ -45,7 +45,6 @@ class _DesktopViewState extends State<DesktopView>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
-
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -127,6 +126,12 @@ class _DesktopViewState extends State<DesktopView>
                     ],
                   ),
                 ),
+                screenWidth > 1100
+                    ? Expanded(
+                        flex: 2,
+                        child: LeftPartViewBody(),
+                      )
+                    : SizedBox(),
               ],
             ),
             if (isOverlayVisible)

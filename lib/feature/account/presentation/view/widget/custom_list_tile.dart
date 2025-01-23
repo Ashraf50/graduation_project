@@ -28,7 +28,7 @@ class CustomListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           onTap: onTap,
           child: Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: themeProvider.isDarkTheme
                   ? AppColors.widgetColorDark
@@ -38,31 +38,37 @@ class CustomListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      image,
-                      height: 25,
-                      colorFilter: ColorFilter.mode(
-                        themeProvider.isDarkTheme
-                            ? AppColors.white
-                            : AppColors.black,
-                        BlendMode.srcIn,
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        image,
+                        height: 25,
+                        colorFilter: ColorFilter.mode(
+                          themeProvider.isDarkTheme
+                              ? AppColors.white
+                              : AppColors.black,
+                          BlendMode.srcIn,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      title,
-                      style: AppStyles.textStyle18black,
-                    )
-                  ],
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: AppStyles.textStyle18black,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: AppColors.grey,
-                )
+                ),
               ],
             ),
           ),
