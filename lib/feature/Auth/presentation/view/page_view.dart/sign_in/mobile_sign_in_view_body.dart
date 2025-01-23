@@ -13,6 +13,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/check_a
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/role_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -34,6 +35,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
   final formKey = GlobalKey<FormState>();
   bool visibility = true;
   bool isLoading = false;
+  String selectedRole = 'user';
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,30 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                 key: formKey,
                 child: ListView(
                   children: [
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RoleButton(
+                          selectedRole: selectedRole,
+                          title: 'user',
+                          onTap: () {
+                            setState(() {
+                              selectedRole = 'user';
+                            });
+                          },
+                        ),
+                        RoleButton(
+                          selectedRole: selectedRole,
+                          title: 'LandLord',
+                          onTap: () {
+                            setState(() {
+                              selectedRole = 'LandLord';
+                            });
+                          },
+                        )
+                      ],
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       S.of(context).email,
@@ -160,19 +186,21 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                       buttonColor: AppColors.primaryColor,
                       title: S.of(context).login,
                       onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(LoginEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          ));
-                        } else {
-                          SnackbarHelper.showCustomSnackbar(
-                            context: context,
-                            title: S.of(context).warning,
-                            message: S.of(context).check_email_or_pass,
-                            contentType: ContentType.help,
-                          );
-                        }
+                        if (selectedRole == 'user') {
+                          if (formKey.currentState!.validate()) {
+                            BlocProvider.of<AuthBloc>(context).add(LoginEvent(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ));
+                          } else {
+                            SnackbarHelper.showCustomSnackbar(
+                              context: context,
+                              title: S.of(context).warning,
+                              message: S.of(context).check_email_or_pass,
+                              contentType: ContentType.help,
+                            );
+                          }
+                        } else {}
                       },
                       textColor: AppColors.white,
                       width: double.infinity,
