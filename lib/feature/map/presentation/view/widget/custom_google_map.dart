@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +29,6 @@ class CustomGoogleMap extends StatefulWidget {
 class CustomGoogleMapState extends State<CustomGoogleMap> {
   final TextEditingController searchController = TextEditingController();
   late GoogleMapController? mapController;
-  Timer? debounce;
   bool isSelected = false;
   late PlacesModel selectedPlace;
   @override
