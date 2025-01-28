@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/home/presentation/view/widget/decoration_container.dart';
+import 'package:graduation_project/core/widget/decoration_container.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/post_item.dart';
 
 class AllPostsListView extends StatelessWidget {

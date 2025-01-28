@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'widget/serviece_view_body.dart';
+import 'widget/service_view_body.dart';
 
 class ServicesView extends StatelessWidget {
   const ServicesView({super.key});

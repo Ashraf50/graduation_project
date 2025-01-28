@@ -1389,6 +1389,36 @@ class S {
       args: [],
     );
   }
+
+  /// `pharmacies`
+  String get pharmacy {
+    return Intl.message(
+      'pharmacies',
+      name: 'pharmacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Working Hour`
+  String get working_hour {
+    return Intl.message(
+      'Working Hour',
+      name: 'working_hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `M`
+  String get m {
+    return Intl.message(
+      'M',
+      name: 'm',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

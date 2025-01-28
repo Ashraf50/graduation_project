@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/constant/app_style.dart';
 import '../../../../../generated/l10n.dart';
 

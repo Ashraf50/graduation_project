@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/feature/services/data/repo/services_repo_impl.dart';
 import 'package:graduation_project/feature/services/presentation/view/widget/service_item.dart';
 import 'package:graduation_project/feature/services/presentation/view_model/cubit/services_cubit.dart';
 import '../../../../../core/widget/decoration_container.dart';
+import '../../../data/repo/services_repo_impl.dart';
 
-class RestaurantListView extends StatelessWidget {
-  const RestaurantListView({super.key});
+class PharmaciesListView extends StatelessWidget {
+  const PharmaciesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DecorationContainer(
       widget: BlocProvider(
         create: (context) =>
-            ServicesCubit(ServicesRepoImpl())..fetchServices('restaurant'),
+            ServicesCubit(ServicesRepoImpl())..fetchServices('pharmacy'),
         child: BlocBuilder<ServicesCubit, ServicesState>(
           builder: (context, state) {
             if (state is ServicesLoading) {
