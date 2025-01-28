@@ -123,5 +123,9 @@
     "description": "الوصف",
     "phone": "رقم الهاتف",
     "valid_phone": "ادخل رقم هاتف صالحًا",
-    "services": "الخدمات"
+    "services": "الخدمات",
+    "restaurants": "مطاعم",
+    "cafes": "مقاهي",
+    "hospitals": "مستشفيات",
+    "banks": "بنوك"
 }

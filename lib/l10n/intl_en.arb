@@ -123,5 +123,9 @@
     "description": "Description",
     "phone": "Phone Number",
     "valid_phone": "Enter a valid phone number",
-    "services": "Services"
+    "services": "Services",
+    "restaurants": "Restaurants",
+    "cafes": "Cafes",
+    "hospitals": "Hospitals",
+    "banks": "Banks"
 }

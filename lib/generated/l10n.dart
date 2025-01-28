@@ -1019,6 +1019,26 @@ class S {
   String get services {
     return Intl.message('Services', name: 'services', desc: '', args: []);
   }
+
+  /// `Restaurants`
+  String get restaurants {
+    return Intl.message('Restaurants', name: 'restaurants', desc: '', args: []);
+  }
+
+  /// `Cafes`
+  String get cafes {
+    return Intl.message('Cafes', name: 'cafes', desc: '', args: []);
+  }
+
+  /// `Hospitals`
+  String get hospitals {
+    return Intl.message('Hospitals', name: 'hospitals', desc: '', args: []);
+  }
+
+  /// `Banks`
+  String get banks {
+    return Intl.message('Banks', name: 'banks', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

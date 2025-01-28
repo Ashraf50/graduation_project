@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "apartment": MessageLookupByLibrary.simpleMessage("شقق"),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "banks": MessageLookupByLibrary.simpleMessage("بنوك"),
+    "cafes": MessageLookupByLibrary.simpleMessage("مقاهي"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "category": MessageLookupByLibrary.simpleMessage("الفئة"),
     "chat": MessageLookupByLibrary.simpleMessage("المحادثات"),
@@ -87,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forget_password": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
     "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "hospitals": MessageLookupByLibrary.simpleMessage("مستشفيات"),
     "is_opened": MessageLookupByLibrary.simpleMessage("مفتوح أم لا"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "location_access": MessageLookupByLibrary.simpleMessage(
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_pass": MessageLookupByLibrary.simpleMessage(
       "اعاده تعيين كلمة المرور",
     ),
+    "restaurants": MessageLookupByLibrary.simpleMessage("مطاعم"),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "room": MessageLookupByLibrary.simpleMessage("غرف"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
