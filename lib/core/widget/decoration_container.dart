@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:provider/provider.dart';
-import '../../../../../core/constant/app_theme.dart';
+import '../constant/app_theme.dart';
 
 class DecorationContainer extends StatelessWidget {
   final Widget widget;

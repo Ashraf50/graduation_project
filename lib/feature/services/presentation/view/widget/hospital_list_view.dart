@@ -3,17 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/services/data/repo/services_repo_impl.dart';
 import 'package:graduation_project/feature/services/presentation/view/widget/service_item.dart';
 import 'package:graduation_project/feature/services/presentation/view_model/cubit/services_cubit.dart';
+
 import '../../../../../core/widget/decoration_container.dart';
 
-class RestaurantListView extends StatelessWidget {
-  const RestaurantListView({super.key});
+class HospitalsListView extends StatelessWidget {
+  const HospitalsListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DecorationContainer(
       widget: BlocProvider(
         create: (context) =>
-            ServicesCubit(ServicesRepoImpl())..fetchServices('restaurant'),
+            ServicesCubit(ServicesRepoImpl())..fetchServices('hospital'),
         child: BlocBuilder<ServicesCubit, ServicesState>(
           builder: (context, state) {
             if (state is ServicesLoading) {
@@ -44,3 +45,4 @@ class RestaurantListView extends StatelessWidget {
     );
   }
 }
+

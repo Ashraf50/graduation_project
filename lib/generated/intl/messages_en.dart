@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Location access permission has not been granted."),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "m": MessageLookupByLibrary.simpleMessage("M"),
         "map": MessageLookupByLibrary.simpleMessage("Map"),
         "my_profile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -110,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "password_not_match":
             MessageLookupByLibrary.simpleMessage("The password does not match"),
+        "pharmacy": MessageLookupByLibrary.simpleMessage("pharmacies"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "please_enter_your_email":
             MessageLookupByLibrary.simpleMessage("Please enter your email"),
@@ -207,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You cannot leave the field value empty"),
         "view": MessageLookupByLibrary.simpleMessage("View"),
         "warning": MessageLookupByLibrary.simpleMessage("warning"),
+        "working_hour": MessageLookupByLibrary.simpleMessage("Working Hour"),
         "www": MessageLookupByLibrary.simpleMessage("WWW")
       };
 }

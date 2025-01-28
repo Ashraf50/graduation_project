@@ -1,4 +1,4 @@
-class ServiesModel {
+class ServicesModel {
 	int? sid;
 	int? id;
 	String? name;
@@ -11,7 +11,7 @@ class ServiesModel {
 	dynamic distanceKm;
 	dynamic distanceMeters;
 
-	ServiesModel({
+	ServicesModel({
 		this.sid, 
 		this.id, 
 		this.name, 
@@ -25,7 +25,7 @@ class ServiesModel {
 		this.distanceMeters, 
 	});
 
-	factory ServiesModel.fromJson(Map<String, dynamic> json) => ServiesModel(
+	factory ServicesModel.fromJson(Map<String, dynamic> json) => ServicesModel(
 				sid: json['Sid'] as int?,
 				id: json['id'] as int?,
 				name: json['name'] as String?,

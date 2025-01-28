@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "لم يتم منح إذن الوصول إلى الموقع."),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "m": MessageLookupByLibrary.simpleMessage("م"),
         "map": MessageLookupByLibrary.simpleMessage("الخريطه"),
         "my_profile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
@@ -113,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_not_match":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
+        "pharmacy": MessageLookupByLibrary.simpleMessage("صيدليات"),
         "phone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "please_enter_your_email": MessageLookupByLibrary.simpleMessage(
             "من فضلك ادخل بريدك الالكتروني"),
@@ -207,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا تستطيع ترك قيمه الحقل خاليه"),
         "view": MessageLookupByLibrary.simpleMessage("عرض"),
         "warning": MessageLookupByLibrary.simpleMessage("تحذير"),
+        "working_hour": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
         "www": MessageLookupByLibrary.simpleMessage("الموقع الإلكتروني")
       };
 }

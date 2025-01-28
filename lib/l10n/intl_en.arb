@@ -132,6 +132,9 @@
     "landlord":"LandLord",
     "complete_register":"complete Registration",
     "upload_front":"Upload Front ID Card Image",
-    "upload_back":"Upload Back ID Card Image"
+    "upload_back":"Upload Back ID Card Image",
+    "pharmacy":"pharmacies",
+    "working_hour":"Working Hour",
+    "m":"M"
 }
 
