@@ -123,17 +123,14 @@
     "description": "الوصف",
     "phone": "رقم الهاتف",
     "valid_phone": "ادخل رقم هاتف صالحًا",
-
     "services": "الخدمات",
     "restaurants": "مطاعم",
     "cafes": "مقاهي",
     "hospitals": "مستشفيات",
-    "banks": "بنوك"
-
+    "banks": "بنوك",
     "user": "مستخدم",
     "landlord": "مالك العقار",
     "complete_register": "إكمال التسجيل",
     "upload_front": "تحميل صورة الوجه لبطاقة الهوية",
     "upload_back": "تحميل صورة الخلف لبطاقة الهوية"
-
 }

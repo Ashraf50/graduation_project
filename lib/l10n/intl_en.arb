@@ -127,9 +127,7 @@
     "restaurants": "Restaurants",
     "cafes": "Cafes",
     "hospitals": "Hospitals",
-    "banks": "Banks"
-}
-
+    "banks": "Banks",
     "user": "User",
     "landlord":"LandLord",
     "complete_register":"complete Registration",
