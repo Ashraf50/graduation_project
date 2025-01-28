@@ -22,7 +22,7 @@ class RoleButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 50),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
         decoration: BoxDecoration(
           color: selectedRole == title
               ? AppColors.primaryColor

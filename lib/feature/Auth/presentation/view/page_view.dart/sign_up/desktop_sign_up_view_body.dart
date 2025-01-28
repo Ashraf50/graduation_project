@@ -192,6 +192,7 @@ class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
                               username: usernameController.text,
                               email: emailController.text,
                               password: passwordController.text,
+                              phone: phoneController.text,
                             ),
                           );
                         } else {

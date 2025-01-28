@@ -14,6 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           username: event.username,
           email: event.email,
           password: event.password,
+          phone: event.phone,
         );
         if (result['status'] == false) {
           emit(RegisterFailure(errMessage: result['message']));
