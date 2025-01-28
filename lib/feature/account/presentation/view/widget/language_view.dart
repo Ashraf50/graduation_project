@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
-import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
-import 'package:graduation_project/feature/account/presentation/view_model/language_bloc/language_bloc.dart';
-import 'package:graduation_project/generated/l10n.dart';
+import '../../../../../core/widget/custom_app_bar.dart';
+import '../../../../../generated/l10n.dart';
+import '../../view_model/language_bloc/language_bloc.dart';
 
 class LanguageView extends StatefulWidget {
   const LanguageView({super.key});
@@ -14,7 +14,17 @@ class LanguageView extends StatefulWidget {
 }
 
 class _LanguageViewState extends State<LanguageView> {
-  String? _selectedLanguage; // Store the selected language
+  String? _selectedLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedLanguage = BlocProvider.of<LanguageBloc>(context).state
+            is AppChangeLanguage
+        ? (BlocProvider.of<LanguageBloc>(context).state as AppChangeLanguage)
+            .langCode
+        : null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,40 +32,41 @@ class _LanguageViewState extends State<LanguageView> {
       appBar: CustomAppBar(title: S.of(context).language),
       body: ListView(
         children: [
-          SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 15),
           ListTile(
             title: Text(
               S.of(context).arabic,
               style: AppStyles.textStyle18black,
             ),
-            leading: Radio<String>(
-              value: 'Arabic',
-              groupValue: _selectedLanguage,
-              onChanged: (String? value) {
-                setState(() {
-                  _selectedLanguage = value;
-                });
-                BlocProvider.of<LanguageBloc>(context)
-                    .add(ArabicLanguageEvent());
-              },
+            leading: Icon(
+              _selectedLanguage == 'ar'
+                  ? Icons.check_circle
+                  : Icons.radio_button_unchecked,
+              color: _selectedLanguage == 'ar' ? Colors.green : null,
             ),
+            onTap: () {
+              setState(() {
+                _selectedLanguage = 'ar';
+              });
+              BlocProvider.of<LanguageBloc>(context).add(ArabicLanguageEvent());
+            },
           ),
           ListTile(
             title:
                 Text(S.of(context).english, style: AppStyles.textStyle18black),
-            leading: Radio<String>(
-              value: 'English',
-              groupValue: _selectedLanguage,
-              onChanged: (String? value) {
-                setState(() {
-                  _selectedLanguage = value;
-                });
-                BlocProvider.of<LanguageBloc>(context)
-                    .add(EnglishLanguageEvent());
-              },
+            leading: Icon(
+              _selectedLanguage == 'en'
+                  ? Icons.check_circle
+                  : Icons.radio_button_unchecked,
+              color: _selectedLanguage == 'en' ? Colors.green : null,
             ),
+            onTap: () {
+              setState(() {
+                _selectedLanguage = 'en';
+              });
+              BlocProvider.of<LanguageBloc>(context)
+                  .add(EnglishLanguageEvent());
+            },
           ),
         ],
       ),

@@ -3,6 +3,7 @@ abstract class AuthRepo {
     required String username,
     required String email,
     required String password,
+    required String phone,
   });
   Future<Map<String, dynamic>> login({
     required String email,

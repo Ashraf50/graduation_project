@@ -14,11 +14,13 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
     required String password,
     required String username,
+    required String phone,
   }) async {
     final response = await apiHelper.post('${AppStrings.baseUrl}/register', {
       'name': username,
       'email': email,
       'password': password,
+      'phone':phone,
     });
     return response.data;
   }

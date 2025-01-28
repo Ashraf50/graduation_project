@@ -129,3 +129,11 @@
     "hospitals": "Hospitals",
     "banks": "Banks"
 }
+
+    "user": "User",
+    "landlord":"LandLord",
+    "complete_register":"complete Registration",
+    "upload_front":"Upload Front ID Card Image",
+    "upload_back":"Upload Back ID Card Image"
+}
+

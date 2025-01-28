@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
 import 'package:graduation_project/feature/Auth/data/repo/auth_repo_impl.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
           return MaterialApp.router(
+            builder: FlutterSmartDialog.init(),
             routerConfig: appRouter.router,
             debugShowCheckedModeBanner: false,
             theme: themeProvider.getThemeData,

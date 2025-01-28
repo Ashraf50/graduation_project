@@ -11,4 +11,5 @@ class AppColors {
   static const scaffoldColorDark = Color(0xff1e1e1e);
   static const chatBubbleFriend = Color(0xffE4E4E4);
   static const chatBubble = Color(0xffD0ECE8);
+  static const toastColor = Colors.green;
 }

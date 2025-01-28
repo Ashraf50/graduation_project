@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/helper/responsive_manager.dart';
 import 'package:graduation_project/core/widget/bottom_bar.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/page_view.dart/sign_up/complete_registeration.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
@@ -44,6 +45,10 @@ class AppRouter {
       GoRoute(
         path: '/sign_up',
         builder: (context, state) => const ResponsiveSignUp(),
+      ),
+      GoRoute(
+        path: '/complete_signUp',
+        builder: (context, state) => const CompleteRegistration(),
       ),
       GoRoute(
         path: '/forget_pass',
