@@ -53,7 +53,7 @@ class PlaceDetails extends StatelessWidget {
             ),
             CustomWidget(
               icon: Icons.category_outlined,
-              title: '${S.of(context).category}: ',
+              title: '${S.of(context).services}: ',
               subTitle: place.categories?[0].name ?? 'UnKnown',
             ),
             CustomWidget(

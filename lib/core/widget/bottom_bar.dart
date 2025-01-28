@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
-import 'package:graduation_project/feature/category/presentation/view/category_view.dart';
+import 'package:graduation_project/feature/services/presentation/view/services_view.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
 import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
@@ -23,7 +23,7 @@ class _BottomBarState extends State<BottomBar> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    const CategoryView(),
+    const ServicesView(),
     const FavoriteView(),
     const ChatView(),
     const AccountView(),
@@ -54,7 +54,7 @@ class _BottomBarState extends State<BottomBar> {
           _buildBottomBarItem(
             iconPath: 'assets/img/category.svg',
             activeIconPath: 'assets/img/active_category.svg',
-            title: S.of(context).category,
+            title: S.of(context).services,
             isDarkTheme: isDarkTheme,
           ),
           _buildBottomBarItem(

@@ -70,4 +70,9 @@ class AppStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle textStyle24WhiteBold = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 }
