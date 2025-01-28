@@ -22,7 +22,7 @@ class MapRepoImpl implements MapRepo {
         queryParameters: {
           'q': query,
           'at': '$lat,$long',
-          'apiKey': AppStrings.apiKey,
+          'apiKey': AppStrings.hereApiKey,
         },
       );
       final data = response.data;

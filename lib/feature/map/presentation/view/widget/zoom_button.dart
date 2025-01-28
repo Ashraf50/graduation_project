@@ -5,11 +5,12 @@ class ZoomButton extends StatelessWidget {
   final void Function() onTap;
   final IconData icon;
   final double posButton;
-  const ZoomButton(
-      {super.key,
-      required this.onTap,
-      required this.icon,
-      required this.posButton});
+  const ZoomButton({
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.posButton,
+  });
 
   @override
   Widget build(BuildContext context) {
