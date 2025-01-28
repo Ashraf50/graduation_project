@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
@@ -12,7 +13,6 @@ import 'package:graduation_project/feature/map/presentation/view/widget/error_di
 import 'package:graduation_project/feature/map/presentation/view/widget/place_details.dart';
 import 'package:graduation_project/feature/map/presentation/view_model/cubit/suggestion_places_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/bloc/map_bloc.dart';
 import '../../view_model/bloc/map_event.dart';
@@ -39,13 +39,9 @@ class CustomGoogleMapState extends State<CustomGoogleMap> {
       child: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           if (state is MapLoading) {
-            return Center(
-              child: LoadingAnimationWidget.fourRotatingDots(
-                color: AppColors.primaryColor,
-                size: 100,
-              ),
-            );
+            SmartDialog.showLoading();
           } else if (state is MapLoadingSuccess) {
+            SmartDialog.dismiss();
             return Stack(
               clipBehavior: Clip.none,
               children: [
@@ -140,9 +136,8 @@ class CustomGoogleMapState extends State<CustomGoogleMap> {
                                       },
                                       onSubmitted: (query) {
                                         if (query.isNotEmpty) {
-                                          context
-                                              .read<MapBloc>()
-                                              .add(SearchLocation(query: query));
+                                          context.read<MapBloc>().add(
+                                              SearchLocation(query: query));
                                         }
                                       },
                                     ),
@@ -220,6 +215,7 @@ class CustomGoogleMapState extends State<CustomGoogleMap> {
               ],
             );
           } else if (state is MapError) {
+            SmartDialog.dismiss();
             String errorMessage = '';
             switch (state.errMessage) {
               case 'enable_location':
