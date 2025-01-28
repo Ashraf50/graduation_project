@@ -1,11 +1,10 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/widget/custom_toast.dart';
 import 'package:graduation_project/core/widget/shimmer_loading.dart';
-import 'package:graduation_project/core/widget/custom_snack_bar.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:provider/provider.dart';
 import 'account_header_widget.dart';
@@ -26,11 +25,9 @@ class AccountHeaderContent extends StatelessWidget {
             },
           );
         } else if (state is UserDataFailure) {
-          SnackbarHelper.showCustomSnackbar(
-            context: context,
-            title: 'Failure!',
+          CustomToast.show(
             message: state.errMessage,
-            contentType: ContentType.failure,
+            backgroundColor: Colors.red,
           );
         } else if (state is UserDataLoading) {
           return ShimmerLoading(
