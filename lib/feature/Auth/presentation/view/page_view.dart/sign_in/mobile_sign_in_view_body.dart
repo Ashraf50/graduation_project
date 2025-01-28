@@ -32,7 +32,12 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool visibility = true;
-  String selectedRole = 'user';
+  late String selectedRole;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    selectedRole = S.of(context).user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,19 +80,19 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     children: [
                       RoleButton(
                         selectedRole: selectedRole,
-                        title: 'user',
+                        title: S.of(context).user,
                         onTap: () {
                           setState(() {
-                            selectedRole = 'user';
+                            selectedRole = S.of(context).user;
                           });
                         },
                       ),
                       RoleButton(
                         selectedRole: selectedRole,
-                        title: 'LandLord',
+                        title: S.of(context).landlord,
                         onTap: () {
                           setState(() {
-                            selectedRole = 'LandLord';
+                            selectedRole = S.of(context).landlord;
                           });
                         },
                       )
@@ -174,7 +179,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     buttonColor: AppColors.primaryColor,
                     title: S.of(context).login,
                     onTap: () {
-                      if (selectedRole == 'user') {
+                      if (selectedRole == S.of(context).user) {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(LoginEvent(
                             email: emailController.text,

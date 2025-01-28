@@ -122,5 +122,10 @@
     "facility": "Facilities",
     "description": "Description",
     "phone": "Phone Number",
-    "valid_phone": "Enter a valid phone number"
+    "valid_phone": "Enter a valid phone number",
+    "user": "User",
+    "landlord":"LandLord",
+    "complete_register":"complete Registration",
+    "upload_front":"Upload Front ID Card Image",
+    "upload_back":"Upload Back ID Card Image"
 }

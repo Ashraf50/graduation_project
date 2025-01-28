@@ -13,6 +13,7 @@ import 'package:graduation_project/feature/Auth/presentation/view/widget/check_a
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
+import 'package:graduation_project/feature/Auth/presentation/view/widget/role_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,12 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
   TextEditingController confirmPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool visibility = true;
+  late String selectedRole;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    selectedRole = S.of(context).user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +78,30 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RoleButton(
+                        selectedRole: selectedRole,
+                        title: S.of(context).user,
+                        onTap: () {
+                          setState(() {
+                            selectedRole = S.of(context).user;
+                          });
+                        },
+                      ),
+                      RoleButton(
+                        selectedRole: selectedRole,
+                        title: S.of(context).landlord,
+                        onTap: () {
+                          setState(() {
+                            selectedRole = S.of(context).landlord;
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
                   Text(
                     S.of(context).name,
                     style: AppStyles.textStyle18black,
@@ -199,18 +230,25 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                   CustomButton(
                     buttonColor: AppColors.primaryColor,
                     width: double.infinity,
-                    title: S.of(context).sign_up,
+                    title: selectedRole == S.of(context).user
+                        ? S.of(context).sign_up
+                        : S.of(context).next,
                     onTap: () {
                       if (passwordController.text ==
                           confirmPasswordController.text) {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            RegisterEvent(
-                              username: usernameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                          );
+                          if (selectedRole == S.of(context).user) {
+                            BlocProvider.of<AuthBloc>(context).add(
+                              RegisterEvent(
+                                username: usernameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneController.text,
+                              ),
+                            );
+                          } else {
+                            context.push('/complete_signUp');
+                          }
                         } else {
                           CustomToast.show(
                             message: S.of(context).check_email_or_pass,

@@ -1289,6 +1289,56 @@ class S {
       args: [],
     );
   }
+
+  /// `User`
+  String get user {
+    return Intl.message(
+      'User',
+      name: 'user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LandLord`
+  String get landlord {
+    return Intl.message(
+      'LandLord',
+      name: 'landlord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `complete Registration`
+  String get complete_register {
+    return Intl.message(
+      'complete Registration',
+      name: 'complete_register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Front ID Card Image`
+  String get upload_front {
+    return Intl.message(
+      'Upload Front ID Card Image',
+      name: 'upload_front',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Back ID Card Image`
+  String get upload_back {
+    return Intl.message(
+      'Upload Back ID Card Image',
+      name: 'upload_back',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

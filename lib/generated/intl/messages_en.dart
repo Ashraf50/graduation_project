@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_email_or_pass":
             MessageLookupByLibrary.simpleMessage("Check the email or password"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("Choose Photo"),
+        "complete_register":
+            MessageLookupByLibrary.simpleMessage("complete Registration"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -84,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest": MessageLookupByLibrary.simpleMessage("Continue as a Guest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "is_opened": MessageLookupByLibrary.simpleMessage("Is opened"),
+        "landlord": MessageLookupByLibrary.simpleMessage("LandLord"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "location_access": MessageLookupByLibrary.simpleMessage(
             "Location access permission has not been granted."),
@@ -184,6 +187,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Update Phone Number"),
         "update_username":
             MessageLookupByLibrary.simpleMessage("Update Username"),
+        "upload_back":
+            MessageLookupByLibrary.simpleMessage("Upload Back ID Card Image"),
+        "upload_front":
+            MessageLookupByLibrary.simpleMessage("Upload Front ID Card Image"),
+        "user": MessageLookupByLibrary.simpleMessage("User"),
         "valid_email":
             MessageLookupByLibrary.simpleMessage("Enter a valid email"),
         "valid_pass":

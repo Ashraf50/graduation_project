@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_email_or_pass": MessageLookupByLibrary.simpleMessage(
             "تحقق من البريد الإلكتروني أو كلمة المرور"),
         "choose_photo": MessageLookupByLibrary.simpleMessage("اختر صوره"),
+        "complete_register":
+            MessageLookupByLibrary.simpleMessage("إكمال التسجيل"),
         "confirm_pass":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
@@ -87,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest": MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "is_opened": MessageLookupByLibrary.simpleMessage("مفتوح أم لا"),
+        "landlord": MessageLookupByLibrary.simpleMessage("مالك العقار"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "location_access": MessageLookupByLibrary.simpleMessage(
             "لم يتم منح إذن الوصول إلى الموقع."),
@@ -184,6 +187,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تحديث رقم الهاتف"),
         "update_username":
             MessageLookupByLibrary.simpleMessage("تحديث اسم المستخدم"),
+        "upload_back": MessageLookupByLibrary.simpleMessage(
+            "تحميل صورة الخلف لبطاقة الهوية"),
+        "upload_front": MessageLookupByLibrary.simpleMessage(
+            "تحميل صورة الوجه لبطاقة الهوية"),
+        "user": MessageLookupByLibrary.simpleMessage("مستخدم"),
         "valid_email": MessageLookupByLibrary.simpleMessage(
             "أدخل بريدًا إلكترونيًا صالحًا"),
         "valid_pass": MessageLookupByLibrary.simpleMessage(
