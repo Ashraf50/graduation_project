@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widget/decoration_container.dart';
-import 'package:graduation_project/feature/services/presentation/view/widget/service_item.dart';
-
+import 'package:graduation_project/feature/services/presentation/view/widget/service_card.dart';
 import '../../../data/repo/services_repo_impl.dart';
 import '../../view_model/cubit/services_cubit.dart';
 
@@ -31,7 +30,7 @@ class CafesListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: ServiceItem(
+                    child: ServiceCard(
                       service: state.services[index],
                     ),
                   );

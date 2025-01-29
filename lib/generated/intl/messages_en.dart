@@ -104,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_pass_message2": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated Successfully"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "no_phone": MessageLookupByLibrary.simpleMessage("No Phone"),
+        "no_working": MessageLookupByLibrary.simpleMessage("No Working Hour"),
         "opening_h": MessageLookupByLibrary.simpleMessage("Opening hour"),
         "or": MessageLookupByLibrary.simpleMessage("     OR     "),
         "our_team": MessageLookupByLibrary.simpleMessage(

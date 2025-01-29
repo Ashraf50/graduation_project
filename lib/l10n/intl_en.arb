@@ -135,6 +135,8 @@
     "upload_back":"Upload Back ID Card Image",
     "pharmacy":"pharmacies",
     "working_hour":"Working Hour",
-    "m":"M"
+    "m":"M",
+    "no_phone":"No Phone",
+    "no_working":"No Working Hour"
 }
 
