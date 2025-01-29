@@ -6,7 +6,13 @@ import 'package:provider/provider.dart';
 import '../../../../../core/constant/app_theme.dart';
 
 class MapViewBody extends StatelessWidget {
-  const MapViewBody({super.key});
+  final double? lat;
+  final double? lng;
+  const MapViewBody({
+    super.key,
+    this.lat,
+    this.lng,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,10 @@ class MapViewBody extends StatelessWidget {
         backgroundColor: theme.isDarkTheme ? Color(0xff242F3E) : Colors.white,
         title: Text(S.of(context).map),
       ),
-      body: CustomGoogleMap(),
+      body: CustomGoogleMap(
+        lat: lat,
+        lng: lng,
+      ),
     );
   }
 }

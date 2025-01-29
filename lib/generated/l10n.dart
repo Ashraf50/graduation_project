@@ -1419,6 +1419,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No Phone`
+  String get no_phone {
+    return Intl.message(
+      'No Phone',
+      name: 'no_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Working Hour`
+  String get no_working {
+    return Intl.message(
+      'No Working Hour',
+      name: 'no_working',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

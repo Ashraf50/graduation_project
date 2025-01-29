@@ -107,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_pass_message2":
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "no_phone": MessageLookupByLibrary.simpleMessage("لا يوجد هاتف"),
+        "no_working": MessageLookupByLibrary.simpleMessage("لا يوجد ساعات عمل"),
         "opening_h": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
         "or": MessageLookupByLibrary.simpleMessage("     أو     "),
         "our_team": MessageLookupByLibrary.simpleMessage(

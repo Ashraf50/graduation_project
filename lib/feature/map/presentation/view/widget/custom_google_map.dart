@@ -20,7 +20,13 @@ import '../../view_model/bloc/map_state.dart';
 import 'zoom_button.dart';
 
 class CustomGoogleMap extends StatefulWidget {
-  const CustomGoogleMap({super.key});
+  final double? lat;
+  final double? lng;
+  const CustomGoogleMap({
+    super.key,
+    this.lat,
+    this.lng,
+  });
 
   @override
   CustomGoogleMapState createState() => CustomGoogleMapState();
@@ -31,6 +37,20 @@ class CustomGoogleMapState extends State<CustomGoogleMap> {
   late GoogleMapController? mapController;
   bool isSelected = false;
   late PlacesModel selectedPlace;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.lat != null && widget.lng != null) {
+        context.read<MapBloc>().add(CreateRoute(
+              endLat: widget.lat!,
+              endLon: widget.lng!,
+              means: 'foot',
+            ));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);

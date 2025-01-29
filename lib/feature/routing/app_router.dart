@@ -101,7 +101,13 @@ class AppRouter {
       ),
       GoRoute(
         path: '/map',
-        builder: (context, state) => const MapViewPage(),
+        builder: (context, state) {
+          final args = state.extra as Map<String, dynamic>?;
+          return MapViewPage(
+            lat: args?['lat'] as double?,
+            lng: args?['lng'] as double?,
+          );
+        },
       ),
     ],
   );
