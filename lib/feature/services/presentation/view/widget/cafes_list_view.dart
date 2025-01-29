@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widget/decoration_container.dart';
 import 'package:graduation_project/feature/services/presentation/view/widget/service_card.dart';
+import '../../../../../core/constant/app_colors.dart';
 import '../../../data/repo/services_repo_impl.dart';
 import '../../view_model/cubit/services_cubit.dart';
 
@@ -20,7 +21,9 @@ class CafesListView extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             } else if (state is ServicesFailure) {
               return Center(
-                child: Text(state.errMessage),
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                ),
               );
             } else if (state is ServicesSuccess) {
               return ListView.builder(

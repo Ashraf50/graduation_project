@@ -30,7 +30,7 @@ class ServicesViewBody extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(background: ServicesAppBar()),
                 bottom: TabBar(
                   isScrollable: true,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.zero,
                   labelColor: Colors.white,
                   labelStyle: AppStyles.textStyle20notBold,
                   indicatorColor: AppColors.white,
