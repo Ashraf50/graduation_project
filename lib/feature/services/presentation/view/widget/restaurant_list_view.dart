@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/feature/services/data/repo/services_repo_impl.dart';
 import 'package:graduation_project/feature/services/presentation/view/widget/service_card.dart';
 import 'package:graduation_project/feature/services/presentation/view_model/cubit/services_cubit.dart';
@@ -17,7 +18,11 @@ class RestaurantListView extends StatelessWidget {
         child: BlocBuilder<ServicesCubit, ServicesState>(
           builder: (context, state) {
             if (state is ServicesLoading) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                ),
+              );
             } else if (state is ServicesFailure) {
               return Center(
                 child: Text(state.errMessage),
