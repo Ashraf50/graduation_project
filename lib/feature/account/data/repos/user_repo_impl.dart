@@ -15,9 +15,9 @@ class UserRepoImpl implements UserRepo {
   }) async {
     try {
       final response = await apiHelper.get(
-        '${AppStrings.baseUrl}/profile',
+        '${AppStrings.userBaseUrl}/account/user',
         headers: {
-          'Authorization': token,
+          'Authorization': 'Bearer $token',
         },
       );
       if (response.statusCode == 200) {
@@ -26,6 +26,25 @@ class UserRepoImpl implements UserRepo {
         return Right(userData);
       } else {
         return Left(ServerFailure('failed to get data'));
+      }
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteAccount({required String token}) async {
+    try {
+      final response = await apiHelper.delete(
+        '${AppStrings.userBaseUrl}/account/deleteUser',
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+      if (response.statusCode == 200) {
+        return const Right('Account deleted successfully');
+      } else {
+        return Left(ServerFailure('Failed to delete account'));
       }
     } catch (e) {
       return Left(ServerFailure(e.toString()));

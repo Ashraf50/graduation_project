@@ -15,12 +15,15 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
     required String username,
     required String phone,
+    required String role,
   }) async {
-    final response = await apiHelper.post('${AppStrings.baseUrl}/register', {
-      'name': username,
+    final response =
+        await apiHelper.post('${AppStrings.userBaseUrl}/account/register', {
+      'username': username,
       'email': email,
       'password': password,
-      'phone':phone,
+      'phone': phone,
+      'role': role,
     });
     return response.data;
   }
@@ -30,7 +33,8 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
     required String password,
   }) async {
-    final response = await apiHelper.post('${AppStrings.baseUrl}/login', {
+    final response =
+        await apiHelper.post('${AppStrings.userBaseUrl}/account/login', {
       'email': email,
       'password': password,
     });

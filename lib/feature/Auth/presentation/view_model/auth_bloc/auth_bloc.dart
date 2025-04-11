@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           email: event.email,
           password: event.password,
           phone: event.phone,
+          role: event.role,
         );
         if (result['status'] == false) {
           emit(RegisterFailure(errMessage: result['message']));
@@ -30,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (result['status'] == false) {
           emit(LoginFailure(errMessage: result['message']));
         } else if (result['status'] == true) {
-          final token = result['data']['token'];
+          final token = result['user']['token'];
           emit(LoginSuccess(successMessage: result['message'], token: token));
           final FlutterSecureStorage secureStorage = FlutterSecureStorage();
           await secureStorage.write(

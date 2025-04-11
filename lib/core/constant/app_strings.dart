@@ -7,4 +7,6 @@ class AppStrings {
   static const chatBaseUrl = 'basics-chat-app.vercel.app';
   static const userBaseUrl = 'https://studenthub-95fddb226cee.herokuapp.com';
   static const landlordBaseUrl = '';
+  static const supaBaseUrl='https://uejvwclwhhxnlowcpcmj.supabase.co';
+  static const supaBaseAnonKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVlanZ3Y2x3aGh4bmxvd2NwY21qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUxNDI2NDEsImV4cCI6MjA1MDcxODY0MX0.LqYvC9y7ICB87H4zHj59CLhquV9yzOMuXIZ7w8wsBAs';
 }

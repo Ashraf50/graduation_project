@@ -28,13 +28,13 @@ class EditProfileView extends StatelessWidget {
             SizedBox(
               height: 24,
             ),
-            ProfilePhoto(image: userData.image),
+            ProfilePhoto(image: userData.profileImage!),
             SizedBox(
               height: 30,
             ),
             CustomUpdateButton(
               title: S.of(context).update_username,
-              subTitle: userData.name,
+              subTitle: userData.username,
               imageIcon: 'assets/img/id_card.svg',
               icon: Icon(Icons.edit),
               onPressed: () {},

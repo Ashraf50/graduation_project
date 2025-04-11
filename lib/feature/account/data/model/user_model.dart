@@ -1,53 +1,65 @@
 class UserModel {
-  bool? status;
-  dynamic message;
-  int id;
-  String name;
+  String id;
+  String username;
   String email;
-  String phone;
-  String image;
-  int? points;
-  int? credit;
+  dynamic phone;
+  dynamic address;
+  String password;
+  String role;
+  DateTime createdAt;
+  String? profileImage;
   String token;
+  bool status;
+  String message;
+
   UserModel({
-    this.status,
-    this.message,
     required this.id,
-    required this.name,
+    required this.username,
     required this.email,
-    required this.phone,
-    required this.image,
-    this.points,
-    this.credit,
+    this.phone,
+    this.address,
+    required this.password,
+    required this.role,
+    required this.createdAt,
+    this.profileImage,
     required this.token,
+    required this.status,
+    required this.message,
   });
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    var data = json['data'];
+    final userData = json['user'] as Map<String, dynamic>?;
+
     return UserModel(
-      status: json['status'] as bool?,
+      id: userData?['id'],
+      username: userData?['username'],
+      email: userData?['email'],
+      phone: userData?['phone'],
+      address: userData?['address'],
+      password: userData?['password'],
+      role: userData?['role'],
+      createdAt: DateTime.parse(userData!['createdAt']),
+      profileImage: userData['profileImage'] as String?,
+      token: userData['token'],
+      status: json['status'],
       message: json['message'],
-      id: data['id'] as int,
-      name: data['name'] as String,
-      email: data['email'] as String,
-      phone: data['phone'] as String,
-      image: data['image'] as String,
-      points: data['points'] as int?,
-      credit: data['credit'] as int?,
-      token: data['token'] as String,
     );
   }
+
   Map<String, dynamic> toJson() => {
-        'status': status,
-        'message': message,
-        'data': {
+        'user': {
           'id': id,
-          'name': name,
+          'username': username,
           'email': email,
           'phone': phone,
-          'image': image,
-          'points': points,
-          'credit': credit,
+          'address': address,
+          'password': password,
+          'role': role,
+          'createdAt': createdAt.toIso8601String(),
+          'profileImage': profileImage,
           'token': token,
         },
+        'status': status,
+        'message': message,
       };
 }
