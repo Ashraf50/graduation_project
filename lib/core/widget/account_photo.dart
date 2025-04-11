@@ -25,7 +25,7 @@ class AccountPhoto extends StatelessWidget {
             },
             child: CircleAvatar(
               radius: 25,
-              backgroundImage: CachedNetworkImageProvider(state.userData.image),
+              backgroundImage: CachedNetworkImageProvider(state.userData.profileImage!),
             ),
           );
         } else if (state is UserDataFailure) {

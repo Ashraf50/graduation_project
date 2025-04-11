@@ -24,4 +24,16 @@ class ApiHelper {
       rethrow;
     }
   }
+
+  // DELETE method
+  Future<Response> delete(String url, {Map<String, String>? headers}) async {
+    try {
+      return await _dio.delete(
+        url,
+        options: Options(headers: headers),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

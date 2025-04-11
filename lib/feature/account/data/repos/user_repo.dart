@@ -6,4 +6,7 @@ abstract class UserRepo {
   Future<Either<Failure, UserModel>> fetchUserData({
     required String token,
   });
+  Future<Either<Failure, String>> deleteAccount({
+    required String token,
+  });
 }

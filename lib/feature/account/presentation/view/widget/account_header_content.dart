@@ -18,8 +18,8 @@ class AccountHeaderContent extends StatelessWidget {
       builder: (context, state) {
         if (state is UserDataSuccess) {
           return AccountHeaderWidget(
-            name: state.userData.name,
-            image: state.userData.image,
+            name: state.userData.username,
+            image: state.userData.profileImage!,
             onTap: () {
               context.push('/edit_profile', extra: state.userData);
             },

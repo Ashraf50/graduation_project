@@ -244,6 +244,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                                 email: emailController.text,
                                 password: passwordController.text,
                                 phone: phoneController.text,
+                                role: 'user',
                               ),
                             );
                           } else {
