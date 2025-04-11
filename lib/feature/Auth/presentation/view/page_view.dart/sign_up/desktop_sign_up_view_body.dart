@@ -189,11 +189,11 @@ class _DesktopSignUpViewBodyState extends State<DesktopSignUpViewBody> {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
                             RegisterEvent(
-                              username: usernameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                              phone: phoneController.text,
-                            ),
+                                username: usernameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneController.text,
+                                role: 'user'),
                           );
                         } else {
                           CustomToast.show(

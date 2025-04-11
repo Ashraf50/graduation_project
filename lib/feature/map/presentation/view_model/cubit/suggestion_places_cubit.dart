@@ -25,6 +25,7 @@ class SuggestionPlacesCubit extends Cubit<SuggestionPlacesState> {
       },
     );
   }
+
   void clearSuggestionPlaces() {
     emit(SuggestionPlacesSuccess(suggestionPlaces: []));
   }

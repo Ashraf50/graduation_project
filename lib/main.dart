@@ -7,10 +7,16 @@ import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/my_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'core/constant/app_strings.dart';
 import 'core/constant/function/get_token.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: AppStrings.supaBaseUrl,
+    anonKey: AppStrings.supaBaseAnonKey,
+  );
   sharedPreferences = await SharedPreferences.getInstance(); //save language
   SharedPreferences pref = await SharedPreferences.getInstance(); //save theme
   bool storedValue = pref.getBool('boolValue') ?? false;
@@ -29,4 +35,3 @@ void main() async {
     ),
   );
 }
-//
