@@ -6,6 +6,14 @@ abstract class Failure {
   Failure(this.errMessage);
 }
 
+class ServerError extends Failure {
+  ServerError(super.errMessage);
+}
+
+class NetworkError extends Failure {
+  NetworkError(super.errMessage);
+}
+
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);
 
