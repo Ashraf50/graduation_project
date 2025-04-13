@@ -35,4 +35,22 @@ class AuthUsecase {
       role: role,
     );
   }
+
+  Future<Either<Failure, String>> resetPassword({
+    required String email,
+  }) async {
+    return authRepositoryContract.resetPassword(email: email);
+  }
+
+  Future<Either<Failure, String>> verifyOtpAndUpdatePassword({
+    required String email,
+    required String token, // الكود اللي وصله عالإيميل
+    required String newPassword,
+  }) {
+    return authRepositoryContract.verifyOtpAndUpdatePassword(
+      email: email,
+      token: token,
+      newPassword: newPassword,
+    );
+  }
 }

@@ -144,6 +144,57 @@ class AuthSupabaseManager {
       ));
     }
   }
+
+  Future<Either<Failure, String>> resetPassword({
+    required String email,
+  }) async {
+    var connectivityResults = await Connectivity().checkConnectivity();
+    if (connectivityResults.contains(ConnectivityResult.mobile) ||
+        connectivityResults.contains(ConnectivityResult.wifi)) {
+      try {
+        await supabase.auth.resetPasswordForEmail(email);
+        return Right('Password reset email sent successfully!');
+      } on AuthException catch (e) {
+        return Left(ServerError(e.message));
+      } catch (err) {
+        return Left(ServerError(err.toString()));
+      }
+    } else {
+      return Left(NetworkError(
+        'Check your internet connection..!',
+      ));
+    }
+  }
+
+  Future<Either<Failure, String>> verifyOtpAndUpdatePassword({
+    required String email,
+    required String token, // الكود اللي وصله عالإيميل
+    required String newPassword,
+  }) async {
+    try {
+      // التحقق من OTP أولاً
+      final response = await supabase.auth.verifyOTP(
+        token: token,
+        type: OtpType.recovery,
+        email: email,
+      );
+
+      if (response.user == null) {
+        return Left(ServerError('Invalid OTP or email!'));
+      }
+
+      // تحديث كلمة المرور
+      await supabase.auth.updateUser(
+        UserAttributes(password: newPassword),
+      );
+
+      return Right('Password updated successfully.');
+    } on AuthException catch (e) {
+      return Left(ServerError(e.message));
+    } catch (err) {
+      return Left(ServerError(err.toString()));
+    }
+  }
 }
 
 enum TypeOfUser {

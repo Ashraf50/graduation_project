@@ -15,4 +15,12 @@ abstract class AuthRepositoryContract {
     required String email,
     required String role,
   });
+  Future<Either<Failure, String>> resetPassword({
+    required String email,
+  });
+  Future<Either<Failure, String>> verifyOtpAndUpdatePassword({
+    required String email,
+    required String token, // الكود اللي وصله عالإيميل
+    required String newPassword,
+  });
 }

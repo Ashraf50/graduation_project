@@ -16,7 +16,7 @@ class AuthSupabaseDataSourceImpl implements AuthRemoteDataSourceContract {
     required String email,
     required String role,
   }) async {
-    return await supabaseManager.login(
+    return supabaseManager.login(
       password: password,
       email: email,
       role: role,
@@ -31,11 +31,31 @@ class AuthSupabaseDataSourceImpl implements AuthRemoteDataSourceContract {
     required String phoneNo,
     required String role,
   }) async {
-    return await supabaseManager.register(
+    return supabaseManager.register(
         userName: userName,
         password: password,
         email: email,
         phoneNo: phoneNo,
         role: role);
+  }
+
+  @override
+  Future<Either<Failure, String>> resetPassword({
+    required String email,
+  }) async {
+    return supabaseManager.resetPassword(email: email);
+  }
+
+  @override
+  Future<Either<Failure, String>> verifyOtpAndUpdatePassword({
+    required String email,
+    required String token,
+    required String newPassword,
+  }) {
+    return supabaseManager.verifyOtpAndUpdatePassword(
+      email: email,
+      token: token,
+      newPassword: newPassword,
+    );
   }
 }

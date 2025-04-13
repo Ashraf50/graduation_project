@@ -16,9 +16,16 @@ class AuthViewModel extends Cubit<AuthStates> {
   var confirmationPasswordController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
+  var tokenController = TextEditingController();
   String selectedRole = TypeOfUser.User.name;
+
   void register() async {
     if (formKey.currentState!.validate()) {
+      if (selectedRole == 'مستخدم' || selectedRole == 'User') {
+        selectedRole = TypeOfUser.User.name;
+      } else {
+        selectedRole = TypeOfUser.LandLord.name;
+      }
       emit(RegisterStateLoading());
       var either = await authUseCase.register(
         userName: nameController.text,
@@ -37,6 +44,11 @@ class AuthViewModel extends Cubit<AuthStates> {
 
   void login() async {
     if (formKey.currentState!.validate()) {
+      if (selectedRole == 'مستخدم' || selectedRole == 'User') {
+        selectedRole = TypeOfUser.User.name;
+      } else {
+        selectedRole = TypeOfUser.LandLord.name;
+      }
       emit(LoginStateLoading());
       var either = await authUseCase.login(
         password: passwordController.text,
@@ -47,6 +59,34 @@ class AuthViewModel extends Cubit<AuthStates> {
         emit(LoginStateError(errorMessage: l.errMessage));
       }, (response) {
         emit(LoginStateSuccess(authResultEntity: response));
+      });
+    }
+  }
+
+  void resetPassword() async {
+    if (formKey.currentState!.validate()) {
+      emit(ResetPasswordStateLoading());
+      var either = await authUseCase.resetPassword(email: emailController.text);
+      either.fold((l) {
+        emit(ResetPasswordStateError(errMsg: l.errMessage));
+      }, (res) {
+        emit(ResetPasswordStateSucces(sucMsg: res));
+      });
+    }
+  }
+
+  void updatePassword() async {
+    if (formKey.currentState!.validate()) {
+      emit(UpdatePasswordStateLoading());
+      var either = await authUseCase.verifyOtpAndUpdatePassword(
+        email: emailController.text,
+        token: tokenController.text,
+        newPassword: passwordController.text,
+      );
+      either.fold((l) {
+        emit(UpdatePasswordStateError(errMsg: l.errMessage));
+      }, (msg) {
+        emit(UpdatePasswordStateSucces(sucMsg: msg));
       });
     }
   }

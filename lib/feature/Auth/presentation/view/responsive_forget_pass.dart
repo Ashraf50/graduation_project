@@ -21,7 +21,7 @@ class MobileForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MobileForgetPasswordViewBody();
+    return MobileForgetPasswordViewBody();
   }
 }
 
@@ -30,7 +30,7 @@ class TabletForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MobileForgetPasswordViewBody();
+    return MobileForgetPasswordViewBody();
   }
 }
 

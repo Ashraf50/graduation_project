@@ -33,4 +33,24 @@ class AuthRepositoryImpl implements AuthRepositoryContract {
       role: role,
     );
   }
+
+  @override
+  Future<Either<Failure, String>> resetPassword({
+    required String email,
+  }) async {
+    return authRemoteDataSourceContract.resetPassword(email: email);
+  }
+
+  @override
+  Future<Either<Failure, String>> verifyOtpAndUpdatePassword({
+    required String email,
+    required String token,
+    required String newPassword,
+  }) {
+    return authRemoteDataSourceContract.verifyOtpAndUpdatePassword(
+      email: email,
+      token: token,
+      newPassword: newPassword,
+    );
+  }
 }

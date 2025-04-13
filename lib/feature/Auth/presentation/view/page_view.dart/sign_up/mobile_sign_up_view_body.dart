@@ -20,6 +20,7 @@ import 'package:graduation_project/feature/Auth/presentation/view_model/auth_sta
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_view_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../../core/constant/app_theme.dart';
 
 class MobileSignUpViewBody extends StatefulWidget {
@@ -64,7 +65,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                     title: S.of(context).user,
                     onTap: () {
                       setState(() {
-                        authViewModel.selectedRole = TypeOfUser.User.name;
+                        authViewModel.selectedRole = S.of(context).user;
                       });
                     },
                   ),
@@ -73,7 +74,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                     title: S.of(context).landlord,
                     onTap: () {
                       setState(() {
-                        authViewModel.selectedRole = TypeOfUser.LandLord.name;
+                        authViewModel.selectedRole = S.of(context).landlord;
                       });
                     },
                   )
@@ -189,8 +190,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
 
                     // todo : show message
                     CustomToast.show(
-                      message: state.authResultEntity.user?.role ?? '',
-                      //  state.authResultEntity.user!.name ?? 'unknown',
+                      message: 'Confirm Your Email to Get Started.!',
                       alignment: Alignment.topCenter,
                       backgroundColor: AppColors.toastColor,
                     );
@@ -213,7 +213,7 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                     CustomToast.show(
                       message: state.errorMessage ?? '',
                       alignment: Alignment.topCenter,
-                      backgroundColor: AppColors.toastColor,
+                      backgroundColor: Colors.red,
                     );
                   }
                 },

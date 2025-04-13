@@ -169,8 +169,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
 
                     // todo : show message
                     CustomToast.show(
-                      message:
-                          "Welcome: ${state.authResultEntity.user?.role ?? ''}'${state.authResultEntity.user?.name ?? ''}",
+                      message: 'You’ve Signed In Successfully!',
                       //  state.authResultEntity.user!.name ?? 'unknown',
                       alignment: Alignment.bottomCenter,
                       backgroundColor: AppColors.toastColor,
@@ -195,7 +194,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     CustomToast.show(
                       message: state.errorMessage ?? '',
                       alignment: Alignment.center,
-                      backgroundColor: AppColors.toastColor,
+                      backgroundColor: Colors.red,
                     );
                   }
                 },
