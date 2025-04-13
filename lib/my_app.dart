@@ -4,8 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
-import 'package:graduation_project/feature/Auth/data/repo/auth_repo_impl.dart';
-import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/language_bloc/language_bloc.dart';
 import 'package:graduation_project/feature/routing/app_router.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -30,9 +28,6 @@ class MyApp extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => AuthBloc(AuthRepoImpl(ApiHelper())),
-        ),
         BlocProvider(
           create: (context) => LanguageBloc(),
         ),

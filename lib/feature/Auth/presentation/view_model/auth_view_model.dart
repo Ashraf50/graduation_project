@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/feature/Auth/datan/manager/auth_supabase_manager.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/domain/usecase/auth_usecase.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_states.dart';
 

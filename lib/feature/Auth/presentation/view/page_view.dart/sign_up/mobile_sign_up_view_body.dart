@@ -10,7 +10,7 @@ import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/core/widget/custom_toast.dart';
-import 'package:graduation_project/feature/Auth/datan/manager/auth_supabase_manager.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';

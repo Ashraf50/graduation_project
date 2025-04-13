@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
-import 'package:graduation_project/feature/Auth/datan/manager/auth_supabase_manager.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/domain/entity/auth_result_entity.dart';
 import 'package:graduation_project/feature/Auth/domain/repository/data_source/auth_remote_data_source_contract.dart';
 
