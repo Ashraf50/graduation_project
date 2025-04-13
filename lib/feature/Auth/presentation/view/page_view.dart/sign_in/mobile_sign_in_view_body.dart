@@ -5,16 +5,20 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/core/widget/custom_toast.dart';
+import 'package:graduation_project/feature/Auth/datan/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/role_button.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
+import 'package:graduation_project/feature/Auth/presentation/view_model/auth_states.dart';
+import 'package:graduation_project/feature/Auth/presentation/view_model/auth_view_model.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -28,222 +32,230 @@ class MobileSignInViewBody extends StatefulWidget {
 }
 
 class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
   bool visibility = true;
-  late String selectedRole;
+
+  AuthViewModel authViewModel = AuthViewModel(authUseCase: injectAuthUseCase());
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    selectedRole = S.of(context).user;
+    authViewModel.selectedRole = TypeOfUser.User.name;
   }
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final screenWidth = MediaQuery.sizeOf(context).width;
-    return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is LoginLoading) {
-          SmartDialog.showLoading();
-        } else if (state is LoginSuccess) {
-          context.read<UserDataCubit>().fetchUserData(state.token);
-          context.go('/bottomBar');
-          CustomToast.show(
-            message: state.successMessage,
-            alignment: Alignment.topCenter,
-            backgroundColor: AppColors.toastColor,
-          );
-          SmartDialog.dismiss();
-        } else if (state is LoginFailure) {
-          SmartDialog.dismiss();
-          CustomToast.show(
-            message: state.errMessage,
-            backgroundColor: Colors.red,
-          );
-        }
-      },
-      builder: (context, state) {
-        return CustomScaffold(
-          appBar: CustomAppBar(title: S.of(context).login),
-          body: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
-            child: Form(
-              key: formKey,
-              child: ListView(
+    return CustomScaffold(
+      appBar: CustomAppBar(title: S.of(context).login),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
+        child: Form(
+          key: authViewModel.formKey,
+          child: ListView(
+            children: [
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RoleButton(
-                        selectedRole: selectedRole,
-                        title: S.of(context).user,
-                        onTap: () {
-                          setState(() {
-                            selectedRole = S.of(context).user;
-                          });
-                        },
-                      ),
-                      RoleButton(
-                        selectedRole: selectedRole,
-                        title: S.of(context).landlord,
-                        onTap: () {
-                          setState(() {
-                            selectedRole = S.of(context).landlord;
-                          });
-                        },
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    S.of(context).email,
-                    style: AppStyles.textStyle18black,
-                  ),
-                  CustomTextfield(
-                    enableColor: themeProvider.isDarkTheme
-                        ? AppColors.widgetColorDark
-                        : Color(0xffBCB8B1),
-                    hintText: S.of(context).enter_email,
-                    obscureText: false,
-                    controller: emailController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      return value != null && !EmailValidator.validate(value)
-                          ? S.of(context).valid_email
-                          : null;
-                    },
-                  ),
-                  Text(
-                    S.of(context).password,
-                    style: AppStyles.textStyle18black,
-                  ),
-                  CustomTextfield(
-                    enableColor: themeProvider.isDarkTheme
-                        ? AppColors.widgetColorDark
-                        : Color(0xffBCB8B1),
-                    hintText: S.of(context).enter_password,
-                    obscureText: visibility,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          visibility = !visibility;
-                        });
-                      },
-                      icon: visibility
-                          ? const Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            )
-                          : const Icon(
-                              Icons.visibility,
-                              color: Colors.grey,
-                            ),
-                    ),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value!.length < 6) {
-                        return S.of(context).valid_pass;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        focusColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        onTap: () {
-                          context.push('/forget_pass');
-                        },
-                        child: Text(
-                          S.of(context).forget_pass,
-                          style: themeProvider.isDarkTheme
-                              ? AppStyles.textStyle18
-                              : AppStyles.textStyle18green,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomButton(
-                    buttonColor: AppColors.primaryColor,
-                    title: S.of(context).login,
+                  RoleButton(
+                    selectedRole: authViewModel.selectedRole,
+                    title: S.of(context).user,
                     onTap: () {
-                      if (selectedRole == S.of(context).user) {
-                        if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(LoginEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          ));
-                        } else {
-                          CustomToast.show(
-                            message: S.of(context).check_email_or_pass,
-                          );
-                        }
-                      } else {}
+                      authViewModel.selectedRole = S.of(context).user;
+
+                      setState(() {});
                     },
-                    textColor: AppColors.white,
-                    width: double.infinity,
                   ),
-                  CustomButton(
-                    buttonColor: themeProvider.isDarkTheme
-                        ? AppColors.scaffoldColorDark
-                        : AppColors.white,
-                    title: S.of(context).guest,
-                    width: double.infinity,
-                    textColor: themeProvider.isDarkTheme
-                        ? AppColors.white
-                        : AppColors.primaryColor,
+                  RoleButton(
+                    selectedRole: authViewModel.selectedRole,
+                    title: S.of(context).landlord,
                     onTap: () {
-                      context.push('/bottomBar');
+                      setState(() {
+                        authViewModel.selectedRole = S.of(context).landlord;
+                      });
                     },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  CheckedAccount(
-                    title: S.of(context).don_have_account,
-                    buttonTitle: S.of(context).sign_up,
-                    buttonOnTap: () {
-                      context.push('/sign_up');
-                    },
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  const OrDivide(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GoogleButton(
-                        image: 'assets/img/google.svg',
-                        onTap: () {},
-                      ),
-                      GoogleButton(
-                        image: 'assets/img/facebook.svg',
-                        onTap: () {},
-                      ),
-                    ],
                   )
                 ],
               ),
-            ),
+              const SizedBox(height: 20),
+              Text(
+                S.of(context).email,
+                style: AppStyles.textStyle18black,
+              ),
+              CustomTextfield(
+                enableColor: themeProvider.isDarkTheme
+                    ? AppColors.widgetColorDark
+                    : Color(0xffBCB8B1),
+                hintText: S.of(context).enter_email,
+                obscureText: false,
+                controller: authViewModel.emailController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  return value != null && !EmailValidator.validate(value)
+                      ? S.of(context).valid_email
+                      : null;
+                },
+              ),
+              Text(
+                S.of(context).password,
+                style: AppStyles.textStyle18black,
+              ),
+              CustomTextfield(
+                enableColor: themeProvider.isDarkTheme
+                    ? AppColors.widgetColorDark
+                    : Color(0xffBCB8B1),
+                hintText: S.of(context).enter_password,
+                obscureText: visibility,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      visibility = !visibility;
+                    });
+                  },
+                  icon: visibility
+                      ? const Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        )
+                      : const Icon(
+                          Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: authViewModel.passwordController,
+                validator: (value) {
+                  if (value!.length < 6) {
+                    return S.of(context).valid_pass;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    focusColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      context.push('/forget_pass');
+                    },
+                    child: Text(
+                      S.of(context).forget_pass,
+                      style: themeProvider.isDarkTheme
+                          ? AppStyles.textStyle18
+                          : AppStyles.textStyle18green,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              BlocListener<AuthViewModel, AuthStates>(
+                bloc: authViewModel,
+                listener: (context, state) {
+                  if (state is LoginStateLoading) {
+                    // todo : show loading
+
+                    SmartDialog.showLoading(
+                        useAnimation: true, alignment: Alignment.center);
+                  } else if (state is LoginStateSuccess) {
+                    // todo : hide loading
+                    SmartDialog.dismiss();
+
+                    // todo : show message
+                    CustomToast.show(
+                      message:
+                          "Welcome: ${state.authResultEntity.user?.role ?? ''}'${state.authResultEntity.user?.name ?? ''}",
+                      //  state.authResultEntity.user!.name ?? 'unknown',
+                      alignment: Alignment.bottomCenter,
+                      backgroundColor: AppColors.toastColor,
+                    );
+
+                    //todo: save token
+                    // SharedPreferenceUtils.saveData(
+                    //   key: 'token',
+                    //   value: state.authResultEntity.token,
+                    // );
+
+                    // todo: go to home page
+                    context.push('/bottomBar');
+
+                    // Navigator.of(context).pushNamed(HomeScreen.routeName);
+                  } else if (state is LoginStateError) {
+                    // todo : hide loading
+                    SmartDialog.dismiss();
+
+                    // todo : show error message
+                    print('error is ${state.errorMessage}');
+                    CustomToast.show(
+                      message: state.errorMessage ?? '',
+                      alignment: Alignment.center,
+                      backgroundColor: AppColors.toastColor,
+                    );
+                  }
+                },
+                child: CustomButton(
+                  buttonColor: AppColors.primaryColor,
+                  title: S.of(context).login,
+                  onTap: () {
+                    authViewModel.login();
+                  },
+                  textColor: AppColors.white,
+                  width: double.infinity,
+                ),
+              ),
+              CustomButton(
+                buttonColor: themeProvider.isDarkTheme
+                    ? AppColors.scaffoldColorDark
+                    : AppColors.white,
+                title: S.of(context).guest,
+                width: double.infinity,
+                textColor: themeProvider.isDarkTheme
+                    ? AppColors.white
+                    : AppColors.primaryColor,
+                onTap: () {
+                  context.push('/bottomBar');
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CheckedAccount(
+                title: S.of(context).don_have_account,
+                buttonTitle: S.of(context).sign_up,
+                buttonOnTap: () {
+                  context.push('/sign_up');
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const OrDivide(),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GoogleButton(
+                    image: 'assets/img/google.svg',
+                    onTap: () {},
+                  ),
+                  GoogleButton(
+                    image: 'assets/img/facebook.svg',
+                    onTap: () {},
+                  ),
+                ],
+              )
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
