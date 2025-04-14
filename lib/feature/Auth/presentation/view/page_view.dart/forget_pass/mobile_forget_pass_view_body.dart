@@ -20,7 +20,8 @@ import 'package:provider/provider.dart';
 
 class MobileForgetPasswordViewBody extends StatelessWidget {
   MobileForgetPasswordViewBody({super.key});
-  AuthViewModel authViewModel = AuthViewModel(authUseCase: injectAuthUseCase());
+  final AuthViewModel authViewModel =
+      AuthViewModel(authUseCase: injectAuthUseCase());
 
   @override
   Widget build(BuildContext context) {
