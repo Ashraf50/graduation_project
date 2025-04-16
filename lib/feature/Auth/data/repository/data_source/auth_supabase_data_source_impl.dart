@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
 import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
@@ -30,13 +32,21 @@ class AuthSupabaseDataSourceImpl implements AuthRemoteDataSourceContract {
     required String email,
     required String phoneNo,
     required String role,
+    String? backURL,
+    String? frontURL,
+    File? backFile,
+    File? frontFile,
   }) async {
     return supabaseManager.register(
         userName: userName,
         password: password,
         email: email,
         phoneNo: phoneNo,
-        role: role);
+        role: role,
+        backFile: backFile,
+        backURL: backURL,
+        frontFile: frontFile,
+        frontURL: frontURL);
   }
 
   @override

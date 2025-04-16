@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/core/widget/custom_app_bar.dart';
-import 'package:graduation_project/core/widget/custom_button.dart';
-import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
@@ -37,46 +34,39 @@ class CompleteRegistrationState extends State<CompleteRegistration> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.sizeOf(context).width;
+    // final screenWidth = MediaQuery.sizeOf(context).width;
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return CustomScaffold(
-      appBar: CustomAppBar(title: S.of(context).complete_register),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: screenWidth < 600 ? 16 : screenWidth * .15),
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              S.of(context).upload_front,
-              style: AppStyles.textStyle18black,
-            ),
-            buildImagePicker(
-              theme: themeProvider,
-              imageFile: frontImage,
-              onPickImage: () => _pickImage(isFront: true),
-            ),
-            SizedBox(height: 20),
-            Text(
-              S.of(context).upload_back,
-              style: AppStyles.textStyle18black,
-            ),
-            buildImagePicker(
-              theme: themeProvider,
-              imageFile: backImage,
-              onPickImage: () => _pickImage(isFront: false),
-            ),
-            SizedBox(height: 20),
-            CustomButton(
-              title: S.of(context).sign_up,
-              onTap: () {},
-              width: double.infinity,
-            ),
-          ],
-        ),
+    return SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            S.of(context).upload_front,
+            style: AppStyles.textStyle18black,
+          ),
+          buildImagePicker(
+            theme: themeProvider,
+            imageFile: frontImage,
+            onPickImage: () => _pickImage(isFront: true),
+          ),
+          SizedBox(height: 20),
+          Text(
+            S.of(context).upload_back,
+            style: AppStyles.textStyle18black,
+          ),
+          buildImagePicker(
+            theme: themeProvider,
+            imageFile: backImage,
+            onPickImage: () => _pickImage(isFront: false),
+          ),
+          SizedBox(
+            height: 30,
+          )
+        ],
       ),
     );
   }

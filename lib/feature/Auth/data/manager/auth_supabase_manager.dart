@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
@@ -78,11 +80,16 @@ class AuthSupabaseManager {
     required String email,
     required String phoneNo,
     required String role,
+    String? backURL,
+    String? frontURL,
+    File? backFile,
+    File? frontFile,
   }) async {
     var connectivityResults = await Connectivity().checkConnectivity();
     if (connectivityResults.contains(ConnectivityResult.mobile) ||
         connectivityResults.contains(ConnectivityResult.wifi)) {
       try {
+        print('internet is stable..');
         final response = await supabase.auth.signUp(
           password: password,
           email: email,
@@ -96,6 +103,7 @@ class AuthSupabaseManager {
         if (user == null) {
           return Left(ServerError('failed to register..!'));
         }
+        print('signup with email and passs is success');
         final table = role == TypeOfUser.User.name
             ? TypeOfUser.User
             : TypeOfUser.LandLord;
@@ -109,15 +117,85 @@ class AuthSupabaseManager {
         if (existingUser != null) {
           return Left(ServerError('email-already-registered-in-other-role..'));
         }
+        print('email is new and success');
+        String? frontImage;
+        String? backImage;
+        // todo: comment this line ... cause exception if it is already exist
+        // await supabase.storage.createBucket('landlord-cards');
+
+        if (role == TypeOfUser.LandLord.name) {
+          print('type: landlord');
+          if (frontURL != null &&
+              backURL != null &&
+              frontFile != null &&
+              backFile != null) {
+            print('full data is ok');
+            //todo: upload front image
+            try {
+              await supabase.storage
+                  .from('landlord-cards')
+                  .upload(frontURL, frontFile);
+              print('upload 1st image is done');
+              frontImage = supabase.storage
+                  .from('landlord-cards')
+                  .getPublicUrl(frontURL);
+              print('i got the url');
+            } catch (err) {
+              return Left(
+                ServerError('you must upload the first image of your card..'),
+              );
+            }
+
+            //todo: upload back image
+            try {
+              await supabase.storage
+                  .from('landlord-cards')
+                  .upload(backURL, backFile);
+              print('upload 2nd image is done');
+
+              backImage =
+                  supabase.storage.from('landlord-cards').getPublicUrl(backURL);
+              print('i got the url');
+            } catch (err) {
+              return Left(
+                ServerError('you must upload the second image of your card..'),
+              );
+            }
+          } else {
+            return Left(
+              ServerError('you must upload 2 images of your card..'),
+            );
+          }
+        }
+
         try {
-          await supabase.from(table.name).insert({
-            'id': user.id,
-            'username': user.userMetadata?['userName'] ?? userName,
-            'email': user.userMetadata?['email'] ?? email,
-            'phone': user.userMetadata?['phoneNo'] ?? phoneNo,
-            'password': user.userMetadata?['password'] ?? password,
-            'role': user.userMetadata?['role'] ?? role,
-          });
+          if (role == TypeOfUser.LandLord.name) {
+            print('type is landlord to insert table');
+            await supabase.from(table.name).insert({
+              'id': user.id,
+              'username': user.userMetadata?['userName'] ?? userName,
+              'email': user.userMetadata?['email'] ?? email,
+              'phone': user.userMetadata?['phoneNo'] ?? phoneNo,
+              'password': user.userMetadata?['password'] ?? password,
+              'role': user.userMetadata?['role'] ?? role,
+              'front_image': frontImage,
+              'back_image': backImage,
+            });
+            print('insert land table is done');
+          } else {
+            print('type is User to insert table');
+
+            await supabase.from(table.name).insert({
+              'id': user.id,
+              'username': user.userMetadata?['userName'] ?? userName,
+              'email': user.userMetadata?['email'] ?? email,
+              'phone': user.userMetadata?['phoneNo'] ?? phoneNo,
+              'password': user.userMetadata?['password'] ?? password,
+              'role': user.userMetadata?['role'] ?? role,
+            });
+            print('insert User table is done');
+          }
+          print('now i will return success -AuthResultEntity- ');
 
           return Right(
             AuthResultEntity(
@@ -127,6 +205,8 @@ class AuthSupabaseManager {
                 name: user.userMetadata?['userName'] ?? userName,
                 phone: user.userMetadata?['phoneNo'] ?? phoneNo,
                 role: user.userMetadata?['role'] ?? role,
+                frontURL: frontImage,
+                backURL: backImage,
               ),
             ),
           );

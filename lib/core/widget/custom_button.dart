@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           width: width,
-          height: 50,
+          height: 60,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: buttonColor,
@@ -35,11 +35,14 @@ class CustomButton extends StatelessWidget {
             ),
           ),
           child: Center(
-              child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 20,
-              color: textColor,
+              child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 20,
+                color: textColor,
+              ),
             ),
           )),
         ),
