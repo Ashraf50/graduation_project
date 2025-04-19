@@ -28,3 +28,27 @@ class RegisterStateError extends AuthStates {
   String? errorMessage;
   RegisterStateError({this.errorMessage});
 }
+
+class ResetPasswordStateLoading extends AuthStates {}
+
+class ResetPasswordStateError extends AuthStates {
+  String? errMsg;
+  ResetPasswordStateError({this.errMsg});
+}
+
+class ResetPasswordStateSucces extends AuthStates {
+  String? sucMsg;
+  ResetPasswordStateSucces({this.sucMsg});
+}
+
+class UpdatePasswordStateLoading extends AuthStates {}
+
+class UpdatePasswordStateError extends AuthStates {
+  String? errMsg;
+  UpdatePasswordStateError({this.errMsg});
+}
+
+class UpdatePasswordStateSucces extends AuthStates {
+  String? sucMsg;
+  UpdatePasswordStateSucces({this.sucMsg});
+}

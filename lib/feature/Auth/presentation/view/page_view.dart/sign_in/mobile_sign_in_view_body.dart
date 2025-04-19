@@ -5,21 +5,18 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/constant/shared_pref.dart';
 import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/core/widget/custom_toast.dart';
-import 'package:graduation_project/feature/Auth/datan/manager/auth_supabase_manager.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/check_account_widget.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/widget/google_button.dart';
-import 'package:graduation_project/feature/Auth/presentation/view/widget/or_divider.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/role_button.dart';
-import 'package:graduation_project/feature/Auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_states.dart';
 import 'package:graduation_project/feature/Auth/presentation/view_model/auth_view_model.dart';
-import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/constant/app_theme.dart';
@@ -169,18 +166,17 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
 
                     // todo : show message
                     CustomToast.show(
-                      message:
-                          "Welcome: ${state.authResultEntity.user?.role ?? ''}'${state.authResultEntity.user?.name ?? ''}",
+                      message: 'You’ve Signed In Successfully!',
                       //  state.authResultEntity.user!.name ?? 'unknown',
                       alignment: Alignment.bottomCenter,
                       backgroundColor: AppColors.toastColor,
                     );
 
                     //todo: save token
-                    // SharedPreferenceUtils.saveData(
-                    //   key: 'token',
-                    //   value: state.authResultEntity.token,
-                    // );
+                    SharedPreferenceUtils.saveData(
+                      key: 'token',
+                      value: state.authResultEntity.token,
+                    );
 
                     // todo: go to home page
                     context.push('/bottomBar');
@@ -195,7 +191,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     CustomToast.show(
                       message: state.errorMessage ?? '',
                       alignment: Alignment.center,
-                      backgroundColor: AppColors.toastColor,
+                      backgroundColor: Colors.red,
                     );
                   }
                 },
@@ -232,26 +228,6 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                   context.push('/sign_up');
                 },
               ),
-              const SizedBox(
-                height: 24,
-              ),
-              const OrDivide(),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GoogleButton(
-                    image: 'assets/img/google.svg',
-                    onTap: () {},
-                  ),
-                  GoogleButton(
-                    image: 'assets/img/facebook.svg',
-                    onTap: () {},
-                  ),
-                ],
-              )
             ],
           ),
         ),

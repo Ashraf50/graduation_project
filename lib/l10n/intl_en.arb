@@ -129,14 +129,15 @@
     "hospitals": "Hospitals",
     "banks": "Banks",
     "user": "User",
-    "landlord":"LandLord",
-    "complete_register":"complete Registration",
-    "upload_front":"Upload Front ID Card Image",
-    "upload_back":"Upload Back ID Card Image",
-    "pharmacy":"pharmacies",
-    "working_hour":"Working Hour",
-    "m":"M",
-    "no_phone":"No Phone",
-    "no_working":"No Working Hour"
+    "landlord": "LandLord",
+    "complete_register": "complete Registration",
+    "upload_front": "Upload Front ID Card Image",
+    "upload_back": "Upload Back ID Card Image",
+    "pharmacy": "pharmacies",
+    "working_hour": "Working Hour",
+    "m": "M",
+    "no_phone": "No Phone",
+    "no_working": "No Working Hour",
+    "active_account": "Confirm Your Email to Get Started.!",
+    "signin_compeleted": " You’ve Signed In Successfully!"
 }
-

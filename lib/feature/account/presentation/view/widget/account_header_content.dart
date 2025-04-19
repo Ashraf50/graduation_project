@@ -20,9 +20,7 @@ class AccountHeaderContent extends StatelessWidget {
           return AccountHeaderWidget(
             name: state.userData.username,
             image: state.userData.profileImage!,
-            onTap: () {
-              context.push('/edit_profile', extra: state.userData);
-            },
+            onTap: () {},
           );
         } else if (state is UserDataFailure) {
           CustomToast.show(
@@ -44,7 +42,9 @@ class AccountHeaderContent extends StatelessWidget {
           name: 'UnKnown',
           image:
               'https://scontent-hbe1-2.xx.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=0ePt_zi8Td0Q7kNvgFWky6D&_nc_zt=24&_nc_ht=scontent-hbe1-2.xx&_nc_gid=AHyqPshHV-j9m9B0673rWcp&oh=00_AYBdz-14TRBvB-7DyUWN-rxnO8y4ktQXW8bTItfpcVlInQ&oe=676C38BA',
-          onTap: () {},
+          onTap: () {
+            context.push('/edit_profile');
+          },
         );
       },
     );
