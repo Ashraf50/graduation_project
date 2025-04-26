@@ -27,8 +27,8 @@ class AppRouter {
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
     //initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
-    // initialLocation: '/sign_up',
-    initialLocation: '/dashboard',
+    initialLocation: '/sign_up',
+    //initialLocation: '/dashboard',
     routes: [
       GoRoute(
         path: '/onboard',
