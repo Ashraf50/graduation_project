@@ -1,7 +1,7 @@
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/error/failure.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
-import 'package:graduation_project/feature/account/data/repos/user_repo.dart';
+import 'package:graduation_project/feature/account/data/repository/user_repo.dart';
 import 'package:dartz/dartz.dart';
 import '../model/user_model.dart';
 

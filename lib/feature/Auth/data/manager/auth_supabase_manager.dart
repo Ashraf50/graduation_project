@@ -97,6 +97,7 @@ class AuthSupabaseManager {
             'role': role,
             'phoneNo': phoneNo,
             'userName': userName,
+            'imageProfile': null,
           },
         );
         final User? user = response.user;
