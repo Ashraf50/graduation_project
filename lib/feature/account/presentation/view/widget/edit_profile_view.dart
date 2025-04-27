@@ -187,38 +187,49 @@ class EditProfileView extends StatelessWidget {
                             TextButton(
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
-                                  await supabase.auth
-                                      .updateUser(
-                                    UserAttributes(
-                                      email: emailController.text,
-                                    ),
-                                  )
-                                      .then(
-                                    (value) async {
-                                      Navigator.pop(context);
-                                      context.go('/sign_in');
-                                      await supabase.auth.signOut();
-                                      await supabase.auth.refreshSession();
-                                      SharedPreferenceUtils.removeDate(
-                                          key: 'token');
-                                      CustomToast.show(
-                                        message:
-                                            'Updated successfully, Now, confirm your email.!',
-                                        alignment: Alignment.bottomCenter,
-                                        backgroundColor: AppColors.toastColor,
-                                      );
-                                    },
-                                  ).onError(
-                                    (error, stackTrace) {
-                                      print(error.toString());
-                                      Navigator.pop(context);
-                                      CustomToast.show(
-                                        message: error.toString(),
-                                        alignment: Alignment.bottomCenter,
-                                        backgroundColor: Colors.red,
-                                      );
-                                    },
-                                  );
+                                  try {
+                                    await supabase.auth
+                                        .updateUser(
+                                      UserAttributes(
+                                        email: emailController.text,
+                                      ),
+                                    )
+                                        .then(
+                                      (value) async {
+                                        await supabase.auth.signOut();
+                                        Navigator.pop(context);
+                                        context.go('/sign_in');
+
+                                        SharedPreferenceUtils.removeDate(
+                                            key: 'token');
+
+                                        CustomToast.show(
+                                          message:
+                                              'Updated successfully, Now, confirm your email.!',
+                                          alignment: Alignment.bottomCenter,
+                                          backgroundColor: AppColors.toastColor,
+                                        );
+                                      },
+                                    ).onError(
+                                      (error, stackTrace) {
+                                        print(
+                                            'error server: ${error.toString()}');
+                                        CustomToast.show(
+                                          message:
+                                              'check your internet connection.!',
+                                          alignment: Alignment.bottomCenter,
+                                          backgroundColor: Colors.red,
+                                        );
+                                      },
+                                    );
+                                  } catch (err) {
+                                    print('error catched ${err.toString()}');
+                                    CustomToast.show(
+                                      message: err.toString(),
+                                      alignment: Alignment.bottomCenter,
+                                      backgroundColor: Colors.red,
+                                    );
+                                  }
                                 }
                               },
                               child: Text(
