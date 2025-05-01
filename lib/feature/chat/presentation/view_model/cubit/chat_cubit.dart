@@ -1,0 +1,39 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/feature/chat/data/models/chat_model.dart';
+import 'package:graduation_project/feature/chat/data/models/message_model.dart';
+import 'package:graduation_project/feature/chat/data/repo/chat_repo_impl.dart';
+part 'chat_cubit_state.dart';
+
+class ChatCubit extends Cubit<ChatCubitState> {
+  ChatCubit(this.chatRepoImpl) : super(ChatCubitInitial());
+  final ChatRepoImpl chatRepoImpl;
+
+  getChats({required String userId}) async {
+    try {
+      emit(ChatCubitInitial());
+      List<ChatModel> chats = await chatRepoImpl.getChats(userId);
+      emit(GetChatsSuccess(chats));
+    } catch (e) {
+      emit(GetChatsFailed(e.toString()));
+    }
+  }
+
+  getMessages({required String user1Id, required String user2Id}) async {
+    try {
+      emit(ChatCubitInitial());
+      var data =
+          await chatRepoImpl.getMessages(user1Id: user1Id, user2Id: user2Id);
+      emit(GetMessagesSuccess(data));
+    } catch (e) {
+      emit(GetMessagesFailed(e.toString()));
+    }
+  }
+
+  // sendMessage(String message, String senderId, String receiverId) async {
+  //   try {
+  //     emit(GetMessagesSuccess());
+  //   } catch (e) {
+  //     emit(GetMessagesFailed(e.toString()));
+  //   }
+  // }
+}

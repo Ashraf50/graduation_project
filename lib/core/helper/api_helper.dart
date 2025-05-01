@@ -1,12 +1,14 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class ApiHelper {
   final Dio _dio = Dio();
 
   // POST method
-  Future<Response> post(String url, Map<String, dynamic> data) async {
+  Future<Response> post(String url, Map<String, dynamic> data,
+      {Map<String, dynamic>? query}) async {
     try {
-      var response = await _dio.post(url, data: data);
+      var response = await _dio.post(url, data: data, queryParameters: query);
       return response;
     } catch (e) {
       rethrow;

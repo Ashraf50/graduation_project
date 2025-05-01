@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/helper/api_helper.dart';
+import 'package:graduation_project/feature/chat/data/repo/chat_repo_impl.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/sliver_app_bar.dart';
 import '../../../../../core/constant/function/get_responsive.dart';
 import '../../../../../generated/l10n.dart';
@@ -55,8 +57,13 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         floatingActionButton: InkWell(
-          onTap: () {
-            context.push('/map');
+          onTap: () async {
+            // context.push('/map');
+
+            await ChatRepoImpl(ApiHelper()).sendMessage(
+                message: 'hello from code of flutter',
+                senderId: '67a2aa1d025d33644c5bc5c6',
+                receiverId: '67a34e98d73da2744ebdbc17');
           },
           child: CircleAvatar(
             backgroundColor: const Color.fromARGB(175, 0, 89, 79),
