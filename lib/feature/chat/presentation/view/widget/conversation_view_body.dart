@@ -3,14 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chat_bubble.dart';
 import 'package:graduation_project/feature/chat/presentation/view_model/cubit/chat_cubit.dart';
 
-class ConversationViewBody extends StatefulWidget {
+class ConversationViewBody extends StatelessWidget {
   const ConversationViewBody({super.key});
 
-  @override
-  State<ConversationViewBody> createState() => _ConversationViewBodyState();
-}
-
-class _ConversationViewBodyState extends State<ConversationViewBody> {
+  // await ChatRepoImpl(ApiHelper()).sendMessage(
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatCubitState>(

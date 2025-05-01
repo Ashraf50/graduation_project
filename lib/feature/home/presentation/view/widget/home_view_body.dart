@@ -58,12 +58,12 @@ class HomeViewBody extends StatelessWidget {
         ),
         floatingActionButton: InkWell(
           onTap: () async {
-            // context.push('/map');
+            context.push('/map');
 
-            await ChatRepoImpl(ApiHelper()).sendMessage(
-                message: 'hello from code of flutter',
-                senderId: '67a2aa1d025d33644c5bc5c6',
-                receiverId: '67a34e98d73da2744ebdbc17');
+            // await ChatRepoImpl(ApiHelper()).sendMessage(
+            //     message: 'hello from code of flutter',
+            //     senderId: '67a2aa1d025d33644c5bc5c6',
+            //     receiverId: '67a34e98d73da2744ebdbc17');
           },
           child: CircleAvatar(
             backgroundColor: const Color.fromARGB(175, 0, 89, 79),

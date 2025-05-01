@@ -42,12 +42,11 @@ class ChatRepoImpl implements ChatRepo {
       Response<dynamic> response = await apiHelper.post(
         //{{chat_url}}/api/messages?apiKey={{apiKey}}
         '${ApiKeys.chatBaseUrl}${ApiKeys.chatSendMessageUrl}apiKey=${ApiKeys.chatApiKey}',
-        {},
-        query: {
-          "senderId": senderId,
-          "recipientId": receiverId,
-          "message": message,
-          "timestamp": "2025-02-09T12:30:00Z",
+        {
+          'senderId': senderId,
+          'recipientId': receiverId,
+          'message': message,
+          'timestamp': "2025-02-09T12:30:00Z",
         },
       );
 
@@ -80,6 +79,26 @@ class ChatRepoImpl implements ChatRepo {
     } catch (e) {
       log(e.toString());
       throw Exception('Error fetching chats ');
+    }
+  }
+
+  @override
+  Future<String> getChatId(
+      {required String user1Id, required String user2Id}) async {
+    try {
+      Response response = await apiHelper.get(
+        '${ApiKeys.chatBaseUrl}${ApiKeys.chatGetChatId}apiKey=${ApiKeys.chatApiKey}&user1Id=$user1Id&user2Id=$user2Id',
+      );
+
+      if (response.statusCode == 200) {
+        return response.data['chatId'];
+      } else {
+        log('Error: ${response.statusCode}');
+        throw Exception('Error fetching chat ID: ${response.statusCode}');
+      }
+    } catch (e) {
+      log(e.toString());
+      throw Exception('Error fetching chat ID: $e');
     }
   }
 }

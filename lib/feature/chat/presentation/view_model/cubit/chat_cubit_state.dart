@@ -9,24 +9,33 @@ final class GetChatsSuccess extends ChatCubitState {
   GetChatsSuccess(this.chats);
 }
 
-final class GetChatsLoading  extends ChatCubitState {}
+final class GetChatsLoading extends ChatCubitState {}
+
 final class GetChatsFailed extends ChatCubitState {
   final String error;
   GetChatsFailed(this.error);
 }
-
-
-
 
 final class GetMessagesSuccess extends ChatCubitState {
   final List<MessageModel> messages;
   GetMessagesSuccess(this.messages);
 }
 
-
-final class GetMessagesLoading  extends ChatCubitState {}
+final class GetMessagesLoading extends ChatCubitState {}
 
 final class GetMessagesFailed extends ChatCubitState {
   final String error;
   GetMessagesFailed(this.error);
+}
+
+final class SendMessageSuccess extends ChatCubitState {
+  // final String message;
+  // SendMessageSuccess(this.message);
+}
+
+final class SendMessageLoading extends ChatCubitState {}
+
+final class SendMessageFailed extends ChatCubitState {
+  final String error;
+  SendMessageFailed(this.error);
 }

@@ -44,31 +44,9 @@ class ChatViewBody extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).all_chats,
-                  style: AppStyles.textStyle24blackBold,
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  // radius: 30,
-                  child: IconButton(
-                    onPressed: () {
-
-// BlocProvider.of<ChatCubit>(context)
-
-                    },
-                    icon: Icon(
-                      fill: 0,
-                      size: 35,
-                      Icons.add,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-              ],
+            Text(
+              S.of(context).all_chats,
+              style: AppStyles.textStyle24blackBold,
             ),
             const SizedBox(
               height: 20,

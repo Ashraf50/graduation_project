@@ -22,7 +22,6 @@ class _ChatItemState extends State<ChatItem> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       await getUserNameById('8569fca5-dd8b-4ab9-9145-b70774db980e');
-       
     });
 
     super.initState();
@@ -55,7 +54,7 @@ class _ChatItemState extends State<ChatItem> {
       padding: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          getUserNameById(widget.chat.users.last);
+          // getUserNameById(widget.chat.users.last);
           // BlocProvider.of<ChatCubit>(context)
           //     .getMessages(chat.users.first, chat.users.last);
           context.push('/conversation_view');

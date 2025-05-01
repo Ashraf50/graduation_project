@@ -6,9 +6,9 @@ class ApiHelper {
 
   // POST method
   Future<Response> post(String url, Map<String, dynamic> data,
-      {Map<String, dynamic>? query}) async {
+    ) async {
     try {
-      var response = await _dio.post(url, data: data, queryParameters: query);
+      var response = await _dio.post(url, data: data, queryParameters: data,);
       return response;
     } catch (e) {
       rethrow;

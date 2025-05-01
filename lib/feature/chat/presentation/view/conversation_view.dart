@@ -22,11 +22,22 @@ class ConversationView extends StatefulWidget {
 class _ConversationViewState extends State<ConversationView> {
   final messageController = TextEditingController();
   final _controller = ScrollController();
+
+  late ChatCubit chatCubit;
+  @override
+  void initState() {
+    chatCubit = context.read<ChatCubit>();
+    chatCubit.connectToChat(
+      user1Id: '67a2aa1d025d33644c5bc5c6',
+      user2Id: '67a34e98d73da2744ebdbc17',
+    );
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-
-    supabase.auth.currentUser!.id;
 
     return CustomScaffold(
       appBar: const ConversationAppBar(),
@@ -40,6 +51,11 @@ class _ConversationViewState extends State<ConversationView> {
           controller: TextEditingController(),
           suffixIcon: IconButton(
             onPressed: () {
+              chatCubit.sendMessage(
+                receiverId: '67a34e98d73da2744ebdbc17',
+                // message: _controller.text,
+                message: 'new message',
+              );
               messageController.clear();
               _controller.animateTo(
                 _controller.position.maxScrollExtent,
