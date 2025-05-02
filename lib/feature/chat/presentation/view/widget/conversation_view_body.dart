@@ -19,7 +19,7 @@ class ConversationViewBody extends StatefulWidget {
 class _ConversationViewBodyState extends State<ConversationViewBody> {
   final messageController = TextEditingController();
   final _controller = ScrollController();
-  bool isConnected = false;
+  // bool isConnected = false;
   late ChatCubit chatCubit;
   @override
   void initState() {
@@ -48,12 +48,6 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
           controller: TextEditingController(),
           suffixIcon: IconButton(
             onPressed: () {
-              // chatCubit.sendMessage(
-              //   receiverId: '67a34e98d73da2744ebdbc17',
-              //   // message: _controller.text,
-              //   message: 'new message',
-              // );
-
               messageController.clear();
 
               chatCubit.sendMessage(
@@ -67,13 +61,11 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
               //   curve: Curves.fastOutSlowIn,
               // );
             },
-            icon: isConnected
-                ? Icon(
-                    Icons.send_rounded,
-                    size: 35,
-                    color: Color(0xff55A99D),
-                  )
-                : SizedBox(),
+            icon: Icon(
+              Icons.send_rounded,
+              size: 35,
+              color: Color(0xff55A99D),
+            ),
           ),
         ),
       ),
