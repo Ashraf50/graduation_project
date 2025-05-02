@@ -1,5 +1,6 @@
 abstract class ApiKeys {
   static const String chatBaseUrl = 'https://studenthub-chat-app.vercel.app/';
+  //https://studenthub-chat-app.vercel.app/
   static const String chatApiKey = '678c0c6f-ae90-8006-983b-3eaa993b9762';
   //678c0c6f-ae90-8006-983b-3eaa993b9762
   static const String chatGetMessagesUrl = '/api/messages?';

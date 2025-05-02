@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/chat/data/models/chat_model.dart';
 import 'package:graduation_project/feature/chat/data/models/message_model.dart';
@@ -30,7 +32,8 @@ class ChatCubit extends Cubit<ChatCubitState> {
     }
   }
 
-  void connectToChat({required String user1Id, required String user2Id}) async {
+void  connectToChat(
+      {required String user1Id, required String user2Id}) async {
     List<MessageModel> messages = [];
     int currentPage = 1;
     bool isFetching = false;
@@ -48,22 +51,25 @@ class ChatCubit extends Cubit<ChatCubitState> {
           emit(GetMessagesSuccess(List.from(messages)));
         }
       });
+
       currentPage = 1;
       hasMore = true;
       messages.clear();
+
+       
       // fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: false);
     } on Exception catch (e) {
       emit(GetMessagesFailed("Failed to connect to chat: $e"));
     }
+     
   }
-
-
 
   void disconnectSocket() {
     ChatService().disconnectSocket();
   }
 
- void sendMessage({required String receiverId, required String message}) {
+  void sendMessage({required String receiverId, required String message}) {
+    // await connectToChat(user1Id: '67a2aa1d025d33644c5bc5c6', user2Id: '67a34e98d73da2744ebdbc17');
     ChatService().sendMessage(receiverId, message);
   }
 
@@ -77,6 +83,4 @@ class ChatCubit extends Cubit<ChatCubitState> {
   //     emit(SendMessageFailed(e.toString()));
   //   }
   // }
-
-
 }

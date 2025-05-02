@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:graduation_project/core/constant/api_keys.dart';
- import 'package:socket_io_client/socket_io_client.dart' as io;
+import 'package:graduation_project/core/constant/app_strings.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatService {
@@ -15,19 +18,19 @@ class ChatService {
     );
     socket.connect();
     socket.onConnect((_) {
-      print('Connected to Socket.io ✅');
+      log('Connected to Socket.io ✅');
       socket.emit('join', chatId);
     });
 
     socket.onDisconnect((_) {
-      print('Disconnected from Socket.io ❌');
+      log('Disconnected from Socket.io ❌');
     });
 
     socket.onError((error) {
-      print('Socket error: $error ❗');
+      log('Socket error: $error ❗');
     });
     socket.onConnectError((error) {
-      print('Connection error: $error ❗');
+      log('Connection error: $error ❗');
     });
     socket.on('receiveMessage', (data) {
       onMessageReceived(data);
@@ -35,12 +38,18 @@ class ChatService {
   }
 
   void sendMessage(String receiverId, String message) {
-    socket.emit('sendMessage', {
-      "senderId": Supabase.instance.client.auth.currentUser?.id,
-      "recipientId": receiverId,
-      "message": message,
-      'timestamp': DateTime.now().toIso8601String(),
-    });
+    // connectSocket(chatId, onMessageReceived)
+
+    if (socket.connected) {
+      socket.emit('sendMessage', {
+        "senderId": Supabase.instance.client.auth.currentUser?.id,
+        "recipientId": receiverId,
+        "message": message,
+        'timestamp': DateTime.now().toIso8601String(),
+      });
+    } else {
+      log('Socket is not connected');
+    }
   }
 
   void disconnectSocket() {
