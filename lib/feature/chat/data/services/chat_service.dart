@@ -1,21 +1,25 @@
 import 'dart:developer';
-
 import 'package:graduation_project/core/constant/api_keys.dart';
-import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatService {
-  late io.Socket socket;
+  io.Socket socket = io.io(
+    ApiKeys.realTimeChatUrl,
+    io.OptionBuilder()
+        .setTransports(['websocket'])
+        .setReconnectionAttempts(3)
+        .build(),
+  );
 
   void connectSocket(String chatId, Function(dynamic) onMessageReceived) {
-    socket = io.io(
-      ApiKeys.chatBaseUrl,
-      io.OptionBuilder()
-          .setTransports(['websocket'])
-          .setReconnectionAttempts(3)
-          .build(),
-    );
+    // socket = io.io(
+    //   ApiKeys.realTimeChatUrl,
+    //   io.OptionBuilder()
+    //       .setTransports(['websocket'])
+    //       .setReconnectionAttempts(3)
+    //       .build(),
+    // );
     socket.connect();
     socket.onConnect((_) {
       log('Connected to Socket.io ✅');
@@ -42,11 +46,13 @@ class ChatService {
 
     if (socket.connected) {
       socket.emit('sendMessage', {
-        "senderId": Supabase.instance.client.auth.currentUser?.id,
+        // "senderId": Supabase.instance.client.auth.currentUser?.id,
+        'senderId': ApiKeys.id1,
         "recipientId": receiverId,
         "message": message,
         'timestamp': DateTime.now().toIso8601String(),
       });
+      log('messag:$message sendt successfully');
     } else {
       log('Socket is not connected');
     }

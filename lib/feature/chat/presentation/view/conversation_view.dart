@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
@@ -20,8 +21,9 @@ class ConversationView extends StatelessWidget {
     return BlocProvider(
       create: (context) => ChatCubit(ChatRepoImpl(ApiHelper()))
         ..getMessages(
-            user1Id: '67a2aa1d025d33644c5bc5c6',
-            user2Id: '67a34e98d73da2744ebdbc17'),
+          user1Id: ApiKeys.id1,
+          user2Id: ApiKeys.id2,
+        ),
       child: ConversationViewBody(),
     );
   }

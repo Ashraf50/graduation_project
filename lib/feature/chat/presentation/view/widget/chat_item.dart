@@ -58,9 +58,9 @@ class _ChatItemState extends State<ChatItem> {
           // BlocProvider.of<ChatCubit>(context)
           //     .getMessages(chat.users.first, chat.users.last);
 
-          BlocProvider.of<ChatCubit>(context).connectToChat(
-              user1Id: widget.chat.users.first,
-              user2Id: widget.chat.users.last);
+          // BlocProvider.of<ChatCubit>(context).connectToChat(
+          //     user1Id: widget.chat.users.first,
+          //     user2Id: widget.chat.users.last);
 
           context.push('/conversation_view');
         },
