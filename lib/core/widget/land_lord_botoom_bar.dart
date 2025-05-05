@@ -3,28 +3,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
-import 'package:graduation_project/feature/services/presentation/view/services_view.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
-import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class UserBottomBar extends StatefulWidget {
-  const UserBottomBar({super.key});
+class LandlordBottomBar extends StatefulWidget {
+  const LandlordBottomBar({super.key});
 
   @override
-  State<UserBottomBar> createState() => _UserBottomBarState();
+  State<LandlordBottomBar> createState() => _LandlordBottomBarState();
 }
 
-class _UserBottomBarState extends State<UserBottomBar> {
+class _LandlordBottomBarState extends State<LandlordBottomBar> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
     const HomeView(),
-    const ServicesView(),
-    const FavoriteView(),
     const ChatView(),
     const AccountView(),
   ];
@@ -49,18 +45,6 @@ class _UserBottomBarState extends State<UserBottomBar> {
             iconPath: 'assets/img/home.svg',
             activeIconPath: 'assets/img/active_home.svg',
             title: S.of(context).home,
-            isDarkTheme: isDarkTheme,
-          ),
-          _buildBottomBarItem(
-            iconPath: 'assets/img/category.svg',
-            activeIconPath: 'assets/img/active_category.svg',
-            title: S.of(context).services,
-            isDarkTheme: isDarkTheme,
-          ),
-          _buildBottomBarItem(
-            iconPath: 'assets/img/favorite.svg',
-            activeIconPath: 'assets/img/active_favorite.svg',
-            title: S.of(context).favorite,
             isDarkTheme: isDarkTheme,
           ),
           _buildBottomBarItem(

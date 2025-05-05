@@ -26,22 +26,15 @@ class AppRouter {
   final bool isLoggedIn;
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
-    //initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
-    initialLocation: '/sign_up',
-    //initialLocation: '/dashboard',
+    initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
     routes: [
       GoRoute(
         path: '/onboard',
         builder: (context, state) => const OnboardScreen(),
       ),
       GoRoute(
-        path: '/bottomBar',
-        builder: (context, state) => const ResponsiveManager(
-          mobileView: BottomBar(),
-          tabletView: BottomBar(),
-          desktopView: DesktopView(),
-        ),
-      ),
+          path: '/bottomBar',
+          builder: (context, state) => const UserBottomBar()),
       GoRoute(
         path: '/sign_in',
         builder: (context, state) => const ResponsiveSignIn(),
