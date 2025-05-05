@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/helper/responsive_manager.dart';
 import 'package:graduation_project/core/widget/bottom_bar.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/page_view.dart/sign_up/complete_registeration.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
@@ -16,6 +17,7 @@ import 'package:graduation_project/feature/account/presentation/view/widget/priv
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_view.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/dashboard_view.dart';
+import 'package:graduation_project/feature/chat/presentation/view/conversation_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
@@ -93,7 +95,7 @@ class AppRouter {
       GoRoute(
         path: '/edit_profile',
         builder: (context, state) {
-          final userData = state.extra as UserModel;
+          final userData = supabase.auth.currentUser;
           return EditProfileView(
             userData: userData,
           );

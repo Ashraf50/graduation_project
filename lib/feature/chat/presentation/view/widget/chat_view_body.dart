@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
@@ -6,6 +7,7 @@ import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/core/widget/search_textfield.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chats_list_view.dart';
+import 'package:graduation_project/feature/chat/presentation/view_model/cubit/chat_cubit.dart';
 import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 

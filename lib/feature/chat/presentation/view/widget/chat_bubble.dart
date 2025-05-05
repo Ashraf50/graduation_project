@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 
 class ChatBubbleFriend extends StatelessWidget {
   final String massage;
@@ -35,6 +36,14 @@ class ChatBubbleFriend extends StatelessWidget {
 class ChatBubble extends StatelessWidget {
   final String massage;
   const ChatBubble({super.key, required this.massage});
+
+  getUserName(String id) async {
+    final data = await supabase.from('LandLord').select('''
+   username
+  ''').eq('id', id);
+
+    return data.first['username'];
+  }
 
   @override
   Widget build(BuildContext context) {
