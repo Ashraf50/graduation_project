@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
@@ -11,8 +13,26 @@ import 'package:graduation_project/feature/chat/presentation/view_model/cubit/ch
 import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 
-class ChatViewBody extends StatelessWidget {
+class ChatViewBody extends StatefulWidget {
   const ChatViewBody({super.key});
+
+  @override
+  State<ChatViewBody> createState() => _ChatViewBodyState();
+}
+
+class _ChatViewBodyState extends State<ChatViewBody> {
+  late ChatCubit chatCubit;
+  @override
+  void initState() {
+    log('this is chat view body');
+    // these 2 id's is just for testing
+    chatCubit = context.read<ChatCubit>();
+    chatCubit.getChats(userId: ApiKeys.id1);
+    // chatCubit.getMessages(user1Id: ApiKeys.id1, user2Id: ApiKeys.id2);
+    // .then   getMessages(user1Id: ApiKeys.id1, user2Id: ApiKeys.id2);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

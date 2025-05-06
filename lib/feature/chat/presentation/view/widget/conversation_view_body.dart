@@ -4,7 +4,9 @@ import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
+import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/custom_text_field.dart';
+import 'package:graduation_project/feature/chat/data/models/message_model.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chat_bubble.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/conversation_app_bar.dart';
 import 'package:graduation_project/feature/chat/presentation/view_model/cubit/chat_cubit.dart';
@@ -25,13 +27,11 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
   @override
   void initState() {
     chatCubit = context.read<ChatCubit>();
-    chatCubit.connectToChat(
-      user1Id: '67a2aa1d025d33644c5bc5c6',
-      user2Id: '67a34e98d73da2744ebdbc17',
-    );
+    
     super.initState();
   }
 
+  List<MessageModel> messages = [];
   // await ChatRepoImpl(ApiHelper()).sendMessage(
   @override
   Widget build(BuildContext context) {
@@ -53,9 +53,11 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
 
               chatCubit.sendMessage(
                 receiverId: ApiKeys.id2,
-                // message: _controller.text,
-                message: 'new message',
+                message: 'new message 10',
               );
+              // messages.add(MessageModel(id: id, chatId: chatId, senderId: senderId, message: message, timestamp: timestamp, createdAt: createdAt, updatedAt: updatedAt, v: v))
+              chatCubit.getMessages(user1Id: ApiKeys.id1, user2Id: ApiKeys.id2);
+              setState(() {});
               // _controller.animateTo(
               //   _controller.position.maxScrollExtent,
               //   duration: Duration(microseconds: 1),
@@ -74,23 +76,28 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
         builder: (context, state) {
           if (state is GetMessagesSuccess) {
             return ListView.builder(
+                reverse: true,
                 itemCount: state.messages.length,
                 itemBuilder: (context, index) {
-                  return ChatBubble(
-                    massage: state.messages[index].message,
+                  List<MessageModel> messages =
+                      state.messages.reversed.toList();
+                  if (messages[index].senderId ==
+                      supabase.auth.currentUser!.id) {
+                    return ChatBubble(
+                      massage: messages[index].message,
+                    );
+                  }
+                  return ChatBubbleFriend(
+                    massage: messages[index].message,
                   );
                 });
-          } else if (state is GetMessagesLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
           } else if (state is GetMessagesFailed) {
             return Center(
               child: Text(state.error),
             );
           } else {
             return const Center(
-              child: Text('No Messages'),
+              child: CircularProgressIndicator(),
             );
           }
         },

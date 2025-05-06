@@ -14,7 +14,7 @@ class ChatRepoImpl implements ChatRepo {
   Future<List<ChatModel>> getChats(String userId) async {
     try {
       Response response = await apiHelper.get(
-        '${ApiKeys.chatBaseUrl}${ApiKeys.chatGetChatsUrl}apiKey=${ApiKeys.chatApiKey}',
+        '${ApiKeys.chatBaseUrl}${ApiKeys.chatGetChatsUrl}$userId?apiKey=${ApiKeys.chatApiKey}',
       );
       List<ChatModel> chats = [];
       if (response.statusCode == 200) {
@@ -40,17 +40,20 @@ class ChatRepoImpl implements ChatRepo {
       required String receiverId}) async {
     try {
       Response<dynamic> response = await apiHelper.post(
-        //{{chat_url}}/api/messages?apiKey={{apiKey}}
-        '${ApiKeys.chatBaseUrl}${ApiKeys.chatSendMessageUrl}apiKey=${ApiKeys.chatApiKey}',
-        {
-          'senderId': senderId,
-          'recipientId': receiverId,
+        url:
+            '${ApiKeys.chatBaseUrl}${ApiKeys.chatSendMessageUrl}apiKey=${ApiKeys.chatApiKey}',
+        data: {
+          'senderId': '3f9d3c82-b38e-4a2e-9f32-fcba6d4f23b9',
+          'recipientId': 'a4f8f3ce-2e76-4b89-8736-91c2ec54ff5d',
           'message': message,
-          'timestamp': "2025-02-09T12:30:00Z",
+          'timestamp': '2025-02-09T12:30:00Z',
         },
+        options: Options(headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         log('Message sent successfully: ${response.data['data']}');
       } else {
         log('Error sending message: ${response.statusCode}');

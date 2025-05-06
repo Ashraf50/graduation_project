@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,10 +16,11 @@ class ChatItem extends StatefulWidget {
 
 class _ChatItemState extends State<ChatItem> {
   String userName = '';
+  final String userId = supabase.auth.currentUser!.id;
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
-      await getUserNameById('8569fca5-dd8b-4ab9-9145-b70774db980e');
+      userName = await getUserNameById('8569fca5-dd8b-4ab9-9145-b70774db980e');
     });
 
     super.initState();
@@ -43,7 +42,7 @@ class _ChatItemState extends State<ChatItem> {
    username
   ''').eq('id', id).single();
     userName = data['username'];
-    setState(() {});
+    // setState(() {});
 
     return data['username'];
   }
@@ -54,14 +53,7 @@ class _ChatItemState extends State<ChatItem> {
       padding: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          // getUserNameById(widget.chat.users.last);
-          // BlocProvider.of<ChatCubit>(context)
-          //     .getMessages(chat.users.first, chat.users.last);
-
-          // BlocProvider.of<ChatCubit>(context).connectToChat(
-          //     user1Id: widget.chat.users.first,
-          //     user2Id: widget.chat.users.last);
-
+         
           context.push('/conversation_view');
         },
         child: Row(

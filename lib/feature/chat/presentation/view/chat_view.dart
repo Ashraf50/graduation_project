@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:graduation_project/core/helper/api_helper.dart';
 import 'package:graduation_project/feature/chat/data/repo/chat_repo_impl.dart';
 import 'package:graduation_project/feature/chat/presentation/view/widget/chat_view_body.dart';
@@ -11,8 +12,8 @@ class ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ChatCubit(ChatRepoImpl(ApiHelper()))..getChats(userId: ''),
+      create: (context) => ChatCubit(ChatRepoImpl(ApiHelper())),
+      // ChatCubit(ChatRepoImpl(ApiHelper()))..getChats(userId: ApiKeys.id1),
       child: const ChatViewBody(),
     );
   }

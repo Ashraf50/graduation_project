@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:graduation_project/feature/chat/data/models/chat_model.dart';
 import 'package:graduation_project/feature/chat/data/models/message_model.dart';
 import 'package:graduation_project/feature/chat/data/repo/chat_repo_impl.dart';
@@ -13,7 +14,7 @@ class ChatCubit extends Cubit<ChatCubitState> {
 
   getChats({required String userId}) async {
     try {
-      emit(ChatCubitInitial());
+      emit(GetChatsLoading());
       List<ChatModel> chats = await chatRepoImpl.getChats(userId);
       emit(GetChatsSuccess(chats));
     } catch (e) {
@@ -23,7 +24,7 @@ class ChatCubit extends Cubit<ChatCubitState> {
 
   getMessages({required String user1Id, required String user2Id}) async {
     try {
-      emit(ChatCubitInitial());
+      emit(GetMessagesLoading());
       var data =
           await chatRepoImpl.getMessages(user1Id: user1Id, user2Id: user2Id);
       emit(GetMessagesSuccess(data));
@@ -32,8 +33,7 @@ class ChatCubit extends Cubit<ChatCubitState> {
     }
   }
 
-void  connectToChat(
-      {required String user1Id, required String user2Id}) async {
+  void connectToChat({required String user1Id, required String user2Id}) async {
     List<MessageModel> messages = [];
     int currentPage = 1;
     bool isFetching = false;
@@ -56,21 +56,36 @@ void  connectToChat(
       hasMore = true;
       messages.clear();
 
-       
       // fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: false);
     } on Exception catch (e) {
       emit(GetMessagesFailed("Failed to connect to chat: $e"));
     }
-     
   }
 
   void disconnectSocket() {
     ChatService().disconnectSocket();
   }
 
-  void sendMessage({required String receiverId, required String message}) {
+  void sendMessage(
+      {required String receiverId, required String message}) async {
+    try {
+      emit(SendMessageLoading());
+      // we should change the id1 by the current user id
+      await chatRepoImpl.sendMessage(
+        message: message,
+        senderId: ApiKeys.id1,
+        receiverId: receiverId,
+      );
+
+      emit(SendMessageSuccess());
+    } catch (e) {
+      log('error sending the message: ${e.toString()}');
+      log(e.toString());
+      emit(SendMessageFailed(e.toString()));
+    }
+
     // await connectToChat(user1Id: '67a2aa1d025d33644c5bc5c6', user2Id: '67a34e98d73da2744ebdbc17');
-    ChatService().sendMessage(receiverId, message);
+    // ChatService().sendMessage(receiverId, message);
   }
 
   // sendMessage(String message, String senderId, String receiverId) async {

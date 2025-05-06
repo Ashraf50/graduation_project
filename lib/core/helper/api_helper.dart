@@ -1,14 +1,24 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class ApiHelper {
-  final Dio _dio = Dio();
+  final Dio _dio = Dio(
+    BaseOptions(
+      followRedirects: true,
+      validateStatus: (status) {
+        return status != null &&
+            status < 500; // Accepts redirects and others < 500
+      },
+    ),
+  );
 
   // POST method
-  Future<Response> post(String url, Map<String, dynamic> data,
-    ) async {
+  Future<Response> post({
+    required String url,
+    required Map<String, dynamic> data,
+    Options? options,
+  }) async {
     try {
-      var response = await _dio.post(url, data: data, queryParameters: data,);
+      var response = await _dio.post(url, data: data, options: options);
       return response;
     } catch (e) {
       rethrow;
