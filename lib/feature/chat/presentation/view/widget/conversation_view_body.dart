@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/api_keys.dart';
@@ -27,11 +29,11 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
   @override
   void initState() {
     chatCubit = context.read<ChatCubit>();
-    
+
     super.initState();
   }
 
-  List<MessageModel> messages = [];
+  // List<MessageModel> messages = [];
   // await ChatRepoImpl(ApiHelper()).sendMessage(
   @override
   Widget build(BuildContext context) {
@@ -46,15 +48,18 @@ class _ConversationViewBodyState extends State<ConversationViewBody> {
               ? AppColors.widgetColorDark
               : Color(0xffBCB8B1),
           hintText: 'Send Message',
-          controller: TextEditingController(),
+          controller: messageController,
           suffixIcon: IconButton(
             onPressed: () {
+              if (messageController.text.isNotEmpty) {
+                chatCubit.sendMessage(
+                  receiverId: ApiKeys.id2,
+                  message: messageController.text,
+                );
+                log(messageController.text);
+              }
               messageController.clear();
 
-              chatCubit.sendMessage(
-                receiverId: ApiKeys.id2,
-                message: 'new message 10',
-              );
               // messages.add(MessageModel(id: id, chatId: chatId, senderId: senderId, message: message, timestamp: timestamp, createdAt: createdAt, updatedAt: updatedAt, v: v))
               chatCubit.getMessages(user1Id: ApiKeys.id1, user2Id: ApiKeys.id2);
               setState(() {});
