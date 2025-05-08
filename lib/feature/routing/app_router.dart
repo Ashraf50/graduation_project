@@ -14,7 +14,8 @@ import 'package:graduation_project/feature/account/presentation/view/widget/edit
 import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
-import 'package:graduation_project/feature/chat/presentation/view/conversation_view.dart';
+import 'package:graduation_project/feature/chat/presentation/view/chat_details_view.dart';
+import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
@@ -93,8 +94,12 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/conversation_view',
-        builder: (context, state) => const ConversationView(),
+        path: '/chat_details',
+        builder: (context, state) {
+          final usersId = state.extra as List;
+
+          return ChatDetailsView(usersId: usersId);
+        },
       ),
       GoRoute(
         path: '/details',

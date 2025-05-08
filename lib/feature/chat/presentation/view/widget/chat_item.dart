@@ -1,78 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:graduation_project/core/constant/app_style.dart';
-import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
-import 'package:graduation_project/feature/chat/data/models/chat_model.dart';
-import 'package:graduation_project/feature/chat/presentation/view_model/cubit/chat_cubit.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../../../core/constant/app_colors.dart';
+import '../../../../../core/constant/app_style.dart';
+import '../../../../../core/constant/function/date_format.dart';
+import '../../../../../core/helper/auth_helper.dart';
+import '../../../data/model/chat_model.dart';
+import '../../view_model/cubit/chats_cubit.dart';
 
 class ChatItem extends StatefulWidget {
-  const ChatItem({super.key, required this.chat});
   final ChatModel chat;
+  const ChatItem({super.key, required this.chat});
 
   @override
   State<ChatItem> createState() => _ChatItemState();
 }
 
 class _ChatItemState extends State<ChatItem> {
-  String userName = '';
-  final String userId = supabase.auth.currentUser!.id;
+  final currentUserId = Supabase.instance.client.auth.currentUser!.id;
+  String chatTitle = "Loading...";
+
   @override
   void initState() {
-    Future.delayed(Duration.zero, () async {
-      userName = await getUserNameById('8569fca5-dd8b-4ab9-9145-b70774db980e');
-    });
-
     super.initState();
+    _fetchChatTitle();
   }
 
-  String formatToUUID(String input) {
-    if (input.length != 32) {
-      throw FormatException('Input must be 32 characters long.');
-    }
-    return '${input.substring(0, 8)}-'
-        '${input.substring(8, 12)}-'
-        '${input.substring(12, 16)}-'
-        '${input.substring(16, 20)}-'
-        '${input.substring(20)}';
-  }
+  Future<void> _fetchChatTitle() async {
+    final otherUserId =
+        widget.chat.users!.firstWhere((id) => id != currentUserId);
+    final title = await ChatHelper().getUserNameById(chatTitle);
 
-  Future<String> getUserNameById(String id) async {
-    final data = await supabase.from('User').select('''
-   username
-  ''').eq('id', id).single();
-    userName = data['username'];
-    // setState(() {});
-
-    return data['username'];
+    setState(() {
+      chatTitle = title;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: InkWell(
-        onTap: () {
-         
-          context.push('/conversation_view');
-        },
+    return Dismissible(
+      key: Key(widget.chat.id!),
+      direction: DismissDirection.startToEnd,
+      background: Container(
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const Icon(Icons.delete, color: Colors.white, size: 30),
+      ),
+      onDismissed: (direction) {
+        context.read<ChatCubit>().removeChat(chatId: widget.chat.id!);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage('assets/img/test.jpg'),
-            ),
-            SizedBox(
-              width: 20,
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: AppColors.primaryColor,
+                  radius: 28,
+                  child: Text(
+                    chatTitle,
+                    style: AppStyles.textStyle18White,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(chatTitle, style: AppStyles.textStyle20),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(
+                    widget.chat.lastMessage!,
+                    style: const TextStyle(color: Colors.grey, fontSize: 16),
+                  ),
+                ]),
+              ],
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  userName,
+                  dateTimeFormat(
+                      widget.chat.lastUpdated!.toString(), 'hh:mm a'),
                   style: AppStyles.textStyle18black,
                 ),
-                Text(widget.chat.lastMessage),
+                Text(
+                  dateTimeFormat(widget.chat.lastUpdated!.toString(), 'dd/M'),
+                  style: AppStyles.textStyle18black,
+                ),
               ],
             ),
           ],

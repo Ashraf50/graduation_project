@@ -1134,6 +1134,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Send Message`
+  String get send_mess {
+    return Intl.message('Send Message', name: 'send_mess', desc: '', args: []);
+  }
+
+  /// `Copy Message`
+  String get copy_mess {
+    return Intl.message('Copy Message', name: 'copy_mess', desc: '', args: []);
+  }
+
+  /// `Message copied`
+  String get mess_copied {
+    return Intl.message(
+      'Message copied',
+      name: 'mess_copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Message`
+  String get delete_mess {
+    return Intl.message(
+      'Delete Message',
+      name: 'delete_mess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
