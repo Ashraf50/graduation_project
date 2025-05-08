@@ -139,5 +139,9 @@
     "no_phone": "No Phone",
     "no_working": "No Working Hour",
     "active_account": "Confirm Your Email to Get Started.!",
-    "signin_compeleted": " You’ve Signed In Successfully!"
+    "signin_compeleted": " You’ve Signed In Successfully!",
+    "send_mess": "Send Message",
+    "copy_mess":"Copy Message",
+    "mess_copied":"Message copied",
+    "delete_mess":"Delete Message"
 }
