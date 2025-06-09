@@ -3,11 +3,10 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
+import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/feature/Auth/domain/entity/auth_result_entity.dart';
 import 'package:graduation_project/feature/Auth/domain/entity/user_entity.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
 
 class AuthSupabaseManager {
   AuthSupabaseManager._();

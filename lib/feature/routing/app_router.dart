@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/helper/responsive_manager.dart';
 import 'package:graduation_project/core/widget/bottom_bar.dart';
-import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/page_view.dart/sign_up/complete_registeration.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_forget_pass.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';

@@ -10,6 +10,9 @@ import 'package:graduation_project/feature/account/data/repository/repo/account_
 import 'package:graduation_project/feature/account/domain/repository/data_souce/account_data_source_contrcat.dart';
 import 'package:graduation_project/feature/account/domain/repository/repo/account_repo_contrcat.dart';
 import 'package:graduation_project/feature/account/domain/usecase/upload_image_usecase.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+final supabase = Supabase.instance.client;
 
 UploadImageUsecase injectUploadImageUsecase() {
   return UploadImageUsecase(accountRepoContrcat: injectAccountRepoContrcat());
