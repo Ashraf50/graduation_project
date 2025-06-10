@@ -7,10 +7,8 @@ import 'package:graduation_project/feature/Auth/presentation/view/responsive_for
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/responsive_finish_reset_pass.dart';
-// <<<<<<< HEAD
-// =======
+
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
-// >>>>>>> origin/main
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
@@ -18,13 +16,13 @@ import 'package:graduation_project/feature/account/presentation/view/widget/lang
 import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_details_view.dart';
+
 import 'package:graduation_project/feature/dashboard/presentation/view/dashboard_view.dart';
-// import 'package:graduation_project/feature/chat/presentation/view/conversation_view.dart';
+import 'package:graduation_project/feature/desktop/desktop_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 import '../Auth/presentation/view/responsive_sign_in.dart';
-import '../desktop/desktop_view.dart';
 
 class AppRouter {
   final bool isLoggedIn;
