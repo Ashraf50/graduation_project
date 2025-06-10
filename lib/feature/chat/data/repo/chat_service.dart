@@ -36,9 +36,9 @@ class ChatService {
 
   void sendMessage(String receiverId, String message) {
     socket.emit('sendMessage', {
-      "senderId": Supabase.instance.client.auth.currentUser?.id,
-      "recipientId": receiverId,
-      "message": message,
+      'senderId': Supabase.instance.client.auth.currentUser?.id,
+      'recipientId': receiverId,
+      'message': message,
       'timestamp': DateTime.now().toIso8601String(),
     });
   }

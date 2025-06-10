@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../core/constant/app_colors.dart';
-import '../../../../../core/helper/auth_helper.dart';
+ import '../../../../../core/helper/chat_helper.dart';
 import '../../../../../core/widget/custom_app_bar.dart';
 import '../../../../../core/widget/custom_scaffold.dart';
 import '../../view_model/cubit/chats_cubit.dart';
