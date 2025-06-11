@@ -25,6 +25,7 @@ class HomeViewBody extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                automaticallyImplyLeading: false,
                 backgroundColor: AppColors.primaryColor,
                 scrolledUnderElevation: 0,
                 pinned: true,
