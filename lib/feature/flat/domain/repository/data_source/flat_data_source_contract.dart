@@ -10,10 +10,6 @@ abstract class FlatDataSourceContract {
     required String description,
     required String space,
     required String landlordID,
-  });
-  Future<Either<Failure, String>> uploadFlatImages({
     required List<XFile> images,
-    required String flatId,
-    required String landlordId,
   });
 }

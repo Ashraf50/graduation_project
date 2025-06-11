@@ -15,6 +15,7 @@ class AddFlatWithImageUseCase {
     required String description,
     required String space,
     required String landlordID,
+    required List<XFile> images,
   }) async {
     return await flatRepoContract.uploadFlat(
         numOfRoom: numOfRoom,
@@ -22,18 +23,7 @@ class AddFlatWithImageUseCase {
         price: price,
         description: description,
         space: space,
-        landlordID: landlordID);
-  }
-
-  Future<Either<Failure, String>> uploadFlatImages({
-    required List<XFile> images,
-    required String flatId,
-    required String landlordId,
-  }) async {
-    return await flatRepoContract.uploadFlatImages(
-      images: images,
-      flatId: flatId,
-      landlordId: landlordId,
-    );
+        landlordID: landlordID,
+        images: images);
   }
 }

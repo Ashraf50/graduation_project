@@ -10,13 +10,15 @@ class FlatRepoImpl implements FlatRepoContract {
     required this.flatDataSourceContract,
   });
   @override
-  Future<Either<Failure, String>> uploadFlat(
-      {required String numOfRoom,
-      required String numOfBathroom,
-      required String price,
-      required String description,
-      required String space,
-      required String landlordID}) {
+  Future<Either<Failure, String>> uploadFlat({
+    required String numOfRoom,
+    required String numOfBathroom,
+    required String price,
+    required String description,
+    required String space,
+    required String landlordID,
+    required List<XFile> images,
+  }) {
     return flatDataSourceContract.uploadFlat(
       numOfRoom: numOfRoom,
       numOfBathroom: numOfBathroom,
@@ -24,18 +26,7 @@ class FlatRepoImpl implements FlatRepoContract {
       description: description,
       space: space,
       landlordID: landlordID,
-    );
-  }
-
-  @override
-  Future<Either<Failure, String>> uploadFlatImages(
-      {required List<XFile> images,
-      required String flatId,
-      required String landlordId}) {
-    return flatDataSourceContract.uploadFlatImages(
       images: images,
-      flatId: flatId,
-      landlordId: landlordId,
     );
   }
 }
