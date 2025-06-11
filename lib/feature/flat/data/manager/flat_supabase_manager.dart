@@ -2,8 +2,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
 import 'package:graduation_project/core/helper/di.dart';
-import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
-import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FlatSupabaseManager {
@@ -79,43 +77,7 @@ class FlatSupabaseManager {
     }
   }
 
-// more function we need to implement
-
-  // Future<Either<Failure,List>> getAllFlat()async{}
-
-  Future<List<Flat>> fetchFlats() async {
-    final response = await supabase
-        .from('Flats')
-        .select()
-        .order('created_at', ascending: false);
-
-    if (response.isEmpty) {
-      throw Exception('there is no flats to show');
-    }
-
-    // Convert to List<Flat>
-    return (response as List)
-        .map((flatJson) => Flat.fromJson(flatJson))
-        .toList();
-  }
-
-
-  Future<List<Flat>> fetchFlatsByLandlord(String landlordId) async {
- 
-  final response = await supabase
-      .from('Flats')
-      .select()
-      .eq('landlord_id', landlordId);
-
-  if (response.isEmpty) {
-    throw Exception('Failed to fetch Flats for landlord: $landlordId');
-  }
-
-  return (response as List)
-      .map((flatJson) => Flat.fromJson(flatJson))
-      .toList();
-}
-
+  
 }
 
 // Future<Either<Failure, String>> uploadFlatImages({
