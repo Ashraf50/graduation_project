@@ -50,7 +50,7 @@ class FlatViewModel extends Cubit<FlatStates> {
     }
   }
 
-  Future<void> fetchFlats() async {
+  Future<void> fetchAllFlats() async {
     try {
       emit(FetchingAllFlatsLoadingState());
       final response = await supabase
