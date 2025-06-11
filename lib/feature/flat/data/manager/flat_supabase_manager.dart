@@ -13,6 +13,9 @@ class FlatSupabaseManager {
     return _instance!;
   }
 
+
+
+// we need to pass to this fun numOfRoom, numOfBathroom, price, description, space, landlordID, images
   Future<Either<Failure, String>> uploadFlat({
     required String numOfRoom,
     required String numOfBathroom,
@@ -79,7 +82,20 @@ class FlatSupabaseManager {
       );
     }
   }
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
 
 // Future<Either<Failure, String>> uploadFlatImages({
 //   required List<XFile> images,
@@ -93,7 +109,6 @@ class FlatSupabaseManager {
 //       /// internet is stable
 //       /// data != null
 //       /// flat_id && image_URL && landlord_id
-
 //       //todo: add flat's images to the storage =>flat-image
 //       // todo: add flat's images to the table => FlatImages
 //       for (var image in images) {
@@ -114,7 +129,6 @@ class FlatSupabaseManager {
 //         });
 //         print('added image successfully');
 //       }
-
 //       return Right("flat's images added successfully.!");
 //     } catch (err) {
 //       return Left(ServerError(err.toString()));
