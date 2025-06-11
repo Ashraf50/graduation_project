@@ -8,20 +8,21 @@ import 'package:graduation_project/feature/Auth/presentation/view/responsive_sig
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/responsive_finish_reset_pass.dart';
 
+import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/language_view.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
+import 'package:graduation_project/feature/chat/presentation/view/chat_details_view.dart';
+
+import 'package:graduation_project/feature/dashboard/presentation/view/dashboard_view.dart';
+import 'package:graduation_project/feature/desktop/desktop_view.dart';
+import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
+import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
+import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
 import '../Auth/presentation/view/responsive_sign_in.dart';
-import '../account/presentation/view/account_view.dart';
-import '../account/presentation/view/widget/about_us_view.dart';
-import '../account/presentation/view/widget/contact_us.dart';
-import '../account/presentation/view/widget/edit_profile_view.dart';
-import '../account/presentation/view/widget/language_view.dart';
-import '../account/presentation/view/widget/privacy_policy.dart';
-import '../account/presentation/view/widget/terms_and_condition.dart';
-import '../chat/presentation/view/chat_details_view.dart';
-import '../dashboard/presentation/view/dashboard_view.dart';
-import '../desktop/desktop_view.dart';
-import '../home/presentation/view/details_view.dart';
-import '../map/presentation/view/map_view.dart';
-import '../splash_screen/presentation/view/onboard_screen_view.dart';
 
 class AppRouter {
   final bool isLoggedIn;
