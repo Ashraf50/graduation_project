@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
-import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
+import 'package:graduation_project/core/helper/di.dart';
 
 class ProfileManagerSupabase {
   ProfileManagerSupabase._();

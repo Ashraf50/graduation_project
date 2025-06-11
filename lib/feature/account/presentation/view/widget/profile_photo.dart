@@ -7,7 +7,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/widget/custom_toast.dart';
-import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/change_photo_button.dart';
 import 'package:graduation_project/feature/account/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,7 +35,7 @@ class ProfilePhoto extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             backgroundColor: AppColors.toastColor,
           );
-          final UserResponse res = await supabase.auth.updateUser(
+          await supabase.auth.updateUser(
             UserAttributes(
               data: {
                 'imageProfile': state.profileImageURL,
