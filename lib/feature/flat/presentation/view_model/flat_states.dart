@@ -1,19 +1,53 @@
+import '../../data/models/flat_model.dart';
+
 abstract class FlatStates {}
 
 class FlatInitialState extends FlatStates {}
 
 class FlatLoadingState extends FlatStates {}
 
-class FlatSuccessState extends FlatStates {
+class AddingFlatSuccessState extends FlatStates {
   String sucMsg;
-  FlatSuccessState({
+  AddingFlatSuccessState({
     required this.sucMsg,
   });
 }
 
-class FlatErrorState extends FlatStates {
+class AddingFlatErrorState extends FlatStates {
   String errMsg;
-  FlatErrorState({
+  AddingFlatErrorState({
     required this.errMsg,
   });
 }
+
+class FetchingAllFlatsSuccessState extends FlatStates {
+  List<Flat> flats;
+  FetchingAllFlatsSuccessState({
+    required this.flats,
+  });
+}
+
+class FetchingAllFlatsErrorState extends FlatStates {
+  String errMsg;
+  FetchingAllFlatsErrorState({
+    required this.errMsg,
+  });
+}
+
+class FetchingAllFlatsLoadingState extends FlatStates {}
+
+class FetchingLandlordFlatsSuccessState extends FlatStates {
+  List<Flat> flats;
+  FetchingLandlordFlatsSuccessState({
+    required this.flats,
+  });
+}
+
+class FetchingLandlordFlatsErrorState extends FlatStates {
+  String errMsg;
+  FetchingLandlordFlatsErrorState({
+    required this.errMsg,
+  });
+}
+
+class FetchingLandlordFlatsLoadingState extends FlatStates {}

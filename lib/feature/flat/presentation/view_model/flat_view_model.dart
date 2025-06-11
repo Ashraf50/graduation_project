@@ -37,9 +37,9 @@ class FlatViewModel extends Cubit<FlatStates> {
         images: images,
       );
       either.fold((err) {
-        emit(FlatErrorState(errMsg: err.errMessage));
+        emit(AddingFlatErrorState(errMsg: err.errMessage));
       }, (sucMsg) {
-        emit(FlatSuccessState(sucMsg: sucMsg));
+        emit(AddingFlatSuccessState(sucMsg: sucMsg));
         descriptionController.clear();
         numOfRoomsController.clear();
         priceController.clear();
@@ -50,40 +50,47 @@ class FlatViewModel extends Cubit<FlatStates> {
     }
   }
 
+  Future<void> fetchFlats() async {
+    try {
+      emit(FetchingAllFlatsLoadingState());
+      final response = await supabase
+          .from('Flats')
+          .select()
+          .order('created_at', ascending: false);
 
-Future<List<Flat>> fetchFlats() async {
-    final response = await supabase
-        .from('Flats')
-        .select()
-        .order('created_at', ascending: false);
+      if (response.isEmpty) {
+        emit(FetchingAllFlatsErrorState(
+            errMsg: 'there is no flats to show yet'));
+      }
 
-    if (response.isEmpty) {
-      throw Exception('there is no flats to show');
+      // Convert to List<Flat>
+      var flats = (response as List)
+          .map((flatJson) => Flat.fromJson(flatJson))
+          .toList();
+
+      emit(FetchingAllFlatsSuccessState(flats: flats));
+    } on Exception catch (e) {
+      emit(FetchingAllFlatsErrorState(errMsg: e.toString()));
     }
-
-    // Convert to List<Flat>
-    return (response as List)
-        .map((flatJson) => Flat.fromJson(flatJson))
-        .toList();
   }
 
+  Future<void> fetchFlatsByLandlord(String landlordId) async {
+    try {
+      emit(FetchingLandlordFlatsLoadingState());
+      final response =
+          await supabase.from('Flats').select().eq('landlord_id', landlordId);
 
-  Future<List<Flat>> fetchFlatsByLandlord(String landlordId) async {
- 
-  final response = await supabase
-      .from('Flats')
-      .select()
-      .eq('landlord_id', landlordId);
+      if (response.isEmpty) {
+        emit(FetchingLandlordFlatsErrorState(
+            errMsg: 'there is no flats to show yet'));
+      }
 
-  if (response.isEmpty) {
-    throw Exception('Failed to fetch Flats for landlord: $landlordId');
+      var flats = (response as List)
+          .map((flatJson) => Flat.fromJson(flatJson))
+          .toList();
+      emit(FetchingLandlordFlatsSuccessState(flats: flats));
+    } on Exception catch (e) {
+      emit(FetchingLandlordFlatsErrorState(errMsg: e.toString()));
+    }
   }
-
-  return (response as List)
-      .map((flatJson) => Flat.fromJson(flatJson))
-      .toList();
-}
-
-
-
 }
