@@ -1,8 +1,8 @@
 import 'package:image_picker/image_picker.dart';
 
 class Flat {
-  final int flatId;
-  final String createdAt;
+  int? flatId;
+  String? createdAt;
   String? numRooms;
   String? numBathroom;
   String? description;
@@ -10,28 +10,30 @@ class Flat {
   String? space;
   String? price;
   List<XFile>? images;
-
+  Flat instance = Flat();
   Flat({
+    this.flatId,
+    this.createdAt,
+    this.numRooms,
+    this.numBathroom,
+    this.description,
+    this.landlordId,
+    this.space,
     this.price,
     this.images,
-    required this.flatId,
-    required this.createdAt,
-    required this.numRooms,
-    required this.numBathroom,
-    required this.description,
-    required this.landlordId,
-    required this.space,
   });
 
   factory Flat.fromJson(Map<String, dynamic> json) {
     return Flat(
-      flatId: json['flat_id'],
-      createdAt: json['created_at'],
-      numRooms: json['num_rooms'],
-      numBathroom: json['num_bathroom'],
-      description: json['description'],
-      landlordId: json['landlord_id'],
-      space: json['space'],
+      flatId: json['flat_id'] as int?,
+      createdAt: json['created_at'] as String?,
+      numRooms: json['num_rooms'] as String?,
+      numBathroom: json['num_bathroom'] as String?,
+      description: json['description'] as String?,
+      landlordId: json['landlord_id'] as String?,
+      space: json['space'] as String?,
+      price: json['price'] as String?,
+      images: json['images'],
     );
   }
 }
