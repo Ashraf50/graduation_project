@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
 import 'package:graduation_project/feature/Auth/domain/usecase/auth_usecase.dart';
@@ -90,20 +91,33 @@ class AuthViewModel extends Cubit<AuthStates> {
     if (formKey.currentState!.validate()) {
       if (selectedRole == 'مستخدم' || selectedRole == 'User') {
         selectedRole = TypeOfUser.User.name;
+        var either = await authUseCase.login(
+          password: passwordController.text,
+          email: emailController.text,
+          role: selectedRole,
+        );
+        either.fold((l) {
+          emit(LoginStateError(errorMessage: l.errMessage));
+        }, (response) {
+          emit(LoginStateSuccess(authResultEntity: response));
+        });
       } else {
         selectedRole = TypeOfUser.LandLord.name;
+        var either = await authUseCase.login(
+          password: passwordController.text,
+          email: emailController.text,
+          role: selectedRole,
+        );
+
+        either.fold((l) {
+          emit(LoginStateError(errorMessage: l.errMessage));
+        }, (response) {
+          emit(LoginStateSuccess(authResultEntity: response));
+        // GoRouter.of(context) .go('/home');
+       
+        });
       }
       emit(LoginStateLoading());
-      var either = await authUseCase.login(
-        password: passwordController.text,
-        email: emailController.text,
-        role: selectedRole,
-      );
-      either.fold((l) {
-        emit(LoginStateError(errorMessage: l.errMessage));
-      }, (response) {
-        emit(LoginStateSuccess(authResultEntity: response));
-      });
     }
   }
 

@@ -179,7 +179,9 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     );
 
                     // todo: go to home page
-                    context.push('/bottomBar');
+                    state.authResultEntity.user!.role == TypeOfUser.User.name
+                        ? context.push('/bottomBar')
+                        : context.push('/dashboard');
 
                     // Navigator.of(context).pushNamed(HomeScreen.routeName);
                   } else if (state is LoginStateError) {
@@ -215,7 +217,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     ? AppColors.white
                     : AppColors.primaryColor,
                 onTap: () {
-                  context.push('/bottomBar');
+                  context.push('/home');
                 },
               ),
               const SizedBox(

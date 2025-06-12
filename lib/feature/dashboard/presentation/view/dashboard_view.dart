@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/dashboard_view_body.dart';
 
 class DashboardView extends StatelessWidget {
