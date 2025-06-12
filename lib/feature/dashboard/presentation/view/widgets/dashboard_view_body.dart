@@ -33,8 +33,19 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
 
   final List<Widget> pages = [
     LandLoardFlatsView(),
-    Center(child: Text("Add Flat Page")),
-    Center(child: Text("Profile Page")),
+    BlocProvider(
+      create: (context) => FlatViewModel(
+        addFlatWithImageUseCase: AddFlatWithImageUseCase(
+          flatRepoContract: FlatRepoImpl(
+            flatDataSourceContract: FlatSupabaseDataSourceImpl(
+              flatSupabaseManager: FlatSupabaseManager.getInstance(),
+            ),
+          ),
+        ),
+      ),
+      child: ApartmentDetailsBottomSheet(),
+    ),
+    Center(child: Text('Profile ')),
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,33 +57,34 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: pages[_currentIndex],
-      floatingActionButton: InkWell(
-        onTap: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            ),
-            builder: (context) => BlocProvider(
-              create: (context) => FlatViewModel(
-                addFlatWithImageUseCase: AddFlatWithImageUseCase(
-                  flatRepoContract: FlatRepoImpl(
-                    flatDataSourceContract: FlatSupabaseDataSourceImpl(
-                      flatSupabaseManager: FlatSupabaseManager.getInstance(),
-                    ),
-                  ),
-                ),
-              ),
-              child: ApartmentDetailsBottomSheet(),
-            ),
-          );
-        },
-        child: CircleAvatar(
-            backgroundColor: const Color.fromARGB(175, 0, 89, 79),
-            radius: 30,
-            child: Icon(Icons.add)),
-      ),
+      // floatingActionButton: InkWell(
+      //   onTap: () {
+      //     showModalBottomSheet(
+      //       context: context,
+      //       isScrollControlled: true,
+      //       shape: RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      //       ),
+      //       builder: (context) => BlocProvider(
+      //         create: (context) => FlatViewModel(
+      //           addFlatWithImageUseCase: AddFlatWithImageUseCase(
+      //             flatRepoContract: FlatRepoImpl(
+      //               flatDataSourceContract: FlatSupabaseDataSourceImpl(
+      //                 flatSupabaseManager: FlatSupabaseManager.getInstance(),
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //         child: ApartmentDetailsBottomSheet(),
+      //       ),
+      //     );
+      //   },
+      //   child: CircleAvatar(
+      //       backgroundColor: const Color.fromARGB(175, 0, 89, 79),
+      //       radius: 30,
+      //       child: Icon(Icons.add)),
+      // ),
+
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: onItemTapped,
