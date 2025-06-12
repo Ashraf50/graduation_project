@@ -1169,6 +1169,36 @@ class S {
   String get Add_flat {
     return Intl.message('Add Flat', name: 'Add_flat', desc: '', args: []);
   }
+
+  /// `Select your grade`
+  String get Select_your_level {
+    return Intl.message(
+      'Select your grade',
+      name: 'Select_your_level',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your semester`
+  String get Select_your_semester {
+    return Intl.message(
+      'Select your semester',
+      name: 'Select_your_semester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your level and semester`
+  String get select_level_semester {
+    return Intl.message(
+      'Please select your level and semester',
+      name: 'select_level_semester',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

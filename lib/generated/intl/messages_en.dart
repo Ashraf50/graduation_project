@@ -27,6 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "Easily_explore": MessageLookupByLibrary.simpleMessage("Easily explore"),
     "Ready": MessageLookupByLibrary.simpleMessage("Ready to get started?"),
     "Register": MessageLookupByLibrary.simpleMessage("Register"),
+    "Select_your_level": MessageLookupByLibrary.simpleMessage(
+      "Select your grade",
+    ),
+    "Select_your_semester": MessageLookupByLibrary.simpleMessage(
+      "Select your semester",
+    ),
     "Update_email": MessageLookupByLibrary.simpleMessage("Update Email"),
     "Welcome": MessageLookupByLibrary.simpleMessage("Welcome to AroundU"),
     "about": MessageLookupByLibrary.simpleMessage("About US"),
@@ -175,6 +181,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("Rooms"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "search_here": MessageLookupByLibrary.simpleMessage("search here..."),
+    "select_level_semester": MessageLookupByLibrary.simpleMessage(
+      "Please select your level and semester",
+    ),
     "send": MessageLookupByLibrary.simpleMessage("Send"),
     "send_mess": MessageLookupByLibrary.simpleMessage("Send Message"),
     "services": MessageLookupByLibrary.simpleMessage("Services"),

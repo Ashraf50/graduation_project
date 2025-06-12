@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/constant/function/build_account_image.dart';
 import 'package:graduation_project/core/constant/shared_pref.dart';
 import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
@@ -47,6 +48,7 @@ class EditProfileView extends StatelessWidget {
               image: supabase.auth.currentUser?.userMetadata?['imageProfile'] ??
                   'https://i.pravatar.cc/300',
             ),
+            // buildAccountImage(radius: 25),
             SizedBox(
               height: 30,
             ),

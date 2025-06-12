@@ -39,7 +39,7 @@ class PostItem extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: isLargeScreen ? 30 : 25,
-                        backgroundImage: AssetImage('assets/img/test.jpg'),
+                        backgroundImage: AssetImage('assets/img/terms.svg'),
                       ),
                       SizedBox(width: isLargeScreen ? 15 : 10),
                       Text(
@@ -78,7 +78,7 @@ class PostItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                         flatType,
+                          flatType,
                           style: AppStyles.textStyle16gray,
                         ),
                         Row(

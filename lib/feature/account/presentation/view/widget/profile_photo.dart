@@ -12,6 +12,8 @@ import 'package:graduation_project/feature/account/presentation/view_model/user_
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../../core/constant/function/build_account_image.dart';
+
 class ProfilePhoto extends StatelessWidget {
   final String image;
   ProfilePhoto({super.key, required this.image});
@@ -70,10 +72,7 @@ class ProfilePhoto extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            CircleAvatar(
-              radius: 80,
-              backgroundImage: CachedNetworkImageProvider(image),
-            ),
+            buildAccountImage(radius: 80),
             Positioned(
               bottom: -3,
               right: 11,

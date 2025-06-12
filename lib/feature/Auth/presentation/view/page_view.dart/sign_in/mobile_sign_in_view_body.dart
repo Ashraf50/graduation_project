@@ -217,7 +217,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     ? AppColors.white
                     : AppColors.primaryColor,
                 onTap: () {
-                  context.pushReplacement('/home');
+                  context.pushReplacement('/bottomBar');
                 },
               ),
               const SizedBox(

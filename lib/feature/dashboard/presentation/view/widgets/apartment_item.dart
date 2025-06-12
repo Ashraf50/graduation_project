@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/constant/function/build_account_image.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/post_item.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -38,7 +39,7 @@ class ApartmentItem extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: isLargeScreen ? 30 : 25,
-                        backgroundImage: AssetImage('assets/img/test.jpg'),
+                        backgroundImage: AssetImage('assets/img/terms.svg'),
                       ),
                       SizedBox(width: isLargeScreen ? 15 : 10),
                       Text(
