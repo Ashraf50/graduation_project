@@ -13,7 +13,7 @@ class SliverAppBarWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         children: [
-          HomeAppBar(),
+          SafeArea(child: HomeAppBar()),
           HomeSearchLayer(),
         ],
       ),

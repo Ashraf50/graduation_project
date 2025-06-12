@@ -19,6 +19,17 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return const HomeViewBody();
+    return BlocProvider(
+      create: (context) => FlatViewModel(
+        addFlatWithImageUseCase: AddFlatWithImageUseCase(
+          flatRepoContract: FlatRepoImpl(
+            flatDataSourceContract: FlatSupabaseDataSourceImpl(
+              flatSupabaseManager: FlatSupabaseManager.getInstance(),
+            ),
+          ),
+        ),
+      ),
+      child: const HomeViewBody(),
+    );
   }
 }

@@ -180,8 +180,8 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
 
                     // todo: go to home page
                     state.authResultEntity.user!.role == TypeOfUser.User.name
-                        ? context.push('/bottomBar')
-                        : context.push('/dashboard');
+                        ? context.pushReplacement('/bottomBar')
+                        : context.pushReplacement('/dashboard');
 
                     // Navigator.of(context).pushNamed(HomeScreen.routeName);
                   } else if (state is LoginStateError) {
@@ -217,7 +217,7 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                     ? AppColors.white
                     : AppColors.primaryColor,
                 onTap: () {
-                  context.push('/home');
+                  context.pushReplacement('/home');
                 },
               ),
               const SizedBox(

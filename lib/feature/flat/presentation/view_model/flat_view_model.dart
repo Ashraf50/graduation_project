@@ -53,7 +53,7 @@ class FlatViewModel extends Cubit<FlatStates> {
     });
   }
 
-  Future<void> fetchAllFlats() async {
+  Future<List<Flat>> fetchAllFlats() async {
     try {
       emit(FetchingAllFlatsLoadingState());
       final response = await supabase
@@ -67,13 +67,15 @@ class FlatViewModel extends Cubit<FlatStates> {
       }
 
       // Convert to List<Flat>
-      var flats = (response as List)
+      List<Flat> flats = (response as List)
           .map((flatJson) => Flat.fromJson(flatJson))
           .toList();
 
       emit(FetchingAllFlatsSuccessState(flats: flats));
+      return flats;
     } on Exception catch (e) {
       emit(FetchingAllFlatsErrorState(errMsg: e.toString()));
+      throw Exception('Error fetching flats: ${e.toString()}');
     }
   }
 

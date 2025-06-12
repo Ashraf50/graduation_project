@@ -5,12 +5,14 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
+import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class PostItem extends StatelessWidget {
-  const PostItem({super.key});
-
+  const PostItem({super.key, required this.flat, required this.flatType});
+  final Flat flat;
+  final String flatType;
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
@@ -41,7 +43,7 @@ class PostItem extends StatelessWidget {
                       ),
                       SizedBox(width: isLargeScreen ? 15 : 10),
                       Text(
-                        'Ashraf Essam',
+                        flat.description ?? 'Apartment Name',
                         style: AppStyles.textStyle20notBold,
                       ),
                     ],
@@ -55,7 +57,9 @@ class PostItem extends StatelessWidget {
                   vertical: 10,
                 ),
                 child: SelectableText(
-                  'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
+                  // 'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
+                  flat.description ?? 'Apartment Name',
+
                   style: AppStyles.textStyle18black,
                 ),
               ),
@@ -72,9 +76,9 @@ class PostItem extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          'Apartment',
+                         flatType,
                           style: AppStyles.textStyle16gray,
                         ),
                         Row(
@@ -85,7 +89,7 @@ class PostItem extends StatelessWidget {
                             ),
                             SizedBox(width: 4),
                             Text(
-                              '4.2',
+                              flat.space.toString(),
                               style: AppStyles.textStyle16,
                             ),
                           ],
@@ -93,11 +97,11 @@ class PostItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '400,000 EGP',
+                      '${flat.price} EGP',
                       style: AppStyles.textStyle20,
                     ),
                     Text(
-                      'New Cairo city, Cairo',
+                      flat.description ?? 'Apartment Description',
                       style: AppStyles.textStyle16gray,
                     ),
                     Row(
