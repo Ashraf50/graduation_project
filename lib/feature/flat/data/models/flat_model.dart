@@ -10,7 +10,7 @@ class Flat {
   String? space;
   String? price;
   List<XFile>? images;
-  Flat instance = Flat();
+  Flat.instance();
   Flat({
     this.flatId,
     this.createdAt,
@@ -35,5 +35,11 @@ class Flat {
       price: json['price'] as String?,
       images: json['images'],
     );
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images}';
   }
 }

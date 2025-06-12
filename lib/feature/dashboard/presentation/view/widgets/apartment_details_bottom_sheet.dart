@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
@@ -5,9 +6,13 @@ import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/custom_text_field.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
+import 'package:graduation_project/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../../core/constant/app_colors.dart';
+import '../../../../flat/data/manager/flat_supabase_manager.dart';
+import '../../../../flat/data/repository/data_source/flat_supabase_data_source_impl.dart';
+import '../../../../flat/data/repository/repo/flat_repo_impl.dart';
+import '../../../../flat/domain/use_case/add_flat_with_image_use_case.dart';
 
 class ApartmentDetailsBottomSheet extends StatefulWidget {
   const ApartmentDetailsBottomSheet({super.key});
@@ -19,10 +24,16 @@ class ApartmentDetailsBottomSheet extends StatefulWidget {
 
 class _ApartmentDetailsBottomSheetState
     extends State<ApartmentDetailsBottomSheet> {
-  Flat flat = Flat();
+  late Flat flat;
 
   var formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
+  List<XFile> selectedImages = [];
+  @override
+  void initState() {
+    flat = Flat.instance();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +66,13 @@ class _ApartmentDetailsBottomSheetState
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    final List<XFile> selectedImages =
-                        await picker.pickMultiImage();
+                    selectedImages = await picker.pickMultiImage();
 
                     if (selectedImages.isNotEmpty) {
+                      log("Images selected: ${selectedImages.length}");
                       setState(() {
                         flat.images = selectedImages;
+                        flat.landlordId = supabase.auth.currentUser!.id;
                       });
                     } else {
                       print("No images selected.");
@@ -80,6 +92,14 @@ class _ApartmentDetailsBottomSheetState
                           color: Colors.black87,
                         ),
                       ),
+                      Spacer(),
+                      selectedImages.isNotEmpty
+                          ? Icon(
+                              Icons.check_circle,
+                              size: 20,
+                              color: AppColors.primaryColor,
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ),
@@ -99,6 +119,7 @@ class _ApartmentDetailsBottomSheetState
                 keyboardType: TextInputType.number,
                 onSubmitted: (value) {
                   flat.price = value;
+                  setState(() {});
                 },
               ),
               SizedBox(height: 16),
@@ -108,6 +129,7 @@ class _ApartmentDetailsBottomSheetState
                     child: CustomTextField(
                       onSubmitted: (value) {
                         flat.numBathroom = value;
+                        setState(() {});
                       },
                       labelText: 'Bathrooms',
                       prefixIcon: Icons.bathtub,
@@ -119,6 +141,7 @@ class _ApartmentDetailsBottomSheetState
                     child: CustomTextField(
                       onSubmitted: (value) {
                         flat.numRooms = value;
+                        setState(() {});
                       },
                       labelText: 'Bedrooms',
                       prefixIcon: Icons.bed,
@@ -129,7 +152,8 @@ class _ApartmentDetailsBottomSheetState
                   Expanded(
                     child: CustomTextField(
                       onSubmitted: (value) {
-                        flat!.space = value;
+                        flat.space = value;
+                        setState(() {});
                       },
                       labelText: 'Space (sqm)',
                       prefixIcon: Icons.square_foot,
@@ -142,6 +166,7 @@ class _ApartmentDetailsBottomSheetState
               CustomTextField(
                 onSubmitted: (value) {
                   flat.description = value;
+                  setState(() {});
                 },
                 labelText: 'Description',
                 prefixIcon: Icons.description,
@@ -150,18 +175,21 @@ class _ApartmentDetailsBottomSheetState
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
+                  log('Flat details: ${flat.toString()}');
+                  log('Landlord ID: ${supabase.auth.currentUser!.id}');
+
                   if (formKey.currentState!.validate() &&
                       flat.images!.isNotEmpty &&
-                      flat.landlordId!.isNotEmpty) {
+                      supabase.auth.currentUser!.id.isNotEmpty) {
                     BlocProvider.of<FlatViewModel>(context)
-                        .addFlatToSupabase(flat: flat!);
+                        .addFlatToSupabase(flat: flat);
                   }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(175, 0, 89, 79),
                 ),
                 child: Text(
-                  'Submit',
+                  S.current.Add_flat,
                   style: AppStyles.textStyle18White,
                 ),
               ),

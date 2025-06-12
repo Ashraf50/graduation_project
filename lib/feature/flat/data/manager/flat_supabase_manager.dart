@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
@@ -34,8 +36,10 @@ class FlatSupabaseManager {
             'num_room': numOfRoom,
             'space': space,
             'landlord_id': landlordID,
+            
           },
         ).select();
+        log('response from add flat : $response');
         if (response.isEmpty) {
           return Left(ServerError('failed to add flat'));
         }

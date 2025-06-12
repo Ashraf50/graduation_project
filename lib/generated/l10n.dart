@@ -1164,6 +1164,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Add Flat`
+  String get Add_flat {
+    return Intl.message('Add Flat', name: 'Add_flat', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

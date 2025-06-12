@@ -13,13 +13,15 @@ class CustomTextField extends StatelessWidget {
     required this.labelText,
     required this.prefixIcon,
     this.maxLines = 1,
-    this.keyboardType, this.onSubmitted,
+    this.keyboardType,
+    this.onSubmitted,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onSubmitted: onSubmitted,
+      onChanged: onSubmitted,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(

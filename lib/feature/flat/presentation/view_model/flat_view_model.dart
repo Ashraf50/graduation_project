@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,8 +46,10 @@ class FlatViewModel extends Cubit<FlatStates> {
     );
     either.fold((err) {
       emit(AddingFlatErrorState(errMsg: err.errMessage));
+      log(err.toString());
     }, (sucMsg) {
       emit(AddingFlatSuccessState(sucMsg: sucMsg));
+      log(sucMsg.toString());
     });
   }
 

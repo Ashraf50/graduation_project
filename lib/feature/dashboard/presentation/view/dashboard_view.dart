@@ -13,17 +13,6 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FlatViewModel(
-        addFlatWithImageUseCase: AddFlatWithImageUseCase(
-          flatRepoContract: FlatRepoImpl(
-            flatDataSourceContract: FlatSupabaseDataSourceImpl(
-              flatSupabaseManager: FlatSupabaseManager.getInstance(),
-            ),
-          ),
-        ),
-      ),
-      child: const DashboardViewBody(),
-    );
+    return const DashboardViewBody();
   }
 }
