@@ -13,41 +13,40 @@ class FlatViewModel extends Cubit<FlatStates> {
 
   FlatViewModel({required this.addFlatWithImageUseCase})
       : super(FlatInitialState());
-  var formKey = GlobalKey<FormState>();
-  var descriptionController = TextEditingController();
-  var numOfRoomsController = TextEditingController();
-  var priceController = TextEditingController();
-  var numOfBathRoomController = TextEditingController();
-  var spaceController = TextEditingController();
-  String landlordId = '';
-  List<XFile> images = [];
+  // var formKey = GlobalKey<FormState>();
+  // var descriptionController = TextEditingController();
+  // var numOfRoomsController = TextEditingController();
+  // var priceController = TextEditingController();
+  // var numOfBathRoomController = TextEditingController();
+  // var spaceController = TextEditingController();
+  // String landlordId = '';
+  // List<XFile> images = [];
 
-  Future<void> addFlatToSupabase() async {
-    if (formKey.currentState!.validate() &&
-        images.isNotEmpty &&
-        landlordId.isNotEmpty) {
-      emit(FlatLoadingState());
-      var either = await addFlatWithImageUseCase.uploadFlat(
-        numOfRoom: numOfRoomsController.text,
-        numOfBathroom: numOfBathRoomController.text,
-        price: priceController.text,
-        description: descriptionController.text,
-        space: spaceController.text,
-        landlordID: landlordId,
-        images: images,
-      );
-      either.fold((err) {
-        emit(AddingFlatErrorState(errMsg: err.errMessage));
-      }, (sucMsg) {
-        emit(AddingFlatSuccessState(sucMsg: sucMsg));
-        descriptionController.clear();
-        numOfRoomsController.clear();
-        priceController.clear();
-        numOfBathRoomController.clear();
-        spaceController.clear();
-        images.clear();
-      });
-    }
+  Future<void> addFlatToSupabase({required Flat flat}) async {
+    emit(FlatLoadingState());
+    // var either = await addFlatWithImageUseCase.uploadFlat(
+    //   numOfRoom: numOfRoomsController.text,
+    //   numOfBathroom: numOfBathRoomController.text,
+    //   price: priceController.text,
+    //   description: descriptionController.text,
+    //   space: spaceController.text,
+    //   landlordID: landlordId,
+    //   images: images,
+    // );
+    var either = await addFlatWithImageUseCase.uploadFlat(
+      numOfRoom: flat.numRooms ?? '0',
+      numOfBathroom: flat.numBathroom ?? '0',
+      price: flat.price ?? '0',
+      description: flat.description ?? '',
+      space: flat.space ?? '0',
+      landlordID: flat.landlordId ?? '0',
+      images: flat.images ?? [],
+    );
+    either.fold((err) {
+      emit(AddingFlatErrorState(errMsg: err.errMessage));
+    }, (sucMsg) {
+      emit(AddingFlatSuccessState(sucMsg: sucMsg));
+    });
   }
 
   Future<void> fetchAllFlats() async {

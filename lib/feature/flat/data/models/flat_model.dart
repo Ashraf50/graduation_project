@@ -1,13 +1,19 @@
+import 'package:image_picker/image_picker.dart';
+
 class Flat {
   final int flatId;
   final String createdAt;
-  final String numRooms;
-  final String numBathroom;
-  final String description;
-  final String landlordId;
-  final String space;
+  String? numRooms;
+  String? numBathroom;
+  String? description;
+  String? landlordId;
+  String? space;
+  String? price;
+  List<XFile>? images;
 
   Flat({
+    this.price,
+    this.images,
     required this.flatId,
     required this.createdAt,
     required this.numRooms,

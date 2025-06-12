@@ -6,18 +6,20 @@ class CustomTextField extends StatelessWidget {
   final IconData prefixIcon;
   final int maxLines;
   final TextInputType? keyboardType;
+  final void Function(String)? onSubmitted;
 
   const CustomTextField({
     super.key,
     required this.labelText,
     required this.prefixIcon,
     this.maxLines = 1,
-    this.keyboardType,
+    this.keyboardType, this.onSubmitted,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(
