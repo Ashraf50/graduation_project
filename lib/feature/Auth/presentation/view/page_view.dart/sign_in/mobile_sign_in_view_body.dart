@@ -156,15 +156,15 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                 bloc: authViewModel,
                 listener: (context, state) {
                   if (state is LoginStateLoading) {
-                    // todo : show loading
-
-                    SmartDialog.showLoading(
-                        useAnimation: true, alignment: Alignment.center);
+                  
+                  SmartDialog.showLoading(
+                      useAnimation: true,
+                      alignment: Alignment.center,
+                    );
                   } else if (state is LoginStateSuccess) {
-                    // todo : hide loading
                     SmartDialog.dismiss();
+                    
 
-                    // todo : show message
                     CustomToast.show(
                       message: 'You’ve Signed In Successfully!',
                       //  state.authResultEntity.user!.name ?? 'unknown',
@@ -172,23 +172,15 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                       backgroundColor: AppColors.toastColor,
                     );
 
-                    //todo: save token
                     SharedPreferenceUtils.saveData(
                       key: 'token',
                       value: state.authResultEntity.token,
                     );
-
-                    // todo: go to home page
                     state.authResultEntity.user!.role == TypeOfUser.User.name
                         ? context.pushReplacement('/bottomBar')
                         : context.pushReplacement('/dashboard');
-
-                    // Navigator.of(context).pushNamed(HomeScreen.routeName);
                   } else if (state is LoginStateError) {
-                    // todo : hide loading
                     SmartDialog.dismiss();
-
-                    // todo : show error message
                     print('error is ${state.errorMessage}');
                     CustomToast.show(
                       message: state.errorMessage ?? '',

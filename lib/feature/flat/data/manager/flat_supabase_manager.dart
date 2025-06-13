@@ -65,6 +65,7 @@ class FlatSupabaseManager {
             print('added image successfully');
             // return Right('flat added successfuly');
           }
+          
         } catch (e) {
           log(e.toString());
           return Left(ServerError('failed to upload flat.!'));

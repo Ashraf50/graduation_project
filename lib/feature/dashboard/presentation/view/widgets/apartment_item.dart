@@ -5,14 +5,16 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/constant/function/build_account_image.dart';
+import 'package:graduation_project/core/constant/function/get_current_user.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
+import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/post_item.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ApartmentItem extends StatelessWidget {
-  const ApartmentItem({super.key});
-
+  const ApartmentItem({super.key, required this.flat});
+  final Flat flat;
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
@@ -37,34 +39,22 @@ class ApartmentItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: isLargeScreen ? 30 : 25,
-                        backgroundImage: AssetImage('assets/img/terms.svg'),
-                      ),
+                      // CircleAvatar(
+                      //   radius: isLargeScreen ? 30 : 25,
+                      //   backgroundImage: AssetImage('assets/img/terms.svg'),
+                      // ),
+                      buildAccountImage(
+                          radius: 25,
+                          bgcolor: AppColors.primaryColor.withBlue(80)),
                       SizedBox(width: isLargeScreen ? 15 : 10),
                       Text(
-                        'Ashraf Essam',
+                        getCurrentUser().userMetadata?['userName'],
                         style: AppStyles.textStyle20notBold,
                       ),
                     ],
                   ),
                   MenuButton(),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
-                child: SelectableText(
-                  'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
-                  style: AppStyles.textStyle18black,
-                ),
-              ),
-              Image.asset(
-                'assets/img/apartment.png',
-                width: double.infinity,
-                fit: BoxFit.cover,
               ),
               SizedBox(height: 15),
               Padding(

@@ -12,6 +12,8 @@ class FlatViewModel extends Cubit<FlatStates> {
   FlatViewModel({required this.addFlatWithImageUseCase})
       : super(FlatInitialState());
 
+  // int currnetIndex = 0;
+
   Future<void> addFlatToSupabase({required Flat flat}) async {
     emit(FlatLoadingState());
     var either = await addFlatWithImageUseCase.uploadFlat(
@@ -28,6 +30,7 @@ class FlatViewModel extends Cubit<FlatStates> {
       log(err.toString());
     }, (sucMsg) {
       emit(AddingFlatSuccessState(sucMsg: sucMsg));
+
       log(sucMsg.toString());
     });
   }
@@ -55,7 +58,7 @@ class FlatViewModel extends Cubit<FlatStates> {
           .toList();
 
       for (var flat in flats) {
-        flat.imagesUrl = await fetchFlatImages(flat.flatId.toString());
+        flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
 
       log(' all the flats are $flats');
@@ -67,7 +70,7 @@ class FlatViewModel extends Cubit<FlatStates> {
     }
   }
 
-  Future<List<String>> fetchFlatImages(String flatId) async {
+  Future<List<String>> _fetchFlatImages(String flatId) async {
     try {
       var response =
           await supabase.from('FlatImages').select().eq('flat_id', flatId);
@@ -85,7 +88,7 @@ class FlatViewModel extends Cubit<FlatStates> {
     }
   }
 
-  Future<void> fetchFlatsByLandlord(String landlordId) async {
+  Future<void> fetchFlatsByLandlordId(String landlordId) async {
     try {
       emit(FetchingLandlordFlatsLoadingState());
       final response =

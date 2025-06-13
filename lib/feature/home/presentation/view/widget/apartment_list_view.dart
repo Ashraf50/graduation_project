@@ -54,7 +54,7 @@ class _ApartmentListViewState extends State<ApartmentListView> {
         } else if (state is FetchingAllFlatsLoadingState) {
           SmartDialog.showLoading(
               useAnimation: true, alignment: Alignment.center);
-        return Container(
+          return Container(
             color: AppColors.white,
             child: SizedBox(),
           );

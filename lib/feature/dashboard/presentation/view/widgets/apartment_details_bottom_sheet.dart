@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/custom_text_field.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
+import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,8 +28,10 @@ class _ApartmentDetailsBottomSheetState
   var formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
   List<XFile> selectedImages = [];
+  late FlatViewModel flatCubit;
   @override
   void initState() {
+    flatCubit = BlocProvider.of<FlatViewModel>(context);
     flat = Flat.instance();
     super.initState();
   }
@@ -103,7 +108,6 @@ class _ApartmentDetailsBottomSheetState
                       ),
                     ),
                   ),
-                   
                   SizedBox(height: 16),
                   CustomTextField(
                     labelText: 'Price',
@@ -173,8 +177,11 @@ class _ApartmentDetailsBottomSheetState
                       if (formKey.currentState!.validate() &&
                           flat.images!.isNotEmpty &&
                           supabase.auth.currentUser!.id.isNotEmpty) {
-                        BlocProvider.of<FlatViewModel>(context)
-                            .addFlatToSupabase(flat: flat);
+                        flatCubit.addFlatToSupabase(flat: flat);
+                        SmartDialog.showLoading(
+                          useAnimation: true,
+                          alignment: Alignment.center,
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(

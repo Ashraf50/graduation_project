@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import '../../helper/di.dart';
 import '../app_colors.dart';
 
-Widget buildAccountImage({required double radius}) {
+Widget buildAccountImage({required double radius, Color? bgcolor}) {
   return supabase.auth.currentUser?.userMetadata?['imageProfile'] == null
       ? CircleAvatar(
           radius: radius,
-          backgroundColor: AppColors.toastColor,
+          backgroundColor: bgcolor ?? AppColors.toastColor,
           child: Text(
             supabase.auth.currentUser!.userMetadata?['userName'][0],
             style: TextStyle(
