@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
@@ -64,11 +65,18 @@ class PostItem extends StatelessWidget {
                   style: AppStyles.textStyle18black,
                 ),
               ),
-              Image.network(flat.imagesUrl == null
-                  ? 'https://www.flaticon.com/free-icon/photo_13273677'
-                  : flat.imagesUrl!.isEmpty
-                      ? 'https://www.flaticon.com/free-icon/photo_13273677'
-                      : flat.imagesUrl![0]),
+              SizedBox(
+                height: 200,
+                width: screenWidth - 20,
+                child: Image.network(
+                  flat.imagesUrl == null
+                      ? AppStrings.noImageUrl
+                      : flat.imagesUrl!.isEmpty
+                          ? AppStrings.noImageUrl
+                          : flat.imagesUrl![0],
+                  fit: BoxFit.cover,
+                ),
+              ),
               // Image.asset(
               //   'assets/img/apartment.png',
               //   width: double.infinity,
@@ -87,19 +95,19 @@ class PostItem extends StatelessWidget {
                           flatType,
                           style: AppStyles.textStyle16gray,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Color(0xffF8B84E),
-                            ),
-                            SizedBox(width: 4),
-                            Text(
-                              flat.space.toString(),
-                              style: AppStyles.textStyle16,
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Icon(
+                        //       Icons.star,
+                        //       color: Color(0xffF8B84E),
+                        //     ),
+                        //     SizedBox(width: 4),
+                        //     Text(
+                        //       flat.space.toString(),
+                        //       style: AppStyles.textStyle16,
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                     Text(
@@ -114,18 +122,18 @@ class PostItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             ApartmentProperties(
                               image: 'assets/img/num_bed.svg',
-                              title: '2',
+                              title: flat.numRooms.toString(),
                             ),
                             ApartmentProperties(
                               image: 'assets/img/num_bathroom.svg',
-                              title: '2',
+                              title: flat.numBathroom.toString(),
                             ),
                             ApartmentProperties(
                               image: 'assets/img/area.svg',
-                              title: '130 m',
+                              title: '${flat.space} m',
                             ),
                           ],
                         ),

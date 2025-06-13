@@ -14,4 +14,8 @@ class AppStrings {
 // material urls
   static const String level4sem2 =
       'https://drive.google.com/drive/folders/1S3z-X17j8M1NGFG98VM15P_oN0rWPPQX';
+
+  // no image url
+  static const String noImageUrl =
+      'https://owqlzcjkvczjddebvwby.supabase.co/storage/v1/object/public/landlord-cards/images/1745586291246_Screenshot%202025-04-14%20202840.png';
 }

@@ -1,5 +1,7 @@
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../generated/l10n.dart';
+
 class Flat {
   int? flatId;
   String? createdAt;
@@ -11,6 +13,7 @@ class Flat {
   String? price;
   List<XFile>? images;
   List<String>? imagesUrl;
+
   Flat.instance();
   Flat({
     this.flatId,
@@ -40,7 +43,10 @@ class Flat {
 
   @override
   String toString() {
-    // TODO: implement toString
     return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images, imagesUrl: $imagesUrl}';
+  }
+
+  String getFlatType() {
+    return int.tryParse(numRooms!)! <= 1 ? S.current.room : S.current.apartment;
   }
 }

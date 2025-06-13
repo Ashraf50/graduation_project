@@ -40,9 +40,7 @@ class _AllPostsListViewState extends State<AllPostsListView> {
               itemCount: state.flats.length,
               itemBuilder: (context, index) {
                 return PostItem(
-                  flatType: int.tryParse(state.flats[index].numRooms!)! <= 1
-                      ? S.of(context).room
-                      : S.of(context).apartment,
+                  flatType: state.flats[index].getFlatType(),
                   flat: state.flats[index],
                 );
               },
