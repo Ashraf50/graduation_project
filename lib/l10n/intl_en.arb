@@ -143,5 +143,7 @@
     "send_mess": "Send Message",
     "copy_mess":"Copy Message",
     "mess_copied":"Message copied",
-    "delete_mess":"Delete Message"
+    "delete_mess":"Delete Message",
+    "Add_flat": "Add Flat"
+
 }

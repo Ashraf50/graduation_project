@@ -190,35 +190,8 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CustomButton(
-                                title: S.of(context).upload_front,
-                                onTap: () async {
-                                  final XFile? xFile = await authViewModel
-                                      .pickerFront
-                                      .pickImage(source: ImageSource.gallery);
-                                  if (xFile != null) {
-                                    authViewModel.frontFile = File(xFile.path);
-
-                                    authViewModel.frontURL =
-                                        'images/${DateTime.now().millisecondsSinceEpoch}_${authViewModel.frontFile!.path.split('/').last}';
-                                  }
-                                },
-                                width: 200,
-                              ),
-                              CustomButton(
-                                title: S.of(context).upload_back,
-                                onTap: () async {
-                                  final XFile? xFile = await authViewModel
-                                      .pickerBack
-                                      .pickImage(source: ImageSource.gallery);
-                                  if (xFile != null) {
-                                    authViewModel.backFile = File(xFile.path);
-                                    authViewModel.backURL =
-                                        'images/${DateTime.now().millisecondsSinceEpoch + 1}_${authViewModel.frontFile!.path.split('/').last}';
-                                  }
-                                },
-                                width: 200,
-                              ),
+                              UploadFrontIdCustomButton(authViewModel: authViewModel),
+                              UploadBackIdCustomButton(authViewModel: authViewModel),
                             ],
                           ),
                 BlocListener<AuthViewModel, AuthStates>(
@@ -298,6 +271,63 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class UploadBackIdCustomButton extends StatelessWidget {
+  const UploadBackIdCustomButton({
+    super.key,
+    required this.authViewModel,
+  });
+
+  final AuthViewModel authViewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(
+      title: S.of(context).upload_back,
+      onTap: () async {
+        final XFile? xFile = await authViewModel
+            .pickerBack
+            .pickImage(source: ImageSource.gallery);
+        if (xFile != null) {
+          authViewModel.backFile = File(xFile.path);
+          authViewModel.backURL =
+              'images/${DateTime.now().millisecondsSinceEpoch + 1}_${authViewModel.frontFile!.path.split('/').last}';
+        }
+      },
+      width:
+          MediaQuery.sizeOf(context).width / 2 - 20,
+    );
+  }
+}
+
+class UploadFrontIdCustomButton extends StatelessWidget {
+  const UploadFrontIdCustomButton({
+    super.key,
+    required this.authViewModel,
+  });
+
+  final AuthViewModel authViewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(
+      title: S.of(context).upload_front,
+      onTap: () async {
+        final XFile? xFile = await authViewModel
+            .pickerFront
+            .pickImage(source: ImageSource.gallery);
+        if (xFile != null) {
+          authViewModel.frontFile = File(xFile.path);
+    
+          authViewModel.frontURL =
+              'images/${DateTime.now().millisecondsSinceEpoch}_${authViewModel.frontFile!.path.split('/').last}';
+        }
+      },
+      width:
+          MediaQuery.sizeOf(context).width / 2 - 20,
     );
   }
 }

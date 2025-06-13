@@ -11,6 +11,8 @@ import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import 'build_bottom_bar_widget.dart';
+
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
 
@@ -45,31 +47,31 @@ class _BottomBarState extends State<BottomBar> {
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
         items: [
-          _buildBottomBarItem(
+          buildBottomBarItem(
             iconPath: 'assets/img/home.svg',
             activeIconPath: 'assets/img/active_home.svg',
             title: S.of(context).home,
             isDarkTheme: isDarkTheme,
           ),
-          _buildBottomBarItem(
+          buildBottomBarItem(
             iconPath: 'assets/img/category.svg',
             activeIconPath: 'assets/img/active_category.svg',
             title: S.of(context).services,
             isDarkTheme: isDarkTheme,
           ),
-          _buildBottomBarItem(
+          buildBottomBarItem(
             iconPath: 'assets/img/favorite.svg',
             activeIconPath: 'assets/img/active_favorite.svg',
             title: S.of(context).favorite,
             isDarkTheme: isDarkTheme,
           ),
-          _buildBottomBarItem(
+          buildBottomBarItem(
             iconPath: 'assets/img/chat.svg',
             activeIconPath: 'assets/img/active_chat.svg',
             title: S.of(context).chat,
             isDarkTheme: isDarkTheme,
           ),
-          _buildBottomBarItem(
+          buildBottomBarItem(
             iconPath: 'assets/img/profile.svg',
             activeIconPath: 'assets/img/active_profile.svg',
             title: S.of(context).Account,
@@ -80,29 +82,5 @@ class _BottomBarState extends State<BottomBar> {
     );
   }
 
-  SalomonBottomBarItem _buildBottomBarItem({
-    required String iconPath,
-    required String activeIconPath,
-    required String title,
-    required bool isDarkTheme,
-  }) {
-    final Color iconColor = isDarkTheme ? AppColors.white : AppColors.black;
-    final Color selectedColor =
-        isDarkTheme ? AppColors.white : AppColors.primaryColor;
 
-    return SalomonBottomBarItem(
-      icon: SvgPicture.asset(
-        iconPath,
-        height: 25,
-        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-      ),
-      activeIcon: SvgPicture.asset(
-        activeIconPath,
-        height: 25,
-        colorFilter: ColorFilter.mode(selectedColor, BlendMode.srcIn),
-      ),
-      title: Text(title),
-      selectedColor: selectedColor,
-    );
-  }
 }

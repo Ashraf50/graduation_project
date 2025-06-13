@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/error/failure.dart';
@@ -13,6 +15,7 @@ class FlatSupabaseManager {
     return _instance!;
   }
 
+// we need to pass to this fun numOfRoom, numOfBathroom, price, description, space, landlordID, images
   Future<Either<Failure, String>> uploadFlat({
     required String numOfRoom,
     required String numOfBathroom,
@@ -26,10 +29,6 @@ class FlatSupabaseManager {
     if (connectivityResults.contains(ConnectivityResult.mobile) ||
         connectivityResults.contains(ConnectivityResult.wifi)) {
       try {
-        /// internet is stable
-        /// data != null
-        // todo: add flat to the table => Flats
-
         final response = await supabase.from('Flats').insert(
           {
             'description': description,
@@ -37,8 +36,10 @@ class FlatSupabaseManager {
             'num_room': numOfRoom,
             'space': space,
             'landlord_id': landlordID,
+            
           },
         ).select();
+        log('response from add flat : $response');
         if (response.isEmpty) {
           return Left(ServerError('failed to add flat'));
         }
@@ -79,6 +80,8 @@ class FlatSupabaseManager {
       );
     }
   }
+
+  
 }
 
 // Future<Either<Failure, String>> uploadFlatImages({
@@ -93,7 +96,6 @@ class FlatSupabaseManager {
 //       /// internet is stable
 //       /// data != null
 //       /// flat_id && image_URL && landlord_id
-
 //       //todo: add flat's images to the storage =>flat-image
 //       // todo: add flat's images to the table => FlatImages
 //       for (var image in images) {
@@ -114,7 +116,6 @@ class FlatSupabaseManager {
 //         });
 //         print('added image successfully');
 //       }
-
 //       return Right("flat's images added successfully.!");
 //     } catch (err) {
 //       return Left(ServerError(err.toString()));

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:graduation_project/feature/Auth/data/manager/auth_supabase_manager.dart';
+
+import 'di.dart';
 
 class ChatHelper {
   Future<String> getUserNameById(String id) async {
