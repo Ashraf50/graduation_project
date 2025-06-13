@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/function/get_current_user.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/apartment_details_bottom_sheet.dart';
@@ -20,18 +21,19 @@ class DashboardViewBody extends StatefulWidget {
 
 class _DashboardViewBodyState extends State<DashboardViewBody> {
   late FlatViewModel flatCubit;
-  List<Flat> flats = [];
+  // List<Flat> flats = [];
   int _currentIndex = 0;
+  // List<Widget> pages = [];
+  List<Widget> pages = [
+    LandLoardHomeView(),
+    ApartmentDetailsBottomSheet(),
+    Center(child: Text('Profile')),
+  ];
 
   @override
   initState() {
     flatCubit = BlocProvider.of<FlatViewModel>(context);
 
-    Future.sync(() {
-      flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
-    }).then((value) {
-      flats = value as List<Flat>;
-    });
     super.initState();
   }
 
@@ -47,40 +49,59 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
     log('Current index after: $_currentIndex');
   }
 
-  // final List<Widget> pages = [
-  //   LandLoardHomeView(flats: flats),
-  //   ApartmentDetailsBottomSheet(),
-  //   Center(child: Text('Profile ')),
-  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: BlocConsumer<FlatViewModel, FlatStates>(
+      body: BlocListener<FlatViewModel, FlatStates>(
         listener: (context, state) {
           if (state is AddingFlatSuccessState) {
+            SmartDialog.dismiss();
             _currentIndex = 0;
             setState(() {});
           }
         },
-        builder: (context, state) {
-          List<Widget> pages;
-          if (state is FetchingLandlordFlatsSuccessState) {
-            pages = [
-              LandLoardHomeView(flats: state.flats),
-              ApartmentDetailsBottomSheet(),
-              Center(child: Text('Profile')),
-            ];
-          } else {
-            pages = [
-              NoItemWidget(),
-              ApartmentDetailsBottomSheet(),
-              Center(child: Text('Profile')),
-            ];
-          }
-          return pages[_currentIndex];
-        },
+        child: pages[_currentIndex],
       ),
+      // body: BlocConsumer<FlatViewModel, FlatStates>(
+      //   listener: (context, state) {
+      //     if (state is AddingFlatSuccessState) {
+      //       _currentIndex = 0;
+      //       setState(() {});
+      //     }
+      //   },
+      //   builder: (context, state) {
+      //     SmartDialog.dismiss();
+
+      //     if (state is FetchingLandlordFlatsSuccessState) {
+      //       SmartDialog.dismiss();
+      //       pages = [
+      //         LandLoardHomeView(),
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     } else if (state is FetchingLandlordFlatsLoadingState) {
+      //       SmartDialog.showLoading(
+      //           useAnimation: true, alignment: Alignment.center);
+      //       pages = [
+      //         Center(
+      //           child: Container(
+      //             color: AppColors.white,
+      //           ),
+      //         ),
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     } else {
+      //       pages = [
+      //         NoItemWidget(),
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     }
+      //     return pages[_currentIndex];
+      //   },
+      // ),
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: onItemTapped,
@@ -88,12 +109,16 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.home,
+              // color: AppColors.white,
               size: 30,
             ),
             title: Text('Home'),
           ),
           SalomonBottomBarItem(
-            icon: Icon(size: 30, Icons.add),
+            icon: Icon(
+              size: 30,
+              Icons.add,
+            ),
             title: Text('Add Flat'),
           ),
           SalomonBottomBarItem(

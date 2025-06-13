@@ -9,6 +9,7 @@ class Flat {
   String? numBathroom;
   String? description;
   String? landlordId;
+  String? landlordName;
   String? space;
   String? price;
   List<XFile>? images;
@@ -43,7 +44,7 @@ class Flat {
 
   @override
   String toString() {
-    return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images, imagesUrl: $imagesUrl}';
+    return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images, imagesUrl: $imagesUrl, landlordName: $landlordName}';
   }
 
   String getFlatType() {

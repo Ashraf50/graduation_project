@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/feature/flat/domain/use_case/add_flat_with_image_use_case.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
 
@@ -25,13 +26,13 @@ class FlatViewModel extends Cubit<FlatStates> {
       landlordID: flat.landlordId ?? '0',
       images: flat.images ?? [],
     );
+    log(' either is $either');
     either.fold((err) {
-      emit(AddingFlatErrorState(errMsg: err.errMessage));
       log(err.toString());
+      emit(AddingFlatErrorState(errMsg: err.errMessage));
     }, (sucMsg) {
-      emit(AddingFlatSuccessState(sucMsg: sucMsg));
-
       log(sucMsg.toString());
+      emit(AddingFlatSuccessState(sucMsg: sucMsg));
     });
   }
 
@@ -48,7 +49,7 @@ class FlatViewModel extends Cubit<FlatStates> {
           FetchingAllFlatsErrorState(errMsg: 'there is no flats to show yet'),
         );
       }
-      log('flat  response is  ${response.toString()}');
+      // log('flat  response is  ${response.toString()}');
 
       // Convert to List<Flat>
       List<Flat> flats = (response as List)
@@ -58,10 +59,11 @@ class FlatViewModel extends Cubit<FlatStates> {
           .toList();
 
       for (var flat in flats) {
+        flat.landlordName = await getLandLordNameById(flat.landlordId!);
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
 
-      log(' all the flats are $flats');
+      // log(' all the flats are $flats');
       emit(FetchingAllFlatsSuccessState(flats: flats));
       return flats;
     } on Exception catch (e) {
@@ -75,12 +77,12 @@ class FlatViewModel extends Cubit<FlatStates> {
       var response =
           await supabase.from('FlatImages').select().eq('flat_id', flatId);
 
-      log('images response is $response');
+      // log('images response is $response');
       List<String> images = [];
       for (var image in response) {
         images.add(image['image_URL']);
       }
-      log('images  $images');
+      // log('images  $images');
 
       return images;
     } catch (e) {
@@ -91,8 +93,11 @@ class FlatViewModel extends Cubit<FlatStates> {
   Future<void> fetchFlatsByLandlordId(String landlordId) async {
     try {
       emit(FetchingLandlordFlatsLoadingState());
-      final response =
-          await supabase.from('Flats').select().eq('landlord_id', landlordId);
+      final response = await supabase
+          .from('Flats')
+          .select()
+          .eq('landlord_id', landlordId)
+          .order('created_at', ascending: false);
 
       if (response.isEmpty) {
         emit(FetchingLandlordFlatsErrorState(

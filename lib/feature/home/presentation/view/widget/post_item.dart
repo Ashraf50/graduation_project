@@ -5,6 +5,8 @@ import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/constant/function/build_account_image.dart';
+import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -38,14 +40,16 @@ class PostItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: isLargeScreen ? 30 : 25,
-                        backgroundImage: AssetImage('assets/img/terms.svg'),
-                      ),
+                      buildAccountImage(radius: 25),
                       SizedBox(width: isLargeScreen ? 15 : 10),
-                      Text(
-                        flat.description ?? 'Apartment Name',
-                        style: AppStyles.textStyle20notBold,
+                      SizedBox(
+                        width: screenWidth * 0.5,
+                        child: Text(
+                          flat.landlordName ?? '',
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                          style: AppStyles.textStyle20notBold,
+                        ),
                       ),
                     ],
                   ),
@@ -69,6 +73,9 @@ class PostItem extends StatelessWidget {
                 height: 200,
                 width: screenWidth - 20,
                 child: Image.network(
+                  loadingBuilder: (context, child, loadingProgress) {
+                    return child;
+                  },
                   flat.imagesUrl == null
                       ? AppStrings.noImageUrl
                       : flat.imagesUrl!.isEmpty
@@ -143,7 +150,8 @@ class PostItem extends StatelessWidget {
                           textColor: AppColors.white,
                           width: 110,
                           onTap: () {
-                            context.push('/details');
+                            // getLandLordById(flat.landlordId!);
+                            context.push('/details', extra: flat);
                           },
                         ),
                       ],

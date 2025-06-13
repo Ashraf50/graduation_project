@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
-import 'package:graduation_project/core/constant/function/build_account_image.dart';
-import 'package:graduation_project/core/constant/function/get_current_user.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/post_item.dart';
@@ -18,10 +15,10 @@ class ApartmentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isLargeScreen = screenWidth > 600;
+    // final screenWidth = MediaQuery.of(context).size.width;
+    // final isLargeScreen = screenWidth > 600;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.only(bottom: 15),
       child: Material(
         borderRadius: BorderRadius.circular(20),
         elevation: 5,
@@ -34,29 +31,29 @@ class ApartmentItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      // CircleAvatar(
-                      //   radius: isLargeScreen ? 30 : 25,
-                      //   backgroundImage: AssetImage('assets/img/terms.svg'),
-                      // ),
-                      buildAccountImage(
-                          radius: 25,
-                          bgcolor: AppColors.primaryColor.withBlue(80)),
-                      SizedBox(width: isLargeScreen ? 15 : 10),
-                      Text(
-                        getCurrentUser().userMetadata?['userName'],
-                        style: AppStyles.textStyle20notBold,
-                      ),
-                    ],
-                  ),
-                  MenuButton(),
-                ],
-              ),
-              SizedBox(height: 15),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Row(
+              //       children: [
+              //         // CircleAvatar(
+              //         //   radius: isLargeScreen ? 30 : 25,
+              //         //   backgroundImage: AssetImage('assets/img/terms.svg'),
+              //         // ),ي
+              //         buildAccountImage(
+              //             radius: 25,
+              //             bgcolor: AppColors.primaryColor.withBlue(80)),
+              //         SizedBox(width: isLargeScreen ? 15 : 10),
+              //         Text(
+              //           getCurrentUser().userMetadata?['userName'],
+              //           style: AppStyles.textStyle20notBold,
+              //         ),
+              //       ],
+              //     ),
+              //     MenuButton(),
+              //   ],
+              // ),
+              SizedBox(height: 8),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -64,28 +61,28 @@ class ApartmentItem extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          'Apartment',
+                          flat.getFlatType(),
                           style: AppStyles.textStyle16gray,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Color(0xffF8B84E),
-                            ),
-                            SizedBox(width: 4),
-                            Text(
-                              '4.2',
-                              style: AppStyles.textStyle16,
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Icon(
+                        //       Icons.star,
+                        //       color: Color(0xffF8B84E),
+                        //     ),
+                        //     SizedBox(width: 4),
+                        //     Text(
+                        //       '4.2',
+                        //       style: AppStyles.textStyle16,
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                     Text(
-                      '400,000 EGP',
+                      '${flat.price}EGP',
                       style: AppStyles.textStyle20,
                     ),
                     Text(
@@ -96,18 +93,18 @@ class ApartmentItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             ApartmentProperties(
                               image: 'assets/img/num_bed.svg',
-                              title: '2',
+                              title: '${flat.numRooms}',
                             ),
                             ApartmentProperties(
                               image: 'assets/img/num_bathroom.svg',
-                              title: '2',
+                              title: '${flat.numBathroom}',
                             ),
                             ApartmentProperties(
                               image: 'assets/img/area.svg',
-                              title: '130 m',
+                              title: '${'${flat.space}'} m',
                             ),
                           ],
                         ),
@@ -116,6 +113,7 @@ class ApartmentItem extends StatelessWidget {
                           buttonColor: AppColors.primaryColor,
                           textColor: AppColors.white,
                           width: 110,
+                          height: 50,
                           onTap: () {
                             context.push('/details');
                           },

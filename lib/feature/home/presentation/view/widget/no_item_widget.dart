@@ -12,7 +12,7 @@ class NoItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.white,
-      child: Center(child: SvgPicture.asset('assets/img/no_flats_yet.svg')),
+      child: Center(child: SvgPicture.asset('assets/img/not_item_yet.svg')),
     );
   }
 }
