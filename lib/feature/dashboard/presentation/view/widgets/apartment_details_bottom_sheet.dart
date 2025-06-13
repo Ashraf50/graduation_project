@@ -103,14 +103,7 @@ class _ApartmentDetailsBottomSheetState
                       ),
                     ),
                   ),
-                  // CustomTextField(
-                  //   onSubmitted: (value) async {
-                  //     final XFile? xFile =
-                  //         await picker.pickImage(source: ImageSource.gallery);
-                  //   },
-                  //   labelText: 'Upload Photos',
-                  //   prefixIcon: Icons.photo,
-                  // ),
+                   
                   SizedBox(height: 16),
                   CustomTextField(
                     labelText: 'Price',

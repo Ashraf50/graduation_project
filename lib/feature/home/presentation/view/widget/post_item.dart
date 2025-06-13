@@ -59,15 +59,21 @@ class PostItem extends StatelessWidget {
                 child: SelectableText(
                   // 'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
                   flat.description ?? 'Apartment Name',
+                  textAlign: TextAlign.left,
 
                   style: AppStyles.textStyle18black,
                 ),
               ),
-              Image.asset(
-                'assets/img/apartment.png',
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+              Image.network(flat.imagesUrl == null
+                  ? 'https://www.flaticon.com/free-icon/photo_13273677'
+                  : flat.imagesUrl!.isEmpty
+                      ? 'https://www.flaticon.com/free-icon/photo_13273677'
+                      : flat.imagesUrl![0]),
+              // Image.asset(
+              //   'assets/img/apartment.png',
+              //   width: double.infinity,
+              //   fit: BoxFit.cover,
+              // ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),

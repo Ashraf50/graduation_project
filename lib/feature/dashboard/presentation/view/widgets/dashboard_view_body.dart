@@ -49,11 +49,6 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
   ];
   @override
   Widget build(BuildContext context) {
-    // double screenHeight = MediaQuery.sizeOf(context).height;
-    // final themeProvider = Provider.of<ThemeProvider>(context);
-
-    // final bool isDarkTheme = themeProvider.isDarkTheme;
-
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: pages[_currentIndex],
@@ -91,7 +86,6 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
         items: [
           SalomonBottomBarItem(
             icon: Icon(
-              // onPressed: () {},
               Icons.home,
               size: 30,
             ),
