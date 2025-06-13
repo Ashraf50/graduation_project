@@ -40,7 +40,7 @@ class _MaterailViewBodyState extends State<MaterailViewBody> {
                 launchUrlOfAlevel(level, semester);
               }
             },
-            label: Text(S.of(context).Select_your_level),
+            label: Text(S.of(context).select_level),
             // value: 'data',
             dropdownMenuEntries: const [
               DropdownMenuEntry(
@@ -80,7 +80,7 @@ class _MaterailViewBodyState extends State<MaterailViewBody> {
               }
             },
 
-            label: Text(S.of(context).Select_your_semester),
+            label: Text(S.of(context).select_semester),
             // value: 'data',
             dropdownMenuEntries: const [
               DropdownMenuEntry(

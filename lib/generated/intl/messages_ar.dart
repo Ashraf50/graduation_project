@@ -27,12 +27,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "Easily_explore": MessageLookupByLibrary.simpleMessage("استكشف بسهولة"),
     "Ready": MessageLookupByLibrary.simpleMessage("هل أنت مستعد للبدء؟"),
     "Register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
-    "Select_your_level": MessageLookupByLibrary.simpleMessage(
-      "اختر السنه الدراسية",
-    ),
-    "Select_your_semester": MessageLookupByLibrary.simpleMessage(
-      "اختر الفصل الدراسي",
-    ),
     "Update_email": MessageLookupByLibrary.simpleMessage(
       "تحديث البريد الإلكتروني",
     ),
@@ -179,9 +173,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("غرف"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "search_here": MessageLookupByLibrary.simpleMessage("ابحث هنا..."),
+    "select_level": MessageLookupByLibrary.simpleMessage("حدد المستوى"),
     "select_level_semester": MessageLookupByLibrary.simpleMessage(
-      "من فضلك حدد المستوي والترم",
+      "حدد المستوى والفصل",
     ),
+    "select_semester": MessageLookupByLibrary.simpleMessage("حدد الفصل"),
     "send": MessageLookupByLibrary.simpleMessage("ارسل"),
     "send_mess": MessageLookupByLibrary.simpleMessage("ارسل رساله"),
     "services": MessageLookupByLibrary.simpleMessage("الخدمات"),

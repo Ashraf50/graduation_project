@@ -144,6 +144,10 @@
     "copy_mess":"Copy Message",
     "mess_copied":"Message copied",
     "delete_mess":"Delete Message",
-    "Add_flat": "Add Flat"
-
+    "Add_flat": "Add Flat",
+    
+    "select_level_semester":"Please Select Level and Semester",
+    "select_semester":"Select Semester",
+    "select_level":"Select Level"
+    
 }

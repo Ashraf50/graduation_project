@@ -144,5 +144,9 @@
     "copy_mess": "نسخ الرسالة",
     "mess_copied": "تم نسخ الرسالة",
     "delete_mess":"حذف الرسالة",
-    "Add_flat": "إضاف الشقة"
+    "Add_flat": "إضاف الشقة",
+    "select_level_semester":"حدد المستوى والفصل",
+    "select_semester":"حدد الفصل",
+    "select_level":"حدد المستوى"
+     
 }
