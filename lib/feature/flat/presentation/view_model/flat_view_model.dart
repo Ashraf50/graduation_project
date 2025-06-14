@@ -107,6 +107,12 @@ class FlatViewModel extends Cubit<FlatStates> {
       var flats = (response as List)
           .map((flatJson) => Flat.fromJson(flatJson))
           .toList();
+
+      for (var flat in flats) {
+        flat.landlordName = await getLandLordNameById(flat.landlordId!);
+        flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
+      }
+
       emit(FetchingLandlordFlatsSuccessState(flats: flats));
     } on Exception catch (e) {
       emit(FetchingLandlordFlatsErrorState(errMsg: e.toString()));

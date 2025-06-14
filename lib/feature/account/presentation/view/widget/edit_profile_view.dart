@@ -46,7 +46,7 @@ class EditProfileView extends StatelessWidget {
             ),
             ProfilePhoto(
               image: supabase.auth.currentUser?.userMetadata?['imageProfile'] ??
-                  'https://i.pravatar.cc/300',
+                  supabase.auth.currentUser?.userMetadata?['userName'][0],
             ),
             // buildAccountImage(radius: 25),
             SizedBox(

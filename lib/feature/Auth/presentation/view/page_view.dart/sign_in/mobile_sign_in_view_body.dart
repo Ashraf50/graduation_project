@@ -156,14 +156,12 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                 bloc: authViewModel,
                 listener: (context, state) {
                   if (state is LoginStateLoading) {
-                  
-                  SmartDialog.showLoading(
+                    SmartDialog.showLoading(
                       useAnimation: true,
                       alignment: Alignment.center,
                     );
                   } else if (state is LoginStateSuccess) {
                     SmartDialog.dismiss();
-                    
 
                     CustomToast.show(
                       message: 'You’ve Signed In Successfully!',
@@ -193,6 +191,10 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                   buttonColor: AppColors.primaryColor,
                   title: S.of(context).login,
                   onTap: () {
+                    SmartDialog.showLoading(
+                      useAnimation: true,
+                      alignment: Alignment.center,
+                    );
                     authViewModel.login();
                   },
                   textColor: AppColors.white,

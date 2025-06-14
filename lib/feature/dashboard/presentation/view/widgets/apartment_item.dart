@@ -31,28 +31,6 @@ class ApartmentItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Row(
-              //       children: [
-              //         // CircleAvatar(
-              //         //   radius: isLargeScreen ? 30 : 25,
-              //         //   backgroundImage: AssetImage('assets/img/terms.svg'),
-              //         // ),ي
-              //         buildAccountImage(
-              //             radius: 25,
-              //             bgcolor: AppColors.primaryColor.withBlue(80)),
-              //         SizedBox(width: isLargeScreen ? 15 : 10),
-              //         Text(
-              //           getCurrentUser().userMetadata?['userName'],
-              //           style: AppStyles.textStyle20notBold,
-              //         ),
-              //       ],
-              //     ),
-              //     MenuButton(),
-              //   ],
-              // ),
               SizedBox(height: 8),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -115,7 +93,7 @@ class ApartmentItem extends StatelessWidget {
                           width: 110,
                           height: 50,
                           onTap: () {
-                            context.push('/details');
+                            context.push('/details', extra: flat);
                           },
                         ),
                       ],
