@@ -19,6 +19,7 @@ import 'package:graduation_project/feature/chat/presentation/view/chat_details_v
 
 import 'package:graduation_project/feature/dashboard/presentation/view/dashboard_view.dart';
 import 'package:graduation_project/feature/desktop/desktop_view.dart';
+import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/details_view.dart';
 import 'package:graduation_project/feature/map/presentation/view/map_view.dart';
 import 'package:graduation_project/feature/splash_screen/presentation/view/onboard_screen_view.dart';
@@ -111,7 +112,10 @@ class AppRouter {
       ),
       GoRoute(
         path: '/details',
-        builder: (context, state) => const DetailsView(),
+        builder: (context, state) {
+          final flat = state.extra as Flat;
+          return DetailsView(flat: flat);
+        },
       ),
       GoRoute(
         path: '/map',

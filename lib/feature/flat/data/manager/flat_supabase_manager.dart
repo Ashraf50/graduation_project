@@ -36,7 +36,7 @@ class FlatSupabaseManager {
             'num_room': numOfRoom,
             'space': space,
             'landlord_id': landlordID,
-            
+            'price': price,
           },
         ).select();
         log('response from add flat : $response');
@@ -52,7 +52,7 @@ class FlatSupabaseManager {
             final uploadResponse = await supabase.storage
                 .from('flat-image')
                 .uploadBinary(imageURL, bytes);
-            if (uploadResponse.isNotEmpty) {
+            if (uploadResponse.isEmpty) {
               return Left(ServerError("failed to upload flat's images"));
             }
             String publicURL =
@@ -65,11 +65,14 @@ class FlatSupabaseManager {
             print('added image successfully');
             // return Right('flat added successfuly');
           }
-        } catch (_) {
+          
+        } catch (e) {
+          log(e.toString());
           return Left(ServerError('failed to upload flat.!'));
         }
         return Right('flat added successfuly');
       } catch (err) {
+        log(err.toString());
         return Left(
           ServerError(err.toString()),
         );
@@ -80,8 +83,6 @@ class FlatSupabaseManager {
       );
     }
   }
-
-  
 }
 
 // Future<Either<Failure, String>> uploadFlatImages({

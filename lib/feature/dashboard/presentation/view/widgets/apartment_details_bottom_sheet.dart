@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+ import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/helper/di.dart';
+import 'package:graduation_project/core/widget/custom_toast.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/custom_text_field.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
-import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
+ import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../../core/constant/app_colors.dart';
@@ -25,8 +27,12 @@ class _ApartmentDetailsBottomSheetState
   var formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
   List<XFile> selectedImages = [];
+  late FlatViewModel flatCubit;
+  AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
+
   @override
   void initState() {
+    flatCubit = BlocProvider.of<FlatViewModel>(context);
     flat = Flat.instance();
     super.initState();
   }
@@ -103,16 +109,22 @@ class _ApartmentDetailsBottomSheetState
                       ),
                     ),
                   ),
-                  // CustomTextField(
-                  //   onSubmitted: (value) async {
-                  //     final XFile? xFile =
-                  //         await picker.pickImage(source: ImageSource.gallery);
-                  //   },
-                  //   labelText: 'Upload Photos',
-                  //   prefixIcon: Icons.photo,
-                  // ),
                   SizedBox(height: 16),
                   CustomTextField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        CustomToast.show(
+                          message: 'Please enter the price',
+                        );
+                      } else if (int.parse(value) < 0) {
+                        CustomToast.show(
+                          message: 'price should ne greater than 0',
+                        );
+                      }
+
+                      return null;
+                    },
+                    autovalidateMode: autovalidateMode,
                     labelText: 'Price',
                     prefixIcon: Icons.attach_money,
                     keyboardType: TextInputType.number,
@@ -130,6 +142,19 @@ class _ApartmentDetailsBottomSheetState
                             flat.numBathroom = value;
                             setState(() {});
                           },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              CustomToast.show(
+                                message: 'Please enter the num of bathrooms',
+                              );
+                            } else if (int.parse(value) < 0) {
+                              CustomToast.show(
+                                message: 'Please enter a number greater than 0',
+                              );
+                            }
+                            return null;
+                          },
+                          autovalidateMode: autovalidateMode,
                           labelText: 'Bathrooms',
                           prefixIcon: Icons.bathtub,
                           keyboardType: TextInputType.number,
@@ -142,6 +167,19 @@ class _ApartmentDetailsBottomSheetState
                             flat.numRooms = value;
                             setState(() {});
                           },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              CustomToast.show(
+                                message: 'Please enter the num of rooms',
+                              );
+                            } else if (int.parse(value) < 0) {
+                              CustomToast.show(
+                                message: 'Please enter a number greater than 0',
+                              );
+                            }
+                            return null;
+                          },
+                          autovalidateMode: autovalidateMode,
                           labelText: 'Bedrooms',
                           prefixIcon: Icons.bed,
                           keyboardType: TextInputType.number,
@@ -154,7 +192,20 @@ class _ApartmentDetailsBottomSheetState
                             flat.space = value;
                             setState(() {});
                           },
-                          labelText: 'Space (sqm)',
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              CustomToast.show(
+                                message: 'Please enter the area of the flat',
+                              );
+                            } else if (int.parse(value) < 0) {
+                              CustomToast.show(
+                                message: 'Please enter a number greater than 0',
+                              );
+                            }
+                            return null;
+                          },
+                          autovalidateMode: autovalidateMode,
+                          labelText: 'Area (sqm)',
                           prefixIcon: Icons.square_foot,
                           keyboardType: TextInputType.number,
                         ),
@@ -167,6 +218,19 @@ class _ApartmentDetailsBottomSheetState
                       flat.description = value;
                       setState(() {});
                     },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        CustomToast.show(
+                          message: 'Please add a description',
+                        );
+                      } else if (value.split('').length < 20) {
+                        CustomToast.show(
+                          message:
+                              'Description should be at least 20 words to be more descriptive',
+                        );
+                      }
+                      return null;
+                    },
                     labelText: 'Description',
                     prefixIcon: Icons.description,
                     maxLines: 3,
@@ -174,14 +238,25 @@ class _ApartmentDetailsBottomSheetState
                   SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      log('Flat details: ${flat.toString()}');
-                      log('Landlord ID: ${supabase.auth.currentUser!.id}');
+                      autovalidateMode = AutovalidateMode.onUnfocus;
+                      setState(() {});
 
                       if (formKey.currentState!.validate() &&
-                          flat.images!.isNotEmpty &&
-                          supabase.auth.currentUser!.id.isNotEmpty) {
-                        BlocProvider.of<FlatViewModel>(context)
-                            .addFlatToSupabase(flat: flat);
+                          selectedImages.isNotEmpty &&
+                          supabase.auth.currentUser!.id.isNotEmpty &&
+                          flat.price != null &&
+                          flat.numBathroom != null &&
+                          flat.numRooms != null &&
+                          flat.space != null) {
+                        SmartDialog.showLoading(
+                          useAnimation: true,
+                          alignment: Alignment.center,
+                        );
+                        flatCubit.addFlatToSupabase(flat: flat);
+                      } else {
+                        CustomToast.show(
+                          message: 'you should add atleast one image',
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(

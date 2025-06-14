@@ -1,17 +1,16 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
-import 'package:graduation_project/core/constant/app_style.dart';
-import 'package:graduation_project/feature/dashboard/presentation/view/widgets/all_apartments_list_view.dart';
+import 'package:graduation_project/core/constant/function/get_current_user.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/apartment_details_bottom_sheet.dart';
+import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
+import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
+import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import '../../../../flat/data/manager/flat_supabase_manager.dart';
-import '../../../../flat/data/repository/data_source/flat_supabase_data_source_impl.dart';
-import '../../../../flat/data/repository/repo/flat_repo_impl.dart';
-import '../../../../flat/domain/use_case/add_flat_with_image_use_case.dart';
 import '../../../../flat/presentation/view_model/flat_view_model.dart';
+import 'landlord_home_view.dart';
 
 class DashboardViewBody extends StatefulWidget {
   const DashboardViewBody({super.key});
@@ -21,8 +20,27 @@ class DashboardViewBody extends StatefulWidget {
 }
 
 class _DashboardViewBodyState extends State<DashboardViewBody> {
+  late FlatViewModel flatCubit;
+  // List<Flat> flats = [];
   int _currentIndex = 0;
+  // List<Widget> pages = [];
+  List<Widget> pages = [
+    LandLoardHomeView(),
+    ApartmentDetailsBottomSheet(),
+    Center(child: Text('Profile')),
+  ];
+
+  @override
+  initState() {
+    flatCubit = BlocProvider.of<FlatViewModel>(context);
+
+    super.initState();
+  }
+
   onItemTapped(int index) {
+    if (index == 2) {
+      getCurrentUser();
+    }
     log('Tapped index: $index');
     log('Current index: $_currentIndex');
     setState(() {
@@ -31,74 +49,76 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
     log('Current index after: $_currentIndex');
   }
 
-  final List<Widget> pages = [
-    LandLoardFlatsView(),
-    BlocProvider(
-      create: (context) => FlatViewModel(
-        addFlatWithImageUseCase: AddFlatWithImageUseCase(
-          flatRepoContract: FlatRepoImpl(
-            flatDataSourceContract: FlatSupabaseDataSourceImpl(
-              flatSupabaseManager: FlatSupabaseManager.getInstance(),
-            ),
-          ),
-        ),
-      ),
-      child: ApartmentDetailsBottomSheet(),
-    ),
-    Center(child: Text('Profile ')),
-  ];
   @override
   Widget build(BuildContext context) {
-    // double screenHeight = MediaQuery.sizeOf(context).height;
-    // final themeProvider = Provider.of<ThemeProvider>(context);
-
-    // final bool isDarkTheme = themeProvider.isDarkTheme;
-
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: pages[_currentIndex],
-      // floatingActionButton: InkWell(
-      //   onTap: () {
-      //     showModalBottomSheet(
-      //       context: context,
-      //       isScrollControlled: true,
-      //       shape: RoundedRectangleBorder(
-      //         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      //       ),
-      //       builder: (context) => BlocProvider(
-      //         create: (context) => FlatViewModel(
-      //           addFlatWithImageUseCase: AddFlatWithImageUseCase(
-      //             flatRepoContract: FlatRepoImpl(
-      //               flatDataSourceContract: FlatSupabaseDataSourceImpl(
-      //                 flatSupabaseManager: FlatSupabaseManager.getInstance(),
-      //               ),
-      //             ),
+      body: BlocListener<FlatViewModel, FlatStates>(
+        listener: (context, state) {
+          if (state is AddingFlatSuccessState) {
+            SmartDialog.dismiss();
+            _currentIndex = 0;
+            setState(() {});
+          }
+        },
+        child: pages[_currentIndex],
+      ),
+      // body: BlocConsumer<FlatViewModel, FlatStates>(
+      //   listener: (context, state) {
+      //     if (state is AddingFlatSuccessState) {
+      //       _currentIndex = 0;
+      //       setState(() {});
+      //     }
+      //   },
+      //   builder: (context, state) {
+      //     SmartDialog.dismiss();
+
+      //     if (state is FetchingLandlordFlatsSuccessState) {
+      //       SmartDialog.dismiss();
+      //       pages = [
+      //         LandLoardHomeView(),
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     } else if (state is FetchingLandlordFlatsLoadingState) {
+      //       SmartDialog.showLoading(
+      //           useAnimation: true, alignment: Alignment.center);
+      //       pages = [
+      //         Center(
+      //           child: Container(
+      //             color: AppColors.white,
       //           ),
       //         ),
-      //         child: ApartmentDetailsBottomSheet(),
-      //       ),
-      //     );
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     } else {
+      //       pages = [
+      //         NoItemWidget(),
+      //         ApartmentDetailsBottomSheet(),
+      //         Center(child: Text('Profile')),
+      //       ];
+      //     }
+      //     return pages[_currentIndex];
       //   },
-      //   child: CircleAvatar(
-      //       backgroundColor: const Color.fromARGB(175, 0, 89, 79),
-      //       radius: 30,
-      //       child: Icon(Icons.add)),
       // ),
-
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: onItemTapped,
         items: [
           SalomonBottomBarItem(
             icon: Icon(
-              // onPressed: () {},
               Icons.home,
+              // color: AppColors.white,
               size: 30,
             ),
             title: Text('Home'),
           ),
           SalomonBottomBarItem(
-            icon: Icon(size: 30, Icons.add),
+            icon: Icon(
+              size: 30,
+              Icons.add,
+            ),
             title: Text('Add Flat'),
           ),
           SalomonBottomBarItem(
@@ -110,46 +130,6 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class LandLoardFlatsView extends StatelessWidget {
-  const LandLoardFlatsView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return NestedScrollView(
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            backgroundColor: AppColors.primaryColor,
-            title: Text(
-              'Landlord Dashboard',
-              style: AppStyles.textStyle18White,
-            ),
-            centerTitle: true,
-            scrolledUnderElevation: 0,
-            pinned: true,
-            floating: true,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.person,
-                  size: 30,
-                  color: AppColors.white,
-                ),
-                onPressed: () {
-                  context.push('/account_view');
-                },
-              ),
-            ],
-          ),
-        ];
-      },
-      body: AllApartmentsListView(),
     );
   }
 }

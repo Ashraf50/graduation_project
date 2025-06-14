@@ -175,6 +175,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("Rooms"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "search_here": MessageLookupByLibrary.simpleMessage("search here..."),
+    "select_level": MessageLookupByLibrary.simpleMessage("Select Level"),
+    "select_level_semester": MessageLookupByLibrary.simpleMessage(
+      "Please Select Level and Semester",
+    ),
+    "select_semester": MessageLookupByLibrary.simpleMessage("Select Semester"),
     "send": MessageLookupByLibrary.simpleMessage("Send"),
     "send_mess": MessageLookupByLibrary.simpleMessage("Send Message"),
     "services": MessageLookupByLibrary.simpleMessage("Services"),

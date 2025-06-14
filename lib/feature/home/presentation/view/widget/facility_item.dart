@@ -40,7 +40,8 @@ class FacilityItem extends StatelessWidget {
           SizedBox(height: 5),
           Text(
             title,
-            style: AppStyles.textStyle18black,
+            style: AppStyles.textStyle18black
+                .copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),

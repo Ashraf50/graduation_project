@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/constant/function/build_account_image.dart';
+import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
+import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class PostItem extends StatelessWidget {
-  const PostItem({super.key});
-
+  const PostItem({super.key, required this.flat, required this.flatType});
+  final Flat flat;
+  final String flatType;
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
@@ -35,14 +40,16 @@ class PostItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: isLargeScreen ? 30 : 25,
-                        backgroundImage: AssetImage('assets/img/test.jpg'),
-                      ),
+                      buildAccountImage(radius: 25),
                       SizedBox(width: isLargeScreen ? 15 : 10),
-                      Text(
-                        'Ashraf Essam',
-                        style: AppStyles.textStyle20notBold,
+                      SizedBox(
+                        width: screenWidth * 0.5,
+                        child: Text(
+                          flat.landlordName ?? '',
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                          style: AppStyles.textStyle20notBold,
+                        ),
                       ),
                     ],
                   ),
@@ -55,15 +62,33 @@ class PostItem extends StatelessWidget {
                   vertical: 10,
                 ),
                 child: SelectableText(
-                  'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
+                  // 'Clean Penthouse Bedroom, 26 sgm, with wih and tv entertainment (Android tv box). hundrads of channels of tv shows, movies, sports, Notflix and hot water',
+                  flat.description ?? 'Apartment Name',
+                  textAlign: TextAlign.left,
+
                   style: AppStyles.textStyle18black,
                 ),
               ),
-              Image.asset(
-                'assets/img/apartment.png',
-                width: double.infinity,
-                fit: BoxFit.cover,
+              SizedBox(
+                height: 200,
+                width: screenWidth - 20,
+                child: Image.network(
+                  loadingBuilder: (context, child, loadingProgress) {
+                    return child;
+                  },
+                  flat.imagesUrl == null
+                      ? AppStrings.noImageUrl
+                      : flat.imagesUrl!.isEmpty
+                          ? AppStrings.noImageUrl
+                          : flat.imagesUrl![0],
+                  fit: BoxFit.cover,
+                ),
               ),
+              // Image.asset(
+              //   'assets/img/apartment.png',
+              //   width: double.infinity,
+              //   fit: BoxFit.cover,
+              // ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -72,50 +97,50 @@ class PostItem extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          'Apartment',
+                          flatType,
                           style: AppStyles.textStyle16gray,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Color(0xffF8B84E),
-                            ),
-                            SizedBox(width: 4),
-                            Text(
-                              '4.2',
-                              style: AppStyles.textStyle16,
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Icon(
+                        //       Icons.star,
+                        //       color: Color(0xffF8B84E),
+                        //     ),
+                        //     SizedBox(width: 4),
+                        //     Text(
+                        //       flat.space.toString(),
+                        //       style: AppStyles.textStyle16,
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                     Text(
-                      '400,000 EGP',
+                      '${flat.price} EGP',
                       style: AppStyles.textStyle20,
                     ),
                     Text(
-                      'New Cairo city, Cairo',
+                      flat.description ?? 'Apartment Description',
                       style: AppStyles.textStyle16gray,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             ApartmentProperties(
                               image: 'assets/img/num_bed.svg',
-                              title: '2',
+                              title: flat.numRooms.toString(),
                             ),
                             ApartmentProperties(
                               image: 'assets/img/num_bathroom.svg',
-                              title: '2',
+                              title: flat.numBathroom.toString(),
                             ),
                             ApartmentProperties(
                               image: 'assets/img/area.svg',
-                              title: '130 m',
+                              title: '${flat.space} m',
                             ),
                           ],
                         ),
@@ -125,7 +150,8 @@ class PostItem extends StatelessWidget {
                           textColor: AppColors.white,
                           width: 110,
                           onTap: () {
-                            context.push('/details');
+                            // getLandLordById(flat.landlordId!);
+                            context.push('/details', extra: flat);
                           },
                         ),
                       ],

@@ -173,6 +173,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("غرف"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "search_here": MessageLookupByLibrary.simpleMessage("ابحث هنا..."),
+    "select_level": MessageLookupByLibrary.simpleMessage("حدد المستوى"),
+    "select_level_semester": MessageLookupByLibrary.simpleMessage(
+      "حدد المستوى والفصل",
+    ),
+    "select_semester": MessageLookupByLibrary.simpleMessage("حدد الفصل"),
     "send": MessageLookupByLibrary.simpleMessage("ارسل"),
     "send_mess": MessageLookupByLibrary.simpleMessage("ارسل رساله"),
     "services": MessageLookupByLibrary.simpleMessage("الخدمات"),

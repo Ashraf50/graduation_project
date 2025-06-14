@@ -1,5 +1,7 @@
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../generated/l10n.dart';
+
 class Flat {
   int? flatId;
   String? createdAt;
@@ -7,9 +9,12 @@ class Flat {
   String? numBathroom;
   String? description;
   String? landlordId;
+  String? landlordName;
   String? space;
   String? price;
   List<XFile>? images;
+  List<String>? imagesUrl;
+
   Flat.instance();
   Flat({
     this.flatId,
@@ -27,7 +32,7 @@ class Flat {
     return Flat(
       flatId: json['flat_id'] as int?,
       createdAt: json['created_at'] as String?,
-      numRooms: json['num_rooms'] as String?,
+      numRooms: json['num_room'] as String?,
       numBathroom: json['num_bathroom'] as String?,
       description: json['description'] as String?,
       landlordId: json['landlord_id'] as String?,
@@ -39,7 +44,10 @@ class Flat {
 
   @override
   String toString() {
-    // TODO: implement toString
-    return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images}';
+    return 'Flat{flatId: $flatId, createdAt: $createdAt, numRooms: $numRooms, numBathroom: $numBathroom, description: $description, landlordId: $landlordId, space: $space, price: $price, images: $images, imagesUrl: $imagesUrl, landlordName: $landlordName}';
+  }
+
+  String getFlatType() {
+    return int.tryParse(numRooms!)! <= 1 ? S.current.room : S.current.apartment;
   }
 }

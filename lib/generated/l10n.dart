@@ -1169,6 +1169,36 @@ class S {
   String get Add_flat {
     return Intl.message('Add Flat', name: 'Add_flat', desc: '', args: []);
   }
+
+  /// `Please Select Level and Semester`
+  String get select_level_semester {
+    return Intl.message(
+      'Please Select Level and Semester',
+      name: 'select_level_semester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Semester`
+  String get select_semester {
+    return Intl.message(
+      'Select Semester',
+      name: 'select_semester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Level`
+  String get select_level {
+    return Intl.message(
+      'Select Level',
+      name: 'select_level',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -117,7 +117,7 @@ class AuthViewModel extends Cubit<AuthStates> {
        
         });
       }
-      emit(LoginStateLoading());
+      
     }
   }
 

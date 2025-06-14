@@ -1,3 +1,5 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 class UserModel {
   String id;
   String username;
@@ -62,4 +64,22 @@ class UserModel {
         'status': status,
         'message': message,
       };
+/** String id;
+  String username;
+  String email;
+  dynamic phone;
+  dynamic address;
+  String password;
+  String role;
+  DateTime createdAt;
+  String? profileImage;
+  String token;
+  bool status;
+  String message; */
+// factory  UserModel. formUserToModel(User user){
+// return UserModel(id: user.id, username: user., email: email, password: password, role: role, createdAt: createdAt, token: token, status: status, message: message)
+  
+// }
+
+
 }
