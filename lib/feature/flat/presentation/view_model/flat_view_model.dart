@@ -14,7 +14,8 @@ class FlatViewModel extends Cubit<FlatStates> {
       : super(FlatInitialState());
 
   // int currnetIndex = 0;
-
+  bool isFlatLoaded = false;
+  List<Flat> allFlats = [];
   Future<void> addFlatToSupabase({required Flat flat}) async {
     emit(FlatLoadingState());
     var either = await addFlatWithImageUseCase.uploadFlat(
@@ -38,6 +39,11 @@ class FlatViewModel extends Cubit<FlatStates> {
 
   Future<List<Flat>> fetchAllFlats() async {
     try {
+      if (isFlatLoaded) {
+        emit(FetchingAllFlatsSuccessState(flats: allFlats));
+        allFlats;
+      }
+
       emit(FetchingAllFlatsLoadingState());
       final response = await supabase
           .from('Flats')
@@ -63,6 +69,9 @@ class FlatViewModel extends Cubit<FlatStates> {
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
 
+      allFlats = flats;
+
+      isFlatLoaded = true;
       // log(' all the flats are $flats');
       emit(FetchingAllFlatsSuccessState(flats: flats));
       return flats;
@@ -92,6 +101,10 @@ class FlatViewModel extends Cubit<FlatStates> {
 
   Future<void> fetchFlatsByLandlordId(String landlordId) async {
     try {
+      if (isFlatLoaded) {
+        emit(FetchingLandlordFlatsSuccessState(flats: allFlats));
+        return;
+      }
       emit(FetchingLandlordFlatsLoadingState());
       final response = await supabase
           .from('Flats')
@@ -112,10 +125,18 @@ class FlatViewModel extends Cubit<FlatStates> {
         flat.landlordName = await getLandLordNameById(flat.landlordId!);
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
+      allFlats = flats;
+
+      isFlatLoaded = true;
 
       emit(FetchingLandlordFlatsSuccessState(flats: flats));
     } on Exception catch (e) {
       emit(FetchingLandlordFlatsErrorState(errMsg: e.toString()));
     }
+  }
+
+  void invalidateLandlordFlatsCache() {
+    isFlatLoaded = false;
+    allFlats = [];
   }
 }

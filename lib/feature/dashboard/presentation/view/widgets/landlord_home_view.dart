@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
@@ -19,10 +20,13 @@ class LandLoardHomeView extends StatefulWidget {
 
 class _LandLoardHomeViewState extends State<LandLoardHomeView> {
   late FlatViewModel flatCubit;
+  
   @override
   void initState() {
     flatCubit = BlocProvider.of<FlatViewModel>(context);
-    flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
+    
+      flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
+ 
     super.initState();
   }
 
@@ -49,18 +53,17 @@ class _LandLoardHomeViewState extends State<LandLoardHomeView> {
         builder: (context, state) {
           if (state is FetchingLandlordFlatsSuccessState) {
             {
+              SmartDialog.dismiss();
               return AllApartmentsListView(
                 flats: state.flats,
               );
             }
           } else if (state is FetchingLandlordFlatsLoadingState) {
-            return Container(
-                color: AppColors.white,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ),
-                ));
+            SmartDialog.showLoading(
+              useAnimation: true,
+              alignment: Alignment.center,
+            );
+            return Container(color: AppColors.white, child: SizedBox());
           } else {
             return NoItemWidget();
           }

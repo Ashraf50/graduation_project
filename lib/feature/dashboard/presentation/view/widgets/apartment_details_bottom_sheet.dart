@@ -2,12 +2,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
- import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/helper/di.dart';
 import 'package:graduation_project/core/widget/custom_toast.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/custom_text_field.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
- import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
+import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../../core/constant/app_colors.dart';
@@ -218,6 +218,7 @@ class _ApartmentDetailsBottomSheetState
                       flat.description = value;
                       setState(() {});
                     },
+                    autovalidateMode: autovalidateMode,
                     validator: (value) {
                       if (value!.isEmpty) {
                         CustomToast.show(
@@ -247,12 +248,15 @@ class _ApartmentDetailsBottomSheetState
                           flat.price != null &&
                           flat.numBathroom != null &&
                           flat.numRooms != null &&
-                          flat.space != null) {
+                          flat.space != null &&
+                          flat.description != null) {
                         SmartDialog.showLoading(
                           useAnimation: true,
                           alignment: Alignment.center,
                         );
-                        flatCubit.addFlatToSupabase(flat: flat);
+                        flatCubit.addFlatToSupabase(flat: flat).then((_) {
+                          flatCubit.invalidateLandlordFlatsCache();
+                        });
                       } else {
                         CustomToast.show(
                           message: 'you should add atleast one image',

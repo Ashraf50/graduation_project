@@ -23,9 +23,9 @@ class ServicesCubit extends Cubit<ServicesState> {
       case 'restaurant':
         result = await serviceRepo.fetchAllRestaurants();
         break;
-      case 'pharmacy':
-        result = await serviceRepo.fetchAllPharmacies();
-        break;
+      // case 'pharmacy':
+      //   result = await serviceRepo.fetchAllPharmacies();
+      //   break;
       case 'hospital':
         result = await serviceRepo.fetchAllHospitals();
         break;

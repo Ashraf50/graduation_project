@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/function/get_current_user.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/apartment_details_bottom_sheet.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
@@ -27,7 +28,8 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
   List<Widget> pages = [
     LandLoardHomeView(),
     ApartmentDetailsBottomSheet(),
-    Center(child: Text('Profile')),
+    EditProfileView(),
+    // Center(child: Text('Profile')),
   ];
 
   @override

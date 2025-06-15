@@ -29,7 +29,7 @@ class AppRouter {
   final bool isLoggedIn;
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
-    //initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
+    // initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
     initialLocation: '/sign_up',
     //initialLocation: '/dashboard',
     routes: [

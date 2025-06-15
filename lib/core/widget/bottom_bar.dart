@@ -27,7 +27,7 @@ class _BottomBarState extends State<BottomBar> {
   final List<Widget> _pages = [
     const HomeView(),
     const ServicesView(),
-    const FavoriteView(),
+    // const FavoriteView(),
     const ChatView(),
     const MaterailView(),
     const AccountView(),
@@ -61,12 +61,12 @@ class _BottomBarState extends State<BottomBar> {
             title: S.of(context).services,
             isDarkTheme: isDarkTheme,
           ),
-          buildBottomBarItem(
-            iconPath: 'assets/img/favorite.svg',
-            activeIconPath: 'assets/img/active_favorite.svg',
-            title: S.of(context).favorite,
-            isDarkTheme: isDarkTheme,
-          ),
+          // buildBottomBarItem(
+          //   iconPath: 'assets/img/favorite.svg',
+          //   activeIconPath: 'assets/img/active_favorite.svg',
+          //   title: S.of(context).favorite,
+          //   isDarkTheme: isDarkTheme,
+          // ),
           buildBottomBarItem(
             iconPath: 'assets/img/chat.svg',
             activeIconPath: 'assets/img/active_chat.svg',
