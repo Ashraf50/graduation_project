@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/feature/flat/domain/use_case/add_flat_with_image_use_case.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
@@ -45,6 +47,7 @@ class FlatViewModel extends Cubit<FlatStates> {
       }
 
       emit(FetchingAllFlatsLoadingState());
+      SmartDialog.showLoading(useAnimation: true, alignment: Alignment.center);
       final response = await supabase
           .from('Flats')
           .select()
@@ -102,10 +105,13 @@ class FlatViewModel extends Cubit<FlatStates> {
   Future<void> fetchFlatsByLandlordId(String landlordId) async {
     try {
       if (isFlatLoaded) {
+        log('allFlats  ${allFlats.toString()}');
         emit(FetchingLandlordFlatsSuccessState(flats: allFlats));
         return;
       }
       emit(FetchingLandlordFlatsLoadingState());
+      SmartDialog.showLoading(useAnimation: true, alignment: Alignment.center);
+
       final response = await supabase
           .from('Flats')
           .select()

@@ -249,7 +249,8 @@ class _ApartmentDetailsBottomSheetState
                           flat.numBathroom != null &&
                           flat.numRooms != null &&
                           flat.space != null &&
-                          flat.description != null) {
+                          flat.description != null &&
+                          flat.description!.split('').length >= 20) {
                         SmartDialog.showLoading(
                           useAnimation: true,
                           alignment: Alignment.center,

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -20,13 +23,17 @@ class LandLoardHomeView extends StatefulWidget {
 
 class _LandLoardHomeViewState extends State<LandLoardHomeView> {
   late FlatViewModel flatCubit;
-  
+
   @override
   void initState() {
+    Future.sync(() {
+      // return ApiHelper().get('http://stationone.ddns.net:8000/recommend');
+      _sendRecommendationRequest();
+    });
     flatCubit = BlocProvider.of<FlatViewModel>(context);
-    
-      flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
- 
+
+    flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
+
     super.initState();
   }
 
@@ -54,9 +61,11 @@ class _LandLoardHomeViewState extends State<LandLoardHomeView> {
           if (state is FetchingLandlordFlatsSuccessState) {
             {
               SmartDialog.dismiss();
-              return AllApartmentsListView(
-                flats: state.flats,
-              );
+              return state.flats.isEmpty
+                  ? NoItemWidget()
+                  : AllApartmentsListView(
+                      flats: state.flats,
+                    );
             }
           } else if (state is FetchingLandlordFlatsLoadingState) {
             SmartDialog.showLoading(
@@ -70,5 +79,55 @@ class _LandLoardHomeViewState extends State<LandLoardHomeView> {
         },
       ),
     );
+  }
+}
+
+void _sendRecommendationRequest() async {
+  final url = 'http://stationone.ddns.net:8000/recommend';
+
+  final data1 = {
+    'area': 800,
+    'rooms': 5,
+    'bathrooms': 1,
+    'internet': 1,
+    'gas': 1,
+    'beds': 4,
+    'rent': 33000,
+  };
+
+  final data2 = {
+    'area': 80,
+    'rooms': 2,
+    'bathrooms': 1,
+    'internet': 0,
+    'gas': 1,
+    'beds': 4,
+    'rent': 3000,
+  };
+
+  // encipt
+  try {
+    final response1 = await Dio().get(
+      url,
+      // data: data1,
+      queryParameters: data1,
+    );
+
+    final response2 = await Dio().get(
+      url,
+      // data: data2,
+      queryParameters: data2,
+    );
+    log("Response: ${response1.statusCode}");
+    log("${response1.data == response2.data}");
+    log("Response: ${response1.data}");
+    log("Response: ${response2.data}");
+  } catch (e) {
+    if (e is DioException) {
+      log("❌ DioException: ${e.message} - ${e.response?.statusCode} - ${e.response?.data}");
+    } else {
+      log("❌ Unknown error: $e");
+    }
+    throw Exception(e);
   }
 }

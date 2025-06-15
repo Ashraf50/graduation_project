@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
-import 'package:graduation_project/core/constant/function/launch_url.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+ import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../generated/l10n.dart';
 
 class MaterailViewBody extends StatefulWidget {
