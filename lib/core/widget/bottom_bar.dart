@@ -6,8 +6,7 @@ import 'package:graduation_project/feature/account/presentation/view/account_vie
 import 'package:graduation_project/feature/material/presentation/views/materail_view.dart';
 import 'package:graduation_project/feature/services/presentation/view/services_view.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
-import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
-import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
+ import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -76,7 +75,7 @@ class _BottomBarState extends State<BottomBar> {
           buildBottomBarItem(
             iconPath: 'assets/img/terms.svg',
             activeIconPath: 'assets/img/terms.svg',
-            title: S.of(context).home,
+            title: S.of(context).materail,
             isDarkTheme: isDarkTheme,
           ),
           buildBottomBarItem(

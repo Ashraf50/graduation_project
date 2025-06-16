@@ -8,7 +8,9 @@ import 'package:graduation_project/feature/account/presentation/view/widget/edit
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/apartment_details_bottom_sheet.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import '../../../../../core/constant/function/service_locator.dart';
 import '../../../../flat/presentation/view_model/flat_view_model.dart';
+import '../../../../home/presentation/view/widget/no_item_widget.dart';
 import 'landlord_home_view.dart';
 
 class DashboardViewBody extends StatefulWidget {
@@ -19,7 +21,7 @@ class DashboardViewBody extends StatefulWidget {
 }
 
 class _DashboardViewBodyState extends State<DashboardViewBody> {
-  late FlatViewModel flatCubit;
+  final FlatViewModel flatCubit = getIt<FlatViewModel>();
   // List<Flat> flats = [];
   int _currentIndex = 0;
   // List<Widget> pages = [];
@@ -27,17 +29,11 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
     LandLoardHomeView(),
     ApartmentDetailsBottomSheet(),
     EditProfileView(),
+    // NoItemWidget(),`
     // Center(child: Text('Profile')),
   ];
 
-  @override
-  initState() {
-    flatCubit = BlocProvider.of<FlatViewModel>(context);
-
-    super.initState();
-  }
-
-  onItemTapped(int index) {
+  _onItemTapped(int index) {
     if (index == 2) {
       getCurrentUser();
     }
@@ -104,7 +100,7 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
       // ),
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
-        onTap: onItemTapped,
+        onTap: _onItemTapped,
         items: [
           SalomonBottomBarItem(
             icon: Icon(

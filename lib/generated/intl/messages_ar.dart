@@ -107,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "m": MessageLookupByLibrary.simpleMessage("م"),
     "map": MessageLookupByLibrary.simpleMessage("الخريطه"),
+    "materail": MessageLookupByLibrary.simpleMessage("المواد"),
     "mess_copied": MessageLookupByLibrary.simpleMessage("تم نسخ الرسالة"),
     "my_profile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),

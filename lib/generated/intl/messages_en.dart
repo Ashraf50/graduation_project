@@ -111,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "m": MessageLookupByLibrary.simpleMessage("M"),
     "map": MessageLookupByLibrary.simpleMessage("Map"),
+    "materail": MessageLookupByLibrary.simpleMessage("Materials"),
     "mess_copied": MessageLookupByLibrary.simpleMessage("Message copied"),
     "my_profile": MessageLookupByLibrary.simpleMessage("My Profile"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),

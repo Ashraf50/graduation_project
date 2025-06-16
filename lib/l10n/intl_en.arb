@@ -148,6 +148,7 @@
     
     "select_level_semester":"Please Select Level and Semester",
     "select_semester":"Select Semester",
-    "select_level":"Select Level"
+    "select_level":"Select Level",
+    "materail": "Materials"
     
 }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
+import 'package:graduation_project/core/constant/function/build_account_image.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constant/app_style.dart';
 import '../../../../../generated/l10n.dart';
@@ -39,10 +40,13 @@ class AccountHeaderWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: CachedNetworkImageProvider(image),
-                  ),
+                  // CircleAvatar(
+                  //   radius: 40,
+                  //   backgroundColor: AppColors.toastColor,
+                  //   backgroundImage: CachedNetworkImageProvider(image),
+                  //   child: Text(image),
+                  // ),
+                  buildAccountImage(radius: 35),
                   SizedBox(
                     width: 10,
                   ),

@@ -24,16 +24,6 @@ class AccountViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
           children: [
-            IconButton(
-              onPressed: () async {
-                context.go('/sign_in');
-                await supabase.auth.signOut();
-                SharedPreferenceUtils.removeDate(key: 'token');
-              },
-              icon: Icon(
-                Icons.logout,
-              ),
-            ),
             SizedBox(
               height: 20,
             ),

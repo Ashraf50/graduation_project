@@ -6,7 +6,6 @@ import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/constant/function/build_account_image.dart';
-import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
@@ -40,7 +39,8 @@ class PostItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      buildAccountImage(radius: 25),
+                      buildAccountImage(
+                          radius: 25, landlordName: flat.landlordName![0]),
                       SizedBox(width: isLargeScreen ? 15 : 10),
                       SizedBox(
                         width: screenWidth * 0.5,
@@ -83,6 +83,13 @@ class PostItem extends StatelessWidget {
                           : flat.imagesUrl![0],
                   fit: BoxFit.cover,
                 ),
+                // child: CircleAvatar(
+                //   backgroundColor: flat.imagesUrl == null
+                //       ? AppStrings.noImageUrl
+                //       : flat.imagesUrl!.isEmpty
+                //           ? AppStrings.noImageUrl
+                //           : CachedNetworkImageProvider(flat.imagesUrl![0]),
+                // ),
               ),
               // Image.asset(
               //   'assets/img/apartment.png',

@@ -15,7 +15,7 @@ class ServicesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         backgroundColor: AppColors.primaryColor,
         body: NestedScrollView(
@@ -40,7 +40,7 @@ class ServicesViewBody extends StatelessWidget {
                     Tab(text: S.of(context).restaurants),
                     Tab(text: S.of(context).cafes),
                     Tab(text: S.of(context).banks),
-                    Tab(text: S.of(context).pharmacy),
+                    // Tab(text: S.of(context).pharmacy),p
                     Tab(text: S.of(context).hospitals),
                   ],
                 ),
@@ -52,7 +52,7 @@ class ServicesViewBody extends StatelessWidget {
               RestaurantListView(),
               CafesListView(),
               BanksListView(),
-              PharmaciesListView(),
+              // PharmaciesListView(),
               HospitalsListView(),
             ],
           ),

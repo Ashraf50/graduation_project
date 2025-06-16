@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/function/service_locator.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/dashboard_view_body.dart';
 
 import '../../../flat/data/manager/flat_supabase_manager.dart';
@@ -14,15 +15,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BlocProvider(
-      create: (context) => FlatViewModel(
-        addFlatWithImageUseCase: AddFlatWithImageUseCase(
-          flatRepoContract: FlatRepoImpl(
-            flatDataSourceContract: FlatSupabaseDataSourceImpl(
-              flatSupabaseManager: FlatSupabaseManager.getInstance(),
-            ),
-          ),
-        ),
-      ),
+      create: (context) => getIt<FlatViewModel>(),
       child: const DashboardViewBody(),
     );
   }

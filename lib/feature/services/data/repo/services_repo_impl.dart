@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
@@ -50,14 +52,13 @@ class ServicesRepoImpl implements ServiceRepo {
         '${AppStrings.serviceBaseUrl}/services',
         queryParameters: {
           'apiKey': AppStrings.serviceApiKey,
-
-          //    // remove type, lon,lat and add collection name and id
           'collectionName': collectionName,
           'documentId': docId,
         },
       );
       final data = response.data;
-      List<ServicesModel> placesList = (data['data'] as List)
+      log(" data are  ${data}");
+      List<ServicesModel> placesList = (data[collectionName] as List)
           .map((place) => ServicesModel.fromJson(place))
           .toList();
       return Right(placesList);
@@ -84,9 +85,8 @@ class ServicesRepoImpl implements ServiceRepo {
       }
       return Left(ServerFailure('An unknown error occurred.'));
     } catch (e) {
+      log(e.toString());
       return Left(ServerFailure('An unexpected error occurred.'));
     }
   }
-  
- 
 }

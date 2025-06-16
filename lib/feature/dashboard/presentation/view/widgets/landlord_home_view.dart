@@ -10,6 +10,7 @@ import 'package:graduation_project/feature/home/presentation/view/widget/no_item
 import '../../../../../core/constant/app_colors.dart';
 import '../../../../../core/constant/app_style.dart';
 import '../../../../../core/constant/function/get_current_user.dart';
+import '../../../../../core/constant/function/service_locator.dart';
 import 'all_apartments_list_view.dart';
 
 class LandLoardHomeView extends StatefulWidget {
@@ -22,15 +23,11 @@ class LandLoardHomeView extends StatefulWidget {
 }
 
 class _LandLoardHomeViewState extends State<LandLoardHomeView> {
-  late FlatViewModel flatCubit;
+  final  FlatViewModel flatCubit=getIt<FlatViewModel>();
 
   @override
   void initState() {
-    Future.sync(() {
-      // return ApiHelper().get('http://stationone.ddns.net:8000/recommend');
-      _sendRecommendationRequest();
-    });
-    flatCubit = BlocProvider.of<FlatViewModel>(context);
+    // flatCubit = BlocProvider.of<FlatViewModel>(context);
 
     flatCubit.fetchFlatsByLandlordId(getCurrentUser().id);
 
@@ -39,6 +36,7 @@ class _LandLoardHomeViewState extends State<LandLoardHomeView> {
 
   @override
   Widget build(BuildContext context) {
+    // return NoItemWidget();
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return [
@@ -113,15 +111,15 @@ void _sendRecommendationRequest() async {
       queryParameters: data1,
     );
 
-    final response2 = await Dio().get(
-      url,
-      // data: data2,
-      queryParameters: data2,
-    );
+    // final response2 = await Dio().get(
+    //   url,
+    //   // data: data2,
+    //   queryParameters: data2,
+    // );
     log("Response: ${response1.statusCode}");
-    log("${response1.data == response2.data}");
+    // log("${response1.data == response2.data}");
     log("Response: ${response1.data}");
-    log("Response: ${response2.data}");
+    // log("Response: ${response2.data}");
   } catch (e) {
     if (e is DioException) {
       log("❌ DioException: ${e.message} - ${e.response?.statusCode} - ${e.response?.data}");

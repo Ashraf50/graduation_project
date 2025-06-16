@@ -11,6 +11,7 @@ import 'package:graduation_project/feature/flat/presentation/view_model/flat_vie
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../../core/constant/app_colors.dart';
+import '../../../../../core/constant/function/service_locator.dart';
 
 class ApartmentDetailsBottomSheet extends StatefulWidget {
   const ApartmentDetailsBottomSheet({super.key});
@@ -27,12 +28,11 @@ class _ApartmentDetailsBottomSheetState
   var formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
   List<XFile> selectedImages = [];
-  late FlatViewModel flatCubit;
+  final FlatViewModel flatCubit = getIt<FlatViewModel>();
   AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
 
   @override
   void initState() {
-    flatCubit = BlocProvider.of<FlatViewModel>(context);
     flat = Flat.instance();
     super.initState();
   }
