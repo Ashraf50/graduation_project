@@ -12,9 +12,10 @@ class AccountHeaderContent extends StatelessWidget {
     Provider.of<ThemeProvider>(context);
 
     return AccountHeaderWidget(
+      
       name: supabase.auth.currentUser?.userMetadata?['userName'] ?? '',
       image: supabase.auth.currentUser?.userMetadata?['imageProfile'] ??
-          'https://i.pravatar.cc/300',
+          supabase.auth.currentUser?.userMetadata?['userName'][0],
       onTap: () {
         context.push('/edit_profile');
       },

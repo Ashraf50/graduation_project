@@ -6,8 +6,7 @@ import 'package:graduation_project/feature/account/presentation/view/account_vie
 import 'package:graduation_project/feature/material/presentation/views/materail_view.dart';
 import 'package:graduation_project/feature/services/presentation/view/services_view.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_view.dart';
-import 'package:graduation_project/feature/favorite/presentation/view/favorite_view.dart';
-import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
+ import 'package:graduation_project/feature/home/presentation/view/home_view.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -27,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
   final List<Widget> _pages = [
     const HomeView(),
     const ServicesView(),
-    const FavoriteView(),
+    // const FavoriteView(),
     const ChatView(),
     const MaterailView(),
     const AccountView(),
@@ -61,12 +60,12 @@ class _BottomBarState extends State<BottomBar> {
             title: S.of(context).services,
             isDarkTheme: isDarkTheme,
           ),
-          buildBottomBarItem(
-            iconPath: 'assets/img/favorite.svg',
-            activeIconPath: 'assets/img/active_favorite.svg',
-            title: S.of(context).favorite,
-            isDarkTheme: isDarkTheme,
-          ),
+          // buildBottomBarItem(
+          //   iconPath: 'assets/img/favorite.svg',
+          //   activeIconPath: 'assets/img/active_favorite.svg',
+          //   title: S.of(context).favorite,
+          //   isDarkTheme: isDarkTheme,
+          // ),
           buildBottomBarItem(
             iconPath: 'assets/img/chat.svg',
             activeIconPath: 'assets/img/active_chat.svg',
@@ -76,7 +75,7 @@ class _BottomBarState extends State<BottomBar> {
           buildBottomBarItem(
             iconPath: 'assets/img/terms.svg',
             activeIconPath: 'assets/img/terms.svg',
-            title: S.of(context).home,
+            title: S.of(context).materail,
             isDarkTheme: isDarkTheme,
           ),
           buildBottomBarItem(

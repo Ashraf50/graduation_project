@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class ApiHelper {
@@ -33,6 +35,7 @@ class ApiHelper {
         options: Options(headers: headers),
       );
     } catch (e) {
+      log(e.toString());
       rethrow;
     }
   }

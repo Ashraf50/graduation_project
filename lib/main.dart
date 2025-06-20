@@ -10,9 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/constant/app_strings.dart';
 import 'core/constant/function/get_token.dart';
+import 'core/constant/function/service_locator.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: AppStrings.supaBaseUrl,
@@ -27,6 +29,7 @@ void main() async {
   if (tokenid != null) {
     isLoggedIn = true;
   }
+  getItSetup();
   // final authRepo = AuthRepoImpl(ApiHelper());
   // bool isLoggedIn = await authRepo.isLoggedIn(); //save login state
   final appRouter = AppRouter(isLoggedIn: isLoggedIn);

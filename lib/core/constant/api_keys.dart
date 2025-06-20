@@ -13,7 +13,10 @@ abstract class ApiKeys {
   static const String chatDeleteChatUrl =
       '/api/chats/67a90f35084212e98dd875fe?';
   static const String chatGetChatId = '/api/chats/?';
-// these is just for testing
-  static const String id1 = '3f9d3c82-b38e-4a2e-9f32-fcba6d4f23b9';
-  static const String id2 = 'a4f8f3ce-2e76-4b89-8736-91c2ec54ff5d';
+  static const String aiRecomendationUrl =
+      'http://stationone.ddns.net:8000/recommend';
+
+// // these is just for testing
+//   static const String id1 = '3f9d3c82-b38e-4a2e-9f32-fcba6d4f23b9';
+//   static const String id2 = 'a4f8f3ce-2e76-4b89-8736-91c2ec54ff5d';
 }

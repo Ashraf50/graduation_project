@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/function/get_current_user.dart';
+import 'package:graduation_project/feature/account/presentation/view/widget/edit_profile_view.dart';
 import 'package:graduation_project/feature/dashboard/presentation/view/widgets/apartment_details_bottom_sheet.dart';
-import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
-import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import '../../../../../core/constant/function/service_locator.dart';
 import '../../../../flat/presentation/view_model/flat_view_model.dart';
+import '../../../../home/presentation/view/widget/no_item_widget.dart';
 import 'landlord_home_view.dart';
 
 class DashboardViewBody extends StatefulWidget {
@@ -20,24 +21,19 @@ class DashboardViewBody extends StatefulWidget {
 }
 
 class _DashboardViewBodyState extends State<DashboardViewBody> {
-  late FlatViewModel flatCubit;
+  final FlatViewModel flatCubit = getIt<FlatViewModel>();
   // List<Flat> flats = [];
   int _currentIndex = 0;
   // List<Widget> pages = [];
   List<Widget> pages = [
     LandLoardHomeView(),
     ApartmentDetailsBottomSheet(),
-    Center(child: Text('Profile')),
+    EditProfileView(),
+    // NoItemWidget(),`
+    // Center(child: Text('Profile')),
   ];
 
-  @override
-  initState() {
-    flatCubit = BlocProvider.of<FlatViewModel>(context);
-
-    super.initState();
-  }
-
-  onItemTapped(int index) {
+  _onItemTapped(int index) {
     if (index == 2) {
       getCurrentUser();
     }
@@ -104,7 +100,7 @@ class _DashboardViewBodyState extends State<DashboardViewBody> {
       // ),
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
-        onTap: onItemTapped,
+        onTap: _onItemTapped,
         items: [
           SalomonBottomBarItem(
             icon: Icon(

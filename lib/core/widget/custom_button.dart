@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final double width;
   double height;
+  double? textSize;
 
   CustomButton({
     super.key,
@@ -17,6 +18,7 @@ class CustomButton extends StatelessWidget {
     this.buttonColor = AppColors.primaryColor,
     this.textColor = Colors.white,
     required this.width,
+    double? textSize,
   });
 
   @override
@@ -28,7 +30,7 @@ class CustomButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           width: width,
-          height: height ,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: buttonColor,
@@ -39,11 +41,14 @@ class CustomButton extends StatelessWidget {
           child: Center(
               child: Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-                color: textColor,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: textSize ?? 20,
+                  color: textColor,
+                ),
               ),
             ),
           )),

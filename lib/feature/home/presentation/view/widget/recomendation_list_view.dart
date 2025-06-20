@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:graduation_project/core/services/recomendation/cubit/ai_recomendation_cubit.dart';
 import 'package:graduation_project/core/widget/decoration_container.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
@@ -11,15 +12,16 @@ import '../../../../../core/constant/function/service_locator.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../flat/presentation/view_model/flat_states.dart';
 import '../../../../flat/presentation/view_model/flat_view_model.dart';
+import 'recomended_flat_item.dart';
 
-class RoomsListView extends StatefulWidget {
-  const RoomsListView({super.key});
+class RecomendationListView extends StatefulWidget {
+  const RecomendationListView({super.key});
 
   @override
-  State<RoomsListView> createState() => _RoomsListViewState();
+  State<RecomendationListView> createState() => _ApartmentListViewState();
 }
 
-class _RoomsListViewState extends State<RoomsListView> {
+class _ApartmentListViewState extends State<RecomendationListView> {
   // List<Flat> flats = [];
 
   @override
@@ -32,22 +34,23 @@ class _RoomsListViewState extends State<RoomsListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FlatViewModel, FlatStates>(
+    return BlocBuilder<AiRecomendationCubit, AiRecomendationState>(
       builder: (context, state) {
-        if (state is FetchingAllFlatsSuccessState) {
+        if (state is AiRecomendationSuccess) {
           SmartDialog.dismiss();
+
           return DecorationContainer(
             widget: ListView.builder(
               itemCount: state.flats.length,
               itemBuilder: (context, index) {
-                return PostItem(
-                  flatType: S.of(context).room,
+                return RecomendedFlatItem(
+                  // flatType: S.of(context).apartment,
                   flat: state.flats[index],
                 );
               },
             ),
           );
-        } else if (state is FetchingAllFlatsLoadingState) {
+        } else if (state is AiRecomendationLoading) {
           SmartDialog.showLoading(
               useAnimation: true, alignment: Alignment.center);
           return Container(
@@ -56,7 +59,9 @@ class _RoomsListViewState extends State<RoomsListView> {
           );
         } else {
           SmartDialog.dismiss();
-          return NoItemWidget();
+          return NoItemWidget(
+            message: 'please view some flats to get Your recomendations',
+          );
         }
       },
     );
@@ -67,7 +72,7 @@ class _RoomsListViewState extends State<RoomsListView> {
     //           itemCount: flats.length,
     //           itemBuilder: (context, index) {
     //             return PostItem(
-    //               flatType: S.of(context).room,
+    //               flatType: S.of(context).apartment,
     //               flat: flats[index],
     //             );
     //           },

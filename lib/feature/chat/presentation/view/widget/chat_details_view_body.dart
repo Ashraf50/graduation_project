@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../core/constant/app_colors.dart';
- import '../../../../../core/helper/chat_helper.dart';
+import '../../../../../core/helper/chat_helper.dart';
 import '../../../../../core/widget/custom_app_bar.dart';
 import '../../../../../core/widget/custom_scaffold.dart';
 import '../../view_model/cubit/chats_cubit.dart';
 import 'messages_list.dart';
 
 class ChatDetailsViewBody extends StatefulWidget {
-  final List usersId;
+  final String usersId;
   const ChatDetailsViewBody({
     super.key,
     required this.usersId,
@@ -32,7 +32,7 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
     super.initState();
     chatCubit = context.read<ChatCubit>();
     chatCubit.connectToChat(
-      user1Id: widget.usersId[0],
+      user1Id: currentUserId,
       user2Id: widget.usersId[1],
     );
     _fetchChatTitle();
@@ -44,7 +44,7 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
   }
 
   Future<void> _fetchChatTitle() async {
-    final otherUserId = widget.usersId.firstWhere((id) => id != currentUserId);
+    final otherUserId = widget.usersId;
     final title = await ChatHelper().getUserNameById(otherUserId);
     setState(() {
       chatTitle = title;
@@ -87,17 +87,10 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
                               final messages = chatCubit.messages;
                               String receiverId;
                               if (messages.isNotEmpty) {
-                                receiverId = messages.last.senderId ==
-                                        currentUserId
-                                    ? widget.usersId
-                                        .firstWhere((id) => id != currentUserId)
-                                    : messages.last.senderId;
-                              } else {
-                                receiverId = widget.usersId
-                                    .firstWhere((id) => id != currentUserId);
+                                receiverId = widget.usersId;
                               }
                               chatCubit.sendMessage(
-                                receiverId: receiverId,
+                                receiverId: widget.usersId,
                                 message: _controller.text,
                               );
                               _controller.clear();

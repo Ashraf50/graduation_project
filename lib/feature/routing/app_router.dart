@@ -29,7 +29,7 @@ class AppRouter {
   final bool isLoggedIn;
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
-    //initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
+    // initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
     initialLocation: '/sign_up',
     //initialLocation: '/dashboard',
     routes: [
@@ -105,7 +105,7 @@ class AppRouter {
       GoRoute(
         path: '/chat_details',
         builder: (context, state) {
-          final usersId = state.extra as List;
+          final usersId = state.extra as String;
 
           return ChatDetailsView(usersId: usersId);
         },

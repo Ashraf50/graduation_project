@@ -1,8 +1,11 @@
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/feature/flat/domain/use_case/add_flat_with_image_use_case.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_states.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/helper/di.dart';
 import '../../data/models/flat_model.dart';
@@ -14,7 +17,8 @@ class FlatViewModel extends Cubit<FlatStates> {
       : super(FlatInitialState());
 
   // int currnetIndex = 0;
-
+  bool isFlatLoaded = false;
+  static List<Flat> allFlats = [];
   Future<void> addFlatToSupabase({required Flat flat}) async {
     emit(FlatLoadingState());
     var either = await addFlatWithImageUseCase.uploadFlat(
@@ -38,7 +42,14 @@ class FlatViewModel extends Cubit<FlatStates> {
 
   Future<List<Flat>> fetchAllFlats() async {
     try {
+      log('isFlatLoaded $isFlatLoaded');
+      if (isFlatLoaded) {
+        emit(FetchingAllFlatsSuccessState(flats: allFlats));
+        return allFlats;
+      }
+
       emit(FetchingAllFlatsLoadingState());
+      SmartDialog.showLoading(useAnimation: true, alignment: Alignment.center);
       final response = await supabase
           .from('Flats')
           .select()
@@ -63,12 +74,17 @@ class FlatViewModel extends Cubit<FlatStates> {
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
 
+      allFlats = flats;
+      isFlatLoaded = true;
       // log(' all the flats are $flats');
       emit(FetchingAllFlatsSuccessState(flats: flats));
       return flats;
     } on Exception catch (e) {
+      
+      log(e.toString());
       emit(FetchingAllFlatsErrorState(errMsg: e.toString()));
-      throw Exception('Error fetching flats: ${e.toString()}');
+      // throw Exception('Error fetching flats: ${e.toString()}');
+      return [];
     }
   }
 
@@ -92,7 +108,14 @@ class FlatViewModel extends Cubit<FlatStates> {
 
   Future<void> fetchFlatsByLandlordId(String landlordId) async {
     try {
+      if (isFlatLoaded) {
+        log('allFlats  ${allFlats.toString()}');
+        emit(FetchingLandlordFlatsSuccessState(flats: allFlats));
+        return;
+      }
       emit(FetchingLandlordFlatsLoadingState());
+      SmartDialog.showLoading(useAnimation: true, alignment: Alignment.center);
+
       final response = await supabase
           .from('Flats')
           .select()
@@ -112,10 +135,39 @@ class FlatViewModel extends Cubit<FlatStates> {
         flat.landlordName = await getLandLordNameById(flat.landlordId!);
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
+      allFlats = flats;
+
+      isFlatLoaded = true;
 
       emit(FetchingLandlordFlatsSuccessState(flats: flats));
     } on Exception catch (e) {
       emit(FetchingLandlordFlatsErrorState(errMsg: e.toString()));
     }
+  }
+
+  void invalidateLandlordFlatsCache() {
+    isFlatLoaded = false;
+    allFlats = [];
+  }
+
+  RealtimeChannel? _flatChannel;
+
+  void setupRealtimeSubscription() {
+    _flatChannel = supabase.channel('public:Flats')
+      ..onPostgresChanges(
+        event: PostgresChangeEvent.insert,
+        schema: 'public',
+        table: 'Flats',
+        callback: (payload) {
+          log('New flat inserted: ${payload.newRecord}');
+          // Re-fetch updated list
+          fetchAllFlats(); // or fetchFlatsByLandlordId if filtered
+        },
+      )
+      ..subscribe();
+  }
+
+  void cancelRealtimeSubscription() {
+    _flatChannel?.unsubscribe();
   }
 }

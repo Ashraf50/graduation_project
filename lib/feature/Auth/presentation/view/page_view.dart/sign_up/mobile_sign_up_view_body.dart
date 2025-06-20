@@ -190,8 +190,10 @@ class _MobileSignUpViewBodyState extends State<MobileSignUpViewBody> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              UploadFrontIdCustomButton(authViewModel: authViewModel),
-                              UploadBackIdCustomButton(authViewModel: authViewModel),
+                              UploadFrontIdCustomButton(
+                                  authViewModel: authViewModel),
+                              UploadBackIdCustomButton(
+                                  authViewModel: authViewModel),
                             ],
                           ),
                 BlocListener<AuthViewModel, AuthStates>(
@@ -288,8 +290,7 @@ class UploadBackIdCustomButton extends StatelessWidget {
     return CustomButton(
       title: S.of(context).upload_back,
       onTap: () async {
-        final XFile? xFile = await authViewModel
-            .pickerBack
+        final XFile? xFile = await authViewModel.pickerBack
             .pickImage(source: ImageSource.gallery);
         if (xFile != null) {
           authViewModel.backFile = File(xFile.path);
@@ -297,8 +298,7 @@ class UploadBackIdCustomButton extends StatelessWidget {
               'images/${DateTime.now().millisecondsSinceEpoch + 1}_${authViewModel.frontFile!.path.split('/').last}';
         }
       },
-      width:
-          MediaQuery.sizeOf(context).width / 2 - 20,
+      width: MediaQuery.sizeOf(context).width / 2 - 20,
     );
   }
 }
@@ -314,20 +314,19 @@ class UploadFrontIdCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
+      textSize: 20,
       title: S.of(context).upload_front,
       onTap: () async {
-        final XFile? xFile = await authViewModel
-            .pickerFront
+        final XFile? xFile = await authViewModel.pickerFront
             .pickImage(source: ImageSource.gallery);
         if (xFile != null) {
           authViewModel.frontFile = File(xFile.path);
-    
+
           authViewModel.frontURL =
               'images/${DateTime.now().millisecondsSinceEpoch}_${authViewModel.frontFile!.path.split('/').last}';
         }
       },
-      width:
-          MediaQuery.sizeOf(context).width / 2 - 20,
+      width: MediaQuery.sizeOf(context).width / 2 - 20,
     );
   }
 }

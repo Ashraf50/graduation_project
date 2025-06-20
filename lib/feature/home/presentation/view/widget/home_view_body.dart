@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/feature/home/presentation/view/widget/recomendation_list_view.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/sliver_app_bar.dart';
 import '../../../../../core/constant/function/get_responsive.dart';
 import '../../../../../generated/l10n.dart';
@@ -16,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.sizeOf(context).height;
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         backgroundColor: AppColors.primaryColor,
         body: NestedScrollView(
@@ -42,6 +43,7 @@ class HomeViewBody extends StatelessWidget {
                     Tab(text: S.of(context).all),
                     Tab(text: S.of(context).apartment),
                     Tab(text: S.of(context).room),
+                    Tab(text: S.of(context).recomendation),
                   ],
                 ),
               ),
@@ -52,17 +54,13 @@ class HomeViewBody extends StatelessWidget {
               AllPostsListView(),
               ApartmentListView(),
               RoomsListView(),
+              RecomendationListView(),
             ],
           ),
         ),
         floatingActionButton: InkWell(
           onTap: () async {
             context.push('/map');
-
-            // await ChatRepoImpl(ApiHelper()).sendMessage(
-            //     message: 'hello from code of flutter',
-            //     senderId: '67a2aa1d025d33644c5bc5c6',
-            //     receiverId: '67a34e98d73da2744ebdbc17');
           },
           child: CircleAvatar(
             backgroundColor: const Color.fromARGB(175, 0, 89, 79),

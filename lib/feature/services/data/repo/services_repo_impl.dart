@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
@@ -12,46 +14,51 @@ class ServicesRepoImpl implements ServiceRepo {
 
   @override
   Future<Either<Failure, List<ServicesModel>>> fetchAllBanks() {
-    return _fetchServices('bank');
+    return _fetchServices(
+        collectionName: 'banks', docId: '6790c82101b042b258046630');
   }
 
   @override
   Future<Either<Failure, List<ServicesModel>>> fetchAllCafes() {
-    return _fetchServices('cafe');
+    return _fetchServices(
+        collectionName: 'cafes', docId: '6790c83f01b042b258046632');
   }
 
   @override
   Future<Either<Failure, List<ServicesModel>>> fetchAllHospitals() {
-    return _fetchServices('hospital');
+    return _fetchServices(
+        collectionName: 'hospitals', docId: '6790c85801b042b258046634');
   }
 
-  @override
-  Future<Either<Failure, List<ServicesModel>>> fetchAllPharmacies() {
-    return _fetchServices('pharmacy');
-  }
+  // @override
+  // Future<Either<Failure, List<ServicesModel>>> fetchAllPharmacies() {
+  //   return _fetchServices(
+  //       collectionName: 'restaurants', docId: '6790c86b01b042b258046636');
+  // }
 
   @override
   Future<Either<Failure, List<ServicesModel>>> fetchAllRestaurants() {
-    return _fetchServices('restaurant');
+    return _fetchServices(
+        collectionName: 'restaurants', docId: '6790c86b01b042b258046636');
   }
 
   Future<Either<Failure, List<ServicesModel>>> _fetchServices(
-      String type) async {
+      {required String collectionName, required String docId}) async {
     try {
       final currentPosition = await locationService.getLocation();
       final lat = currentPosition.latitude;
       final long = currentPosition.longitude;
       final response = await _dio.get(
-        '${AppStrings.serviceBaseUrl}/api/services',
+        '${AppStrings.serviceBaseUrl}/services',
         queryParameters: {
           'apiKey': AppStrings.serviceApiKey,
-          'type': type,
-          'lon': long,
-          'lat': lat,
+          'collectionName': collectionName,
+          'documentId': docId,
         },
       );
       final data = response.data;
-      List<ServicesModel> placesList = (data['data'] as List)
+      log(" data are  ${data}");
+      List<ServicesModel> placesList = (data[collectionName] as List)
           .map((place) => ServicesModel.fromJson(place))
           .toList();
       return Right(placesList);
@@ -78,6 +85,7 @@ class ServicesRepoImpl implements ServiceRepo {
       }
       return Left(ServerFailure('An unknown error occurred.'));
     } catch (e) {
+      log(e.toString());
       return Left(ServerFailure('An unexpected error occurred.'));
     }
   }

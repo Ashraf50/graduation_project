@@ -7,5 +7,5 @@ abstract class ServiceRepo {
   Future<Either<Failure, List<ServicesModel>>> fetchAllRestaurants();
   Future<Either<Failure, List<ServicesModel>>> fetchAllBanks();
   Future<Either<Failure, List<ServicesModel>>> fetchAllHospitals();
-  Future<Either<Failure, List<ServicesModel>>> fetchAllPharmacies();
+  // Future<Either<Failure, List<ServicesModel>>> fetchAllPharmacies();
 }

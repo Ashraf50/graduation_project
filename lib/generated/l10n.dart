@@ -1539,6 +1539,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Materials`
+  String get materail {
+    return Intl.message('Materials', name: 'materail', desc: '', args: []);
+  }
+
+  /// `Recomendations`
+  String get recomendation {
+    return Intl.message(
+      'Recomendations',
+      name: 'recomendation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

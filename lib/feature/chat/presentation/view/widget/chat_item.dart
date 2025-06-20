@@ -30,7 +30,7 @@ class _ChatItemState extends State<ChatItem> {
   Future<void> _fetchChatTitle() async {
     final otherUserId =
         widget.chat.users!.firstWhere((id) => id != currentUserId);
-    final title = await ChatHelper().getUserNameById(chatTitle);
+    final title = await ChatHelper().getUserNameById(widget.chat.users!.last);
 
     setState(() {
       chatTitle = title;
@@ -65,21 +65,24 @@ class _ChatItemState extends State<ChatItem> {
                   backgroundColor: AppColors.primaryColor,
                   radius: 28,
                   child: Text(
-                    chatTitle,
+                    chatTitle[0],
                     style: AppStyles.textStyle18White,
                   ),
                 ),
                 const SizedBox(width: 12),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(chatTitle, style: AppStyles.textStyle20),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    widget.chat.lastMessage!,
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ]),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(chatTitle, style: AppStyles.textStyle20),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      widget.chat.lastMessage ?? 'send a message now',
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    ),
+                  ],
+                ),
               ],
             ),
             Column(

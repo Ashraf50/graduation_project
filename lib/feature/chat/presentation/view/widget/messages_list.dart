@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart'; 
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/widget/custom_toast.dart';
@@ -11,7 +11,7 @@ import '../../view_model/cubit/chats_state.dart';
 import 'chat_bubble.dart';
 
 class MessagesListView extends StatefulWidget {
-  final List usersId;
+  final String usersId;
   const MessagesListView({super.key, required this.usersId});
 
   @override
@@ -21,6 +21,8 @@ class MessagesListView extends StatefulWidget {
 class _MessagesListViewState extends State<MessagesListView> {
   late ScrollController _scrollController;
   late ChatCubit chatCubit;
+  final currentUserId = Supabase.instance.client.auth.currentUser!.id;
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,7 @@ class _MessagesListViewState extends State<MessagesListView> {
 
   void _onScroll() {
     if (_isBottom) {
-      chatCubit.loadMoreMessages(widget.usersId[0], widget.usersId[1]);
+      chatCubit.loadMoreMessages(currentUserId, widget.usersId);
     }
   }
 
@@ -63,8 +65,8 @@ class _MessagesListViewState extends State<MessagesListView> {
               itemCount: state.messages.length,
               itemBuilder: (context, index) {
                 final message = state.messages[index];
-                final isMe = message.senderId ==
-                    Supabase.instance.client.auth.currentUser?.id;
+                final messages = state.messages;
+                final isMe = message.senderId == currentUserId;
                 return InkWell(
                   focusColor: Colors.transparent,
                   highlightColor: Colors.transparent,
@@ -72,9 +74,11 @@ class _MessagesListViewState extends State<MessagesListView> {
                   onLongPress: () {
                     _showMessageOptions(context, message.id!, message.message!);
                   },
-                  child: isMe
-                      ? ChatBubble(massage: message)
-                      : ChatBubbleFriend(massage: message),
+                  child: messages.isEmpty
+                      ? Center(child: Text('No messages yet'))
+                      : isMe
+                          ? ChatBubble(massage: message)
+                          : ChatBubbleFriend(massage: message),
                 );
               });
         } else if (state is MessageError) {
