@@ -170,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "privacy": MessageLookupByLibrary.simpleMessage("Privacy & Policy"),
     "rate": MessageLookupByLibrary.simpleMessage("Rate Us"),
+    "recomendation": MessageLookupByLibrary.simpleMessage("Recomendations"),
     "reset_pass": MessageLookupByLibrary.simpleMessage("Reset password"),
     "restaurants": MessageLookupByLibrary.simpleMessage("Restaurants"),
     "retry": MessageLookupByLibrary.simpleMessage("Retry"),

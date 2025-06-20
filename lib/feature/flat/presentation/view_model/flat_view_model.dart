@@ -80,6 +80,8 @@ class FlatViewModel extends Cubit<FlatStates> {
       emit(FetchingAllFlatsSuccessState(flats: flats));
       return flats;
     } on Exception catch (e) {
+      
+      log(e.toString());
       emit(FetchingAllFlatsErrorState(errMsg: e.toString()));
       // throw Exception('Error fetching flats: ${e.toString()}');
       return [];

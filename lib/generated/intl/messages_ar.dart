@@ -166,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "privacy": MessageLookupByLibrary.simpleMessage("الخصوصية والسياسة"),
     "rate": MessageLookupByLibrary.simpleMessage("قيمنا"),
+    "recomendation": MessageLookupByLibrary.simpleMessage("اقتراحات لاجلك"),
     "reset_pass": MessageLookupByLibrary.simpleMessage(
       "اعاده تعيين كلمة المرور",
     ),

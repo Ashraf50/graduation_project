@@ -26,13 +26,12 @@ class _AllPostsListViewState extends State<AllPostsListView> {
   void initState() {
     if (!isFlatLoaded) {
       Future.sync(() {
-      BlocProvider.of<FlatViewModel>(context).fetchAllFlats();
+        BlocProvider.of<FlatViewModel>(context).fetchAllFlats();
       });
     }
     isFlatLoaded = true;
 
-   
-      BlocProvider.of<FlatViewModel>(context).setupRealtimeSubscription();
+    BlocProvider.of<FlatViewModel>(context).setupRealtimeSubscription();
 
     super.initState();
   }
@@ -72,7 +71,8 @@ class _AllPostsListViewState extends State<AllPostsListView> {
         } else {
           SmartDialog.dismiss();
 
-          return NoItemWidget();
+          return NoItemWidget(
+              message: 'There is something wrong try again later');
         }
       },
     );

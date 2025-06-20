@@ -191,10 +191,6 @@ class _MobileSignInViewBodyState extends State<MobileSignInViewBody> {
                   buttonColor: AppColors.primaryColor,
                   title: S.of(context).login,
                   onTap: () {
-                    SmartDialog.showLoading(
-                      useAnimation: true,
-                      alignment: Alignment.center,
-                    );
                     authViewModel.login();
                   },
                   textColor: AppColors.white,

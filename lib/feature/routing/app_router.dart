@@ -105,7 +105,7 @@ class AppRouter {
       GoRoute(
         path: '/chat_details',
         builder: (context, state) {
-          final usersId = state.extra as List;
+          final usersId = state.extra as String;
 
           return ChatDetailsView(usersId: usersId);
         },

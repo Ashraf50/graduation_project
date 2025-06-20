@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/services/recomendation/cubit/ai_recomendation_cubit.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/facility_item.dart';
+import '../../../../../core/helper/di.dart';
 import '../../../../../generated/l10n.dart';
 
 class DetailsViewBody extends StatelessWidget {
@@ -11,9 +17,29 @@ class DetailsViewBody extends StatelessWidget {
   final Flat flat;
   @override
   Widget build(BuildContext context) {
+    // final String currentUserId = supabase.auth.currentUser!.id;
+
     double screenWidth = MediaQuery.of(context).size.width;
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).details),
+      floatingActionButton: InkWell(
+          onTap: () {
+            // BlocProvider.of<ChatCubit>(context)
+            //     .sendMessage(receiverId: flat.landlordId!, message: 'message');
+           
+            context.push('/chat_details', extra: flat.landlordId);
+          },
+          child: CircleAvatar(
+            // backgroundColor: const Color.fromARGB(175, 0, 89, 79),
+            backgroundColor: AppColors.primaryColor,
+            radius: 30,
+            child: SvgPicture.asset(
+              'assets/img/chat.svg',
+              height: 30,
+              colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+              // color: AppColors.white,
+            ),
+          )),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
@@ -61,7 +87,7 @@ class DetailsViewBody extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'New Cairo city, Cairo ',
+              'Nubaria, first section ',
               style: AppStyles.textStyle16gray,
             ),
             SizedBox(height: 30),

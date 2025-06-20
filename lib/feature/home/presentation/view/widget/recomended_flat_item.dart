@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:graduation_project/core/constant/function/build_account_image.dart';
-import 'package:graduation_project/core/widget/custom_button.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
 import 'package:graduation_project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/services/recomendation/cubit/ai_recomendation_cubit.dart';
-
-class PostItem extends StatelessWidget {
-  const PostItem({super.key, required this.flat, required this.flatType});
+class RecomendedFlatItem extends StatelessWidget {
+  const RecomendedFlatItem({super.key, required this.flat});
   final Flat flat;
-  final String flatType;
+  // final String flatType;
   @override
   Widget build(BuildContext context) {
     final themeProvide = Provider.of<ThemeProvider>(context);
@@ -37,59 +32,59 @@ class PostItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      buildAccountImage(
-                          radius: 25, landlordName: flat.landlordName![0]),
-                      SizedBox(width: isLargeScreen ? 15 : 10),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        child: Text(
-                          flat.landlordName ?? '',
-                          maxLines: 2,
-                          overflow: TextOverflow.fade,
-                          style: AppStyles.textStyle20notBold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  // MenuButton(),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     // Row(
+              //     //   children: [
+              //     //     buildAccountImage(
+              //     //         radius: 25, landlordName: flat.landlordName![0]),
+              //     //     SizedBox(width: isLargeScreen ? 15 : 10),
+              //     //     SizedBox(
+              //     //       width: screenWidth * 0.5,
+              //     //       child: Text(
+              //     //         flat.landlordName ?? '',
+              //     //         maxLines: 2,
+              //     //         overflow: TextOverflow.fade,
+              //     //         style: AppStyles.textStyle20notBold,
+              //     //       ),
+              //     //     ),
+              //     //   ],
+              //     // ),
+              //     // MenuButton(),
+              //   ],
+              // ),
 
               SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 200,
-                width: screenWidth - 20,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(20),
-                  ),
-                  child: Image.network(
-                    loadingBuilder: (context, child, loadingProgress) {
-                      return child;
-                    },
-                    flat.imagesUrl == null
-                        ? AppStrings.noImageUrl
-                        : flat.imagesUrl!.isEmpty
-                            ? AppStrings.noImageUrl
-                            : flat.imagesUrl![0],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                // child: CircleAvatar(
-                //   backgroundColor: flat.imagesUrl == null
-                //       ? AppStrings.noImageUrl
-                //       : flat.imagesUrl!.isEmpty
-                //           ? AppStrings.noImageUrl
-                //           : CachedNetworkImageProvider(flat.imagesUrl![0]),
-                // ),
-              ),
+              // SizedBox(
+              //   height: 200,
+              //   width: screenWidth - 20,
+              //   child: ClipRRect(
+              //     borderRadius: BorderRadius.vertical(
+              //       top: Radius.circular(20),
+              //     ),
+              //     child: Image.network(
+              //       loadingBuilder: (context, child, loadingProgress) {
+              //         return child;
+              //       },
+              //       flat.imagesUrl == null
+              //           ? AppStrings.noImageUrl
+              //           : flat.imagesUrl!.isEmpty
+              //               ? AppStrings.noImageUrl
+              //               : flat.imagesUrl![0],
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              //   // child: CircleAvatar(
+              //   //   backgroundColor: flat.imagesUrl == null
+              //   //       ? AppStrings.noImageUrl
+              //   //       : flat.imagesUrl!.isEmpty
+              //   //           ? AppStrings.noImageUrl
+              //   //           : CachedNetworkImageProvider(flat.imagesUrl![0]),
+              //   // ),
+              // ),
               // Image.asset(
               //   'assets/img/apartment.png',
               //   width: double.infinity,
@@ -99,42 +94,20 @@ class PostItem extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          flatType,
-                          style: AppStyles.textStyle16gray,
-                        ),
-                        // Row(
-                        //   children: [
-                        //     Icon(
-                        //       Icons.star,
-                        //       color: Color(0xffF8B84E),
-                        //     ),
-                        //     SizedBox(width: 4),
-                        //     Text(
-                        //       flat.space.toString(),
-                        //       style: AppStyles.textStyle16,
-                        //     ),
-                        //   ],
-                        // ),
-                      ],
-                    ),
                     Text(
                       '${flat.price} EGP',
                       style: AppStyles.textStyle20,
                     ),
-                    Text(
-                      flat.description ?? 'Apartment Description',
-                      style: AppStyles.textStyle16gray,
-                      maxLines: 3,
-                      overflow: TextOverflow.fade,
-                    ),
+                    // Text(
+                    //   flat.description ?? 'Apartment Description',
+                    //   style: AppStyles.textStyle16gray,
+                    //   maxLines: 3,
+                    //   overflow: TextOverflow.fade,
+                    // ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
                           children: [
@@ -152,18 +125,18 @@ class PostItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        CustomButton(
-                          title: S.of(context).view,
-                          buttonColor: AppColors.primaryColor,
-                          textColor: AppColors.white,
-                          width: 110,
-                          onTap: () {
-                            BlocProvider.of<AiRecomendationCubit>(context)
-                                .getRecomendation(flat: flat);
-                            // getLandLordById(flat.landlordId!);
-                            context.push('/details', extra: flat);
-                          },
-                        ),
+                        // CustomButton(
+                        //   title: S.of(context).view,
+                        //   buttonColor: AppColors.primaryColor,
+                        //   textColor: AppColors.white,
+                        //   width: 110,
+                        //   onTap: () {
+                        //     BlocProvider.of<AiRecomendationCubit>(context)
+                        //         .getRecomendation(flat: flat);
+                        //     // getLandLordById(flat.landlordId!);
+                        //     context.push('/details', extra: flat);
+                        //   },
+                        // ),
                       ],
                     ),
                   ],
