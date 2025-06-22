@@ -8,15 +8,19 @@ import 'package:graduation_project/feature/chat/presentation/view/widget/chat_de
 import '../view_model/cubit/chats_cubit.dart';
 
 class ChatDetailsView extends StatelessWidget {
-  const ChatDetailsView(
-      {super.key, required this.landlordId,});
+  const ChatDetailsView({
+    super.key,
+    required this.landlordId,
+  });
   final String landlordId;
   // final String landlordName;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => ChatCubit(ChatRepoImpl(), ChatService()),
+        create: (context) => ChatCubit(
+              ChatRepoImpl(),
+            ),
         child: ChatDetailsViewBody(
           landlordId: landlordId,
           // landlordName: landlordName,

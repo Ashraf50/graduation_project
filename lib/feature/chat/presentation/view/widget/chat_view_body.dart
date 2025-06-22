@@ -11,6 +11,7 @@ class ChatViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBar: CustomAppBar(title: S.of(context).chat),
+      
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: ListView(

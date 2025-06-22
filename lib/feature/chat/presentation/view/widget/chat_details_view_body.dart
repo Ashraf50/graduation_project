@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +8,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../core/constant/app_colors.dart';
 import '../../../../../core/constant/function/get_landlord_by_its_id.dart';
-import '../../../../../core/helper/chat_helper.dart';
 import '../../../../../core/widget/custom_app_bar.dart';
 import '../../../../../core/widget/custom_scaffold.dart';
 import '../../../../../core/widget/custom_toast.dart';
@@ -38,7 +35,7 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
   final currentUserId = Supabase.instance.client.auth.currentUser!.id;
   String chatTitle = '...';
   late ScrollController _scrollController;
-  String text = '';
+  String message = '';
 
   List<MessageModel> messages = [];
   @override
@@ -46,18 +43,14 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
     log('all messages are : $messages');
     super.initState();
     chatCubit = context.read<ChatCubit>();
-    chatCubit.connectToChat(
-      user1Id: currentUserId,
-      user2Id: widget.landlordId,
-    );
-
     Future.sync(
       () => chatCubit.fetchMessages(
           user1Id: currentUserId, user2Id: widget.landlordId),
     ).then((value) {
-      setState(() {
-        messages.addAll(value);
-      });
+      messages = chatCubit.messages;
+      log('all messages are : $messages');
+
+      setState(() {});
     });
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
@@ -91,7 +84,7 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
 
   @override
   void dispose() {
-    chatCubit.disconnectSocket();
+    // chatCubit.disconnectSocket();
     _controller.dispose();
     super.dispose();
   }
@@ -103,25 +96,23 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          // Expanded(child: MessagesListView(usersId: widget.usersId),
-          // ),
           Expanded(
-            child: messages.isEmpty
-                ? Center(
-                    child: Text('No messages yet'),
-                  )
+            child: messages.isNotEmpty
+                ? AllMessagesList(
+                    thiscontext: context,
+                    messages: messages,
+                    scrollController: _scrollController)
                 : BlocBuilder<ChatCubit, ChatState>(
                     builder: (context, state) {
-                      if (state is MessageLoading) {
+                      if (state is MessageLoading || state is SendingLoading) {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
-                      } else if (state is SendingSuccess) {
-                        return messages.isEmpty
-                            ? Center(child: Text('No messages yet'))
-                            : AllMessagesList(
-                                messages: messages,
-                                scrollController: _scrollController);
+                      } else if (state is MessageLoaded) {
+                        return AllMessagesList(
+                            thiscontext: context,
+                            messages: state.messages,
+                            scrollController: _scrollController);
                       } else if (state is MessageError) {
                         return Center(
                           child: Text(state.errMessage),
@@ -149,30 +140,8 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
                   hintText: S.of(context).send_mess,
                   suffixIcon: _isNotEmpty
                       ? IconButton(
-                          onPressed: () {
-                            if (_isNotEmpty) {
-                              chatCubit.sendMessage(
-                                receiverId: widget.landlordId,
-                                message: text,
-                              );
-                              chatCubit.fetchMessages(
-                                  user1Id: currentUserId,
-                                  user2Id: widget.landlordId);
-                              messages.add(
-                                MessageModel(
-                                  id: DateTime.now().toString(),
-                                  senderId: currentUserId,
-                                  // receiverId: widget.userId,
-                                  message: _controller.text,
-                                  timestamp: DateTime.now(),
-                                  createdAt: DateTime.now(),
-                                  updatedAt: DateTime.now(),
-                                ),
-                              );
-                              setState(() {});
-
-                              _controller.clear();
-                            }
+                          onPressed: () async {
+                            await sendMessage(message);
                           },
                           icon: Icon(
                             Icons.send,
@@ -182,29 +151,14 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
                         )
                       : null,
                 ),
-                onSubmitted: (text) {
-                  if (_isNotEmpty) {
-                    chatCubit.sendMessage(
-                      receiverId: widget.landlordId,
-                      message: text,
-                    );
-                    chatCubit.fetchMessages(
-                        user1Id: currentUserId, user2Id: widget.landlordId);
-                    messages.add(
-                      MessageModel(
-                        id: DateTime.now().toString(),
-                        senderId: currentUserId,
-                        // receiverId: widget.userId,
-                        message: text,
-                        timestamp: DateTime.now(),
-                        createdAt: DateTime.now(),
-                        updatedAt: DateTime.now(),
-                      ),
-                    );
-                    setState(() {});
-
-                    _controller.clear();
-                  }
+                onChanged: (text) {
+                  setState(() {
+                    message = text;
+                    _isNotEmpty = text.trim().isNotEmpty;
+                  });
+                },
+                onSubmitted: (text) async {
+                  await sendMessage(text);
                 },
               ),
             ),
@@ -213,11 +167,39 @@ class _ChatDetailsViewBodyState extends State<ChatDetailsViewBody> {
       ),
     );
   }
+
+  Future<void> sendMessage(String text) async {
+    if (_isNotEmpty) {
+      await chatCubit.sendMessage(
+        receiverId: widget.landlordId,
+        message: text,
+      );
+      await chatCubit.fetchMessages(
+        user1Id: currentUserId,
+        user2Id: widget.landlordId,
+      );
+      messages.add(
+        MessageModel(
+          id: DateTime.now().toString(),
+          senderId: currentUserId,
+          // receiverId: widget.userId,
+          message: text,
+          timestamp: DateTime.now(),
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+      );
+      setState(() {});
+
+      _controller.clear();
+    }
+  }
 }
 
-void _showMessageOptions(BuildContext context, String messageId, String text) {
+void _showMessageOptions(
+    BuildContext thiscontext, String messageId, String text) {
   showModalBottomSheet(
-    context: context,
+    context: thiscontext,
     builder: (BuildContext context) {
       return Container(
         padding: const EdgeInsets.all(16),
@@ -225,18 +207,21 @@ void _showMessageOptions(BuildContext context, String messageId, String text) {
           children: [
             ListTile(
               leading: const Icon(Icons.copy),
-              title: Text(S.of(context).copy_mess),
+              title: Text(S.of(thiscontext).copy_mess),
               onTap: () {
                 Clipboard.setData(ClipboardData(text: text));
-                context.pop(context);
-                CustomToast.show(message: S.of(context).mess_copied);
+                thiscontext.pop(thiscontext);
+                CustomToast.show(message: S.of(thiscontext).mess_copied);
               },
             ),
             ListTile(
               leading: const Icon(Icons.delete, color: Colors.red),
               title: Text(S.of(context).delete_mess),
               onTap: () {
-                context.read<ChatCubit>().removeMessage(messageId: messageId);
+                thiscontext
+                    .read<ChatCubit>()
+                    .removeMessage(messageId: messageId);
+
                 Navigator.pop(context);
               },
             ),
@@ -249,9 +234,14 @@ void _showMessageOptions(BuildContext context, String messageId, String text) {
 
 class AllMessagesList extends StatelessWidget {
   const AllMessagesList(
-      {super.key, required this.messages, required this.scrollController});
+      {super.key,
+      required this.messages,
+      required this.scrollController,
+      required this.thiscontext});
   final List<MessageModel> messages;
   final ScrollController scrollController;
+
+  final BuildContext thiscontext;
   @override
   Widget build(BuildContext context) {
     final String currentUserId = Supabase.instance.client.auth.currentUser!.id;
@@ -259,7 +249,7 @@ class AllMessagesList extends StatelessWidget {
     return ListView.builder(
         // dragStartBehavior: DragStartBehavior.start,
         controller: scrollController,
-        // reverse: true,
+        reverse: true,
         itemCount: messages.length,
         itemBuilder: (context, index) {
           final message = messages[index];
@@ -270,7 +260,7 @@ class AllMessagesList extends StatelessWidget {
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             onLongPress: () {
-              _showMessageOptions(context, message.id!, message.message!);
+              _showMessageOptions(thiscontext, message.id!, message.message!);
             },
             child: isMe
                 ? ChatBubble(massage: message)

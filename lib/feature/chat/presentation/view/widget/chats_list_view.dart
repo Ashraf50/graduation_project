@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
+import '../../../../../core/helper/di.dart';
 import '../../../data/repo/chat_repo_impl.dart';
 import '../../../data/repo/chat_service.dart';
 import '../../view_model/cubit/chats_cubit.dart';
@@ -13,9 +14,11 @@ class ChatsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentUserId = supabase.auth.currentUser!.id;
     return BlocProvider(
-      create: (context) =>
-          ChatCubit(ChatRepoImpl(), ChatService())..fetchChats(),
+      create: (context) => ChatCubit(
+        ChatRepoImpl(),
+      )..fetchChats(),
       child: BlocBuilder<ChatCubit, ChatState>(
         builder: (context, state) {
           if (state is ChatLoading) {
@@ -36,6 +39,9 @@ class ChatsListView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
+                          // BlocProvider.of<ChatCubit>(context).fetchMessages(
+                          //     user1Id: currentUserId,
+                          //     user2Id: state.chats[index].users!.last);
                           context.push(
                             '/chat_details',
                             extra: state.chats[index].users!.last,

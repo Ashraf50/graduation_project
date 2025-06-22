@@ -106,8 +106,7 @@ class _ChatItemState extends State<ChatItem> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  dateTimeFormat(widget.chat.lastUpdated!.toString(), 'dd/M') +
-                      '',
+                  '${dateTimeFormat(widget.chat.lastUpdated!.toString(), 'dd/M')}',
                   style: AppStyles.textStyle16gray,
                   overflow: TextOverflow.ellipsis,
                 ),

@@ -3,40 +3,41 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/message.dart';
 import '../../../data/repo/chat_repo_impl.dart';
-import '../../../data/repo/chat_service.dart';
 import 'chats_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   final ChatRepoImpl chatRepo;
-  final ChatService chatService;
+  // final ChatService chatService;
   List<MessageModel> messages = [];
   int currentPage = 1;
   bool isFetching = false;
   bool hasMore = true;
-  ChatCubit(this.chatRepo, this.chatService) : super(ChatInitial());
+  ChatCubit(
+    this.chatRepo,
+  ) : super(ChatInitial());
 
-  void connectToChat({required String user1Id, required String user2Id}) async {
-    emit(MessageLoading());
-    try {
-      final chatId =
-          await chatRepo.getChatID(user1Id: user1Id, user2Id: user2Id);
-      chatService.connectSocket(chatId, (data) {
-        final newMessage = MessageModel.fromJson(data);
-        if (!messages.any((msg) =>
-            msg.timestamp == newMessage.timestamp &&
-            msg.message == newMessage.message)) {
-          messages = [newMessage, ...messages];
-          emit(MessageLoaded(messages: List.from(messages)));
-        }
-      });
-      currentPage = 1;
-      hasMore = true;
-      messages.clear();
-      fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: false);
-    } on Exception catch (e) {
-      emit(MessageError(errMessage: 'Failed to connect to chat: $e'));
-    }
-  }
+  // void connectToChat({required String user1Id, required String user2Id}) async {
+  //   emit(MessageLoading());
+  //   try {
+  //     final chatId =
+  //         await chatRepo.getChatID(user1Id: user1Id, user2Id: user2Id);
+  //     chatService.connectSocket(chatId, (data) {
+  //       final newMessage = MessageModel.fromJson(data);
+  //       if (!messages.any((msg) =>
+  //           msg.timestamp == newMessage.timestamp &&
+  //           msg.message == newMessage.message)) {
+  //         messages = [newMessage, ...messages];
+  //         emit(MessageLoaded(messages: List.from(messages)));
+  //       }
+  //     });
+  //     currentPage = 1;
+  //     hasMore = true;
+  //     messages.clear();
+  //     fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: false);
+  //   } on Exception catch (e) {
+  //     emit(MessageError(errMessage: 'Failed to connect to chat: $e'));
+  //   }
+  // }
 
   Future<void> fetchChats() async {
     emit(ChatLoading());
@@ -87,16 +88,21 @@ class ChatCubit extends Cubit<ChatState> {
     fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: true);
   }
 
-  void sendMessage({required String receiverId, required String message}) {
+  Future<void> sendMessage({
+    required String receiverId,
+    required String message,
+  }) async {
     try {
       emit(SendingLoading());
-      chatService.sendMessage(receiverId, message);
+      ChatRepoImpl().sendMessage(
+        reciverId: receiverId,
+        message: message,
+      );
 
       emit(SendingSuccess(message: message));
     } on Exception catch (e) {
       log('Error sending message: ${e.toString()}');
       emit(SendingError(errMessage: e.toString()));
-      // TODO
     }
   }
 
@@ -120,7 +126,7 @@ class ChatCubit extends Cubit<ChatState> {
     }
   }
 
-  void disconnectSocket() {
-    chatService.disconnectSocket();
-  }
+  // void disconnectSocket() {
+  //   chatService.disconnectSocket();
+  // }
 }

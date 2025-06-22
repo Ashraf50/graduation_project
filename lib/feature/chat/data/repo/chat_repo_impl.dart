@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/constant/api_keys.dart';
+import 'package:graduation_project/core/constant/app_strings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/helper/api_helper.dart';
 import '../model/chat_model.dart';
@@ -34,21 +38,48 @@ class ChatRepoImpl implements ChatRepo {
   }
 
   @override
+ Future sendMessage({required String reciverId, required String message}) async {
+    try {
+      final Response response = await Dio().post(
+        '${ApiKeys.chatBaseUrl}api/messages/?apiKey=${ApiKeys.chatApiKey}',
+        data: {
+          'senderId': userId,
+          'recipientId': reciverId,
+          'message': message,
+          'timestamp': DateTime.now().toIso8601String(),
+        },
+        options: Options(
+          followRedirects: true,
+          validateStatus: (status) => status != null && status < 500,
+        ),
+      );
+
+      log('Message send response: ${response.statusCode} -> ${response.data}');
+      log('Redirect location: ${response.headers.value('location')}');
+    } catch (e, stack) {
+      log('Error sending message: $e', error: e, stackTrace: stack);
+    }
+  }
+
+  @override
   Future<List<MessageModel>> getMessages({
     required String user1Id,
     required String user2Id,
     required int page,
   }) async {
     try {
+      List<MessageModel> messages = [];
       final String url =
           '${ApiKeys.chatBaseUrl}/api/messages?apiKey=${ApiKeys.chatApiKey}&user1Id=$user1Id&user2Id=$user2Id&page=$page';
       final response = await apiHelper.get(url);
       if (response.statusCode == 200) {
         final data = response.data;
         if (data['status'] == 'true') {
-          return (data['messages'] as List)
-              .map((msg) => MessageModel.fromJson(msg))
-              .toList();
+          for (var message in data['messages']) {
+            messages.add(MessageModel.fromJson(message));
+            log('Message: ${message.toString()}');
+          }
+          return messages;
         } else {
           throw Exception('Invalid response format');
         }

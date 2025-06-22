@@ -1,51 +1,56 @@
-import 'dart:developer';
-import 'package:graduation_project/core/constant/api_keys.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
-import 'package:supabase_flutter/supabase_flutter.dart';
+// import 'dart:developer';
+// import 'package:graduation_project/core/constant/api_keys.dart';
+// import 'package:socket_io_client/socket_io_client.dart' as io;
+// import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ChatService {
-  late io.Socket socket;
+// class ChatService {
+//   // late io.Socket socket;
 
-  void connectSocket(String chatId, Function(dynamic) onMessageReceived) {
-    socket = io.io(
-      ApiKeys.chatBaseUrl,
-      io.OptionBuilder()
-          .setTransports(['websocket'])
-          .setReconnectionAttempts(3)
-          .build(),
-    );
-    socket.connect();
-    socket.onConnect((_) {
-      print('Connected to Socket.io ✅');
-      socket.emit('join', chatId);
-    });
+//   // void connectSocket(String chatId, Function(dynamic) onMessageReceived) {
+//     socket = io.io(
+//       ApiKeys.chatBaseUrl,
+//       io.OptionBuilder()
+//           .setTransports(['websocket'])
+//           .setReconnectionAttempts(3)
+//           .build(),
+//     );
+//     socket.connect();
+//     socket.onConnect((_) {
+//       print('Connected to Socket.io ✅');
+//       socket.emit('join', chatId);
+//     });
 
-    socket.onDisconnect((_) {
-      print('Disconnected from Socket.io ❌');
-    });
+//     socket.onDisconnect((_) {
+//       print('Disconnected from Socket.io ❌');
+//     });
 
-    socket.onError((error) {
-      print('Socket error: $error ❗');
-    });
-    socket.onConnectError((error) {
-      print('Connection error: $error ❗');
-    });
-    socket.on('receiveMessage', (data) {
-      onMessageReceived(data);
-    });
-  }
+//     socket.onError((error) {
+//       print('Socket error: $error ❗');
+//     });
+//     socket.onConnectError((error) {
+//       print('Connection error: $error ❗');
+//     });
+//     socket.on('receiveMessage', (data) {
+//       onMessageReceived(data);
+//     });
+//   }
 
-  void sendMessage(String receiverId, String message) {
-    socket.emit('sendMessage', {
-      'senderId': Supabase.instance.client.auth.currentUser?.id,
-      'recipientId': receiverId,
-      'message': message,
-      'timestamp': DateTime.now().toIso8601String(),
-    });
-    log('Sent message: $message to $receiverId');
-  }
+//   void sendMessage(String receiverId, String message) {
+//     try {
+//       socket.emit('sendMessage', {
+//         'senderId': Supabase.instance.client.auth.currentUser?.id,
+//         'recipientId': receiverId,
+//         'message': message,
+//         'timestamp': DateTime.now().toIso8601String(),
+//       });
+//       log('Sent message: $message to $receiverId');
+//     } on Exception catch (e) {
+//       log('Error sending message: $e');
+//       // TODO
+//     }
+//   }
 
-  void disconnectSocket() {
-    socket.disconnect();
-  }
-}
+//   void disconnectSocket() {
+//     socket.disconnect();
+//   }
+// }
