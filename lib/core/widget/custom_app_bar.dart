@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/app_style.dart';
 import 'package:graduation_project/core/constant/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -16,16 +17,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       scrolledUnderElevation: 0,
+      automaticallyImplyLeading: true,
+      
       backgroundColor: themeProvider.isDarkTheme
           ? AppColors.scaffoldColorDark
           : Colors.white,
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      title: Text(title, style: AppStyles.textStyle18gray),
     );
   }
 

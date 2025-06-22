@@ -59,28 +59,31 @@ class _MessagesListViewState extends State<MessagesListView> {
             child: CircularProgressIndicator(),
           );
         } else if (state is MessageLoaded) {
-          return ListView.builder(
-              controller: _scrollController,
-              reverse: true,
-              itemCount: state.messages.length,
-              itemBuilder: (context, index) {
-                final message = state.messages[index];
-                final messages = state.messages;
-                final isMe = message.senderId == currentUserId;
-                return InkWell(
-                  focusColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onLongPress: () {
-                    _showMessageOptions(context, message.id!, message.message!);
-                  },
-                  child: messages.isEmpty
-                      ? Center(child: Text('No messages yet'))
-                      : isMe
-                          ? ChatBubble(massage: message)
-                          : ChatBubbleFriend(massage: message),
-                );
-              });
+          return state.messages.isEmpty
+              ? Center(child: Text('No messages yet'))
+              : ListView.builder(
+                  controller: _scrollController,
+                  reverse: true,
+                  itemCount: state.messages.length,
+                  itemBuilder: (context, index) {
+                    final message = state.messages[index];
+                    final messages = state.messages;
+                    final isMe = message.senderId == currentUserId;
+                    return InkWell(
+                      focusColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onLongPress: () {
+                        _showMessageOptions(
+                            context, message.id!, message.message!);
+                      },
+                      child: messages.isEmpty
+                          ? Center(child: Text('No messages yet'))
+                          : isMe
+                              ? ChatBubble(massage: message)
+                              : ChatBubbleFriend(massage: message),
+                    );
+                  });
         } else if (state is MessageError) {
           return Center(
             child: Text(state.errMessage),
@@ -124,4 +127,5 @@ class _MessagesListViewState extends State<MessagesListView> {
       },
     );
   }
+
 }

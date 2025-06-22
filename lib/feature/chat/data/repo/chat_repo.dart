@@ -8,6 +8,11 @@ abstract class ChatRepo {
     required String user1Id,
     required String user2Id,
   });
+
+ Future sendMessage({
+    required String reciverId,
+    required String message,
+  });
   Future<String> getChatID({
     required String user1Id,
     required String user2Id,

@@ -7,7 +7,6 @@ import 'package:graduation_project/feature/Auth/presentation/view/responsive_for
 import 'package:graduation_project/feature/Auth/presentation/view/responsive_sign_up.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/reset_pass_responsive.dart';
 import 'package:graduation_project/feature/Auth/presentation/view/widget/responsive_finish_reset_pass.dart';
-
 import 'package:graduation_project/feature/account/presentation/view/account_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/about_us_view.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/contact_us.dart';
@@ -16,7 +15,6 @@ import 'package:graduation_project/feature/account/presentation/view/widget/lang
 import 'package:graduation_project/feature/account/presentation/view/widget/privacy_policy.dart';
 import 'package:graduation_project/feature/account/presentation/view/widget/terms_and_condition.dart';
 import 'package:graduation_project/feature/chat/presentation/view/chat_details_view.dart';
-
 import 'package:graduation_project/feature/dashboard/presentation/view/dashboard_view.dart';
 import 'package:graduation_project/feature/desktop/desktop_view.dart';
 import 'package:graduation_project/feature/flat/data/models/flat_model.dart';
@@ -29,8 +27,8 @@ class AppRouter {
   final bool isLoggedIn;
   AppRouter({required this.isLoggedIn});
   late final GoRouter router = GoRouter(
-    // initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
-    initialLocation: '/sign_up',
+    initialLocation: isLoggedIn ? '/bottomBar' : '/onboard',
+    // initialLocation: '/sign_up',
     //initialLocation: '/dashboard',
     routes: [
       GoRoute(
@@ -105,9 +103,13 @@ class AppRouter {
       GoRoute(
         path: '/chat_details',
         builder: (context, state) {
-          final usersId = state.extra as String;
+          final landlordId = state.extra as String;
+          // final landlordName = state.extra as String;
 
-          return ChatDetailsView(usersId: usersId);
+          return ChatDetailsView(
+            landlordId: landlordId,
+            
+          );
         },
       ),
       GoRoute(
