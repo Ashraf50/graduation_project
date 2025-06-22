@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
 import 'package:graduation_project/core/constant/app_style.dart';
+import 'package:graduation_project/core/helper/chat_helper.dart';
 import 'package:graduation_project/core/services/recomendation/cubit/ai_recomendation_cubit.dart';
 import 'package:graduation_project/core/widget/custom_app_bar.dart';
 import 'package:graduation_project/core/widget/custom_scaffold.dart';
@@ -24,10 +27,13 @@ class DetailsViewBody extends StatelessWidget {
       appBar: CustomAppBar(title: S.of(context).details),
       floatingActionButton: InkWell(
           onTap: () {
-            // BlocProvider.of<ChatCubit>(context)
-            //     .sendMessage(receiverId: flat.landlordId!, message: 'message');
-           
-            context.push('/chat_details', extra: flat.landlordId);
+            log('from  details view landlord id : ${flat.landlordId}');
+            log('from  details view current user id : ${supabase.auth.currentUser!.id}');
+            context.push(
+              '/chat_details',
+              extra: flat.landlordId!,
+            );
+// supabase.auth.currentUser!.id;
           },
           child: CircleAvatar(
             // backgroundColor: const Color.fromARGB(175, 0, 89, 79),

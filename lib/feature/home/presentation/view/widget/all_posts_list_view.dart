@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:graduation_project/core/constant/app_colors.dart';
+import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
 import 'package:graduation_project/core/widget/decoration_container.dart';
 import 'package:graduation_project/feature/flat/presentation/view_model/flat_view_model.dart';
 import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
@@ -24,6 +25,7 @@ class _AllPostsListViewState extends State<AllPostsListView> {
   bool isFlatLoaded = false;
   @override
   void initState() {
+    // getLandLordNameById('55911813-9a7b-4ab9-8278-ea426a4bfece');
     if (!isFlatLoaded) {
       Future.sync(() {
         BlocProvider.of<FlatViewModel>(context).fetchAllFlats();

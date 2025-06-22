@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/feature/home/presentation/view/widget/no_item_widget.dart';
 import '../../../data/repo/chat_repo_impl.dart';
 import '../../../data/repo/chat_service.dart';
 import '../../view_model/cubit/chats_cubit.dart';
@@ -22,21 +23,27 @@ class ChatsListView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is ChatLoaded) {
-            return ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: state.chats.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      context.push(
-                        '/chat_details',
-                        extra: state.chats[index].users,
+            return state.chats.isEmpty
+                ? Center(
+                    child: NoItemWidget(
+                      message: 'No Chats Yet, connect with someone now ',
+                    ),
+                  )
+                : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.chats.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          context.push(
+                            '/chat_details',
+                            extra: state.chats[index].users!.last,
+                          );
+                        },
+                        child: ChatItem(chat: state.chats[index]),
                       );
-                    },
-                    child: ChatItem(chat: state.chats[index]),
-                  );
-                });
+                    });
           } else if (state is ChatError) {
             return Center(
               child: Text(state.errMessage),

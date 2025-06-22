@@ -1,4 +1,6 @@
-import 'package:flutter_bloc/flutter_bloc.dart'; 
+import 'dart:developer';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/message.dart';
 import '../../../data/repo/chat_repo_impl.dart';
 import '../../../data/repo/chat_service.dart';
@@ -32,7 +34,7 @@ class ChatCubit extends Cubit<ChatState> {
       messages.clear();
       fetchMessages(user1Id: user1Id, user2Id: user2Id, isPagination: false);
     } on Exception catch (e) {
-      emit(MessageError(errMessage: "Failed to connect to chat: $e"));
+      emit(MessageError(errMessage: 'Failed to connect to chat: $e'));
     }
   }
 
@@ -40,18 +42,19 @@ class ChatCubit extends Cubit<ChatState> {
     emit(ChatLoading());
     try {
       final chats = await chatRepo.getALlChats();
+      log('Fetched chats: $chats');
       emit(ChatLoaded(chats: chats));
     } catch (e) {
-      emit(ChatError(errMessage: "Failed to load chats: $e.message}"));
+      emit(ChatError(errMessage: 'Failed to load chats: $e.message}'));
     }
   }
 
-  Future<void> fetchMessages({
+  Future<List<MessageModel>> fetchMessages({
     required String user1Id,
     required String user2Id,
     bool isPagination = false,
   }) async {
-    if (isFetching || !hasMore) return;
+    if (isFetching || !hasMore) return [];
     isFetching = true;
     if (!isPagination) {
       emit(MessageLoading());
@@ -68,10 +71,14 @@ class ChatCubit extends Cubit<ChatState> {
         messages = [...messages, ...fetchedMessages];
         currentPage++;
       }
+
       emit(MessageLoaded(messages: List.from(messages)));
+      log('messages are $messages');
+      return List.from(messages);
     } catch (e) {
       emit(
-          MessageError(errMessage: "Failed to load messages: ${e.toString()}"));
+          MessageError(errMessage: 'Failed to load messages: ${e.toString()}'));
+      return [];
     }
     isFetching = false;
   }
@@ -81,7 +88,16 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void sendMessage({required String receiverId, required String message}) {
-    chatService.sendMessage(receiverId, message);
+    try {
+      emit(SendingLoading());
+      chatService.sendMessage(receiverId, message);
+
+      emit(SendingSuccess(message: message));
+    } on Exception catch (e) {
+      log('Error sending message: ${e.toString()}');
+      emit(SendingError(errMessage: e.toString()));
+      // TODO
+    }
   }
 
   Future removeMessage({required String messageId}) async {
@@ -91,7 +107,7 @@ class ChatCubit extends Cubit<ChatState> {
       emit(MessageLoaded(messages: List.from(messages)));
     } catch (e) {
       emit(MessageError(
-          errMessage: "Failed to delete message: ${e.toString()}"));
+          errMessage: 'Failed to delete message: ${e.toString()}'));
     }
   }
 
@@ -100,7 +116,7 @@ class ChatCubit extends Cubit<ChatState> {
       await chatRepo.deleteChat(chatId: chatId);
       fetchChats();
     } catch (e) {
-      emit(ChatError(errMessage: "Failed to delete chat: ${e.toString()}"));
+      emit(ChatError(errMessage: 'Failed to delete chat: ${e.toString()}'));
     }
   }
 

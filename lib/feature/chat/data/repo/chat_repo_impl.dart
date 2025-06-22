@@ -11,24 +11,24 @@ class ChatRepoImpl implements ChatRepo {
   @override
   Future<List<ChatModel>> getALlChats() async {
     try {
-      if (userId == null) throw Exception("User not authenticated");
+      if (userId == null) throw Exception('User not authenticated');
       final response = await apiHelper.get(
         '${ApiKeys.chatBaseUrl}/api/chats/$userId?apiKey=${ApiKeys.chatApiKey}',
       );
       if (response.statusCode == 200) {
         final data = response.data;
-        if (data['status'] == "true") {
+        if (data['status'] == 'true') {
           return (data['chats'] as List)
               .map((chat) => ChatModel.fromJson(chat))
               .toList();
         } else {
-          throw Exception("Invalid response format");
+          throw Exception('Invalid response format');
         }
       } else {
-        throw Exception("Failed to fetch chats: ${response.statusCode}");
+        throw Exception('Failed to fetch chats: ${response.statusCode}');
       }
     } catch (e) {
-      print("Error fetching chats: $e");
+      print('Error fetching chats: $e');
       return [];
     }
   }
@@ -45,18 +45,18 @@ class ChatRepoImpl implements ChatRepo {
       final response = await apiHelper.get(url);
       if (response.statusCode == 200) {
         final data = response.data;
-        if (data['status'] == "true") {
+        if (data['status'] == 'true') {
           return (data['messages'] as List)
               .map((msg) => MessageModel.fromJson(msg))
               .toList();
         } else {
-          throw Exception("Invalid response format");
+          throw Exception('Invalid response format');
         }
       } else {
-        throw Exception("Failed to fetch chats: ${response.statusCode}");
+        throw Exception('Failed to fetch chats: ${response.statusCode}');
       }
     } catch (e) {
-      print("Error fetching chats: $e");
+      print('Error fetching chats: $e');
       return [];
     }
   }
@@ -70,13 +70,13 @@ class ChatRepoImpl implements ChatRepo {
       final response = await apiHelper.get(
         '${ApiKeys.chatBaseUrl}/api/chats/?user1Id=$user1Id&user2Id=$user2Id',
       );
-      if (response.statusCode == 200 && response.data['status'] == "true") {
+      if (response.statusCode == 200 && response.data['status'] == 'true') {
         return response.data['chatId'];
       } else {
-        throw Exception("Failed to get or create chat.");
+        throw Exception('Failed to get or create chat.');
       }
     } catch (e) {
-      throw Exception("Error getting chatId: $e");
+      throw Exception('Error getting chatId: $e');
     }
   }
 
@@ -86,7 +86,7 @@ class ChatRepoImpl implements ChatRepo {
       await apiHelper.delete(
           '${ApiKeys.chatBaseUrl}/api/chats/$chatId?apiKey=${ApiKeys.chatApiKey}');
     } catch (e) {
-      throw Exception("Failed to delete message: ${e.toString()}");
+      throw Exception('Failed to delete message: ${e.toString()}');
     }
   }
 
@@ -96,7 +96,7 @@ class ChatRepoImpl implements ChatRepo {
       await apiHelper.delete(
           '${ApiKeys.chatBaseUrl}/api/messages/$messageId?apiKey=${ApiKeys.chatApiKey}');
     } catch (e) {
-      throw Exception("Failed to delete message: ${e.toString()}");
+      throw Exception('Failed to delete message: ${e.toString()}');
     }
   }
 }

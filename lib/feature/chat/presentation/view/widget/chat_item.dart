@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/constant/function/get_landlord_by_its_id.dart';
+import 'package:graduation_project/core/helper/di.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../core/constant/app_colors.dart';
 import '../../../../../core/constant/app_style.dart';
@@ -18,8 +22,8 @@ class ChatItem extends StatefulWidget {
 }
 
 class _ChatItemState extends State<ChatItem> {
-  final currentUserId = Supabase.instance.client.auth.currentUser!.id;
-  String chatTitle = "Loading...";
+  final currentUserId = supabase.auth.currentUser!.id;
+  String chatTitle = ' ';
 
   @override
   void initState() {
@@ -28,9 +32,8 @@ class _ChatItemState extends State<ChatItem> {
   }
 
   Future<void> _fetchChatTitle() async {
-    final otherUserId =
-        widget.chat.users!.firstWhere((id) => id != currentUserId);
-    final title = await ChatHelper().getUserNameById(widget.chat.users!.last);
+    log('Fetching chat title for   ID: ${widget.chat.id}');
+    final title = await getLandLordNameById(widget.chat.users!.last);
 
     setState(() {
       chatTitle = title;
@@ -60,6 +63,7 @@ class _ChatItemState extends State<ChatItem> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
                   backgroundColor: AppColors.primaryColor,
@@ -73,29 +77,39 @@ class _ChatItemState extends State<ChatItem> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(chatTitle, style: AppStyles.textStyle20),
+                    Text(chatTitle, style: AppStyles.textStyle18black),
                     SizedBox(
                       height: 3,
                     ),
-                    Text(
-                      widget.chat.lastMessage ?? 'send a message now',
-                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    SizedBox(
+                      width: 150,
+                      child: Text(
+                        widget.chat.lastMessage ?? '',
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            overflow: TextOverflow.fade),
+                        maxLines: 1,
+                      ),
                     ),
                   ],
                 ),
               ],
             ),
-            Column(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   dateTimeFormat(
                       widget.chat.lastUpdated!.toString(), 'hh:mm a'),
-                  style: AppStyles.textStyle18black,
+                  style: AppStyles.textStyle16gray,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  dateTimeFormat(widget.chat.lastUpdated!.toString(), 'dd/M'),
-                  style: AppStyles.textStyle18black,
+                  dateTimeFormat(widget.chat.lastUpdated!.toString(), 'dd/M') +
+                      '',
+                  style: AppStyles.textStyle16gray,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

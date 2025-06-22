@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:graduation_project/core/constant/api_keys.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -41,6 +42,7 @@ class ChatService {
       'message': message,
       'timestamp': DateTime.now().toIso8601String(),
     });
+    log('Sent message: $message to $receiverId');
   }
 
   void disconnectSocket() {

@@ -71,6 +71,7 @@ class FlatViewModel extends Cubit<FlatStates> {
 
       for (var flat in flats) {
         flat.landlordName = await getLandLordNameById(flat.landlordId!);
+
         flat.imagesUrl = await _fetchFlatImages(flat.flatId.toString());
       }
 
@@ -80,7 +81,6 @@ class FlatViewModel extends Cubit<FlatStates> {
       emit(FetchingAllFlatsSuccessState(flats: flats));
       return flats;
     } on Exception catch (e) {
-      
       log(e.toString());
       emit(FetchingAllFlatsErrorState(errMsg: e.toString()));
       // throw Exception('Error fetching flats: ${e.toString()}');
