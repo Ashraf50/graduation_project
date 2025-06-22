@@ -1202,7 +1202,12 @@ class S {
 
   /// `Materials`
   String get materail {
-    return Intl.message('Materials', name: 'materail', desc: '', args: []);
+    return Intl.message(
+      'Materials',
+      name: 'materail',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Recomendations`
